@@ -51,6 +51,7 @@ export default function RecuperarContra() {
     }
   };
 
+  
   return (
     <div className="registro-form-containerLogin">
       <div className="registro-image-containerLogin">

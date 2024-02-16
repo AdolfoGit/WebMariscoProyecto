@@ -28,7 +28,7 @@ import Ayuda from './components/Empresa/Ayuda';
 import Token from './components/Usuarios/Token';
 import Error500 from './components/CodigoError/Error500';
 import Actualizar from './components/Usuarios/actualizar';
-
+import ListaUsuarios from './components/Administrador/Usuarios';
 
 import { Helmet } from 'react-helmet';
 
@@ -76,7 +76,7 @@ function App  (){
             <Route path="/404" element={<NotFoundPage />} />
             <Route path="/500" element={<Error500 />} />
             <Route path='*' element={<Navigate to='/404'/>} /> 
-           
+           <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
           </Routes>
           <Fotter/>
           <CookieBanner/> 

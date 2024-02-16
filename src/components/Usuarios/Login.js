@@ -1,19 +1,28 @@
-import React , { useState}from 'react'
-import '../Usuarios/css/login.css'
-import { Link } from 'react-router-dom'
-import { Component } from 'react'
+import React, { useState, useRef } from 'react';
+import '../Usuarios/css/login.css';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import imagen from '../home/img/formLogin.jpg'
+import imagen from '../home/img/formLogin.jpg';
 import LoginIcon from '@mui/icons-material/Login';
-
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export default function Login() {
-
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
+  const navigate = useNavigate();
+  const loginAttemptsRef = useRef(loginAttempts);
+
+  
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -25,14 +34,35 @@ export default function Login() {
   const handleBlur = () => {
     validatePassword(password);
   };
-  
-  const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email === '') {
+      setEmailError('Este campo no puede estar vacío');
+    } else if (emailRegex.test(email)) {
+      setEmailError('');
+      return true;
+    } else {
+      setEmailError('Correo electrónico no válido, incluya un @');
+      return false;
+    }
+  };
+
+  const validatePassword = (password) => {
+    if (password === '') {
+      setPasswordError('Este campo no puede estar vacío');
+    } else if (password.length >= 8) {
+      setPasswordError('');
+      return true;
+    } else {
+      setPasswordError('La contraseña debe tener al menos 8 caracteres');
+      return false;
+    }
+  };
     const handleSubmit = (event) => {
       event.preventDefault();
       
@@ -41,6 +71,14 @@ export default function Login() {
       data.append("Contrasena", password);
       // Validar campos antes de enviar el formulario
       if (validateEmail(email) && validatePassword(password) ) {
+        loginAttemptsRef.current += 1;
+        if (loginAttemptsRef.current >= 5) {
+          setIsButtonDisabled(true); // Deshabilitar el botón después de 5 intentos
+          setTimeout(() => {
+            setIsButtonDisabled(false); // Habilitar el botón después de 3 minutos
+            loginAttemptsRef.current = 0; // Reiniciar el contador de intentos
+          }, 60000); // 3 minutos en milisegundos
+        }
         fetch(
           "https://apicasadelmarisco.azurewebsites.net/" +
             "api/CasaDelMarisco/Login?Correo=" +
@@ -58,8 +96,19 @@ export default function Login() {
               setPasswordError('Contraseña incorrecta');
             }else if(result === 'Error en las credenciales'){
               setEmailError('Error en las credenciales');
-
-            }else if(result === 'Contraseña correcta'){
+              
+            }
+            else if(result=='Cuenta bloqueada'){
+              Swal.fire({
+                icon: 'error',
+                title: 'Cuenta bloqueada',
+                text: 'Su cuenta está bloqueada y no podrá ingresar.',
+              });
+            }
+            else if(result === 'Contraseña correcta para administrador'){
+              window.location.href='/listausuarios'
+            }
+            else if(result === 'Contraseña correcta'){
               window.location.href='/'
             }
           
@@ -71,38 +120,6 @@ export default function Login() {
       }
     };
 
-     const [isChecked, setIsChecked] = useState(false);
-
-    const handleCheckboxChange = () => {
-      setIsChecked(!isChecked);
-    };
-
-    const validateEmail = (email) => {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if(email == ('')){
-        setEmailError ('Este campo no puede estar vacio')
-      }else if (emailRegex.test(email)) {
-        setEmailError('');
-        return true;
-      } else {
-        setEmailError('Correo electrónico no válido incluya un @');
-        return false;
-      }
-    };
-  
-    const validatePassword = (password) => {
-      // Agrega tus criterios de validación de contraseña aquí
-      if(password == ('')){
-        setPasswordError ('Este campo no puede estar vacio')
-      }else if (password.length >= 8) {
-        setPasswordError('');
-        return true;
-      } else {
-        setPasswordError('La contraseña debe tener al menos 8 caracteres');
-        return false;
-      }
-    };
-   
   return (
     
     <div className="registro-form-containerLogin">
@@ -163,7 +180,8 @@ export default function Login() {
         </label>
            <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
       
-        <button  className='btn btn-warning text2' type="submit">Entrar</button><br/>
+        <button  className='btn btn-warning text2' type="submit"             disabled={isButtonDisabled}
+>Entrar</button><br/>
      
       </form>
     </div>
