@@ -34,25 +34,13 @@ import { Helmet } from 'react-helmet';
 
 function App  (){
 
-  const csp = ` 
-  default-src 'self'; 
-  script-src 'self' 'unsafe-inline'; 
-  style-src 'self' 'unsafe-inline'; 
-  img-src 'self' data:; 
-  font-src 'self' data:; 
-  connect-src 'self' https://apicasadelmarisco.azurewebsites.net/
-  `;
-
+ 
 
 
   return (
     <>
       <Router>
-          <Helmet>
-            <meta
-              http-equiv="Content-Security-Policy"
-              content={csp} />
-          </Helmet>
+         
           <Header/>
         
           <Routes>

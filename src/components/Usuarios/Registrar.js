@@ -12,8 +12,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 
 const Registro = () => {
 
-  const [captchaValido, cambiarEstado] = useState(null);
-	const captcha = useRef(null);
+  
  
   const navigate = useNavigate();
   const [nombre,setNombre]= useState('')
@@ -37,6 +36,7 @@ const Registro = () => {
   const [apellidoMError, setApellidoMError] = useState('');
   const [apellidoPError, setApellidoPError] = useState('');
   const [fechaError, setFechaError] = useState('');
+  const [TerminosError, setTerminosError] = useState('');
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -79,52 +79,56 @@ const Registro = () => {
         
       
       // Validar campos antes de enviar el formulario
-      if (validateEmail(email)==true && validatePassword(password)==true && validatePassword2(password2) && validateApellidoM(ApellidoM)==true && validateApellidoP(ApellidoP)==true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
+      if(isChecked ==false){
+        setTerminosError('Acepte los terminos y condiciones')
+      }else{
+        if (validateEmail(email)==true && validatePassword(password)==true && validatePassword2(password2) && validateApellidoM(ApellidoM)==true && validateApellidoP(ApellidoP)==true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
     
        
-        fetch(
-          "https://apicasadelmarisco.azurewebsites.net/" +
-            "api/CasaDelMarisco/VerificarCorreo?Correo=" +
-            email,
-          {
-            method: "POST",
-            body: formData,
-          }
-        )
-          .then((res) => res.json())
-          .then((result) => {
-            if(result=='Correo Existe'){
-              setEmailError('Invalido, correo existente');
-            }else{
-              fetch(
-                "https://apicasadelmarisco.azurewebsites.net/" +
-                  "api/CasaDelMarisco/AgregarUsuarios?Nombre=" +
-                  nombre +
-                  "&ApellidoPaterno=" +
-                  ApellidoP +
-                  "&ApellidoMaterno=" +
-                  ApellidoM +
-                  "&Correo=" +
-                  email +
-                  "&Telefono=" +
-                  telefono +
-                  "&Contrasena=" +
-                  password + 
-                  "&FechaNacimiento"
-                  + fechaNac,
-                {
-                  method: "POST",
-                  body: data,
-                }
-              )
-                .then((res) => res.json())
-                .then((result) => {
-                  window.location.href='/login'
-                }); 
+          fetch(
+            "https://apicasadelmarisco.azurewebsites.net/" +
+              "api/CasaDelMarisco/VerificarCorreo?Correo=" +
+              email,
+            {
+              method: "POST",
+              body: formData,
             }
-          });  
-      } else {
-        navigate('/500');
+          )
+            .then((res) => res.json())
+            .then((result) => {
+              if(result=='Correo Existe'){
+                setEmailError('Invalido, correo existente');
+              }else{
+                fetch(
+                  "https://apicasadelmarisco.azurewebsites.net/" +
+                    "api/CasaDelMarisco/AgregarUsuarios?Nombre=" +
+                    nombre +
+                    "&ApellidoPaterno=" +
+                    ApellidoP +
+                    "&ApellidoMaterno=" +
+                    ApellidoM +
+                    "&Correo=" +
+                    email +
+                    "&Telefono=" +
+                    telefono +
+                    "&Contrasena=" +
+                    password + 
+                    "&FechaNacimiento"
+                    + fechaNac,
+                  {
+                    method: "POST",
+                    body: data,
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((result) => {
+                    window.location.href='/login'
+                  }); 
+              }
+            });  
+        } else {
+          navigate('/500');
+        }
       }
     };
 
@@ -479,18 +483,16 @@ const Registro = () => {
           <input
             type="checkbox"
            className='cuadro'
+           onChange={(e) => handleCheckboxChange()}
           />
          <Link to='/terminos' > Acepta los terminos y condiciones</Link>
+         {TerminosError && <p className="error-message">{TerminosError}</p>}
         </label>
         <Link to='/politicas'className='recuerdame' >Politicas de privacidad</Link>
     
         <button  className='btn btn-warning text2' type="submit">Registrar</button><br/>
       
-        <ReCAPTCHA
-								ref={captcha}
-								sitekey="6Lfa8VMpAAAAAPfw1xVX8_uZ7VUhFntcKpZpFA3u"
-								onChange={handleSubmit}
-							/>
+       
 						
       </form>
     </div>

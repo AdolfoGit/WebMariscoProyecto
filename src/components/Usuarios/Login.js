@@ -8,7 +8,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
+import ReCAPTCHA from 'react-google-recaptcha';
 export default function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -17,10 +17,13 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [loginAttempts2, setLoginAttempts2] = useState(0);
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const navigate = useNavigate();
   const loginAttemptsRef = useRef(loginAttempts);
+  const loginAttemptsRef2 = useRef(loginAttempts2);
 
   
   const togglePasswordVisibility = () => {
@@ -35,9 +38,6 @@ export default function Login() {
     validatePassword(password);
   };
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -72,7 +72,8 @@ export default function Login() {
       // Validar campos antes de enviar el formulario
       if (validateEmail(email) && validatePassword(password) ) {
         loginAttemptsRef.current += 1;
-        if (loginAttemptsRef.current >= 5) {
+        if (loginAttemptsRef.current >= 3) {
+
           setIsButtonDisabled(true); // Deshabilitar el botón después de 5 intentos
           setTimeout(() => {
             setIsButtonDisabled(false); // Habilitar el botón después de 3 minutos
@@ -94,6 +95,20 @@ export default function Login() {
           .then((result) => {
             if(result === 'Error en tus credenciales'){
               setPasswordError('Contraseña incorrecta');
+              loginAttemptsRef2.current += 1;
+              if (loginAttemptsRef2.current >= 3) {
+                fetch(
+                  "https://apicasadelmarisco.azurewebsites.net/" +
+                    "api/CasaDelMarisco/BloquearCuenta?Correo=" +
+                    email,
+                  {
+                    method: "POST",
+                    body: data,
+                  }
+                )
+                
+              }
+
             }else if(result === 'Error en las credenciales'){
               setEmailError('Error en las credenciales');
               
@@ -120,8 +135,10 @@ export default function Login() {
       }
     };
 
+    function onChange(value) {
+      setIsButtonDisabled(false)
+      }
   return (
-    
     <div className="registro-form-containerLogin">
     <div className="registro-image-containerLogin">
       <img src={imagen} alt="Registro" className="registro-imageLogin" />
@@ -179,9 +196,10 @@ export default function Login() {
           Recuérdame
         </label>
            <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
-      
-        <button  className='btn btn-warning text2' type="submit"             disabled={isButtonDisabled}
->Entrar</button><br/>
+      <div className='recaptcha'>
+      <ReCAPTCHA sitekey="6LcUpXUpAAAAAGeB4-PvEPXz79ckUqFfB9Qbk2DV" onChange={onChange}/>
+      </div>
+        <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
      
       </form>
     </div>
