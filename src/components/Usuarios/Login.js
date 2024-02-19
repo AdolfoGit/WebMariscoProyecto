@@ -12,6 +12,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Bienvenida from './pantallaMultifactor';
 import { ReactDOM } from 'react';
 
+
 export default function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
