@@ -16,9 +16,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 const Ofertas = () => {
   return (
     <Container maxWidth="lg" sx={{ paddingTop: 4, paddingBottom: 4 }}>
-       <section>
-        <img src='https://yt3.googleusercontent.com/ytc/AIf8zZS6XDo-M7dlTyolU_yBAp-cmqn0EfZ8AGkKa9yItg=s900-c-k-c0x00ffffff-no-rj' alt='as' />
-        </section>
+       
       <Grid container spacing={3}>
         {/* Oferta 1 */}
         <Grid item xs={12} md={4}>
