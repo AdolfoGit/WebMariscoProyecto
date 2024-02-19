@@ -81,7 +81,7 @@ export default function Login() {
           }, 60000); // 3 minutos en milisegundos
         }
         fetch(
-          "https://apicasadelmarisco.azurewebsites.net/" +
+          "http://lacasadelmariscoapi.somee.com/" +
             "api/CasaDelMarisco/Login?Correo=" +
             email+
             "&Contrasena="+
@@ -98,7 +98,7 @@ export default function Login() {
               loginAttemptsRef2.current += 1;
               if (loginAttemptsRef2.current >= 3) {
                 fetch(
-                  "https://apicasadelmarisco.azurewebsites.net/" +
+                  "http://lacasadelmariscoapi.somee.com/" +
                     "api/CasaDelMarisco/BloquearCuenta?Correo=" +
                     email,
                   {

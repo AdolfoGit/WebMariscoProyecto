@@ -29,7 +29,7 @@ export default function RecuperarContra() {
 
     if (validateEmail(email)) {
       fetch(
-        'https://apicasadelmarisco.azurewebsites.net/' +
+        'http://lacasadelmariscoapi.somee.com/' +
           'api/CasaDelMarisco/ActualizarToken?Correo=' +
           email,
         {

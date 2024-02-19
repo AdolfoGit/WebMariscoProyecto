@@ -13,7 +13,7 @@ class Perfil extends Component{
   }
   
   API_URL = "http://localhost:5029/";
-  API_URL2 = "https://apicasadelmarisco.azurewebsites.net/";
+  API_URL2 = "http://lacasadelmariscoapi.somee.com/";
 
   componentDidMount(){
     this.recargarUsuarios();
