@@ -16,7 +16,6 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 const Ofertas = () => {
   return (
     <Container maxWidth="lg" sx={{ paddingTop: 4, paddingBottom: 4 }}>
-       
       <Grid container spacing={3}>
         {/* Oferta 1 */}
         <Grid item xs={12} md={4}>
