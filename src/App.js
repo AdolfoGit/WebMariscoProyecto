@@ -20,7 +20,7 @@ import Productos2 from './components/Productos/Productos';
 import Pedidos from './components/Pedidos/Pedidos'; 
 import RecuperarContra from './components/Usuarios/RecuperarContra'
 import NotFoundPage from './components/CodigoError/NotFoundPage';
-
+import Bienvenida from './components/Usuarios/pantallaMultifactor';
 
 
 
@@ -65,6 +65,7 @@ function App  (){
             <Route path="/500" element={<Error500 />} />
             <Route path='*' element={<Navigate to='/404'/>} /> 
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
+           <Route path='/multifactor' element={<Bienvenida/>}></Route>
           </Routes>
           <Fotter/>
           <CookieBanner/> 

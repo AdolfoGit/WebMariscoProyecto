@@ -9,6 +9,9 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import ReCAPTCHA from 'react-google-recaptcha';
+import Bienvenida from './pantallaMultifactor';
+import { ReactDOM } from 'react';
+
 export default function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -121,10 +124,29 @@ export default function Login() {
               });
             }
             else if(result === 'Contraseña correcta para administrador'){
-              window.location.href='/listausuarios'
+              fetch(
+                'http://lacasadelmariscoapi.somee.com/' +
+                  'api/CasaDelMarisco/ActualizarToken?Correo=' +
+                  email,
+                {
+                  method: 'POST',
+                  body: data,
+                }
+              )
+              navigate(`/multifactor?correo=${email}`);
             }
             else if(result === 'Contraseña correcta'){
-              window.location.href='/'
+              fetch(
+                'http://lacasadelmariscoapi.somee.com/' +
+                  'api/CasaDelMarisco/ActualizarToken?Correo=' +
+                  email,
+                {
+                  method: 'POST',
+                  body: data,
+                }
+              )
+              navigate(`/multifactor?correo=${email}`);
+
             }
           
           }
@@ -197,7 +219,7 @@ export default function Login() {
         </label>
            <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
       <div className='recaptcha'>
-      <ReCAPTCHA sitekey="6LcUpXUpAAAAAGeB4-PvEPXz79ckUqFfB9Qbk2DV" onChange={onChange}/>
+      <ReCAPTCHA sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
       </div>
         <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
      
