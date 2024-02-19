@@ -84,7 +84,7 @@ export default function Login() {
           }, 60000); // 3 minutos en milisegundos
         }
         fetch(
-          "http://lacasadelmariscoapi.somee.com/" +
+          "https://lacasadelmariscoapi.somee.com/" +
             "api/CasaDelMarisco/Login?Correo=" +
             email+
             "&Contrasena="+
@@ -101,7 +101,7 @@ export default function Login() {
               loginAttemptsRef2.current += 1;
               if (loginAttemptsRef2.current >= 3) {
                 fetch(
-                  "http://lacasadelmariscoapi.somee.com/" +
+                  "https://lacasadelmariscoapi.somee.com/" +
                     "api/CasaDelMarisco/BloquearCuenta?Correo=" +
                     email,
                   {
@@ -125,7 +125,7 @@ export default function Login() {
             }
             else if(result === 'Contraseña correcta para administrador'){
               fetch(
-                'http://lacasadelmariscoapi.somee.com/' +
+                'https://lacasadelmariscoapi.somee.com/' +
                   'api/CasaDelMarisco/ActualizarToken?Correo=' +
                   email,
                 {
@@ -137,7 +137,7 @@ export default function Login() {
             }
             else if(result === 'Contraseña correcta'){
               fetch(
-                'http://lacasadelmariscoapi.somee.com/' +
+                'https://lacasadelmariscoapi.somee.com/' +
                   'api/CasaDelMarisco/ActualizarToken?Correo=' +
                   email,
                 {
