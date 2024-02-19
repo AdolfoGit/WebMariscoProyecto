@@ -65,7 +65,7 @@ export default function Bienvenida() {
       </div>
       
       <div className="registro-formLogin">
-        <p className="loginTitulo">Recuperación</p>
+        <p className="loginTitulo">Multifactor</p>
         <label className="loginText">
           Ingrese el token que se le envió al correo
         </label>
