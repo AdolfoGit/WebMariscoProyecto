@@ -219,7 +219,7 @@ export default function Login() {
         </label>
            <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
       <div className='recaptcha'>
-      <ReCAPTCHA sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
+      <ReCAPTCHA sitekey="6Ldo3XgpAAAAAI8QoYGdCNtvTHYKdaG2q4Bl4gmZ" onChange={onChange}/>
       </div>
         <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
      
