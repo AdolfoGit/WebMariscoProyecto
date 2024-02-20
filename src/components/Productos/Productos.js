@@ -132,12 +132,14 @@ const productos = [
   
 ];
   const Productos2 = () => {
+    const [carrito, setCarrito] = useState([]);
 
+    const agregarAlCarrito = (producto) => {
+      // Clona el array del carrito y agrega el nuevo producto
+      setCarrito([...carrito, producto]);
+      console.log(`Producto agregado al carrito: ${producto.nombre}`);
+    };
  
-  const agregarAlCarrito = (producto) => {
-    // Lógica para agregar el producto al carrito
-    console.log(`Producto agregado al carrito: ${producto.nombre}`);
-  };
   const [searchQuery, setSearchQuery] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [filteredProductos, setFilteredProductos] = useState([]);
@@ -264,12 +266,13 @@ const productos = [
                 <Typography variant="h6" component="div">
                   {producto.nombre}
                   <Button
-                    size="small"
-                    onClick={() => console.log(`Agregado al carrito: ${producto.nombre}`)}
-                    style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}
-                  >
-                    <LocalGroceryStoreOutlinedIcon /> Carrito
-                  </Button>
+  size="small"
+  onClick={() => agregarAlCarrito(producto)}
+  style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}
+  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+  <LocalGroceryStoreOutlinedIcon /> Carrito
+</Button>
+
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {producto.descripcion}
@@ -286,6 +289,40 @@ const productos = [
         </Grid>
       ))}
     </Grid>
+
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Carrito</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+  <Grid container>
+  {carrito.map((productoCarrito) => (
+    <Grid item key={productoCarrito.id} style={{marginBottom:'10px'}}>
+      <Card>
+        <CardActionArea style={{ display: 'flex', flexDirection: 'column', background: 'transparent' }}>
+          <CardMedia component="img" alt={productoCarrito.nombre} height="160" image={productoCarrito.imagen} />
+          <CardContent style={{ flex: '1' }}>
+            <Typography variant="h6" component="div">
+              {productoCarrito.nombre}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {productoCarrito.descripcion}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Precio: {productoCarrito.precio}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+<Button size="small" style={{ width: '100%', backgroundColor: 'orange', color: 'white',textAlign: 'center', margin: '10px'}}>
+  <LocalGroceryStoreOutlinedIcon /> Pagar
+</Button>
+  </div>
+</div>
   </Container>
   );
 };
