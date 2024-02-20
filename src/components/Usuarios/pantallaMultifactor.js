@@ -40,7 +40,7 @@ export default function Bienvenida() {
     data.append('Token', token);
 
     fetch(
-      'http://lacasadelmariscoapi.somee.com/' +
+      'https://apicasadelmarisco.azurewebsites.net/' +
         'api/CasaDelMarisco/VerificarToken?Correo=' +
         correo+"&Token="+token,
       {
