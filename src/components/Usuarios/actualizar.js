@@ -119,7 +119,7 @@ export default function Actualizar() {
     event.preventDefault();
 
       fetch(
-        'http://lacasadelmariscoapi.somee.com/' +
+        'https://lacasadelmariscoapi.somee.com/' +
           'api/CasaDelMarisco/RecuperarContrasena?Correo=' +
           correo+ "&Contrasena=" + password,
         {
