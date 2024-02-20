@@ -86,7 +86,7 @@ const Registro = () => {
     
        
           fetch(
-            "http://lacasadelmariscoapi.somee.com/" +
+            "https://lacasadelmariscoapi.somee.com/" +
               "api/CasaDelMarisco/VerificarCorreo?Correo=" +
               email,
             {
@@ -100,7 +100,7 @@ const Registro = () => {
                 setEmailError('Invalido, correo existente');
               }else{
                 fetch(
-                  "http://lacasadelmariscoapi.somee.com/" +
+                  "https://lacasadelmariscoapi.somee.com/" +
                     "api/CasaDelMarisco/AgregarUsuarios?Nombre=" +
                     nombre +
                     "&ApellidoPaterno=" +
