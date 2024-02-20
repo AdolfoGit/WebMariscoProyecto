@@ -253,7 +253,9 @@ const productos = [
       <Button style={{marginBottom:'10px'}}  variant="text" onClick={applyFilters}>
         Filtrar
       </Button>
-      
+      <Button size="small" style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }} data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+  <LocalGroceryStoreOutlinedIcon />
+</Button>
       </Container>
     </Container>
     <Grid container spacing={3}>
