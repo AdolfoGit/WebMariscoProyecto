@@ -5,15 +5,13 @@ import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
 import ReCAPTCHA from "react-google-recaptcha";
-
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { MedidorSeguridad } from './MedidorDeSeguridad';
+import Swal from 'sweetalert2';
 
 
 const Registro = () => {
-
-  
- 
   const navigate = useNavigate();
   const [nombre,setNombre]= useState('')
   const [ApellidoP,setApellidoP]= useState('')
@@ -25,8 +23,6 @@ const Registro = () => {
   const [fechaNac, setFechaNac] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [passwordVisible2, setPasswordVisible2] = useState(false);
-
-  
   ///mensajes de error
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState(false);
@@ -76,15 +72,11 @@ const Registro = () => {
         
         const formData = new FormData();
         formData.append("Correo", email);
-        
-      
       // Validar campos antes de enviar el formulario
       if(isChecked ==false){
         setTerminosError('Acepte los terminos y condiciones')
       }else{
         if (validateEmail(email)==true && validatePassword(password)==true && validatePassword2(password2) && validateApellidoM(ApellidoM)==true && validateApellidoP(ApellidoP)==true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
-    
-       
           fetch(
             "https://lacasadelmariscoapi.somee.com/" +
               "api/CasaDelMarisco/VerificarCorreo?Correo=" +
@@ -101,20 +93,8 @@ const Registro = () => {
               }else{
                 fetch(
                   "https://lacasadelmariscoapi.somee.com/" +
-                    "api/CasaDelMarisco/AgregarUsuarios?Nombre=" +
-                    nombre +
-                    "&ApellidoPaterno=" +
-                    ApellidoP +
-                    "&ApellidoMaterno=" +
-                    ApellidoM +
-                    "&Correo=" +
-                    email +
-                    "&Telefono=" +
-                    telefono +
-                    "&Contrasena=" +
-                    password + 
-                    "&FechaNacimiento"
-                    + fechaNac,
+                    "api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
+                    email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento" + fechaNac,
                   {
                     method: "POST",
                     body: data,
@@ -124,10 +104,19 @@ const Registro = () => {
                   .then((result) => {
                     window.location.href='/login'
                   }); 
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Completo su registro',
+                    text: 'Ahora puede entrar para navegar y sorprenderse.',
+                  });  
               }
             });  
         } else {
-          navigate('/500');
+          Swal.fire({
+            icon: 'error',
+            title: 'Parece que hubo un error en su registro',
+            text: 'Verifique todos los datos antes de registrarse.',
+          });        
         }
       }
     };
@@ -164,7 +153,7 @@ const Registro = () => {
     const validateApellidoP =(ApellidoP)=>{
    
       if(ApellidoP==''){
-        setApellidoPError('Acomplete este campo')
+        setApellidoPError('Complete este campo')
         return false;
        }else{
          if(ApellidoP.length<5){
@@ -184,9 +173,8 @@ const Registro = () => {
       }
     }
     const validateApellidoM =(ApellidoM)=>{
-
       if(ApellidoM==''){
-        setApellidoMError('Acomplete este campo')
+        setApellidoMError('Complete este campo')
         return false;
        }else{
          if(ApellidoM.length<5){
@@ -208,7 +196,7 @@ const Registro = () => {
 
     const validateEmail = (email) => {
      if(email==''){
-      setEmailError('Acomplete este campo')
+      setEmailError('Complete este campo')
       return false;
      }else{
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -232,14 +220,19 @@ const Registro = () => {
       switch (level) {
         case 5:
           passed = passed && special;
+          break;
         case 4:
           passed = passed && uppcase;
+          break;
         case 3:
           passed = passed && numbers;
+          break;
         case 2:
           passed = passed && lowcase;
+          break;
         case 1:
           passed = passed && (lowcase || uppcase || numbers);
+          break;
         case 0:
           passed = passed && password.length >= minChar;
           break;
@@ -249,10 +242,10 @@ const Registro = () => {
       return passed;
     }
     
-  
+    
     const validatePassword = (password) => {
       if(password==''){
-        setPasswordError('Acomplete este campo')
+        setPasswordError('Complete este campo')
         return false;
       }else{
         if(password.length<8){
@@ -408,11 +401,7 @@ const Registro = () => {
             onBlur={handleBlur}
             className={passwordError ? 'input-error' : ''}
           />
-          <button
-            type="button"
-            onClick={togglePasswordVisibility}
-            class="btn btn-light"
-          >
+          <button type="button" onClick={togglePasswordVisibility} class="btn btn-light">
             {passwordVisible ? (
               <VisibilityOutlinedIcon fontSize="small" />
             ) : (
@@ -421,6 +410,7 @@ const Registro = () => {
           </button>
         </div>
           {passwordError && <p className="error-message">{passwordError}</p>}
+          <MedidorSeguridad password={password}/>
         </div>
         <div>
           <label htmlFor="password2" className='RegistroLabel'>Repetir contraseña :</label>
@@ -489,11 +479,8 @@ const Registro = () => {
          {TerminosError && <p className="error-message">{TerminosError}</p>}
         </label>
         <Link to='/politicas'className='recuerdame' >Politicas de privacidad</Link>
-    
-        <button  className='btn btn-warning text2' type="submit">Registrar</button><br/>
-      
-       
-						
+
+        <button  className='btn btn-warning text2' type="submit">Registrar</button><br/>	
       </form>
     </div>
   </div>

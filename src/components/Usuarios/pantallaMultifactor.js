@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
+import Swal from 'sweetalert2';
 
 export default function Bienvenida() {
   const location = useLocation();
@@ -52,6 +53,11 @@ export default function Bienvenida() {
       .then((result) => {
         if (result === 'Credenciales validas') {
             navigate('/');
+            Swal.fire({
+              icon: 'success',
+              title: 'Bienvenido de nuevo',
+              text: 'Ahora puede entrar para navegar y sorprenderse.',
+            });  
         } else {
           setErroToken('Token inválido');
         }
