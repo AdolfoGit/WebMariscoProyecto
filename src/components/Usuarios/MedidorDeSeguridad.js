@@ -1,62 +1,83 @@
+import React from 'react';
+
 const checkPasswordStrength = (password, minChar) => {
     const lowcase = /[a-z]/.test(password);
     const uppcase = /[A-Z]/.test(password);
     const numbers = /\d/.test(password);
     const special = /[^a-zA-Z\d]/.test(password);
-  
+
     let strength = 0;
-  
+
     if (password.length >= minChar) {
-      strength++;
+        strength++;
     }
-  
+
     if (lowcase) {
-      strength++;
+        strength++;
     }
-  
+
     if (uppcase) {
-      strength++;
+        strength++;
     }
-  
+
     if (numbers) {
-      strength++;
+        strength++;
     }
-  
+
     if (special) {
-      strength++;
+        strength++;
     }
-  
+
     return strength;
-  };
+};
+
 export const MedidorSeguridad = ({ password }) => {
     const strength = checkPasswordStrength(password, 8);
-  
-    const getStrengthColor = () => {
-      switch (strength) {
-        case 0:
-        case 1:
-          return 'red'; // Débil
-        case 2:
-        case 3:
-          return 'orange'; // Moderado
-        case 4:
-            return 'blue'; // Fuerte
-        case 5:
-            return 'green'; // Muy fuerte
-        default:
-      }
-    };
-  
-    return (
-      <div style={{marginBottom:'-10px',marginTop:'10px'}}>
-        <div
-          style={{
-            width: `${(strength / 5) * 100}%`,
-            height: '10px',
-            backgroundColor: getStrengthColor(),
-          }}
-        />
 
-      </div>
+    const getStrengthColor = () => {
+        switch (strength) {
+            case 0:
+            case 1:
+                return 'red'; // Débil
+            case 2:
+            case 3:
+                return 'orange'; // Moderado
+            case 4:
+                return 'blue'; // Fuerte
+            case 5:
+                return 'green'; // Muy fuerte
+            default:
+        }
+    };
+
+    const getStrengthText = () => {
+        switch (strength) {
+            case 0:
+            case 1:
+                return 'Bajo'; // Débil
+            case 2:
+            case 3:
+                return 'Medio'; // Moderado
+            case 4:
+                return 'Bueno'; // Fuerte
+            case 5:
+                return 'Óptimo'; // Muy fuerte
+            default:
+        }
+    };
+
+    return (
+        <div style={{ marginBottom: '-20px', marginTop: '10px', textAlign:'center' }}>
+            <div
+                style={{
+                    width: `${(strength / 5) * 100}%`,
+                    height: '15px',
+                    backgroundColor: getStrengthColor(),
+                    marginBottom: '-21px',
+                    borderRadius:'15px'
+                }}
+            />
+            <span style={{ fontSize: '10px', color:'white' }}>Nivel de seguridad: {getStrengthText()}</span>
+        </div>
     );
-  };
+};
