@@ -3,6 +3,8 @@ import { useLocation,useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
+import { MedidorSeguridad } from './MedidorDeSeguridad';
+import Swal from 'sweetalert2';
 
 export default function Actualizar() {
   const navigate = useNavigate();
@@ -130,7 +132,11 @@ export default function Actualizar() {
         .then((res) => res.json())
         .then((result) => {
           if (result === 'Contraseña modificada correctamente') {
-            // Navegar a la página Token con el correo como parámetro 
+            Swal.fire({
+              icon: 'success',
+              title: 'Cambio de contraseña correcta',
+              text: 'Ahora puede entrar para navegar y sorprenderse.',
+            });  
             navigate('/login');
           } else if (result === 'Error en las credenciales') {
             
@@ -163,6 +169,7 @@ export default function Actualizar() {
             onChange={handlePasswordChange}
             onBlur={handleBlur}
             className={passwordError ? 'input-error' : ''}
+            
           />
           <button
             type="button"
@@ -177,7 +184,8 @@ export default function Actualizar() {
           </button>
         </div>
           {passwordError && <p className="error-message">{passwordError}</p>}
-       
+          <MedidorSeguridad password={password}/>
+
           <label htmlFor="password2" className='RegistroLabel'>Repetir contraseña :</label>
           <div className="password-input-container">
             <input
