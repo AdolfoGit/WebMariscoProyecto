@@ -1,62 +1,25 @@
-// Perfil.js
-import React from 'react';
+import React, { useContext } from 'react';
 import { Avatar, Button, Card, CardContent, Grid, Typography, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
-import { Person, Lock, Email, Notifications, LocationOn, Phone, Wc, LocationCityx } from '@mui/icons-material';
-import { Component } from 'react';
+import { Person, Lock, Notifications, LocationOn } from '@mui/icons-material';
+import { useUser } from '../../UserContext'; // Ajusta la ruta según tu estructura de archivos
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+const Perfil = () => {
 
-class Perfil extends Component{
-  constructor(props){
-    super(props);
-    this.state={
-      Usuarios:[]
-    }
-  }
+  const navigate = useNavigate();
+  const { user,logoutUser } = useUser();
   
-  API_URL = "http://localhost:5029/";
-  API_URL2 = "http://lacasadelmariscoapi.somee.com/";
-
-  componentDidMount(){
-    this.recargarUsuarios();
-  }
-  async recargarUsuarios(){
-    fetch(this.API_URL2 + "api/CasaDelMarisco/ListarUsuarios").then(response=>response.json())
-    .then(data=>{
-      this.setState({Usuarios:data});
-    })
-  }
   
-  async addClick(){
-    var Nombre = document.getElementById("Nombre").value;
-    var Apellidos = document.getElementById("Apellidos").value;
-    const data = new FormData();
-    data.append("Nombre",Nombre);
-    data.append("Apellidos", Apellidos);
-
-    fetch(this.API_URL2 + "api/CasaDelMarisco/AgregarUsuarios?Nombre="+Nombre+"&Apellidos="+Apellidos,{
-      method:"POST",
-      body: data
-    }).then(res=>res.json())
-    .then((result)=>{
-      alert(result);
-      this.recargarUsuarios();
-    })
+  const cerrarSesion= ()=>{
+    logoutUser();
+    navigate('/')
+    Swal.fire({
+      icon: 'warning',
+      title: 'Nos vemos pronto',
+      text: 'Cerraste sesión, nos vemos y recuerdanos cuando te de hambre',
+    });
   }
-
-  async deleteClick(idUsuario){
-    fetch(this.API_URL2 + "api/CasaDelMarisco/EliminarUsuarios?idUsuario="+idUsuario,{
-      method:"DELETE",
-    }).then(res=>res.json())
-    .then((result)=>{
-      alert(result);
-      this.recargarUsuarios();
-    })
-  }
-render = () => {
-  
-  const{Usuarios} = this.state;
-
   return (
-    
     <Grid container spacing={3} justifyContent="center" marginBottom={5}>
       <Grid item xs={12} sm={8} md={6}>
         <Card>
@@ -66,20 +29,10 @@ render = () => {
                 <Avatar alt="Usuario" src="/ruta/a/tu/imagen.jpg" sx={{ width: 100, height: 100 }} />
               </Grid>
               <Grid item>
-                <input id='Nombre'/>&nbsp;
-                <input id='Apellidos'/>&nbsp;
-                <button onClick={()=>this.addClick()}>Agregar Usuario</button>
-                <Typography variant="h4"> 
-                  {Usuarios.map(Usuario=><p><b>Usuario: {Usuario.Nombre}</b>
-                  <button onClick={()=>this.deleteClick(Usuario.idUsuario)}>Eliminar Usuario</button>
-                </p>  
-        )}</Typography>
-                <Typography variant="subtitle1">Correo electrónico: diego234_Mart@gamil.com</Typography>
-                <Typography variant="body2">
-                  Teléfono: +7712763527<br />
-                  Sexo: Masculino<br />
-                  Ciudad: Huejutal de Reyes Hidalgo
-                </Typography>
+                <Typography variant="h4">{user ? `${user.Nombre} ${user.ApellidoPaterno}` : 'Nombre del Usuario'}</Typography>
+                <Typography variant="subtitle1">Correo: {user ? user.Correo : 'Correo del Usuario'}</Typography>
+                <Typography variant="subtitle1">Telefono: {user ? user.Telefono : 'Telefono del Usuario'}</Typography>
+                <Typography variant="subtitle1">Estado de la cuenta: {user ? user.EstadoCuenta : 'Estado de la cuenta del Usuario'}</Typography>
               </Grid>
             </Grid>
             <Box mt={3}>
@@ -91,28 +44,15 @@ render = () => {
                   </ListItemIcon>
                   <ListItemText primary="Cambiar Contraseña" />
                 </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <Person />
-                  </ListItemIcon>
-                  <ListItemText primary="Editar Datos Personales" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <Notifications />
-                  </ListItemIcon>
-                  <ListItemText primary="Gestionar Notificaciones" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <LocationOn />
-                  </ListItemIcon>
-                  <ListItemText primary="Actualizar Ubicación" />
-                </ListItem>
+                {/* Agrega más elementos de la lista según sea necesario */}
               </List>
-              <Button variant="contained"  style={{ marginTop: '20px' , backgroundColor:' #ff8c00'}}>
+              <Button variant="contained" style={{ marginTop: '20px', backgroundColor: '#ff8c00' }}>
                 Editar Perfil
               </Button>
+              <Button variant="contained" style={{ marginTop: '20px', backgroundColor: '#ff8c00' }} onClick={cerrarSesion}>
+                Cerrar sesión 
+              </Button>
+
             </Box>
           </CardContent>
         </Card>
@@ -120,5 +60,5 @@ render = () => {
     </Grid>
   );
 };
-}
+
 export default Perfil;

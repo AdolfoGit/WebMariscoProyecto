@@ -1,10 +1,8 @@
-import React, { useState ,useRef} from 'react';
+import React, { useState } from 'react';
 import './css/registro.css'
 import imagen from '../home/img/login.jpg'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
-import ReCAPTCHA from "react-google-recaptcha";
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import { MedidorSeguridad } from './MedidorDeSeguridad';
@@ -12,7 +10,6 @@ import Swal from 'sweetalert2';
 
 
 const Registro = () => {
-  const navigate = useNavigate();
   const [nombre,setNombre]= useState('')
   const [ApellidoP,setApellidoP]= useState('')
   const [ApellidoM,setApellidoM]= useState('')
@@ -73,10 +70,10 @@ const Registro = () => {
         const formData = new FormData();
         formData.append("Correo", email);
       // Validar campos antes de enviar el formulario
-      if(isChecked ==false){
+      if(isChecked === false){
         setTerminosError('Acepte los terminos y condiciones')
       }else{
-        if (validateEmail(email)==true && validatePassword(password)==true && validatePassword2(password2) && validateApellidoM(ApellidoM)==true && validateApellidoP(ApellidoP)==true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
+        if (validateEmail(email)===true && validatePassword(password)===true && validatePassword2(password2) && validateApellidoM(ApellidoM)===true && validateApellidoP(ApellidoP)===true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
           fetch(
             "https://lacasadelmariscoapi.somee.com/" +
               "api/CasaDelMarisco/VerificarCorreo?Correo=" +
@@ -88,7 +85,7 @@ const Registro = () => {
           )
             .then((res) => res.json())
             .then((result) => {
-              if(result=='Correo Existe'){
+              if(result==='Correo Existe'){
                 setEmailError('Invalido, correo existente');
               }else{
                 fetch(
@@ -128,7 +125,7 @@ const Registro = () => {
     };
     //validaciones jsjsjjs
     const validateNombre =(nombre)=>{
-      if(nombre==''){
+      if(nombre===''){
        setNombreError('Acomplete este campo')
        return false;
 
@@ -152,7 +149,7 @@ const Registro = () => {
     }
     const validateApellidoP =(ApellidoP)=>{
    
-      if(ApellidoP==''){
+      if(ApellidoP===''){
         setApellidoPError('Complete este campo')
         return false;
        }else{
@@ -173,7 +170,7 @@ const Registro = () => {
       }
     }
     const validateApellidoM =(ApellidoM)=>{
-      if(ApellidoM==''){
+      if(ApellidoM===''){
         setApellidoMError('Complete este campo')
         return false;
        }else{
@@ -195,7 +192,7 @@ const Registro = () => {
     }
 
     const validateEmail = (email) => {
-     if(email==''){
+     if(email===''){
       setEmailError('Complete este campo')
       return false;
      }else{
@@ -244,7 +241,9 @@ const Registro = () => {
     
     
     const validatePassword = (password) => {
-      if(password==''){
+      const data = new FormData();
+      data.append("Contrasena", password);
+      if(password===''){
         setPasswordError('Complete este campo')
         return false;
       }else{
@@ -254,8 +253,25 @@ const Registro = () => {
         }else{ 
           const passwordValidate= checkPasswordStrength(password,8,5);
           if(passwordValidate){
-            setPasswordError('')  
-            return true;
+            fetch(
+              "https://lacasadelmariscoapi.somee.com/" +
+                "api/CasaDelMarisco/VerificarContrasena?Contrasena=" +
+                password,
+              {
+                method: "POST",
+                body: data,
+              }
+            )
+              .then((res) => res.json())
+                .then((result) => {
+                  if(result==='Contrasena aceptable'){
+                    setPasswordError('');
+                    return true;
+                  }else{
+                    setPasswordError(result);
+                    return false;
+                  }
+                });  
           }else{
             setPasswordError('Debe cumplir con una mayuscula, minuscula, numero y caracter especial')
             return false;
@@ -265,7 +281,7 @@ const Registro = () => {
       }
     };
     const validatePassword2=(password2)=>{
-      if(password2==password){
+      if(password2===password){
         setPasswordError2('')
         return true;  
 
@@ -300,7 +316,7 @@ const Registro = () => {
       const fechaActual = new Date('2024-01-01');
 
       const fechaIngresada = new Date(fechaNac);
-      if(fechaNac==('')){
+      if(fechaNac===('')){
         setFechaError('Acomplete este campo')
         return false;
       }else if (fechaIngresada < fechaLimiteInferior || fechaIngresada > fechaActual){

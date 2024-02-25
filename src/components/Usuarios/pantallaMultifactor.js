@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 import Swal from 'sweetalert2';
+import { useUser } from '../../UserContext';
 
 export default function Bienvenida() {
+  const { loginUser } = useUser();
   const location = useLocation();
   const correo = new URLSearchParams(location.search).get('correo');
   const navigate = useNavigate();
@@ -28,7 +30,30 @@ export default function Bienvenida() {
     setErroToken('Tiempo de ingreso de token agotado. Actualice la página para intentar de nuevo.');
   };
 
-  const handleSubmit = (event) => {
+  const obtenerDatosUsuario = async () => {
+    try {
+      const response = await fetch(
+        'https://lacasadelmariscoapi.somee.com/api/CasaDelMarisco/TraerUsuario?Correo=' + encodeURIComponent(correo),
+        {
+          method: 'GET',
+        }
+      );
+  
+      if (response.ok) {
+        const userData = await response.json();
+        return userData;
+      } else {
+        console.error('Error al obtener datos del usuario que ingresaste:', response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener datos del usuario:', error);
+      return null;
+    }
+  };
+  
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!timerActive) {
@@ -40,28 +65,39 @@ export default function Bienvenida() {
     data.append('Correo', correo);
     data.append('Token', token);
 
-    fetch(
-      'https://lacasadelmariscoapi.somee.com/' +
-        'api/CasaDelMarisco/VerificarToken?Correo=' +
-        correo+"&Token="+token,
-      {
-        method: 'POST',
-        body: data,
-      }
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        if (result === 'Credenciales validas') {
-            navigate('/');
-            Swal.fire({
-              icon: 'success',
-              title: 'Bienvenido de nuevo',
-              text: 'Ahora puede entrar para navegar y sorprenderse.',
-            });  
-        } else {
-          setErroToken('Token inválido');
+    try {
+      const result = await fetch(
+        'https://lacasadelmariscoapi.somee.com/' +
+          'api/CasaDelMarisco/VerificarToken?Correo=' +
+          correo+"&Token="+token,
+        {
+          method: 'POST',
+          body: data,
         }
-      });
+      )
+
+      const verificationResult = await result.json();
+
+      if (verificationResult === 'Credenciales validas') {
+        const userData = await obtenerDatosUsuario();
+        console.log(userData);
+        if (userData) {
+          loginUser(userData);
+          navigate('/');
+          Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido de nuevo!'+userData.Nombre,
+            text: 'Ahora puede entrar para navegar y sorprenderse.',
+          });
+        } else {
+          // Manejar el caso donde no se pudieron obtener los datos del usuario
+        }
+      } else {
+        setErroToken('Token inválido');
+      }
+    } catch (error) {
+      console.error('Error durante el inicio de sesión:', error);
+    }
   };
 
   return (

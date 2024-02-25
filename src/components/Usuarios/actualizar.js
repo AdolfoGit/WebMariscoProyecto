@@ -60,14 +60,19 @@ export default function Actualizar() {
     switch (level) {
       case 5:
         passed = passed && special;
+        break;
       case 4:
         passed = passed && uppcase;
+        break;
       case 3:
         passed = passed && numbers;
+        break;
       case 2:
         passed = passed && lowcase;
+        break;
       case 1:
         passed = passed && (lowcase || uppcase || numbers);
+        break;
       case 0:
         passed = passed && password.length >= minChar;
         break;
@@ -79,7 +84,7 @@ export default function Actualizar() {
   
 
   const validatePassword = (password) => {
-    if(password==''){
+    if(password===''){
       setPasswordError('no puede estar vacio')
       return false;
     }else{
@@ -101,7 +106,7 @@ export default function Actualizar() {
   };
 
   const validatePassword2=(password2)=>{
-    if(password2==password){
+    if(password2===password){
       setPasswordError2('')
       return true;  
 

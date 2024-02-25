@@ -9,8 +9,6 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import ReCAPTCHA from 'react-google-recaptcha';
-import Bienvenida from './pantallaMultifactor';
-import { ReactDOM } from 'react';
 
 
 export default function Login() {

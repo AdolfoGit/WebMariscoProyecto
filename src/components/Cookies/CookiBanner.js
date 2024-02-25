@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookie } from '@fortawesome/free-solid-svg-icons';
 
 const CookieBanner = () => {
-  const [acceptedCookies, setAcceptedCookies] = useState(Cookies.get('acceptedCookies'));
+  const [acceptedCookies] = useState(Cookies.get('acceptedCookies'));
 
   const acceptCookies = () => {
     // Cookies.set('acceptedCookies', 'true', { expires: 1 }); 

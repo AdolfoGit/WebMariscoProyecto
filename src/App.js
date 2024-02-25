@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css' 
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import Home from './components/Inicio/Inicio';
 import Cookies from './components/Cookies/Cookies';
@@ -14,7 +14,6 @@ import Terminos from './components/Empresa/Terminos';
 import CookieBanner from './components/Cookies/CookiBanner';
 import Ofertas from './components/Ofertas/Ofertas';
 import Perfil from './components/Usuarios/Perfil';
-import Reservaciones from './components/Reservaciones/Reservaciones';
 import VisuReservacion from './components/Reservaciones/DetallesDeReservacion';
 import Productos2 from './components/Productos/Productos';
 import Pedidos from './components/Pedidos/Pedidos'; 
@@ -22,20 +21,14 @@ import RecuperarContra from './components/Usuarios/RecuperarContra'
 import NotFoundPage from './components/CodigoError/NotFoundPage';
 import Bienvenida from './components/Usuarios/pantallaMultifactor';
 
-
-
 import Ayuda from './components/Empresa/Ayuda';
 import Token from './components/Usuarios/Token';
 import Error500 from './components/CodigoError/Error500';
 import Actualizar from './components/Usuarios/actualizar';
 import ListaUsuarios from './components/Administrador/Usuarios';
 
-import { Helmet } from 'react-helmet';
 
 function App  (){
-
- 
-
 
   return (
     <>
