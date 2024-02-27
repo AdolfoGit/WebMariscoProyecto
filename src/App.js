@@ -26,7 +26,7 @@ import Token from './components/Usuarios/Token';
 import Error500 from './components/CodigoError/Error500';
 import Actualizar from './components/Usuarios/actualizar';
 import ListaUsuarios from './components/Administrador/Usuarios';
-
+import DetailsProduct from './components/Carousel/DetailsProduct'
 
 function App  (){
 
@@ -59,6 +59,7 @@ function App  (){
             <Route path='*' element={<Navigate to='/404'/>} /> 
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
            <Route path='/multifactor' element={<Bienvenida/>}></Route>
+           <Route path='/detalleProduct' element={<DetailsProduct/>}></Route>
           </Routes>
           <Fotter/>
           <CookieBanner/> 

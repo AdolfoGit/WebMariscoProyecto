@@ -25,6 +25,11 @@ export const Header = () => {
     header.classList.toggle('active', window.scrollY > 200);
   });
 
+  const [open, setOpen] = useState(false);
+
+    const handleHover = () => {
+    setOpen(!open);
+    }
   return (
     <>
       <header className="header">
@@ -37,7 +42,15 @@ export const Header = () => {
               <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Home</Link></li>
               <li className={location.pathname === '/pedidos' ? 'active' : ''}><Link to='/pedidos'>Pedidos</Link></li>
                    <li className={location.pathname === '/ayuda' ? 'active' : ''}><Link to='/ayuda'>Ayuda</Link></li>
-                   <li className={location.pathname === '/nosotros' ? 'active' : ''}><Link to='/nosotros'>Mision/Vision</Link></li>
+                   <li className="submenu" onMouseEnter={handleHover} onMouseLeave={handleHover}>
+                      <Link to="/">Datos</Link>
+                      {open && 
+                          <ul className="submenu-items">
+                              <li><Link to="/">Mision</Link></li>
+                              <li><Link to="/">Vision</Link></li>
+                          </ul>
+                      }
+                  </li>
                    <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Productos</Link></li>
                    <li className={location.pathname === '/reservaciones' ? 'active' : ''}><Link to='/reservaciones'>Reservaciones</Link></li  >
                    <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>

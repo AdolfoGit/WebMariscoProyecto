@@ -139,6 +139,10 @@ const productos = [
       setCarrito([...carrito, producto]);
       console.log(`Producto agregado al carrito: ${producto.nombre}`);
     };
+    const verDetalle = () => {
+      // Clona el array del carrito y agrega el nuevo producto
+      window.location.href='/detalleProduct'
+    };
  
   const [searchQuery, setSearchQuery] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
@@ -197,8 +201,7 @@ const productos = [
     setFilteredProductos(filtered);
     setShowAllProducts(false);
   };
-
-
+ 
 
   return (
     <Container className='transition-screen active' maxWidth="md" style={{ marginTop: '20px', marginBottom: '20px' }}>
@@ -268,6 +271,7 @@ const productos = [
                   alt={producto.nombre}
                   height="160"
                   image={producto.imagen}
+                  onClick={() => verDetalle()}
                   style={{ transition: 'transform 0.3s' }}
                   onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
                   onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}

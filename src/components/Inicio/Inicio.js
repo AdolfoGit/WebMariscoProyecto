@@ -6,6 +6,7 @@ import PlatillosHome from './PlatillosDelInicio';
 import '../estilos.css';
 
 import Pinterest from '../Pinteres'
+import TrandingSlider from '../Carousel/TradingSlider';
 const Home = () => {
   
   return (
@@ -31,8 +32,8 @@ const Home = () => {
       </div>
    </section>
    <PlatillosHome/>
-   <Pinterest/>
-   </div>
+   
+   <TrandingSlider/>   </div>
   );
 };
 
