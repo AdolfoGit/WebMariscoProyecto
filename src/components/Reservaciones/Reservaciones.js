@@ -4,7 +4,9 @@ import { useUser } from "../../UserContext";
 
 const Reservaciones = () => {
   const { user } = useUser();
-
+  const [progress, setProgress] = useState(0);
+  const [showProgress, setShowProgress] = useState(false);
+  
 const [servicio, setServicios] = useState([]);
 const [reservaciones, setReservaciones] = useState([]);
 
@@ -22,11 +24,12 @@ const [FechaError, setFechaError] = useState('');
 const [NMesaError, setNMesaError] = useState('');
 const [ServiciosError, setServicioError] = useState('');
 const [PagoError, setPagoError] = useState('');
+const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("Nombre", nombre);
     formData.append("NPersonas", NPersonas);
@@ -67,6 +70,9 @@ const [PagoError, setPagoError] = useState('');
     }
   };
   
+  function incrementProgress() {
+    setProgress((prevProgress) => prevProgress + 15); // Ajusta según tu necesidad
+  }
   
 
   const validateNombre = (nombre) => {
@@ -87,6 +93,7 @@ const [PagoError, setPagoError] = useState('');
         const nombreRegex = /^[a-zA-ZÑñáéíóúÁÉÍÓÚ\s]+$/;
         if (nombreRegex.test(nombre)) {
           setNombreError('');
+          incrementProgress();
           return true;
         } else {
           setNombreError('No puede contener números');
@@ -106,6 +113,7 @@ const [PagoError, setPagoError] = useState('');
       const isInteger = /^[1-9]\d*$/.test(value);
       if (isInteger) {
         setNPersonasError('');
+        incrementProgress();
         return true;
       } else {
         setNPersonasError('Ingrese un número válido');
@@ -122,6 +130,7 @@ const [PagoError, setPagoError] = useState('');
       return false;
     }
     else {
+      incrementProgress();
       setNMesaError('');
       return true; // Reemplaza con las validaciones específicas para NMesa
     }
@@ -184,6 +193,7 @@ const [PagoError, setPagoError] = useState('');
         // Compara las fechas y horas
         if (selectedDateTime > currentDateTime) {
           setFechaError('');
+          incrementProgress();
           return true; // La fecha y hora son válidas (a partir del momento actual)
         } else {
           setFechaError('Seleccione una fecha después de hoy para verificar disponibilidad');
@@ -203,6 +213,7 @@ const [PagoError, setPagoError] = useState('');
     }
     else{
       setServicioError('')
+      incrementProgress();
       return true;
     }
   }
@@ -213,11 +224,24 @@ const [PagoError, setPagoError] = useState('');
     }
     else{
       setPagoError('')
+      incrementProgress();
+      return true;
+    }
+  }
+  const validateInformacion = (value)=>{
+    if (!value){
+      setInformacionAdicionalError('Por favor llene este apartado')
+      return false;
+    }
+    else{
+      setInformacionAdicionalError('')
+      incrementProgress();
       return true;
     }
   }
   
   useEffect(() => {
+    setShowProgress(true);
 
     ObtenerServicios();
   }, []);
@@ -435,8 +459,24 @@ const [PagoError, setPagoError] = useState('');
                     id="InformacionAdicional"
                     aria-describedby=""
                     onChange={(e) => setInformacionAdicional(e.target.value)}
+                    onBlur={()=> validateInformacion(InformacionAdicional)}
                   />
                 </div>
+                {InformacionAdicionalError && <p className="error-message">{InformacionAdicionalError}</p>}
+
+                {showProgress && (
+  <div className="progress">
+    <div
+      className="progress-bar"
+      role="progressbar"
+      style={{ width: `${progress}%` }}
+      aria-valuenow={progress}
+      aria-valuemin="0"
+      aria-valuemax="100"
+    ></div>
+  </div>
+)}
+
               </div>
               <div class="modal-footer">
                 <button type="submit" class="btn btn-warning">

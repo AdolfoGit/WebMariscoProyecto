@@ -2,9 +2,10 @@ import React from 'react';
 import imageen from './home/img/platillo.jpg';
 import imageen2 from './home/img/hamburguesa.jpg';
 import imageen4 from './home/img/ceviche.jpg';
-import './estilos.css';
+
 function Pinterest() {
   return (
+    
     <div className='container-fluid text-center mt-4 transition-screen active'>
       <h1 className='mb-4' >Otros platillos</h1>
       <div className='container-fluid mb-5' style={{ maxWidth: '100%', margin: 'auto', overflow: 'hidden' }}>
