@@ -1,20 +1,15 @@
 import React from 'react';
 import platillo from '../home/img/foto2.png'
-import wave from '../home/img/wave.png'
-import imagen1 from '../home/img/hamburguesa.jpg';
-import imagen2 from '../home/img/platillo.jpg';
-import imagen3 from '../home/img/logo.jpg';
-import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PlatillosHome from './PlatillosDelInicio';
-import Productos2 from '../Productos/Productos';
-import MansorryLayoud from './mansorryLayoud';
+import '../estilos.css';
+
 import Pinterest from '../Pinteres'
 const Home = () => {
   
   return (
-   <>
+   <div className='transition-screen active'>
    <section className='home'>
       <div className='container flex'>
          <div className='left '>
@@ -37,7 +32,7 @@ const Home = () => {
    </section>
    <PlatillosHome/>
    <Pinterest/>
-   </>
+   </div>
   );
 };
 

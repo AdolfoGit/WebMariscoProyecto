@@ -20,7 +20,7 @@ import imageen3 from '../home/img/cotel.jpg';
 import imageen5 from '../home/img/pescado.jpeg';
 import imageen6 from '../home/img/brocheta.jpg';
 import imageen7 from '../home/img/bebida.jpg';
-
+import '../estilos.css';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import { useState } from 'react';
 
@@ -201,7 +201,7 @@ const productos = [
 
 
   return (
-    <Container maxWidth="md" style={{ marginTop: '20px', marginBottom: '20px' }}>
+    <Container className='transition-screen active' maxWidth="md" style={{ marginTop: '20px', marginBottom: '20px' }}>
     <Container style={{ display: 'flex', flexDirection:'row', justifyContent:'space-between'}}>
       <Container >
       <TextField
@@ -263,17 +263,25 @@ const productos = [
         <Grid item key={producto.id} xs={20} sm={6} md={4}>
           <Card>
             <CardActionArea style={{ display: 'flex', flexDirection: 'column', background: 'transparent' }}>
-              <CardMedia component="img" alt={producto.nombre} height="160" image={producto.imagen} />
-              <CardContent style={{ flex: '1' }}>
+            <CardMedia
+                  component="img"
+                  alt={producto.nombre}
+                  height="160"
+                  image={producto.imagen}
+                  style={{ transition: 'transform 0.3s' }}
+                  onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
+                  onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                />
+                <CardContent style={{ flex: '1' }}>
                 <Typography variant="h6" component="div">
                   {producto.nombre}
                   <Button
-  size="small"
-  onClick={() => agregarAlCarrito(producto)}
-  style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}
-  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
-  <LocalGroceryStoreOutlinedIcon /> Carrito
-</Button>
+                  size="small"
+                  onClick={() => agregarAlCarrito(producto)}
+                  style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}
+                  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                  <LocalGroceryStoreOutlinedIcon /> Carrito
+                </Button>
 
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
