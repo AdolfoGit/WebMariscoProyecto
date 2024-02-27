@@ -56,8 +56,6 @@ const Registro = () => {
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      
-    
         const data = new FormData();
         data.append("Nombre", nombre);
         data.append("ApellidoPaterno", ApellidoP);

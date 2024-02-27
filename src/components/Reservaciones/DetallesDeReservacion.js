@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Button,
     Card,
@@ -35,7 +35,7 @@ const Reservaciones = () => {
     tipoMesa: '',
     servicio:'',
   });
-
+  const [servicio, setServicios] = useState([]);
   const [reservacionesList, setReservacionesList] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);
   const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
@@ -47,6 +47,21 @@ const Reservaciones = () => {
     setReservacion({ ...reservacion, [event.target.name]: event.target.value });
   };
 
+  const ObtenerServicios = () =>{
+    fetch(
+      'http://localhost:5029/api/CasaDelMarisco/ObtenerServicios',
+      {
+        method: 'GET',
+      }
+    ).then((res) => res.json())
+    .then((data) => {
+      setServicios(data);
+    })
+    .catch((error) => {
+      console.error('Error al obtener servicios:', error);
+    });
+
+  }
   const handleSubmit = (event) => {
     event.preventDefault();
     // Logica de envío de información
@@ -84,7 +99,9 @@ const Reservaciones = () => {
     setOpenCancelDialog(false);
     setOpenReservacionDialog(false);
   };
-
+  useEffect(() => {
+    ObtenerServicios();
+  }, []); 
   return (
     <Container maxWidth="lg" style={{ marginTop: '10px', marginBottom: '30px' }}>
       <Card>
@@ -113,7 +130,7 @@ const Reservaciones = () => {
                 <TextField
                   required
                   fullWidth
-                  label="Nombre"
+                  label="Nombreeee"
                   name="nombre"
                   value={reservacion.nombre}
                   onChange={handleChange}
@@ -200,8 +217,12 @@ const Reservaciones = () => {
                     value={reservacion.servicio}
                     onChange={handleChange}
                   >
-                    <MenuItem value="normal">Normal</MenuItem>
-                    <MenuItem value="especial">Especial</MenuItem>
+                    {servicio.map((servicio) => (
+                      <option key={servicio.idServicio} value={servicio.idServicio}>
+                      {servicio.Nombre}
+                      </option>           
+                             ))}
+                  
                   </Select>
                 </FormControl>
               </Grid>

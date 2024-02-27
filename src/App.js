@@ -14,7 +14,7 @@ import Terminos from './components/Empresa/Terminos';
 import CookieBanner from './components/Cookies/CookiBanner';
 import Ofertas from './components/Ofertas/Ofertas';
 import Perfil from './components/Usuarios/Perfil';
-import VisuReservacion from './components/Reservaciones/DetallesDeReservacion';
+import VisuReservacion from './components/Reservaciones/Reservaciones';
 import Productos2 from './components/Productos/Productos';
 import Pedidos from './components/Pedidos/Pedidos'; 
 import RecuperarContra from './components/Usuarios/RecuperarContra'

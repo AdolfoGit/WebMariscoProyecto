@@ -1,0 +1,207 @@
+
+// //validaciones jsjsjjs
+// export const validateNombre =(nombre)=>{
+//     if(nombre===''){
+//      setNombreError('Acomplete este campo')
+//      return false;
+
+//     }else{
+//       if(nombre.length<2){
+//         setNombreError('minimo de 2 caracteres')
+//         return false;
+//       }else{
+//         const nombreRegex = /^[a-zA-ZÑñáéíóúÁÉÍÓÚ\s]+$/;
+//         if (nombreRegex.test(nombre)){
+    
+//           setNombreError('');
+//           return true;
+//         }
+//         else{
+//           setNombreError('No puede contener numeros');
+//           return false;
+//         }
+//       }
+//     }
+    
+//   }
+//  export const validateApellidoP =(ApellidoP)=>{
+ 
+//     if(ApellidoP===''){
+//       setApellidoPError('Complete este campo')
+//       return false;
+//      }else{
+//        if(ApellidoP.length<5){
+//         setApellidoPError('minimo de 5 caracteres')
+//         return false;
+//        }else{
+//         const nombreRegex2 = /^[a-zA-ZÜüÑñáéíóúÁÉÍÓÚ\s]+$/;
+//          if (nombreRegex2.test(ApellidoP)){
+//           setApellidoPError('');
+//            return true;
+//          }
+//          else{
+//           setApellidoPError('No puede contener numeros');
+//            return false;
+//          }
+//        }
+//     }
+//   }
+//   export const validateApellidoM =(ApellidoM)=>{
+//     if(ApellidoM===''){
+//       setApellidoMError('Complete este campo')
+//       return false;
+//      }else{
+//        if(ApellidoM.length<5){
+//         setApellidoMError('minimo de 5 caracteres')
+//         return false;
+//        }else{
+//         const nombreRegex3 = /^[a-zA-ZÜüÑñáéíóúÁÉÍÓÚ\s]+$/;
+//          if (nombreRegex3.test(ApellidoM)){
+//           setApellidoMError('');
+//            return true;
+//          }
+//          else{
+//           setApellidoMError('No puede contener numeros');
+//            return false;
+//          }
+//        }
+//     }
+//   }
+
+//  export const validateEmail = (email) => {
+//    if(email===''){
+//     setEmailError('Complete este campo')
+//     return false;
+//    }else{
+//     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//     if (emailRegex.test(email)) {
+//       setEmailError('');
+//       return true;
+//     } else {
+//       setEmailError('Correo electrónico no válido');
+//       return false;
+//     }
+//    }
+//   };
+
+//  export function checkPasswordStrength(password, minChar, level) {
+//     const lowcase = /[a-z]/.test(password);
+//     const uppcase = /[A-Z]/.test(password);
+//     const numbers = /\d/.test(password);
+//     const special = /[^a-zA-Z\d]/.test(password);
+  
+//     let passed = true;
+//     switch (level) {
+//       case 5:
+//         passed = passed && special;
+//         break;
+//       case 4:
+//         passed = passed && uppcase;
+//         break;
+//       case 3:
+//         passed = passed && numbers;
+//         break;
+//       case 2:
+//         passed = passed && lowcase;
+//         break;
+//       case 1:
+//         passed = passed && (lowcase || uppcase || numbers);
+//         break;
+//       case 0:
+//         passed = passed && password.length >= minChar;
+//         break;
+//       default:
+//         passed = false;
+//     }
+//     return passed;
+//   }
+  
+  
+//  export const validatePassword = (password) => {
+//     const data = new FormData();
+//     data.append("Contrasena", password);
+//     if(password===''){
+//       setPasswordError('Complete este campo')
+//       return false;
+//     }else{
+//       if(password.length<8){
+//         setPasswordError('minimo de 8 caracteres');
+//         return false;
+//       }else{ 
+//         const passwordValidate= checkPasswordStrength(password,8,5);
+//         if(passwordValidate){
+//           fetch(
+//             "https://lacasadelmariscoapi.somee.com/" +
+//               "api/CasaDelMarisco/VerificarContrasena?Contrasena=" +
+//               password,
+//             {
+//               method: "POST",
+//               body: data,
+//             }
+//           )
+//             .then((res) => res.json())
+//               .then((result) => {
+//                 if(result==='Contrasena aceptable'){
+//                   setPasswordError('');
+//                   return true;
+//                 }else{
+//                   setPasswordError(result);
+//                   return false;
+//                 }
+//               });  
+//         }else{
+//           setPasswordError('Debe cumplir con una mayuscula, minuscula, numero y caracter especial')
+//           return false;
+
+//         }
+//       }
+//     }
+//   };
+//   export const validatePassword2=(password2)=>{
+//     if(password2===password){
+//       setPasswordError2('')
+//       return true;  
+
+//     }else{
+//       setPasswordError2('no son iguales las contraseñas')
+//       return false;
+//     }
+//   };
+ 
+//  export const validateTelefono = (telefono)=>{
+//     const telefonoRegex=/^[1-9]\d*$/;
+   
+//     if (telefono === '') {
+//       setTelefonoError('No puede estar vacío');
+//       return false;
+//     } else if (!telefonoRegex.test(telefono)) {
+//       setTelefonoError('Teléfono no válido');
+//       return false;
+//     } else if (/^(\d)\1+$/.test(telefono)) {
+//       // Verifica si todos los dígitos son iguales (coherentes)
+//       setTelefonoError('Teléfono no coherente');
+//       return false;
+//     } else {
+//       setTelefonoError('');
+//       return true;
+//     }
+
+//   };
+
+//  export const validateFecha=(fechaNac)=>{
+//     const fechaLimiteInferior = new Date('1890-01-01');
+//     const fechaActual = new Date('2024-01-01');
+
+//     const fechaIngresada = new Date(fechaNac);
+//     if(fechaNac===('')){
+//       setFechaError('Acomplete este campo')
+//       return false;
+//     }else if (fechaIngresada < fechaLimiteInferior || fechaIngresada > fechaActual){
+//       setFechaError('La fecha no es valida');
+//       return false;
+//     }else{
+//       setFechaError('')
+//       return true;
+
+//     }
+//   };
