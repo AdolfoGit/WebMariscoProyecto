@@ -50,7 +50,7 @@ const [PagoError, setPagoError] = useState('');
       validatePago(Pago) &&
       validateServicio(Servicios)
     ) {
-      fetch("http://localhost:5029/api/CasaDelMarisco/AgregarReservacion", {
+      fetch("https://www.lacasadelmariscoapi.somee.com/api/CasaDelMarisco/AgregarReservacion", {
         method: "POST",
         body: formData,
       })
@@ -228,7 +228,7 @@ const [PagoError, setPagoError] = useState('');
       if (id !== null) {
         try {
           const response = await fetch(
-            `http://localhost:5029/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
+            `https://www.lacasadelmariscoapi.somee.com/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
             {
               method: "GET",
             }
