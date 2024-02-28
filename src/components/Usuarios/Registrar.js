@@ -73,7 +73,7 @@ const Registro = () => {
       }else{
         if (validateEmail(email)===true && validatePassword(password)===true && validatePassword2(password2) && validateApellidoM(ApellidoM)===true && validateApellidoP(ApellidoP)===true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
           fetch(
-            "https://lacasadelmariscoapi.somee.com/" +
+            "https://lacasadelmariscoweb.azurewebsites.net/" +
               "api/CasaDelMarisco/VerificarCorreo?Correo=" +
               email,
             {
@@ -87,7 +87,7 @@ const Registro = () => {
                 setEmailError('Invalido, correo existente');
               }else{
                 fetch(
-                  "https://lacasadelmariscoapi.somee.com/" +
+                  "https://lacasadelmariscoweb.azurewebsites.net/" +
                     "api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
                     email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento" + fechaNac,
                   {
