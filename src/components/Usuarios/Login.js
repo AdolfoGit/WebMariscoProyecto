@@ -11,7 +11,10 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import ReCAPTCHA from 'react-google-recaptcha';
 
 
+
 export default function Login() {
+  //const apiurll ="http://localhost:5029/"
+    const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -125,7 +128,7 @@ export default function Login() {
             }
             else if(result === 'Contraseña correcta para administrador'){
               fetch(
-                'https://lacasadelmariscoapi.somee.com/' +
+apiurll+
                   'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
                   email,
                 {
@@ -137,8 +140,7 @@ export default function Login() {
             }
             else if(result === 'Contraseña correcta'){
               fetch(
-                'https://lacasadelmariscoapi.somee.com/' +
-                  'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
+apiurll+                  'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
                   email,
                 {
                   method: 'POST',
