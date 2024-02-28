@@ -12,6 +12,8 @@ import ReCAPTCHA from 'react-google-recaptcha';
 
 
 export default function Login() {
+  const apiurll= "https://lacasadelmariscoweb.azurewebsites.net/";
+  const apiurll2= "http://localhost:5170";
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -83,7 +85,7 @@ export default function Login() {
           }, 60000); // 3 minutos en milisegundos
         }
         fetch(
-          "https://lacasadelmariscoapi.somee.com/" +
+          apiurll +
             "api/CasaDelMarisco/Login?Correo=" +
             email+
             "&Contrasena="+
@@ -91,6 +93,7 @@ export default function Login() {
           {
             method: "POST",
             body: data,
+            
           }
         )
           .then((res) => res.json())
@@ -100,7 +103,7 @@ export default function Login() {
               loginAttemptsRef2.current += 1;
               if (loginAttemptsRef2.current >= 3) {
                 fetch(
-                  "https://lacasadelmariscoapi.somee.com/" +
+                  apiurll +
                     "api/CasaDelMarisco/BloquearCuenta?Correo=" +
                     email,
                   {
@@ -124,7 +127,7 @@ export default function Login() {
             }
             else if(result === 'Contraseña correcta para administrador'){
               fetch(
-                'https://lacasadelmariscoapi.somee.com/' +
+                apiurll +
                   'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
                   email,
                 {
@@ -136,7 +139,7 @@ export default function Login() {
             }
             else if(result === 'Contraseña correcta'){
               fetch(
-                'https://lacasadelmariscoapi.somee.com/' +
+                apiurll +
                   'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
                   email,
                 {
