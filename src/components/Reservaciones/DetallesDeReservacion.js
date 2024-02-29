@@ -25,6 +25,8 @@ import {
 } from '@mui/material';
 
 const Reservaciones = () => {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const [reservacion, setReservacion] = useState({
     nombre: '',
     email: '',
@@ -49,7 +51,7 @@ const Reservaciones = () => {
 
   const ObtenerServicios = () =>{
     fetch(
-      'http://localhost:5029/api/CasaDelMarisco/ObtenerServicios',
+      apiurll+'/api/CasaDelMarisco/ObtenerServicios',
       {
         method: 'GET',
       }

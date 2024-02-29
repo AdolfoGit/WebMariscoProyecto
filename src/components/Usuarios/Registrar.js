@@ -10,6 +10,8 @@ import Swal from 'sweetalert2';
 
 
 const Registro = () => {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const [nombre,setNombre]= useState('')
   const [ApellidoP,setApellidoP]= useState('')
   const [ApellidoM,setApellidoM]= useState('')
@@ -71,10 +73,9 @@ const Registro = () => {
       if(isChecked === false){
         setTerminosError('Acepte los terminos y condiciones')
       }else{
-        if (validateEmail(email)===true && validatePassword(password)===true && validatePassword2(password2) && validateApellidoM(ApellidoM)===true && validateApellidoP(ApellidoP)===true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
+        if (validateEmail(email)===true && validatePassword2(password2) && validateApellidoM(ApellidoM)===true && validateApellidoP(ApellidoP)===true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
           fetch(
-            "https://lacasadelmariscoweb.azurewebsites.net/" +
-              "api/CasaDelMarisco/VerificarCorreo?Correo=" +
+            apiurll+"api/CasaDelMarisco/ProbarAlgo?Correo=" +
               email,
             {
               method: "POST",
@@ -83,29 +84,52 @@ const Registro = () => {
           )
             .then((res) => res.json())
             .then((result) => {
-              if(result==='Correo Existe'){
-                setEmailError('Invalido, correo existente');
-              }else{
+              let resultado = result.Result;
+
+              if(resultado==='valid'){
                 fetch(
-                  "https://lacasadelmariscoweb.azurewebsites.net/" +
-                    "api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
-                    email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento" + fechaNac,
+                  apiurll+"api/CasaDelMarisco/VerificarCorreo?Correo=" +
+                    email,
                   {
                     method: "POST",
-                    body: data,
+                    body: formData,
                   }
                 )
                   .then((res) => res.json())
                   .then((result) => {
-                    window.location.href='/login'
-                  }); 
-                  Swal.fire({
-                    icon: 'success',
-                    title: 'Completo su registro',
-                    text: 'Ahora puede entrar para navegar y sorprenderse.',
+                    if(result==='Correo Existe'){
+                      setEmailError('Invalido, correo existente');
+                    }else{
+                      fetch(
+                        apiurll+"api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
+                          email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento" + fechaNac,
+                        {
+                          method: "POST",
+                          body: data,
+                        }
+                      )
+                        .then((res) => res.json())
+                        .then((result) => {
+                          //window.location.href='/login'
+                        }); 
+                        Swal.fire({
+                          icon: 'success',
+                          title: 'Completo su registro',
+                          text: 'Ahora puede entrar para navegar y sorprenderse.',
+                        });  
+                    }
                   });  
               }
-            });  
+              else{
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Parece que tu correo es invalido',
+                  text: 'Ingresa un correo que sea valido antes de registrarte',
+                });  
+                setEmailError('Correo invalido para registro');  
+              }
+            } );
+          
         } else {
           Swal.fire({
             icon: 'error',
@@ -238,46 +262,59 @@ const Registro = () => {
     }
     
     
-    const validatePassword = (password) => {
+    async function validarPasswordListanegra(password) {
       const data = new FormData();
       data.append("Contrasena", password);
-      if(password===''){
-        setPasswordError('Complete este campo')
+    
+      try {
+        const response = await fetch(
+          apiurll+
+            "api/CasaDelMarisco/VerificarContrasena?Contrasena=" +
+            password,
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+    
+        const result = await response.json();
+    
+        console.log(result);
+    
+        return result === 'Contrasena aceptable';
+      } catch (error) {
+        console.error('Error:', error);
+        return false; // Puedes manejar el error según tus necesidades
+      }
+    }
+    
+    const validatePassword = async (password) => {
+      const data = new FormData();
+      data.append("Contrasena", password);
+    
+      if (password === "") {
+        setPasswordError("Complete este campo");
         return false;
-      }else{
-        if(password.length<8){
-          setPasswordError('minimo de 8 caracteres');
+      } else {
+        if (password.length < 8) {
+          setPasswordError("Mínimo de 8 caracteres");
           return false;
-        }else{ 
-          const passwordValidate= checkPasswordStrength(password,8,5);
-          if(passwordValidate){
-            fetch(
-              "https://lacasadelmariscoapi.somee.com/" +
-                "api/CasaDelMarisco/VerificarContrasena?Contrasena=" +
-                password,
-              {
-                method: "POST",
-                body: data,
-              }
-            )
-              .then((res) => res.json())
-                .then((result) => {
-                  if(result==='Contrasena aceptable'){
-                    setPasswordError('');
-                    return true;
-                  }else{
-                    setPasswordError(result);
-                    return false;
-                  }
-                });  
-          }else{
-            setPasswordError('Debe cumplir con una mayuscula, minuscula, numero y caracter especial')
+        } else {
+          const passwordValidate = checkPasswordStrength(password, 8, 5);
+          if (passwordValidate) {
+            const isValidPassword = await validarPasswordListanegra(password);
+            setPasswordError('');
+            return isValidPassword;
+          } else {
+            setPasswordError(
+              "Debe cumplir con una mayúscula, minúscula, número y caracter especial"
+            );
             return false;
-
           }
         }
       }
     };
+    
     const validatePassword2=(password2)=>{
       if(password2===password){
         setPasswordError2('')

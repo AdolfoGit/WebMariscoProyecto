@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
 
 const Reservaciones = () => {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const { user } = useUser();
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
@@ -53,7 +55,7 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
       validatePago(Pago) &&
       validateServicio(Servicios)
     ) {
-      fetch("https://www.lacasadelmariscoapi.somee.com/api/CasaDelMarisco/AgregarReservacion", {
+      fetch(apiurll+"/api/CasaDelMarisco/AgregarReservacion", {
         method: "POST",
         body: formData,
       })
@@ -138,7 +140,7 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
 
   const ObtenerServicios = () => {
     fetch(
-      "https://lacasadelmariscoapi.somee.com/api/CasaDelMarisco/ObtenerServicios",
+      apiurll+"/api/CasaDelMarisco/ObtenerServicios",
       {
         method: "GET",
       }
@@ -161,7 +163,7 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
     console.log(id)
 
 
-    fetch(`http://localhost:5029/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`, {
+    fetch(apiurll+`/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`, {
       method: "GET",
     })
     .then((res) => res.json())
@@ -252,7 +254,7 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
       if (id !== null) {
         try {
           const response = await fetch(
-            `https://www.lacasadelmariscoapi.somee.com/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
+            apiurll+`/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
             {
               method: "GET",
             }

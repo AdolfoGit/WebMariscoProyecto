@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 
 export default function RecuperarContra() {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -29,7 +31,7 @@ export default function RecuperarContra() {
 
     if (validateEmail(email)) {
       fetch(
-        'https://lacasadelmariscoapi.somee.com/' +
+        apiurll +
           'api/CasaDelMarisco/ActualizarToken?Correo=' +
           email,
         {

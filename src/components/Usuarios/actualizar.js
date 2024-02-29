@@ -7,6 +7,8 @@ import { MedidorSeguridad } from './MedidorDeSeguridad';
 import Swal from 'sweetalert2';
 
 export default function Actualizar() {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -126,7 +128,7 @@ export default function Actualizar() {
     event.preventDefault();
 
       fetch(
-        'https://lacasadelmariscoapi.somee.com/' +
+        apiurll +
           'api/CasaDelMarisco/RecuperarContrasena?Correo=' +
           correo+ "&Contrasena=" + password,
         {

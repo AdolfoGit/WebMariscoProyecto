@@ -5,6 +5,7 @@ import { useUser } from '../../UserContext'; // Ajusta la ruta según tu estruct
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const Perfil = () => {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
   const navigate = useNavigate();
   const { user,logoutUser } = useUser();

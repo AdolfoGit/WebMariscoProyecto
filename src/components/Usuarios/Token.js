@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 
 export default function Token() {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const location = useLocation();
   const correo = new URLSearchParams(location.search).get('correo');
   const navigate = useNavigate();
@@ -40,7 +42,7 @@ export default function Token() {
     data.append('Token', token);
 
     fetch(
-      'https://lacasadelmariscoapi.somee.com/' +
+      apiurll +
         'api/CasaDelMarisco/VerificarToken?Correo=' +
         correo+"&Token="+token,
       {

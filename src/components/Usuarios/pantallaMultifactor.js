@@ -5,6 +5,8 @@ import Swal from 'sweetalert2';
 import { useUser } from '../../UserContext';
 
 export default function Bienvenida() {
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
   const { loginUser } = useUser();
   const location = useLocation();
   const correo = new URLSearchParams(location.search).get('correo');
@@ -33,7 +35,7 @@ export default function Bienvenida() {
   const obtenerDatosUsuario = async () => {
     try {
       const response = await fetch(
-        'https://lacasadelmariscoapi.somee.com/api/CasaDelMarisco/TraerUsuario?Correo=' + encodeURIComponent(correo),
+        apiurll+'/api/CasaDelMarisco/TraerUsuario?Correo=' + encodeURIComponent(correo),
         {
           method: 'GET',
         }
@@ -67,7 +69,7 @@ export default function Bienvenida() {
 
     try {
       const result = await fetch(
-        'https://lacasadelmariscoapi.somee.com/' +
+        apiurll +
           'api/CasaDelMarisco/VerificarToken?Correo=' +
           correo+"&Token="+token,
         {
