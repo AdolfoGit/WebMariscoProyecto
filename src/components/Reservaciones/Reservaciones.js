@@ -62,6 +62,13 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
         .then((res) => res.json())
         .then((result) => {
           console.log(result);
+          Swal.fire({
+            icon: "success",
+            title: "Listo, reservación agregada",
+            text: "Verifique todos los datos en el apartado de reservaciones.",
+          });
+          // Llamada a la función para recargar la página
+          window.location.reload();
         });
     } else {
       Swal.fire({
@@ -190,7 +197,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
       const formData = new FormData();
       formData.append("Fecha", fecha);
       formData.append("NMesa", nmesa);
-      fetch("http://localhost:5029"+"/api/CasaDelMarisco/VerificarReservaciones?NMesa=" + nmesa +"&Fecha="+fecha, {
+      fetch(apiurll+"/api/CasaDelMarisco/VerificarReservaciones?NMesa=" + nmesa +"&Fecha="+fecha, {
         method: "POST",
         body: formData,
       })
