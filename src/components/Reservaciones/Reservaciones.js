@@ -27,7 +27,7 @@ const [NMesaError, setNMesaError] = useState('');
 const [ServiciosError, setServicioError] = useState('');
 const [PagoError, setPagoError] = useState('');
 const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
-
+const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -178,15 +178,56 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
       console.error("Error al obtener reservaciones:", error);
     });
   };
+
+  function Disponibilidad  (nmesa, fecha){
+    if(nmesa===""|| fecha=== ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Parece que no ingresaste una fecha o mesa valida',
+        text: 'Verifique todos los datos antes de ver la disponibilidad',
+      });
+    }else{
+      const formData = new FormData();
+      formData.append("Fecha", fecha);
+      formData.append("NMesa", nmesa);
+      fetch("http://localhost:5029"+"/api/CasaDelMarisco/VerificarReservaciones?NMesa=" + nmesa +"&Fecha="+fecha, {
+        method: "POST",
+        body: formData,
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if(result.Result == '1'){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oh no',
+              text: 'Parece que ya existe una reservacion en la fecha, hora y mesa indicada',
+            });
+          }            
+          else {
+            Swal.fire({
+              icon: 'success',
+              title: 'Disponible',
+              text: 'Si tenemos disponibilidad para su reservación',
+            });
+            setIsButtonDisabled(false)
+
+          }
+        });
+    }
+  }
   
   
   const validateFecha = (value) => {
+    const formData = new FormData();
+    formData.append("Fecha", Fecha);
+    formData.append("NMesa", NMesa);
     if (!value) {
       setFechaError('Complete este campo');
       return false;
     } else {
       // Valida el formato de la fecha y hora
       const isValidDateTime = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})$/.test(value);
+  
       if (isValidDateTime) {
         // Obtiene la fecha y hora actual y la fecha y hora ingresada
         const currentDateTime = new Date();
@@ -195,8 +236,20 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
         // Compara las fechas y horas
         if (selectedDateTime > currentDateTime) {
           setFechaError('');
-          incrementProgress();
-          return true; // La fecha y hora son válidas (a partir del momento actual)
+  
+          // Validar el rango específico de horas
+          const selectedHour = selectedDateTime.getHours();
+          const minHour = 12;
+          const maxHour = 22;
+  
+          if (selectedHour >= minHour && selectedHour <= maxHour) {
+            
+            incrementProgress();
+            return true; // La fecha y hora son válidas (a partir del momento actual y en el rango de horas)
+          } else {
+            setFechaError('Seleccione una hora entre las 12:00 PM y las 10:00 PM');
+            return false;
+          }
         } else {
           setFechaError('Seleccione una fecha después de hoy para verificar disponibilidad');
           return false;
@@ -207,6 +260,7 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
       }
     }
   };
+  
   
   const validateServicio = (value)=>{
     if (!value){
@@ -385,19 +439,31 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
             {FechaError && <p className="error-message">{FechaError}</p>}
 
                 </div>
-                <div class="mb-3">
-                  <label for="NMesa" class="form-label">
-                    Número de mesa
-                  </label>
-                  <input
-                    type="number"
-                    class="form-control"
+               
+                <div className="mb-3">
+                  <label for="NMesa" class="form-label">Número de mesa</label>
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
                     id="NMesa"
-                    aria-describedby=""
-                    onChange={(e) => setNMesa(e.target.value)}  
+                    name="NMesa"
+                    onChange={(e) => setNMesa(e.target.value)}
                     onBlur={() => validateNMesa(NMesa)}
-                  />
-                                    {NMesaError && <p className="error-message">{NMesaError}</p>}
+
+                  >
+                  <option value="">Seleccione su mesa</option>
+                    <option value="1">Mesa 1</option>
+                    <option value="2">Mesa 2</option>
+                    <option value="3">Mesa 3</option>
+                    <option value="4">Mesa 4</option>
+                    <option value="5">Mesa 5</option>
+                    <option value="6">Mesa 6</option>
+                    <option value="7">Mesa 7</option>
+                    <option value="8">Mesa 8</option>
+                    <option value="9">Mesa 9</option>
+                    <option value="10">Mesa 10</option>                    
+                  </select>
+                  {NMesaError && <p className="error-message">{NMesaError}</p>}
 
                 </div>
                 <div className="mb-3">
@@ -481,7 +547,7 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
 
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-warning">
+                <button type="submit" class="btn btn-warning" disabled={isButtonDisabled}>
                   Hacer reservacion
                 </button>
                 <button
@@ -491,8 +557,13 @@ const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
                 >
                   Cerrar
                 </button>
+              
               </div>
             </form>
+            <button type="button" class="btn btn-warning" onClick={Disponibilidad.bind(null, NMesa, Fecha)}>
+            Ver disponibilidad
+          </button>
+
           </div>
         </div>
       </div>

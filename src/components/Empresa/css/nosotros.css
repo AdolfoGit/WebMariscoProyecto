@@ -13,7 +13,11 @@
     margin-left: 19px;
     margin-right: 19px;
 }
-
+.imgAyuda{
+    max-width: 600px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
 .cards{
     display: flex;
     justify-content: space-evenly; 
