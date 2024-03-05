@@ -360,19 +360,25 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
           </button>
         </div>
       </div>
-      <div className="mb-5" >
+<div className="mb-5">
   {reservaciones.map((reservacion) => (
-    <div className="card mb-3" key={reservacion.idReservacion} style={{ display: "flex", gap: "10px" }}>
-      <div className="card-body"style={{ display: "flex", gap: "10px" }}>
-        <h5 className="card-title">{reservacion.NombreReserva}</h5>
-        <h6 className="card-text">Número de personas: {reservacion.NPersonas}</h6>
-        <p className="card-text">Fecha: {reservacion.Fecha}</p>
-        <p className="card-text">Número de mesa: {reservacion.NMesa}</p>
-        <p className="card-text">Servicio: {reservacion.IdServicio}</p>
-        <p className="card-text">Método de pago: {reservacion.MetodoPago}</p>
-        <p className="card-text">
-          Información Adicional: {reservacion.InformacionAdicional}
-        </p>
+    <div className="card mb-5" key={reservacion.idReservacion}>
+      <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+          <div>
+            <h2 className="card-title m-2">Nombre de quien reserva: {reservacion.NombreReserva}</h2>
+            <h3 className="card-text  m-2">Número de personas: {reservacion.NPersonas}</h3>
+          </div>
+          <div>
+            <h3 className="card-text m-2">Fecha: {reservacion.Fecha}</h3>
+            <h3 className="card-text m-2">Número de mesa: {reservacion.NMesa}</h3>
+          </div>
+        </div>
+        <div>
+          <h3 className="card-text  m-2">Servicio: {reservacion.IdServicio}</h3>
+          <h3 className="card-text m-2">Método de pago: {reservacion.MetodoPago}</h3>
+          <h3 className="card-text m-2">Información Adicional: {reservacion.InformacionAdicional}</h3>
+        </div>
       </div>
     </div>
   ))}
