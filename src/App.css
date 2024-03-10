@@ -6,7 +6,7 @@
  
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fira+Sans+Condensed:ital,wght@0,100;1,400;1,500&family=Kanit:ital,wght@0,100;1,300&family=Lato:wght@100&family=Noto+Sans:ital,wght@0,100;1,200&family=Open+Sans:ital,wght@1,300&family=Oswald:wght@500&family=Roboto+Condensed:wght@100&family=Roboto:ital,wght@1,100&family=Rubik+Mono+One&family=Rubik:wght@300&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fira+Sans+Condensed:ital,wght@0,100;1,400;1,500&family=Kanit:ital,wght@0,100;1,300&family=Lato:wght@100&family=Noto+Sans:ital,wght@0,100;1,200&family=Open+Sans:ital,wght@1,300&family=Oswald:wght@500&family=Roboto+Condensed:ital,wght@0,100;1,500&family=Roboto:ital,wght@1,100&family=Rubik+Mono+One&family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Fira+Sans+Condensed:ital,wght@0,100;1,400;1,500&family=Kanit:ital, swald:wght@500&family=Roboto+Condensed:ital,wght@0,100;1,500&family=Roboto:ital,wght@1,100&family=Rubik+Mono+One&family=Rubik:wght@300&display=swap');
 
 *{padding: 0;
   margin: 0;
@@ -37,7 +37,7 @@ a{
 
 /*------------header--------*/
 header{
-  padding: 10px 0;
+  padding: 0px 0;
   /* background-color: #ff8827; */
 }
 header ul{
@@ -46,6 +46,10 @@ header ul{
 header ul li{
   display: inline-block;
   margin-left: 14px;
+}
+.nav{
+  margin-top: 20px;
+  margin-bottom: 18px;
 }
 header ul li a{
   font-weight: 500;
@@ -72,18 +76,21 @@ header ul li a:hover{
   display: none;
 }
 .logo img{
-  width: 40px;
-  height: 40px;
+ position: absolute;
+  width: 38vh;
+  height: 11vh;
+  padding: 0,  
 }
+                                       
 
 header.active{
   position: sticky;
   top:0;
   left: 0;
   background-color: #fff;
-  box-shadow: 0 2px 28px 0 rgba(0 0 0 /6%);
+  box-shadow: 0 20px 28px 0 rgba(0 0 0 /6%);
   width: 100%;
-  z-index: 10;
+  z-index: 11;
 }
 .submenu-items {
   display: none;
@@ -134,20 +141,10 @@ header.active{
 .home{
   /* background-image: url('./components/home/img/wave.png'); */
   height: 75vh;
+  padding-right: 3.5%;
+  padding-left: 3.5%;
 }
 
-/* anumacion de la iumagen*/
-/* @keyframes moveAnimation {
-  0% {
-    top: 10px;
-  }
-  50% {
-    top: 30px; 
-  }
-  100% {
-    top: 10px;
-  }
-} */
 
 @keyframes moveAnimation {
   0% {
@@ -235,12 +232,11 @@ p{
 /*---------paltillohome------*/
 .services{
   text-align: center;
-  background-color: #f8f9fe;
-  padding: 10px 0;
+  padding: 10px 3.5%;
   height: 560px;
 }
 .blog{
-  background-color: #f8f9fe;
+  background-color: #edf2f7;
 }
 .services .box{
   text-align: left;
@@ -514,6 +510,7 @@ p{
 }
 
 /*--------LOGIN_:______*/
+
 .error-message {
   color: red;
   margin: 0;
@@ -533,6 +530,7 @@ p{
   font-size: 40px;
   font-family: 'Oswald', sans-serif;
   margin-top: 20px;
+  margin-bottom: 10px;
   margin-left: 0px;
   color: #7952e3;
 }
@@ -558,7 +556,7 @@ p{
   color: blue;
 }
 .text2{
-  color:#fff;
+  color:#000;
   margin-bottom: 10px;
 }
 .recuerdame{

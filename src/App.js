@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './App.css' 
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
 import Home from './components/Inicio/Inicio';
 import Cookies from './components/Cookies/Cookies';
 import Politicas from './components/Empresa/Politicas';
 import Header from './components/home/header/Header';
-import Fotter from './components/ComponentesClave/Fotter';
+import Footer from './components/ComponentesClave/Fotter';
 import Nosotros from './components/Empresa/Nosotros';
 import Login from './components/Usuarios/Login';
 import Registrar from './components/Usuarios/Registrar';
@@ -28,10 +28,20 @@ import Actualizar from './components/Usuarios/actualizar';
 import ListaUsuarios from './components/Administrador/Usuarios';
 import DetailsProduct from './components/Carousel/DetailsProduct'
 
-function App  (){
+import {NextUIProvider} from "@nextui-org/react";
 
+import { useUser } from './UserContext';
+
+
+import Reservaciones from './components/Reservaciones/Reservaciones';
+import ProtectorRutas from './ProtectorRutas';
+import ProductoNuevo from './components/Productos/ProductoNuevo';
+
+function App  (){
+  const {user,loginUser}=useUser();
+  
   return (
-    <>
+    <NextUIProvider>
       <Router>
          
           <Header/>
@@ -44,8 +54,14 @@ function App  (){
             <Route path="/login" element={<Login />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/reservaciones" element={<VisuReservacion />} />
-            <Route path="/perfil" element={<Perfil />} />
-            <Route path="/productos" element={<Productos2/>} />
+            <Route path="/perfil" element={<Perfil/>}/>
+            <Route element={<ProtectorRutas/>}>
+             
+              <Route path="/admin" element={<ListaUsuarios />} /> 
+            </Route> 
+
+
+            <Route path="/productos" element={<ProductoNuevo/>} />
             <Route path="/ofertas" element={<Ofertas />} />
             <Route path="/registrar" element={<Registrar />} />
             <Route path="/terminos" element={<Terminos />} />
@@ -59,12 +75,13 @@ function App  (){
             <Route path='*' element={<Navigate to='/404'/>} /> 
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
            <Route path='/multifactor' element={<Bienvenida/>}></Route>
-           <Route path='/detalleProduct' element={<DetailsProduct/>}></Route>
+           <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
+          
           </Routes>
-          <Fotter/>
-          <CookieBanner/> 
+          <Footer/>
+      
       </Router>
-    </>
+    </NextUIProvider>
   );
 };
 

@@ -42,10 +42,7 @@ html {
     padding: 2rem 0;
   }
   
-  #tranding {
-    padding: 4rem 0;
-  }
-  
+
   @media (max-width:1440px) {
     #tranding {
       padding: 7rem 0;
@@ -53,7 +50,7 @@ html {
   }
   
   #tranding .tranding-slider {
-    height: 52rem;
+    height: 50rem;
     padding: 2rem 0;
     position: relative;
   }
@@ -66,7 +63,7 @@ html {
   
   .tranding-slide {
     width: 37rem;
-    height: 42rem;
+    height: 40rem;
     position: relative;
   }
   
@@ -82,8 +79,8 @@ html {
   }
   
   .tranding-slide .tranding-slide-img img {
-    width: 37rem;
-    height: 42rem;
+    width: 35rem;
+    height: 40rem;
     border-radius: 2rem;
     object-fit: cover;
   }
@@ -99,8 +96,9 @@ html {
   .tranding-slide-content .food-price {
     position: absolute;
     top: 2rem;
-    right: 2rem;
+    right: 4rem;
     color: #fff;
+    font-size: larger;
   }
 
   

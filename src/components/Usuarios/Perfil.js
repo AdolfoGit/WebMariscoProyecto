@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext }   from 'react';
 import { Avatar, Button, Card, CardContent, Grid, Typography, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
 import { Person, Lock, Notifications, LocationOn } from '@mui/icons-material';
 import { useUser } from '../../UserContext'; // Ajusta la ruta según tu estructura de archivos
@@ -33,7 +33,7 @@ const Perfil = () => {
                 <Typography variant="h4">{user ? `${user.Nombre} ${user.ApellidoPaterno}` : 'Nombre del Usuario'}</Typography>
                 <Typography variant="subtitle1">Correo: {user ? user.Correo : 'Correo del Usuario'}</Typography>
                 <Typography variant="subtitle1">Telefono: {user ? user.Telefono : 'Telefono del Usuario'}</Typography>
-                <Typography variant="subtitle1">Estado de la cuenta: {user ? user.EstadoCuenta : 'Estado de la cuenta del Usuario'}</Typography>
+                <Typography variant="subtitle1">Estado de la cuenta: {user ? user.Rol : 'Estado de la cuenta del Usuario'}</Typography>
               </Grid>
             </Grid>
             <Box mt={3}>
