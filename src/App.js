@@ -80,7 +80,7 @@ function App  (){
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
           
           </Routes>
-          <Fotter/>
+          <Footer/>
       </Router>
         </UserProvider>
 

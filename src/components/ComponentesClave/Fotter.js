@@ -1,15 +1,7 @@
-import React from 'react';
-import './css/foter.css';
-import logo from  '../home/img/logo.png';
-import { Link } from 'react-router-dom';
-const Fotter = () => {
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',   
-    });
-  };
+import React from "react";
+import ItemsContainer from "../ComponentesClave/ItemsContainer";
+import SocialIcons from "../ComponentesClave/SocialIcons";
+import { Icons } from "../ComponentesClave/Menus";
 
 import './css/foter.css';    
 
