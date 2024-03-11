@@ -2,14 +2,13 @@ import React, { useState, useRef } from 'react';
 import '../Usuarios/css/login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import imagen from '../home/img/formLogin.jpg';
+import imagen from '../home/img/ham2.jpg';
 import LoginIcon from '@mui/icons-material/Login';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import ReCAPTCHA from 'react-google-recaptcha';
-
 
 
 export default function Login() {
@@ -175,69 +174,71 @@ apiurll+                  'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
       }
   return (
     <div className="registro-form-containerLogin">
-    <div className="registro-image-containerLogin">
-      <img src={imagen} alt="Registro" className="registro-imageLogin" />
-    </div>
-    <div className="registro-formLogin">
-      <p className='loginTitulo'>Login <LoginIcon/></p>
-      <label className='loginText'>Inicia sesión para obtener nuevos permisos y opciones dentro del sitio web</label>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="nombre" className='loginLabel'>Correo electrónico :</label>
-        <input
-           type='email'
-           id="email"
-           name="email"
-           value={email}
-           onChange={(e) => setEmail(e.target.value)}
-           onBlur={() => validateEmail(email)}
-           className={emailError ? 'input-error' : ''}
-           required
-        />
-        {emailError && <p className="error-message">{emailError}</p>}
-        <label htmlFor="email" className='loginLabel'>Contraseña :</label>
-        <div className="password-input-container">
-          <input
-            type={passwordVisible ? 'text' : 'password'}
-            id="password"
-            name="password"
-            value={password}
-            required
-            size={37}
-            onChange={handlePasswordChange}
-            onBlur={handleBlur}
-            className={passwordError ? 'input-error' : ''}
-          />
-          <button
-            type="button"
-            onClick={togglePasswordVisibility}
-            class="btn btn-light"
-          >
-            {passwordVisible ? (
-              <VisibilityOutlinedIcon fontSize="small" />
-            ) : (
-              <VisibilityOffOutlinedIcon fontSize="small" />
-            )}
-          </button>
-        </div>
-        {passwordError && <p className="error-message">{passwordError}</p>}
-
-        <Link to='/recuperar' className='forget'>¿Olvidaste tu password?</Link>
-       
-        <label className='recuerdame'>
-          <input
-            type="checkbox"
-           className='cuadro'
-          />
-          Recuérdame
-        </label>
-           <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
-      <div className='recaptcha'>
-      <ReCAPTCHA sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
+      <div className="registro-image-containerLogin">
+        <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
-        <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
-     
-      </form>
-    </div>
+    
+      <div className="registro-formLogin">
+        <p className='loginTitulo'>Login <LoginIcon/></p>
+        <label className='loginText'>Inicia sesión para obtener nuevos permisos y opciones dentro del sitio web</label>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="nombre" className='loginLabel'>Correo electrónico :</label>
+          <input
+            type='email'
+            id="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onBlur={() => validateEmail(email)}
+            className={emailError ? 'input-error' : ''}
+            required
+          />
+            
+          {emailError && <p className="error-message">{emailError}</p>}
+      
+          <label htmlFor="email" className='loginLabel'>Contraseña :</label>
+          <div className="password-input-container">
+            <input
+              type={passwordVisible ? 'text' : 'password'}
+              id="password"
+              name="password"
+              value={password}
+              required
+              size={37}
+              onChange={handlePasswordChange}
+              onBlur={handleBlur}
+              className={passwordError ? 'input-error' : ''}
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              class="btn btn-light"
+            >
+              {passwordVisible ? (
+                <VisibilityOutlinedIcon fontSize="small" />
+              ) : (
+                <VisibilityOffOutlinedIcon fontSize="small" />
+              )}
+            </button>
+          </div>
+          {passwordError && <p className="error-message">{passwordError}</p>}
+
+          <Link to='/recuperar' className='forget'>¿Olvidaste tu password?</Link>
+        
+          <label className='recuerdame'>
+            <input
+              type="checkbox"
+            className='cuadro'
+            />
+            Recuérdame
+          </label>
+            <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
+        <div className='recaptcha'>
+        <ReCAPTCHA sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
+        </div>
+          <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
+        </form>
+      </div>
   </div>
     
   )

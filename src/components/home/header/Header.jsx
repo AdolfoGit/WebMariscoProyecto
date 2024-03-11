@@ -7,6 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
+
 // Importa el hook useUser para obtener la información del usuario
 import { useUser } from '../../../UserContext';
 
@@ -41,6 +42,7 @@ export const Header = () => {
             <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
               <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Home</Link></li>
                    <li className={location.pathname === '/ayuda' ? 'active' : ''}><Link to='/ayuda'>Ayuda</Link></li>
+                   
                    <li className="submenu" onMouseEnter={handleHover} onMouseLeave={handleHover}>
                       <Link to="/">Datos</Link>
                       {open && 
@@ -52,7 +54,6 @@ export const Header = () => {
                   </li>
                    <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Productos</Link></li>
                    <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
-                   
               {user ? (
                 <>
                   <li className={location.pathname === '/pedidos' ? 'active' : ''}><Link to='/pedidos'>Pedidos</Link></li>

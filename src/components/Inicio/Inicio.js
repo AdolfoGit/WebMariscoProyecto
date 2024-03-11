@@ -7,7 +7,9 @@ import '../estilos.css';
 
 import Pinterest from '../Pinteres'
 import TrandingSlider from '../Carousel/TradingSlider';
-import Ayuda from '../ayuda/ayuda';
+import Ayuda from '../Empresa/Ayuda';
+import Example from './Example'
+import PromoSecciones from './PromoSecciones';
 const Home = () => {
   
   return (
@@ -23,7 +25,8 @@ const Home = () => {
                <i className='fab fa-twitter twitter'></i>
             </div><br/>
             <p>¡Disfruta de estas brochetas de camarón a la parrilla con la frescura y el sabor tropical de la salsa de mango y aguacate! Puedes decorar con hojas de cilantro adicionales y rodajas de limón para dar un toque final.</p>
-            <button className='btn btn-warning espacio'>ORDENAR</button><button className='btn btn-outline-warning'>Registrarse</button>
+            <button className='inline-block rounded-md border border-transparent bg-blue-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700 espacio'>ORDENAR</button>
+            <button className='inline-block rounded-md border border-transparent bg-blue-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700'>Registrarse</button>
          </div>
          <div className='rigth'>
             <div className='img'>
@@ -33,9 +36,9 @@ const Home = () => {
       </div>
    </section>
    <PlatillosHome/>
-   
-   <TrandingSlider/>  
- 
+   <TrandingSlider/>
+   <PromoSecciones/>
+   <Example/>
     </div>
    
    
