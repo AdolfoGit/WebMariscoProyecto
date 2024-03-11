@@ -31,7 +31,6 @@ import { UserProvider } from './UserContext';
 
 import {NextUIProvider} from "@nextui-org/react";
 
-import { useUser } from './UserContext';
 
 
 import Reservaciones from './components/Reservaciones/Reservaciones';
@@ -39,7 +38,6 @@ import ProtectorRutas from './ProtectorRutas';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
 
 function App  (){
-  const {user,loginUser}=useUser();
   
   return (
     <>

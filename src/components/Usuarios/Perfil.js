@@ -1,22 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
-import {
-  Avatar,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Box,
-} from "@mui/material";
-import { Lock } from "@mui/icons-material";
-import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estructura de archivos
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import { VerificarToken } from "../ComponentesClave/ComprobarToken";
+import React, { useContext, useState }   from 'react';
+import { Avatar, Button, Card, CardContent, Grid, Typography, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
+import { Person, Lock, Notifications, LocationOn } from '@mui/icons-material';
+import { useUser } from '../../UserContext'; // Ajusta la ruta según tu estructura de archivos
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const Perfil = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const [loading, setLoading] = useState(false);
@@ -65,12 +52,12 @@ const Perfil = () => {
   //   }
   // };
 
-  useEffect(() => {
-    const timerId = setTimeout(() => {
-      VerificarToken(navigate, setLoading);
-    }, 2000);
-    return () => clearTimeout(timerId);
-  }, [navigate]);
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     VerificarToken(navigate, setLoading);
+  //   }, 2000);
+  //   return () => clearTimeout(timerId);
+  // }, [navigate]);
 
   const cerrarSesion = () => {
     logoutUser();
@@ -101,22 +88,10 @@ const Perfil = () => {
                 />
               </Grid>
               <Grid item>
-                <Typography variant="h4">
-                  {user
-                    ? `${user.Nombre} ${user.ApellidoPaterno}`
-                    : "Nombre del Usuario"}
-                </Typography>
-                <Typography variant="subtitle1">
-                  Correo: {user ? user.Correo : "Correo del Usuario"}
-                </Typography>
-                <Typography variant="subtitle1">
-                  Telefono: {user ? user.Telefono : "Telefono del Usuario"}
-                </Typography>
-                <Typography variant="subtitle1">
-                  Estado de la cuenta:{" "}
-                  {user ? user.EstadoCuenta : "Estado de la cuenta del Usuario"}
-                </Typography>
-               
+                <Typography variant="h4">{user ? `${user.Nombre} ${user.ApellidoPaterno}` : 'Nombre del Usuario'}</Typography>
+                <Typography variant="subtitle1">Correo: {user ? user.Correo : 'Correo del Usuario'}</Typography>
+                <Typography variant="subtitle1">Telefono: {user ? user.Telefono : 'Telefono del Usuario'}</Typography>
+                <Typography variant="subtitle1">Estado de la cuenta: {user ? user.Rol : 'Estado de la cuenta del Usuario'}</Typography>
               </Grid>
             </Grid>
             <Box mt={3}>
