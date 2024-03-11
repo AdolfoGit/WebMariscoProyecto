@@ -1,33 +1,36 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Reservaciones = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  const navigate = useNavigate();
 
-  const { user } = useUser();
+  const { user, logoutUser } = useUser();
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
-  
-const [servicio, setServicios] = useState([]);
-const [reservaciones, setReservaciones] = useState([]);
 
-const [nombre, setNombre] = useState('');
-const [NPersonas, setNPersonas] = useState('');
-const [Fecha, setFecha] = useState('');
-const [NMesa, setNMesa] = useState('');
-const [Servicios, setServicio] = useState('');
-const [Pago, setPago] = useState('');
-const [InformacionAdicional, setInformacionAdicional] = useState('');
-const [loading, setLoading] = useState(true);
-const [nombreError, setNombreError] = useState('');
-const [NPersonasError, setNPersonasError] = useState('');
-const [FechaError, setFechaError] = useState('');
-const [NMesaError, setNMesaError] = useState('');
-const [ServiciosError, setServicioError] = useState('');
-const [PagoError, setPagoError] = useState('');
-const [InformacionAdicionalError, setInformacionAdicionalError] = useState('');
-const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [servicio, setServicios] = useState([]);
+  const [reservaciones, setReservaciones] = useState([]);
+
+  const [nombre, setNombre] = useState("");
+  const [NPersonas, setNPersonas] = useState("");
+  const [Fecha, setFecha] = useState("");
+  const [NMesa, setNMesa] = useState("");
+  const [Servicios, setServicio] = useState("");
+  const [Pago, setPago] = useState("");
+  const [InformacionAdicional, setInformacionAdicional] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [nombreError, setNombreError] = useState("");
+  const [NPersonasError, setNPersonasError] = useState("");
+  const [FechaError, setFechaError] = useState("");
+  const [NMesaError, setNMesaError] = useState("");
+  const [ServiciosError, setServicioError] = useState("");
+  const [PagoError, setPagoError] = useState("");
+  const [InformacionAdicionalError, setInformacionAdicionalError] =
+    useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +40,6 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     formData.append("NPersonas", NPersonas);
     formData.append("Fecha", Fecha);
 
-
     formData.append("NMesa", NMesa);
     formData.append("Telefono", user.Telefono);
     formData.append("CorreoElectronico", user.Correo);
@@ -45,7 +47,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     formData.append("MetodoPago", Pago);
     formData.append("InformacionAdicional", InformacionAdicional);
     formData.append("IdUsuario", user.idUsuario);
-  
+
     // Validar campos antes de enviar el formulario
     if (
       validateNombre(nombre) &&
@@ -55,96 +57,140 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
       validatePago(Pago) &&
       validateServicio(Servicios)
     ) {
-      fetch(apiurll+"/api/CasaDelMarisco/AgregarReservacion", {
+      fetch(apiurll + "/api/CasaDelMarisco/AgregarReservacion", {
         method: "POST",
         body: formData,
       })
         .then((res) => res.json())
         .then((result) => {
           console.log(result);
+          Swal.fire({
+            icon: "success",
+            title: "Listo, reservación agregada",
+            text: "Verifique todos los datos en el apartado de reservaciones.",
+          });
+          // Llamada a la función para recargar la página
+          window.location.reload();
         });
     } else {
       Swal.fire({
-        icon: 'error',
-        title: 'Parece que hubo un error en su registro',
-        text: 'Verifique todos los datos antes de registrarse.',
+        icon: "error",
+        title: "Parece que hubo un error en su registro",
+        text: "Verifique todos los datos antes de registrarse.",
       });
     }
   };
-  
+
   function incrementProgress() {
     setProgress((prevProgress) => prevProgress + 15); // Ajusta según tu necesidad
   }
+  // const VerificarToken = async () => {
+  //   try {
+  //     if (user && user.Correo && user.Token) {
+  //       const data = new FormData();
+  //       data.append("Correo", user.Correo);
+  //       data.append("Token", user.Token);
+  
+  //       const result = await fetch(
+  //         `${apiurll}api/CasaDelMarisco/MantenerSesion?Correo=${user.Correo}&Token=${user.Token}`,
+  //         {
+  //           method: "POST",
+  //           body: data,
+  //         }
+  //       );
+  
+  //       const resultData = await result.json();
+  
+  //       if (resultData === "Token invalido") {
+  //         console.log("Token inválido");
+  //         logoutUser();
+  //       } else {
+  //         console.log("Token válido");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error al verificar el token:", error);
+  //     logoutUser();
+  //     navigate("/");
+  //     Swal.fire({
+  //       icon: "warning",
+  //       title: "Al parecer iniciaste sesión en otro dispositivo",
+  //       text: "Tu cuenta en este dispositivo o navegador se cerró.",
+  //     });
+  //   }
+  // };
+  
+  // useEffect(() => {
+  //   const timerId = setTimeout(() => {
+  //     VerificarToken(navigate, setLoading);
+  //   }, 2000);
+  //   return () => clearTimeout(timerId);
+  // }, [user, navigate]);
   
 
   const validateNombre = (nombre) => {
-    
-    if (nombre === '') {
-      setNombreError('Complete este campo');
+    if (nombre === "") {
+      setNombreError("Complete este campo");
       return false;
-    } 
+    }
     if (!nombre) {
-      setNombreError('Nombre no definido o nulo');
+      setNombreError("Nombre no definido o nulo");
       return false;
-    } 
-    else {
+    } else {
       if (nombre.length < 2) {
-        setNombreError('Mínimo de 2 caracteres');
+        setNombreError("Mínimo de 2 caracteres");
         return false;
       } else {
         const nombreRegex = /^[a-zA-ZÑñáéíóúÁÉÍÓÚ\s]+$/;
         if (nombreRegex.test(nombre)) {
-          setNombreError('');
+          setNombreError("");
           incrementProgress();
           return true;
         } else {
-          setNombreError('No puede contener números');
+          setNombreError("No puede contener números");
           return false;
         }
       }
     }
   };
-  
+
   const validateNPersonas = (value) => {
     if (!value) {
-      setNPersonasError('Complete este campo');
+      setNPersonasError("Complete este campo");
       return false;
     } else {
       // Puedes agregar más validaciones según tus requisitos
       // Ejemplo: validar que sea un número entero positivo
       const isInteger = /^[1-9]\d*$/.test(value);
       if (isInteger) {
-        setNPersonasError('');
+        setNPersonasError("");
         incrementProgress();
         return true;
       } else {
-        setNPersonasError('Ingrese un número válido');
+        setNPersonasError("Ingrese un número válido");
         return false;
       }
     }
   };
   const validateNMesa = (value) => {
     if (!value) {
-      setNMesaError('Complete este campo');
-      return false;
-    }if(value > 10 || value <0) {
-      setNMesaError('Deb de estar entre la mesa 1 y 10');
+      setNMesaError("Complete este campo");
       return false;
     }
-    else {
+    if (value > 10 || value < 0) {
+      setNMesaError("Deb de estar entre la mesa 1 y 10");
+      return false;
+    } else {
       incrementProgress();
-      setNMesaError('');
+      setNMesaError("");
       return true; // Reemplaza con las validaciones específicas para NMesa
     }
   };
 
   const ObtenerServicios = () => {
-    fetch(
-      apiurll+"/api/CasaDelMarisco/ObtenerServicios",
-      {
-        method: "GET",
-      }
-    )
+    fetch(apiurll + "/api/CasaDelMarisco/ObtenerServicios", {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((data) => {
         setServicios(data);
@@ -160,142 +206,146 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const ObtenerReservaciones = () => {
     const id = obtenerIdUsuario(user);
-    console.log(id)
+    console.log(id);
 
-
-    fetch(apiurll+`/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`, {
+    fetch(apiurll + `/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`, {
       method: "GET",
     })
-    .then((res) => res.json())
-    .then((data) => {
-      if (Array.isArray(data)) {
-        setReservaciones(data);
-      } else {
-        console.error("El resultado de la API no es un array:", data);
-      }
-    })
-    .catch((error) => {
-      console.error("Error al obtener reservaciones:", error);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setReservaciones(data);
+        } else {
+          console.error("El resultado de la API no es un array:", data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener reservaciones:", error);
+      });
   };
 
-  function Disponibilidad  (nmesa, fecha){
-    if(nmesa===""|| fecha=== ""){
+  function Disponibilidad(nmesa, fecha) {
+    if (nmesa === "" || fecha === "") {
       Swal.fire({
-        icon: 'error',
-        title: 'Parece que no ingresaste una fecha o mesa valida',
-        text: 'Verifique todos los datos antes de ver la disponibilidad',
+        icon: "error",
+        title: "Parece que no ingresaste una fecha o mesa valida",
+        text: "Verifique todos los datos antes de ver la disponibilidad",
       });
-    }else{
+    } else {
       const formData = new FormData();
       formData.append("Fecha", fecha);
       formData.append("NMesa", nmesa);
-      fetch("http://localhost:5029"+"/api/CasaDelMarisco/VerificarReservaciones?NMesa=" + nmesa +"&Fecha="+fecha, {
-        method: "POST",
-        body: formData,
-      })
+      fetch(
+        apiurll +
+          "/api/CasaDelMarisco/VerificarReservaciones?NMesa=" +
+          nmesa +
+          "&Fecha=" +
+          fecha,
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
         .then((res) => res.json())
         .then((result) => {
-          if(result.Result == '1'){
+          if (result.Result == "1") {
             Swal.fire({
-              icon: 'error',
-              title: 'Oh no',
-              text: 'Parece que ya existe una reservacion en la fecha, hora y mesa indicada',
+              icon: "error",
+              title: "Oh no",
+              text: "Parece que ya existe una reservacion en la fecha, hora y mesa indicada",
             });
-          }            
-          else {
+          } else {
             Swal.fire({
-              icon: 'success',
-              title: 'Disponible',
-              text: 'Si tenemos disponibilidad para su reservación',
+              icon: "success",
+              title: "Disponible",
+              text: "Si tenemos disponibilidad para su reservación",
             });
-            setIsButtonDisabled(false)
-
+            setIsButtonDisabled(false);
           }
         });
     }
   }
-  
-  
+
   const validateFecha = (value) => {
     const formData = new FormData();
     formData.append("Fecha", Fecha);
     formData.append("NMesa", NMesa);
     if (!value) {
-      setFechaError('Complete este campo');
+      setFechaError("Complete este campo");
       return false;
     } else {
       // Valida el formato de la fecha y hora
-      const isValidDateTime = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})$/.test(value);
-  
+      const isValidDateTime = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}:\d{2})$/.test(
+        value
+      );
+
       if (isValidDateTime) {
         // Obtiene la fecha y hora actual y la fecha y hora ingresada
         const currentDateTime = new Date();
         const selectedDateTime = new Date(value);
-  
+
         // Compara las fechas y horas
         if (selectedDateTime > currentDateTime) {
-          setFechaError('');
-  
+          setFechaError("");
+
           // Validar el rango específico de horas
           const selectedHour = selectedDateTime.getHours();
           const minHour = 12;
           const maxHour = 22;
-  
+
           if (selectedHour >= minHour && selectedHour <= maxHour) {
-            
             incrementProgress();
             return true; // La fecha y hora son válidas (a partir del momento actual y en el rango de horas)
           } else {
-            setFechaError('Seleccione una hora entre las 12:00 PM y las 10:00 PM');
+            setFechaError(
+              "Seleccione una hora entre las 12:00 PM y las 10:00 PM"
+            );
             return false;
           }
         } else {
-          setFechaError('Seleccione una fecha después de hoy para verificar disponibilidad');
+          setFechaError(
+            "Seleccione una fecha después de hoy para verificar disponibilidad"
+          );
           return false;
         }
       } else {
-        setFechaError('Formato de fecha y hora no válido');
+        setFechaError("Formato de fecha y hora no válido");
         return false;
       }
     }
   };
-  
-  
-  const validateServicio = (value)=>{
-    if (!value){
-      setServicioError('Seleccione un servicio')
+
+  const validateServicio = (value) => {
+    if (!value) {
+      setServicioError("Seleccione un servicio");
       return false;
-    }
-    else{
-      setServicioError('')
+    } else {
+      setServicioError("");
       incrementProgress();
       return true;
     }
-  }
-  const validatePago = (value)=>{
-    if (!value){
-      setPagoError('Seleccione un método de pago')
+  };
+  const validatePago = (value) => {
+    if (!value) {
+      setPagoError("Seleccione un método de pago");
       return false;
-    }
-    else{
-      setPagoError('')
+    } else {
+      setPagoError("");
       incrementProgress();
       return true;
     }
-  }
-  const validateInformacion = (value)=>{
-    if (!value){
-      setInformacionAdicionalError('Por favor llene este apartado')
+  };
+  const validateInformacion = (value) => {
+    if (!value) {
+      setInformacionAdicionalError("Por favor llene este apartado");
       return false;
-    }
-    else{
-      setInformacionAdicionalError('')
+    } else {
+      setInformacionAdicionalError("");
       incrementProgress();
       return true;
     }
-  }
-  
+  };
+
   useEffect(() => {
     setShowProgress(true);
 
@@ -308,7 +358,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
       if (id !== null) {
         try {
           const response = await fetch(
-            apiurll+`/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
+            apiurll + `/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
             {
               method: "GET",
             }
@@ -332,40 +382,44 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     obtenerReservacionesUsuario();
   }, [user]);
-  
-  
 
   return (
     <div className="container mt-3 mb-5">
       <div class="row">
-        <div class="col">
+        <div class="col m-5">
           <h1>Reservaciones</h1>
         </div>
         <div class="col-md-auto"></div>
         <div class="col col-lg-2">
           <button
-            className="btn btn-warning"
+            className="btn btn-warning  m-5"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             style={{ color: "black" }}
           >
-            <i class="fa-regular fa-calendar-plus"></i> Agendar cita
+            <i class="fa-regular fa-calendar-plus"></i> <h4> Agendar cita</h4>
           </button>
         </div>
       </div>
-      <div className="mb-5" >
+      <div className="mb-5">
   {reservaciones.map((reservacion) => (
-    <div className="card mb-3" key={reservacion.idReservacion} style={{ display: "flex", gap: "10px" }}>
-      <div className="card-body"style={{ display: "flex", gap: "10px" }}>
-        <h5 className="card-title">{reservacion.NombreReserva}</h5>
-        <h6 className="card-text">Número de personas: {reservacion.NPersonas}</h6>
-        <p className="card-text">Fecha: {reservacion.Fecha}</p>
-        <p className="card-text">Número de mesa: {reservacion.NMesa}</p>
-        <p className="card-text">Servicio: {reservacion.IdServicio}</p>
-        <p className="card-text">Método de pago: {reservacion.MetodoPago}</p>
-        <p className="card-text">
-          Información Adicional: {reservacion.InformacionAdicional}
-        </p>
+    <div className="card mb-5" key={reservacion.idReservacion}>
+      <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
+          <div>
+            <h2 className="card-title m-2">Nombre de quien reserva: {reservacion.NombreReserva}</h2>
+            <h3 className="card-text  m-2">Número de personas: {reservacion.NPersonas}</h3>
+          </div>
+          <div>
+            <h3 className="card-text m-2">Fecha: {reservacion.Fecha}</h3>
+            <h3 className="card-text m-2">Número de mesa: {reservacion.NMesa}</h3>
+          </div>
+        </div>
+        <div>
+          <h3 className="card-text  m-2">Servicio: {reservacion.IdServicio}</h3>
+          <h3 className="card-text m-2">Método de pago: {reservacion.MetodoPago}</h3>
+          <h3 className="card-text m-2">Información Adicional: {reservacion.InformacionAdicional}</h3>
+        </div>
       </div>
     </div>
   ))}
@@ -392,7 +446,7 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                 aria-label="Close"
               ></button>
             </div>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
               <div class="modal-body">
                 <div class="mb-3">
                   <label for="Nombre" class="form-label">
@@ -406,8 +460,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     onChange={(e) => setNombre(e.target.value)}
                     onBlur={() => validateNombre(nombre)}
                   />
-                  {nombreError && <p className="error-message">{nombreError}</p>}
-
+                  {nombreError && (
+                    <p className="error-message">{nombreError}</p>
+                  )}
                 </div>
                 <div class="mb-3">
                   <label for="NPersonas" class="form-label">
@@ -421,8 +476,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     onChange={(e) => setNPersonas(e.target.value)}
                     onBlur={() => validateNPersonas(NPersonas)}
                   />
-                  {NPersonasError && <p className="error-message">{NPersonasError}</p>}
-
+                  {NPersonasError && (
+                    <p className="error-message">{NPersonasError}</p>
+                  )}
                 </div>
                 <div class="mb-3">
                   <label for="Fecha" class="form-label">
@@ -436,12 +492,13 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     onChange={(e) => setFecha(e.target.value)}
                     onBlur={() => validateFecha(Fecha)}
                   />
-            {FechaError && <p className="error-message">{FechaError}</p>}
-
+                  {FechaError && <p className="error-message">{FechaError}</p>}
                 </div>
-               
+
                 <div className="mb-3">
-                  <label for="NMesa" class="form-label">Número de mesa</label>
+                  <label for="NMesa" class="form-label">
+                    Número de mesa
+                  </label>
                   <select
                     class="form-select"
                     aria-label="Default select example"
@@ -449,9 +506,8 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     name="NMesa"
                     onChange={(e) => setNMesa(e.target.value)}
                     onBlur={() => validateNMesa(NMesa)}
-
                   >
-                  <option value="">Seleccione su mesa</option>
+                    <option value="">Seleccione su mesa</option>
                     <option value="1">Mesa 1</option>
                     <option value="2">Mesa 2</option>
                     <option value="3">Mesa 3</option>
@@ -461,10 +517,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     <option value="7">Mesa 7</option>
                     <option value="8">Mesa 8</option>
                     <option value="9">Mesa 9</option>
-                    <option value="10">Mesa 10</option>                    
+                    <option value="10">Mesa 10</option>
                   </select>
                   {NMesaError && <p className="error-message">{NMesaError}</p>}
-
                 </div>
                 <div className="mb-3">
                   <label for="Servicios" class="form-label">
@@ -477,9 +532,8 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     name="Servicios"
                     onChange={(e) => setServicio(e.target.value)}
                     onBlur={() => validateServicio(Servicios)}
-
                   >
-                  <option value="">Seleccione el servicio a reservar</option>
+                    <option value="">Seleccione el servicio a reservar</option>
                     {servicio.map((servicio) => (
                       <option
                         key={servicio.idServicio}
@@ -489,8 +543,9 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                       </option>
                     ))}
                   </select>
-                  {ServiciosError && <p className="error-message">{ServiciosError}</p>}
-
+                  {ServiciosError && (
+                    <p className="error-message">{ServiciosError}</p>
+                  )}
                 </div>
                 <div className="mb-3">
                   <label for="Pago" class="form-label">
@@ -503,9 +558,8 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     name="Pago"
                     onChange={(e) => setPago(e.target.value)}
                     onBlur={() => validatePago(Pago)}
-
                   >
-                  <option value="">Seleccione el método de pago</option>
+                    <option value="">Seleccione el método de pago</option>
 
                     <option value="Efectivo">Efectivo</option>
                     <option value="Tarjeta de crédito">
@@ -515,11 +569,10 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     <option value="Cheques">Cheques</option>
                   </select>
                   {PagoError && <p className="error-message">{PagoError}</p>}
-
                 </div>
                 <div class="mb-3">
                   <label for="InformacionAdicional" class="form-label">
-                  Información Adicional
+                    Información Adicional
                   </label>
                   <textarea
                     type="text"
@@ -527,27 +580,32 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                     id="InformacionAdicional"
                     aria-describedby=""
                     onChange={(e) => setInformacionAdicional(e.target.value)}
-                    onBlur={()=> validateInformacion(InformacionAdicional)}
+                    onBlur={() => validateInformacion(InformacionAdicional)}
                   />
                 </div>
-                {InformacionAdicionalError && <p className="error-message">{InformacionAdicionalError}</p>}
+                {InformacionAdicionalError && (
+                  <p className="error-message">{InformacionAdicionalError}</p>
+                )}
 
                 {showProgress && (
-  <div className="progress">
-    <div
-      className="progress-bar"
-      role="progressbar"
-      style={{ width: `${progress}%` }}
-      aria-valuenow={progress}
-      aria-valuemin="0"
-      aria-valuemax="100"
-    ></div>
-  </div>
-)}
-
+                  <div className="progress">
+                    <div
+                      className="progress-bar"
+                      role="progressbar"
+                      style={{ width: `${progress}%` }}
+                      aria-valuenow={progress}
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                )}
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-warning" disabled={isButtonDisabled}>
+                <button
+                  type="submit"
+                  class="btn btn-warning"
+                  disabled={isButtonDisabled}
+                >
                   Hacer reservacion
                 </button>
                 <button
@@ -557,13 +615,15 @@ const [isButtonDisabled, setIsButtonDisabled] = useState(true);
                 >
                   Cerrar
                 </button>
-              
               </div>
             </form>
-            <button type="button" class="btn btn-warning" onClick={Disponibilidad.bind(null, NMesa, Fecha)}>
-            Ver disponibilidad
-          </button>
-
+            <button
+              type="button"
+              class="btn btn-warning"
+              onClick={Disponibilidad.bind(null, NMesa, Fecha)}
+            >
+              Ver disponibilidad
+            </button>
           </div>
         </div>
       </div>

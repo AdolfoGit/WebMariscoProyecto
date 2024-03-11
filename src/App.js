@@ -27,12 +27,14 @@ import Error500 from './components/CodigoError/Error500';
 import Actualizar from './components/Usuarios/actualizar';
 import ListaUsuarios from './components/Administrador/Usuarios';
 import DetailsProduct from './components/Carousel/DetailsProduct'
+import { UserProvider } from './UserContext';
 
 function App  (){
 
   return (
     <>
-      <Router>
+        <UserProvider>
+<Router>
          
           <Header/>
         
@@ -62,8 +64,10 @@ function App  (){
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route>
           </Routes>
           <Fotter/>
-          <CookieBanner/> 
       </Router>
+        </UserProvider>
+
+      
     </>
   );
 };

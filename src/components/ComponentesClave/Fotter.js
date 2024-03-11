@@ -1,6 +1,6 @@
 import React from 'react';
 import './css/foter.css';
-import logo from  '../home/img/logo.jpg';
+import logo from  '../home/img/logo.png';
 import { Link } from 'react-router-dom';
 const Fotter = () => {
 

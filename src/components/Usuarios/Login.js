@@ -22,7 +22,7 @@ export default function Login() {
   const [passwordError, setPasswordError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
-  const [loginAttempts2, setLoginAttempts2] = useState(0);
+  const [loginAttempts2, setLoginAttempts2] = useState(0);  
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -43,6 +43,17 @@ export default function Login() {
     validatePassword(password);
   };
 
+  function json(url) {
+    return fetch(url).then(res => res.json());
+  }
+  
+  // let apiKey = '8c308d0e8f217c1a489e15cb1998c34ffcd76bcead2a2851c3878299';
+  // json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
+  //   console.log(data.ip);
+  //   console.log(data.city);
+  //   console.log(data.country_code);
+  //   // so many more properties
+  // });
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

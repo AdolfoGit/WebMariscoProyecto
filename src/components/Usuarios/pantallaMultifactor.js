@@ -83,8 +83,10 @@ export default function Bienvenida() {
       if (verificationResult === 'Credenciales validas') {
         const userData = await obtenerDatosUsuario();
         console.log(userData);
+
         if (userData) {
-          loginUser(userData);
+          const idUsuario = userData.idUsuario;
+          loginUser(userData, idUsuario);
           navigate('/');
           Swal.fire({
             icon: 'success',
