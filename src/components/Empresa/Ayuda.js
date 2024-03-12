@@ -7,7 +7,7 @@ const Ayuda = () => {
     question2: false,
     question3: false,
   });
-  const [visibleApartado1, setVisible1] = (true);
+  const [visibleApartado1, setVisible1] = useState(true);
 
   const handleClick = (question) => {
     setMostrarInformacion((prev) => ({ ...prev, [question]: !prev[question] }));
