@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import './App.css' 
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
@@ -29,10 +29,6 @@ import ListaUsuarios from './components/Administrador/Usuarios';
 import DetailsProduct from './components/Carousel/DetailsProduct'
 import { UserProvider } from './UserContext';
 
-import {NextUIProvider} from "@nextui-org/react";
-
-
-
 import Reservaciones from './components/Reservaciones/Reservaciones';
 import ProtectorRutas from './ProtectorRutas';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
@@ -42,7 +38,7 @@ function App  (){
   return (
     <>
         <UserProvider>
-<Router>
+        <Router>
          
           <Header/>
         
@@ -55,8 +51,8 @@ function App  (){
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/reservaciones" element={<VisuReservacion />} />
             <Route path="/perfil" element={<Perfil/>}/>
+            
             <Route element={<ProtectorRutas/>}>
-             
               <Route path="/admin" element={<ListaUsuarios />} /> 
             </Route> 
 
@@ -79,7 +75,7 @@ function App  (){
           
           </Routes>
           <Footer/>
-      </Router>
+       </Router>
         </UserProvider>
 
       
