@@ -30,7 +30,7 @@ import DetailsProduct from './components/Carousel/DetailsProduct'
 import { UserProvider } from './UserContext';
 
 import Reservaciones from './components/Reservaciones/Reservaciones';
-import ProtectorRutas from './ProtectorRutas';
+import ProtectorRutas from './components/Usuarios/ProtectorRutas';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
 
 function App  (){
