@@ -97,10 +97,7 @@ export default function Login() {
         }
         fetch(
           apiurll +
-            "api/CasaDelMarisco/Login?Correo=" +
-            email+
-            "&Contrasena="+
-            password,
+            "api/CasaDelMarisco/Login",
           {
             method: "POST",
             body: data,
@@ -114,9 +111,7 @@ export default function Login() {
               loginAttemptsRef2.current += 1;
               if (loginAttemptsRef2.current >= 3) {
                 fetch(
-                  apiurll +
-                    "api/CasaDelMarisco/BloquearCuenta?Correo=" +
-                    email,
+                  apiurll +"api/CasaDelMarisco/BloquearCuenta", 
                   {
                     method: "POST",
                     body: data,
@@ -137,27 +132,24 @@ export default function Login() {
               });
             }
             else if(result === 'Contraseña correcta para administrador'){
-              fetch(
-            apiurll+
-                  'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
-                  email,
+              fetch(apiurll+'api/CasaDelMarisco/ActualizarTokenLogin',
                 {
                   method: 'POST',
                   body: data,
                 }
               )
-              navigate(`/multifactor?correo=${email}`);
-            }
+              localStorage.setItem('userData', JSON.stringify({ email }));
+        
+              navigate('/multifactor');            }
             else if(result === 'Contraseña correcta'){
-              fetch(
-apiurll+                  'api/CasaDelMarisco/ActualizarTokenLogin?Correo=' +
-                  email,
+              fetch(apiurll+ 'api/CasaDelMarisco/ActualizarTokenLogin',
                 {
                   method: 'POST',
                   body: data,
                 }
               )
-              navigate(`/multifactor?correo=${email}`);
+              localStorage.setItem('userData', JSON.stringify({ email }));
+                navigate('/multifactor');
 
             }
           
