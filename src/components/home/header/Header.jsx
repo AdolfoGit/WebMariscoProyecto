@@ -44,7 +44,7 @@ export const Header = () => {
                    <li className={location.pathname === '/ayuda' ? 'active' : ''}><Link to='/ayuda'>Ayuda</Link></li>
                    
                    <li className="submenu" onMouseEnter={handleHover} onMouseLeave={handleHover}>
-                      <Link to="/">Datos</Link>
+                      <Link to="/">Conocenos</Link>
                       {open && 
                           <ul className="submenu-items">
                               <li><Link to="/">Mision</Link></li>
