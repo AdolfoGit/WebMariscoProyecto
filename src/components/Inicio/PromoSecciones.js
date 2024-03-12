@@ -14,6 +14,7 @@ export default function PromoSecciones() {
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                Diversidad de Actividades !Unetenos!
               </h1>
+              
               <p className="mt-4 text-xl text-gray-500">
                 En la Casa del Marisco, hay gran diversidad de actividades, no solo somos un lugar para que puedas venir a degustar nuestros platillos
               </p>
