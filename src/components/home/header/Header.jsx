@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../img/logo.png';
+import logo from '../img/LogoNuevo1.png';
 import { Link } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
