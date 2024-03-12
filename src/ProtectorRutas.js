@@ -17,7 +17,7 @@ const ProtectorRutas = () => {
     }, []);
     console.log(userData)
     if ( userData ==false ) {
-        return <Navigate to='/login' />;
+        return <Navigate to='/logi2n' />;
     }
 
     return <Outlet />;
