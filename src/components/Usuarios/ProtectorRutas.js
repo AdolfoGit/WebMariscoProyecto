@@ -19,7 +19,7 @@ const ProtectorRutas = () => {
         Swal.fire({
             title: "Cargando...",
             html: "Espere por favor",
-            timer: 4000,
+            timer: 2000,
             timerProgressBar: true,
             didOpen: () => {
                 Swal.showLoading();
