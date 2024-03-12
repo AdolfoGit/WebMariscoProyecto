@@ -29,7 +29,7 @@ export default function Bienvenida() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    
+
     if (!timerActive) {
       handleTimerEnd();
       return;
@@ -59,7 +59,7 @@ export default function Bienvenida() {
           const { Correo, ...userDataWithoutEmail } = userData;
           const idUsuario = userData.idUsuario;
           loginUser(userData, idUsuario);
-          //navigate('/');
+          navigate('/');
           Swal.fire({
             icon: 'success',
             title: `Bienvenido de nuevo, ${userData.Nombre}!`,

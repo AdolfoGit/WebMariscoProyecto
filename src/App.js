@@ -52,7 +52,7 @@ function App  (){
             <Route path="/reservaciones" element={<VisuReservacion />} />
             <Route path="/perfil" element={<Perfil/>}/>
             
-            <Route element={<ProtectorRutas/>}>
+          <Route element={<ProtectorRutas/>}>
               <Route path="/admin" element={<ListaUsuarios />} /> 
             </Route> 
 
