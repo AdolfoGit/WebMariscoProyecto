@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const Perfil = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [loading, setLoading] = useState(false);
-
+  
+  
   const navigate = useNavigate();
   const { user, logoutUser } = useUser();
 
