@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../img/LogoNuevo1.png';
+import logo from '../img/LogoVersion2.png';
 import { Link } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -40,9 +40,7 @@ export const Header = () => {
           </div>
           <div className="nav">
             <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
-              <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Home</Link></li>
-                   <li className={location.pathname === '/ayuda' ? 'active' : ''}><Link to='/ayuda'>Ayuda</Link></li>
-                   
+              <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Inicio</Link></li>   
                    <li className="submenu" onMouseEnter={handleHover} onMouseLeave={handleHover}>
                       <Link to="/">Conocenos</Link>
                       {open && 
@@ -52,7 +50,7 @@ export const Header = () => {
                           </ul>
                       }
                   </li>
-                   <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Productos</Link></li>
+                   <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Menus</Link></li>
                    <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
               {user ? (
                 <>

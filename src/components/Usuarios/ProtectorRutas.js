@@ -35,11 +35,16 @@ const ProtectorRutas = () => {
           });
           navigate('/login')
     }
-    if (user.Rol===1){
-        navigate('/')
-    }
-    if (user.Rol===2){
-        navigate('/admin')
+    else if (user.Rol===1){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Parece que no eres administrador",
+          });
+          return <Outlet />;
+        }
+    else if (user.Rol===2){
+        return <Outlet />;
     }
 
     // Si el usuario está autenticado, muestra el contenido protegido

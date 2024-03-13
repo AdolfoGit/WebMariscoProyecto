@@ -32,6 +32,7 @@ import { UserProvider } from './UserContext';
 import Reservaciones from './components/Reservaciones/Reservaciones';
 import ProtectorRutas from './components/Usuarios/ProtectorRutas';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
+import Breadcrumbs from './components/ComponentesClave/Breadcrums'
 
 function App  (){
   
@@ -41,7 +42,7 @@ function App  (){
         <Router>
          
           <Header/>
-        
+          <Breadcrumbs/>
           <Routes>
             <Route path="/"   element={<Home/>} />
             <Route path="/politicas" element={<Politicas />} />
@@ -49,11 +50,12 @@ function App  (){
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/login" element={<Login />} />
             <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/reservaciones" element={<VisuReservacion />} />
-            <Route path="/perfil" element={<Perfil/>}/>
             
           <Route element={<ProtectorRutas/>}>
+             <Route path="/reservaciones" element={<VisuReservacion />} />
+             <Route path="/perfil" element={<Perfil/>}/>
               <Route path="/admin" element={<ListaUsuarios />} /> 
+             <Route path="/pedidos" element={<Pedidos />} /> 
             </Route> 
 
 
@@ -61,7 +63,6 @@ function App  (){
             <Route path="/ofertas" element={<Ofertas />} />
             <Route path="/registrar" element={<Registrar />} />
             <Route path="/terminos" element={<Terminos />} />
-            <Route path="/pedidos" element={<Pedidos />} /> 
             <Route path="/recuperar" element={<RecuperarContra />} /> 
             <Route path="/ayuda" element={<Ayuda/>} /> 
             <Route path="/token" element={<Token/>} /> 
