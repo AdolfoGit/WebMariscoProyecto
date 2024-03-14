@@ -10,14 +10,14 @@ const ProtectorRutas = () => {
     // Simulando un tiempo de carga
     setTimeout(() => {
         setLoading(false);
-    }, 2000);
+    }, 1000);
 
     // Si el usuario está en proceso de carga, muestra un indicador de carga
     if (loading) {
         Swal.fire({
             title: "Cargando...",
             html: "Espere por favor",
-            timer: 2000,
+            timer: 1000,
             timerProgressBar: true,
             didOpen: () => {
                 Swal.showLoading();

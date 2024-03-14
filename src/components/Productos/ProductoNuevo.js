@@ -3,8 +3,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
-
-
+import { useNavigate } from 'react-router-dom'
 import {
     Card,
     CardActionArea,
@@ -104,7 +103,7 @@ const productos = [
     id: 9,
     nombre: 'Producto 3',
     descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
+    precio: '$00',
     disponibles: 15,
     imagen: imageen6,
 },
@@ -120,7 +119,7 @@ const productos = [
     id: 11,
     nombre: 'bebida',
     descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$30',
+    precio: '30',
     disponibles: 15,
     imagen: imageen5,
 },
@@ -128,7 +127,7 @@ const productos = [
     id: 12,
     nombre: 'bebida',
     descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$50.99',
+    precio: 500,
     disponibles: 15,
     imagen: imageen6,
 },
@@ -151,39 +150,28 @@ const subCategories = [
   { name: 'Laptop Sleeves', href: '#' },
 ]
 const filters = [
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: true },
-      { value: 'brown', label: 'Brown', checked: false },
-      { value: 'green', label: 'Green', checked: false },
-      { value: 'purple', label: 'Purple', checked: false },
-    ],
-  },
+ 
   {
     id: 'category',
-    name: 'Category',
+    name: 'Categoria',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false },
+      { value: 'platillo', label: 'Entradas', checked: false },
+      { value: 'postres', label: 'Postres', checked: false },
+      { value: 'Comida Rapida', label: 'Comida Rapida', },
+      { value: 'Bebidas de sabor', label: 'Bebidas de sabor', checked: false },
+      { value: 'Bebidas con alcohol', label: 'Bebidas con alcohol', checked: false },
     ],
   },
   {
-    id: 'size',
-    name: 'Size',
+    id: 'precio',
+    name: 'Precio',
     options: [
-      { value: '2l', label: '2L', checked: false },
-      { value: '6l', label: '6L', checked: false },
-      { value: '12l', label: '12L', checked: false },
-      { value: '18l', label: '18L', checked: false },
-      { value: '20l', label: '20L', checked: false },
-      { value: '40l', label: '40L', checked: true },
+      { value: 100, label: '$100 - $150', checked: false },
+      { value: 200, label: '$100 - $200', checked: false },
+      { value: 250, label: '$100 - $250', checked: false },
+      { value: 300, label: '$100 - $300', checked: false },
+      { value: 350, label: '$100 - $350', checked: false },
+      { value: 1000, label: '$350 o mas', checked: false }, // Cambié el valor de '6' a '1000'
     ],
   },
 ]
@@ -194,6 +182,93 @@ function classNames(...classes) {
 
 export default function ProductoNuevo() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [open, setOpen] = useState(false)
+  const navigate=useNavigate();
+  const [carrito, setCarrito] = useState([]);
+
+    const agregarAlCarrito = (producto) => {
+      // Clona el array del carrito y agrega el nuevo producto
+      setCarrito([...carrito, producto]);
+      setOpen(true);
+      console.log(`Producto agregado al carrito: ${producto.nombre}`);
+    };
+
+ //funciones para las busquedas
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProductos, setFilteredProductos] = useState([]);
+  const [showAllProducts, setShowAllProducts] = useState(true);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedPrices, setSelectedPrices] = useState('');
+  const [selectedPriceRange, setSelectedPriceRange] = useState([]);
+
+  const handleSearchClick = () => {
+    // Filtrar productos basados en la búsqueda
+    const queryLowercase = searchQuery.trim().toLowerCase(); // Convertir la búsqueda a minúsculas
+
+    if (queryLowercase === '') {
+      // Si la búsqueda está vacía, mostrar todos los productos
+      setShowAllProducts(true);
+    } else {
+      // Si hay una búsqueda, filtrar los productos que coincidan con el criterio
+      const filtered = productos.filter(
+        (producto) => producto.nombre.toLowerCase().includes(queryLowercase) // Convertir el nombre del producto a minúsculas
+      );
+      setFilteredProductos(filtered);
+      setShowAllProducts(false);
+    }
+  };
+
+  const handleCategoryChange = (sectionId, value) => {
+    let updatedCategories = [...selectedCategories];
+    let updatedPriceRange = selectedPriceRange; // Suponiendo que 'selectedPriceRange' es tu estado para el rango de precios
+  
+    // Actualizar el estado de las categorías seleccionadas
+    const index = updatedCategories.indexOf(value);
+    if (index !== -1) {
+      updatedCategories.splice(index, 1);
+    } else {
+      updatedCategories.push(value);
+    }
+    setSelectedCategories(updatedCategories);
+  
+    // Obtener el rango de precios seleccionado
+    if (sectionId === 'precio') {
+      const selectedPriceOption = filters.find(filter => filter.id === 'precio').options.find(option => option.value === value);
+      updatedPriceRange = selectedPriceOption.checked ? selectedPriceOption.value : [];
+      setSelectedPriceRange(updatedPriceRange);
+    }
+  
+    // Filtrar productos basados en las categorías seleccionadas y el rango de precios
+    let filteredProducts = productos.filter((producto) => {
+      const categoryMatch = updatedCategories.length === 0 || updatedCategories.includes(producto.categoria);
+      const priceMatch = updatedPriceRange.length === 0 || updatedPriceRange.includes(producto.precio);
+      return categoryMatch && priceMatch;
+    });
+  
+    // Actualizar el estado de los productos filtrados
+    setFilteredProductos(filteredProducts);
+    setShowAllProducts(false);
+  };
+  
+  const filterProductsByPrice = (products, priceRange) => {
+    return products.filter((producto) => {
+      return priceRange.includes(producto.precio);
+    });
+  };
+  
+
+
+  const eliminarDelCarrito = (productoAEliminar) => {
+    // Filtra el array del carrito para mantener solo los productos que no coincidan con el producto a eliminar
+    const nuevoCarrito = carrito.filter(producto => producto !== productoAEliminar);
+    setCarrito(nuevoCarrito);
+    console.log(`Producto eliminado del carrito: ${productoAEliminar.nombre}`);
+  };
+  
+  const verDetalle = () => {
+    // Clona el array del carrito y agrega el nuevo producto
+    navigate('/detalleProduct')
+  };
 
   return (
     <div className="bg-white">
@@ -239,15 +314,7 @@ export default function ProductoNuevo() {
                   {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
                     <h3 className="sr-only">Categories</h3>
-                    <ul role="list" className="px-2 py-3 font-medium text-gray-900">
-                      {subCategories.map((category) => (
-                        <li key={category.name}>
-                          <a href={category.href} className="block px-2 py-3">
-                            {category.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                   
 
                     {filters.map((section) => (
                       <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
@@ -300,9 +367,23 @@ export default function ProductoNuevo() {
 
         <main className="mx-auto max-w-9xl px-5 sm:px-6 lg:px-8">
                {/* espácio de los cabezerra */}
-          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-5">
-            <h1 className="text-4xl font-bold tracking-tight text-gray-900">Platillos Del Mar</h1>
-
+          <div className="flex items-baseline justify-between border-b border-gray-200 pb-6 pt-1">
+            <div className='flex'>
+              <div className="relative h-11 w-80 min-w-[200px]">
+                <input placeholder="Standard"   
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                  className="peer h-full w-80 border-none border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100" />
+                <label
+                  className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-[11px] font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+                  Producto a buscar
+                </label>
+              </div>
+              <Button
+                onClick={handleSearchClick}>
+                Buscar
+              </Button>
+            </div>
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
@@ -369,18 +450,11 @@ export default function ProductoNuevo() {
 
             <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
               {/* Filters */}
-              <form className="hidden lg:block ">
-                <h3 className="sr-only">Categories</h3>
-                <ul role="list" className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-                  {subCategories.map((category) => (
-                    <li key={category.name}>
-                      <a href={category.href}>{category.name}</a>
-                    </li>
-                  ))}
-                </ul>
-
+              <form className="hidden lg:block max-w-[200px]" >
+              <h3 className="sr-only bg-black">Categories</h3>
+              <div className="overflow-y-auto max-h-[450px]"> {/* Establece la altura máxima para mostrar el scroll */}
                 {filters.map((section) => (
-                  <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6 ">
+                  <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6" defaultOpen>
                     {({ open }) => (
                       <>
                         <h3 className="-my-3 flow-root">
@@ -395,7 +469,7 @@ export default function ProductoNuevo() {
                             </span>
                           </Disclosure.Button>
                         </h3>
-                        <Disclosure.Panel className="pt-6">
+                        <Disclosure.Panel className="pt-6" defaultOpen>
                           <div className="space-y-4">
                             {section.options.map((option, optionIdx) => (
                               <div key={option.value} className="flex items-center">
@@ -404,13 +478,11 @@ export default function ProductoNuevo() {
                                   name={`${section.id}[]`}
                                   defaultValue={option.value}
                                   type="checkbox"
-                                  defaultChecked={option.checked}
+                                  checked={selectedCategories.includes(option.value)}
+                                  onChange={() => handleCategoryChange(section.id, option.value)}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
-                                <label
-                                  htmlFor={`filter-${section.id}-${optionIdx}`}
-                                  className="ml-3 text-sm text-gray-600"
-                                >
+                                <label htmlFor={`filter-${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
                                   {option.label}
                                 </label>
                               </div>
@@ -421,32 +493,31 @@ export default function ProductoNuevo() {
                     )}
                   </Disclosure>
                 ))}
-              </form>
+              </div>
+            </form>
 
               {/* Product grid */}
-              <div className="lg:col-span-3"><Grid container spacing={3}>
-            {productos.map((producto) => (
+              <div className="md:col-span-3"><Grid container spacing={3}>
+            {(showAllProducts ? productos : filteredProductos).map((producto) => (
                 <Grid item key={producto.id} xs={20} sm={6} md={4}>
                 <Card>
                     <CardActionArea style={{ display: 'flex', flexDirection: 'column', background: 'transparent' }}>
                     <CardMedia
                         component="img"
-                        alt={producto.nombre}
-                        height="160"
+                        alt={producto.nombre}                     
                         image={producto.imagen}
-                      
-                        style={{ transition: 'transform 0.3s' }}
+                        style={{ transition: 'transform 0.3s' ,height: '200px',}}
                         onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
                         onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                        onClick={()=>verDetalle()}
                         />
                         <CardContent style={{ flex: '1' }}>
                         <Typography variant="h6" component="div">
                         {producto.nombre}
                         <Button
                         size="small"
-                        
-                        style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}
-                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                        onClick={() => agregarAlCarrito(producto)}
+                        style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}>
                         <LocalGroceryStoreOutlinedIcon /> Carrito
                         </Button>
 
@@ -467,6 +538,130 @@ export default function ProductoNuevo() {
             ))}
             </Grid>
             </div>
+      <Transition.Root show={open} as={Fragment}>
+      <Dialog as="div" className="relative z-20" onClose={setOpen}>
+        <Transition.Child
+          as={Fragment}
+          enter="ease-in-out duration-500"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="ease-in-out duration-500"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+        </Transition.Child>
+
+        <div className="fixed inset-0 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+              <Transition.Child
+                as={Fragment}
+                enter="transform transition ease-in-out duration-500 sm:duration-700"
+                enterFrom="translate-x-full"
+                enterTo="translate-x-0"
+                leave="transform transition ease-in-out duration-500 sm:duration-700"
+                leaveFrom="translate-x-0"
+                leaveTo="translate-x-full"
+              >
+                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                    <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                      <div className="flex items-start justify-between">
+                        <Dialog.Title className="text-lg font-medium text-gray-900">Carrito de Compras</Dialog.Title>
+                        <div className="ml-3 flex h-7 items-center">
+                          <button
+                            type="button"
+                            className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                            onClick={() => setOpen(false)}
+                          >
+                            <span className="absolute -inset-0.5" />
+                            <span className="sr-only">Cerrar</span>
+                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                          </button>
+                        </div>
+                      </div>
+
+                      <div className="mt-8">
+                        <div className="flow-root">
+                          <ul role="list" className="-my-6 divide-y divide-gray-200">
+                            {carrito.map((productoCarrito) => (
+                              <li  className="flex py-6">
+                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                  <img
+                                    src={productoCarrito.imagen}
+                                   
+                                    className="h-full w-full object-cover object-center"
+                                  />
+                                </div>
+
+                                <div className="ml-4 flex flex-1 flex-col">
+                                  <div>
+                                    <div className="flex justify-between text-base font-medium text-gray-900">
+                                      <h3>
+                                        <a>{productoCarrito.nombre}</a>
+                                      </h3>
+                                      <p className="ml-4">{productoCarrito.precio}</p>
+                                    </div>
+                                    <p className="mt-1 text-sm text-gray-500">{productoCarrito.descripcion}</p>
+                                  </div>
+                                  <div className="flex flex-1 items-end justify-between text-sm">
+                                    <p className="text-gray-500">Categoria {productoCarrito.categoria}</p>
+
+                                    <div className="flex">
+                                      <button
+                                        type="button"
+                                        className="font-medium text-indigo-600 hover:text-indigo-500"
+                                        onClick={() => eliminarDelCarrito(productoCarrito)}
+                                      >
+                                        Eliminar
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                      <div className="flex justify-between text-base font-medium text-gray-900">
+                        <p>Subtotal</p>
+                        <p>$262.00</p>
+                      </div>
+                      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+                      <div className="mt-6">
+                        <a
+                          href="#"
+                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                        >
+                          Comprar
+                        </a>
+                      </div>
+                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                        <p>
+                          or{' '}
+                          <button
+                            type="button"
+                            className="font-medium text-indigo-600 hover:text-indigo-500"
+                            onClick={() => setOpen(false)}
+                          >
+                            Continuar con la compra
+                            <span aria-hidden="true"> &rarr;</span>
+                          </button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </div>
+      </Dialog>
+    </Transition.Root>
             </div>
           </section>
         </main>

@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-
+import MenuFlotante from './MenuFlotante'
 
 // Importa el hook useUser para obtener la información del usuario
 import { useUser } from '../../../UserContext';
@@ -52,6 +52,7 @@ export const Header = () => {
                   </li>
                    <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Menus</Link></li>
                    <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
+                   <li><MenuFlotante/></li>
               {user ? (
                 <>
                   <li className={location.pathname === '/pedidos' ? 'active' : ''}><Link to='/pedidos'>Pedidos</Link></li>

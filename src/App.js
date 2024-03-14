@@ -43,6 +43,7 @@ function App  (){
          
           <Header/>
           <Breadcrumbs/>
+          
           <Routes>
             <Route path="/"   element={<Home/>} />
             <Route path="/politicas" element={<Politicas />} />
@@ -59,7 +60,7 @@ function App  (){
             </Route> 
 
 
-            <Route path="/productos" element={<ProductoNuevo/>} />
+            <Route path="/productos" element={<ProductoNuevo  />} />
             <Route path="/ofertas" element={<Ofertas />} />
             <Route path="/registrar" element={<Registrar />} />
             <Route path="/terminos" element={<Terminos />} />

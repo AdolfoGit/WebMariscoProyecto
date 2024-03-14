@@ -137,10 +137,10 @@ const productos = [
     const agregarAlCarrito = (producto) => {
       // Clona el array del carrito y agrega el nuevo producto
       setCarrito([...carrito, producto]);
-      console.log(`Producto agregado al carrito: ${producto.nombre}`);
+      
     };
     const verDetalle = () => {
-      // Clona el array del carrito y agrega el nuevo producto
+     
       window.location.href='/detalleProduct'
     };
  
