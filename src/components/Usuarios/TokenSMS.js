@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 
-export default function Token() {
+export default function TokenSMS() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const navigate = useNavigate();
   const [token, setToken] = useState('');
@@ -17,7 +17,7 @@ export default function Token() {
         // Eliminar el correo almacenado en localStorage
           localStorage.removeItem('userData');
 
-        navigate('/recuperar');
+        navigate('/recuperarSMS');
       }, 200); // Redirigir después de 5 segundos
     }, 30000); 
 
@@ -38,13 +38,13 @@ export default function Token() {
     }
 
     const data = new FormData();
-    const storedEmail = JSON.parse(localStorage.getItem('userData')).email; // Obtener el correo almacenado en localStorage
-    data.append('Correo', storedEmail);
+    const storedTelefono = JSON.parse(localStorage.getItem('userData')).telefono; // Obtener el correo almacenado en localStorage
+    data.append('Telefono', storedTelefono);
     data.append('Token', token);
 
     fetch(
       apiurll +
-        'api/CasaDelMarisco/VerificarToken',
+        'api/CasaDelMarisco/VerificarTokenSMS',
       {
         method: 'POST',
         body: data,
@@ -53,7 +53,7 @@ export default function Token() {
       .then((res) => res.json())
       .then((result) => {
         if (result === 'Credenciales validas') {
-          navigate(`/actualizar`);
+          navigate(`/actualizarSMS`);
         } else {
           setErroToken('Token inválido');
         }

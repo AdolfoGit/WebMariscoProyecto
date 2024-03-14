@@ -22,7 +22,6 @@ import imageen6 from '../home/img/brocheta.jpg';
 import imageen7 from '../home/img/bebida.jpg';
 import '../estilos.css';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
-import { useUser } from '../../UserContext';
 const productos = [
   {
     id: 1,
@@ -133,13 +132,10 @@ const productos = [
   const Productos2 = () => {
     
     const [carrito, setCarrito] = useState([]);
-    const { addToCart } = useUser();
 
     const agregarAlCarrito = (producto) => {
-      addToCart(producto);
     // Clona el array del carrito y agrega el nuevo producto
       setCarrito([...carrito, producto]);
-      
     };
     const verDetalle = () => {
      
