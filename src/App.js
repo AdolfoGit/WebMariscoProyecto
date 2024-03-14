@@ -34,6 +34,9 @@ import ProtectorRutas from './components/Usuarios/ProtectorRutas';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
 import Breadcrumbs from './components/ComponentesClave/Breadcrums'
 import Carrito from './components/Productos/Carrito';
+import RecuperarContraSMS from './components/Usuarios/RecuperarSMS';
+import TokenSMS from './components/Usuarios/TokenSMS';
+import ActualizarSMS from './components/Usuarios/ActualizarSMS';
 
 function App  (){
   
@@ -67,9 +70,15 @@ function App  (){
             <Route path="/registrar" element={<Registrar />} />
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/recuperar" element={<RecuperarContra />} /> 
+            <Route path="/recuperarSMS" element={<RecuperarContraSMS />} /> 
+
             <Route path="/ayuda" element={<Ayuda/>} /> 
             <Route path="/token" element={<Token/>} /> 
+            <Route path="/tokenSMS" element={<TokenSMS/>} /> 
+
             <Route path="/actualizar" element={<Actualizar/>} /> 
+            <Route path="/actualizarSMS" element={<ActualizarSMS/>} /> 
+
             <Route path="/404" element={<NotFoundPage />} />
             <Route path="/500" element={<Error500 />} />
             <Route path='*' element={<Navigate to='/404'/>} /> 

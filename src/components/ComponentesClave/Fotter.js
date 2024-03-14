@@ -8,7 +8,7 @@ import './css/foter.css';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white" style={{marginTop:'100px'}}>
       <ItemsContainer />
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10

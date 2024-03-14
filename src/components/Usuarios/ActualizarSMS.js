@@ -6,7 +6,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import { MedidorSeguridad } from './MedidorDeSeguridad';
 import Swal from 'sweetalert2';
 
-export default function Actualizar() {
+export default function ActualizarSMS() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
   const navigate = useNavigate();
@@ -118,9 +118,9 @@ export default function Actualizar() {
 
   const data = new FormData();
 
-  const storedEmail = JSON.parse(localStorage.getItem('userData')).email; // Obtener el correo almacenado en localStorage
+  const storedTelefono = JSON.parse(localStorage.getItem('userData')).telefono; // Obtener el correo almacenado en localStorage
 
-  data.append('Correo', storedEmail);
+  data.append('Telefono', storedTelefono);
   data.append('Contrasena', password);
 
   const handleSubmit = (event) => {
@@ -128,7 +128,7 @@ export default function Actualizar() {
 
       fetch(
         apiurll +
-          'api/CasaDelMarisco/RecuperarContrasena',
+          'api/CasaDelMarisco/RecuperarContrasenaSMS',
         {
           method: 'POST',
           body: data,

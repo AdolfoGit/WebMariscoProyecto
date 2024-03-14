@@ -32,10 +32,12 @@ export const UserProvider = ({ children }) => {
     Cookies.remove('userData');
   };
   const addToCart = (item) => {
-    setCart([...cart, item]);
+    const updatedCart = [...cart, item];
+    setCart(updatedCart);
     // Almacenar el carrito en la cookie
-    Cookies.set('cart', JSON.stringify([...cart, item]));
+    Cookies.set('cart', JSON.stringify(updatedCart));
   };
+  
 
   const removeFromCart = (itemId) => {
     const updatedCart = cart.filter(item => item.id !== itemId);
