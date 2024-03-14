@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate, Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
 import Swal from 'sweetalert2';
 

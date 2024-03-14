@@ -33,6 +33,7 @@ import Reservaciones from './components/Reservaciones/Reservaciones';
 import ProtectorRutas from './components/Usuarios/ProtectorRutas';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
 import Breadcrumbs from './components/ComponentesClave/Breadcrums'
+import Carrito from './components/Productos/Carrito';
 
 function App  (){
   
@@ -57,6 +58,7 @@ function App  (){
              <Route path="/perfil" element={<Perfil/>}/>
               <Route path="/admin" element={<ListaUsuarios />} /> 
              <Route path="/pedidos" element={<Pedidos />} /> 
+             <Route path='/carrito' element={<Carrito/>} />
             </Route> 
 
 

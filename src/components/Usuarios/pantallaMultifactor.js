@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 import Swal from 'sweetalert2';
 import { useUser } from '../../UserContext';
@@ -9,7 +9,6 @@ export default function Bienvenida() {
 
   const { loginUser } = useUser();
   const navigate = useNavigate();
-  const location = useLocation();
   const [token, setToken] = useState('');
   const [erroToken, setErroToken] = useState('');
   const [timerActive, setTimerActive] = useState(true);
