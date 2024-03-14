@@ -48,7 +48,7 @@ header ul li{
   margin-left: 14px;
 }
 .nav{
-  margin-top: 20px;
+  margin-top: 25px;
   margin-bottom: 18px;
 }
 header ul li a{
@@ -70,13 +70,14 @@ header ul li a:hover{
 .HeaderIcon{
   margin-left: 20px;
   transition: 0.5s;
+ 
 }
+
 .navbar-items-icon{
   color: black; 
   display: none;
 }
 .logo img{
- position: absolute;
   width: 38vh;
   height: 11vh;
   padding: 0,  
