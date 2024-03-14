@@ -1,11 +1,11 @@
-import React, { useContext, useState }   from 'react';
+import React from 'react';
 import { Avatar, Button, Card, CardContent, Grid, Typography, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
-import { Person, Lock, Notifications, LocationOn } from '@mui/icons-material';
+import { Lock } from '@mui/icons-material';
 import { useUser } from '../../UserContext'; // Ajusta la ruta según tu estructura de archivos
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 const Perfil = () => {
-  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  //const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
   
   const navigate = useNavigate();

@@ -6,12 +6,17 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     // Intentar cargar el usuario desde la cookie al cargar la aplicación
     const storedUser = Cookies.get('userData');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
+    }
+    const storedCart = Cookies.get('cart');
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
     }
   }, []);
 
@@ -26,10 +31,22 @@ export const UserProvider = ({ children }) => {
     // Eliminar la cookie al cerrar sesión
     Cookies.remove('userData');
   };
+  const addToCart = (item) => {
+    setCart([...cart, item]);
+    // Almacenar el carrito en la cookie
+    Cookies.set('cart', JSON.stringify([...cart, item]));
+  };
+
+  const removeFromCart = (itemId) => {
+    const updatedCart = cart.filter(item => item.id !== itemId);
+    setCart(updatedCart);
+    // Actualizar el carrito en la cookie
+    Cookies.set('cart', JSON.stringify(updatedCart));
+  };
 
   return (
-    <UserContext.Provider value={{ user, loginUser, logoutUser }}>
-      {children}
+    <UserContext.Provider value={{ user, loginUser, logoutUser, cart, addToCart, removeFromCart }}>
+        {children}
     </UserContext.Provider>
   );
 };

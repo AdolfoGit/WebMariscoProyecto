@@ -19,7 +19,7 @@ export const Header = () => {
   const location = useLocation();
 
   // Obtén la información del usuario desde el contexto
-  const { user, logoutUser } = useUser();
+  const { user } = useUser();
 
   window.addEventListener('scroll', function () {
     const header = document.querySelector('.header');
@@ -59,7 +59,7 @@ export const Header = () => {
                   <li className='username'>{user.Nombre}</li>
                   <li className='icon'>
                 <Link to='carrito'><SearchOutlinedIcon className='HeaderIcon' /></Link>
-                <Link to='carrito'><LocalGroceryStoreOutlinedIcon className='HeaderIcon' /></Link>
+                <Link to='/carrito'><LocalGroceryStoreOutlinedIcon className='HeaderIcon' /></Link>
                 <Link to='perfil'><AccountCircleOutlinedIcon className='HeaderIcon' /></Link>
               </li>
                 </>
@@ -69,6 +69,7 @@ export const Header = () => {
                     <button className='btn btn-outline-warning cd'>Login</button>
                   </Link>
                 </li>
+                
               )}
               
              

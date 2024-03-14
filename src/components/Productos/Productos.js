@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Card,
   CardActionArea,
@@ -22,8 +22,7 @@ import imageen6 from '../home/img/brocheta.jpg';
 import imageen7 from '../home/img/bebida.jpg';
 import '../estilos.css';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
-import { useState } from 'react';
-
+import { useUser } from '../../UserContext';
 const productos = [
   {
     id: 1,
@@ -132,10 +131,13 @@ const productos = [
   
 ];
   const Productos2 = () => {
+    
     const [carrito, setCarrito] = useState([]);
+    const { addToCart } = useUser();
 
     const agregarAlCarrito = (producto) => {
-      // Clona el array del carrito y agrega el nuevo producto
+      addToCart(producto);
+    // Clona el array del carrito y agrega el nuevo producto
       setCarrito([...carrito, producto]);
       console.log(`Producto agregado al carrito: ${producto.nombre}`);
     };
@@ -148,7 +150,6 @@ const productos = [
   const [maxPrice, setMaxPrice] = useState('');
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [showAllProducts, setShowAllProducts] = useState(true);
-  const [categoria, setCategoria] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('');
   const [orderOption, setOrderOption] = useState('');
 
@@ -282,8 +283,7 @@ const productos = [
                   <Button
                   size="small"
                   onClick={() => agregarAlCarrito(producto)}
-                  style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}
-                  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                  style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }} data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                   <LocalGroceryStoreOutlinedIcon /> Carrito
                 </Button>
 
@@ -304,7 +304,7 @@ const productos = [
       ))}
     </Grid>
 
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true"  tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
   <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Carrito</h5>
     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
