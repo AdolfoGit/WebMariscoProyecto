@@ -26,6 +26,7 @@ import imageen5 from '../home/img/pescado.jpeg';
 import imageen6 from '../home/img/brocheta.jpg';
 import imageen7 from '../home/img/bebida.jpg';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
+import { ShowerSharp } from '@mui/icons-material'
 
 const productos = [
 {
@@ -94,7 +95,7 @@ const productos = [
     id: 8,
     nombre: 'Producto 3',
     descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
+    precio: 500,
     disponibles: 15,
     categoria: 'postres',
     imagen: imageen5,
@@ -150,28 +151,31 @@ const subCategories = [
   { name: 'Laptop Sleeves', href: '#' },
 ]
 const filters = [
- 
   {
     id: 'category',
     name: 'Categoria',
     options: [
-      { value: 'platillo', label: 'Entradas', checked: false },
-      { value: 'postres', label: 'Postres', checked: false },
+      { value: 'platillo', label: 'Entradas',},
+      { value: 'postres', label: 'Postres',},
       { value: 'Comida Rapida', label: 'Comida Rapida', },
-      { value: 'Bebidas de sabor', label: 'Bebidas de sabor', checked: false },
-      { value: 'Bebidas con alcohol', label: 'Bebidas con alcohol', checked: false },
+      { value: 'Bebidas de sabor', label: 'Bebidas de sabor',},
+      { value: 'Bebidas con alcohol', label: 'Bebidas con alcohol',},
     ],
   },
+  
+]
+
+const precio=[
   {
     id: 'precio',
     name: 'Precio',
     options: [
-      { value: 100, label: '$100 - $150', checked: false },
-      { value: 200, label: '$100 - $200', checked: false },
-      { value: 250, label: '$100 - $250', checked: false },
-      { value: 300, label: '$100 - $300', checked: false },
-      { value: 350, label: '$100 - $350', checked: false },
-      { value: 1000, label: '$350 o mas', checked: false }, // Cambié el valor de '6' a '1000'
+      { value: 1, label: '$100 - $150',},
+      { value: 2, label: '$100 - $200',},
+      { value: 3, label: '$100 - $250',},
+      { value: 4, label: '$100 - $300',},
+      { value: 5, label: '$100 - $350',},
+      { value: 6, label: '$350 o mas',}, 
     ],
   },
 ]
@@ -198,8 +202,7 @@ export default function ProductoNuevo() {
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [showAllProducts, setShowAllProducts] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedPrices, setSelectedPrices] = useState('');
-  const [selectedPriceRange, setSelectedPriceRange] = useState([]);
+  const [selectedPrice, setSelectedPrice] = useState([]);
 
   const handleSearchClick = () => {
     // Filtrar productos basados en la búsqueda
@@ -209,19 +212,19 @@ export default function ProductoNuevo() {
       // Si la búsqueda está vacía, mostrar todos los productos
       setShowAllProducts(true);
     } else {
+      setShowAllProducts(false);
       // Si hay una búsqueda, filtrar los productos que coincidan con el criterio
       const filtered = productos.filter(
         (producto) => producto.nombre.toLowerCase().includes(queryLowercase) // Convertir el nombre del producto a minúsculas
       );
       setFilteredProductos(filtered);
-      setShowAllProducts(false);
+      
     }
   };
 
   const handleCategoryChange = (sectionId, value) => {
     let updatedCategories = [...selectedCategories];
-    let updatedPriceRange = selectedPriceRange; // Suponiendo que 'selectedPriceRange' es tu estado para el rango de precios
-  
+   
     // Actualizar el estado de las categorías seleccionadas
     const index = updatedCategories.indexOf(value);
     if (index !== -1) {
@@ -231,31 +234,97 @@ export default function ProductoNuevo() {
     }
     setSelectedCategories(updatedCategories);
   
-    // Obtener el rango de precios seleccionado
-    if (sectionId === 'precio') {
-      const selectedPriceOption = filters.find(filter => filter.id === 'precio').options.find(option => option.value === value);
-      updatedPriceRange = selectedPriceOption.checked ? selectedPriceOption.value : [];
-      setSelectedPriceRange(updatedPriceRange);
-    }
+    // Verificar si se han seleccionado categorías
+    const hasSelectedCategories = updatedCategories.length > 0;
   
     // Filtrar productos basados en las categorías seleccionadas y el rango de precios
-    let filteredProducts = productos.filter((producto) => {
-      const categoryMatch = updatedCategories.length === 0 || updatedCategories.includes(producto.categoria);
-      const priceMatch = updatedPriceRange.length === 0 || updatedPriceRange.includes(producto.precio);
-      return categoryMatch && priceMatch;
-    });
+    let filteredProducts = [];
+    if (hasSelectedCategories) {
+      filteredProducts = productos.filter((producto) => {
+        return updatedCategories.includes(producto.categoria);
+      });
+    } else {
+      // Mostrar todos los productos si no se ha seleccionado ninguna categoría
+      filteredProducts = [...productos];
+    }
   
     // Actualizar el estado de los productos filtrados
     setFilteredProductos(filteredProducts);
-    setShowAllProducts(false);
+  
+    // Actualizar el estado de visualización de todos los productos
+    setShowAllProducts(!hasSelectedCategories);
+  
+    
   };
   
-  const filterProductsByPrice = (products, priceRange) => {
-    return products.filter((producto) => {
-      return priceRange.includes(producto.precio);
+  
+  const handlePrecioChange = (precioSeleccionado) => {
+    // Definir los rangos de precio según la selección
+    
+    let precioMinimo = 0;
+    let precioMaximo = Number.MAX_VALUE;
+  
+    // Verificar si se ha seleccionado un rango de precio
+    const hasSelectedPrice = precioSeleccionado > 0;
+
+    if (hasSelectedPrice) {
+      switch (precioSeleccionado) {
+        case 1:
+          precioMinimo = 100;
+          precioMaximo = 150;
+          setShowAllProducts(false)
+          break;
+        case 2:
+          precioMinimo = 100;
+          precioMaximo = 200;
+          setShowAllProducts(false)
+          break;
+        case 3:
+          precioMinimo = 100;
+          precioMaximo = 250;
+          setShowAllProducts(false)
+          break;
+        case 4:
+          precioMinimo = 100;
+          precioMaximo = 300;
+          setShowAllProducts(false)
+          break;
+        case 5:
+          precioMinimo = 100;
+          precioMaximo = 350;
+          setShowAllProducts(false)
+          break;
+        case 6:
+          precioMinimo = 350;
+          precioMaximo = Number.MAX_VALUE;
+          setShowAllProducts(false)
+          break;
+        default:
+          return; // No hay cambios en los productos
+      }
+    } else {
+        // Mostrar todos los productos si no se ha seleccionado ninguna categoría
+        setShowAllProducts(true)
+
+    }
+  
+    // Filtrar productos por el rango de precio seleccionado
+    const filteredProducts = productos.filter(producto => {
+      return (precioSeleccionado === null) || (producto.precio >= precioMinimo && producto.precio <= precioMaximo);
     });
+  
+   // Actualizar el estado de los productos filtrados
+   setFilteredProductos(filteredProducts);
+  
+ 
   };
   
+  
+  
+  
+  
+
+
 
 
   const eliminarDelCarrito = (productoAEliminar) => {
@@ -474,15 +543,13 @@ export default function ProductoNuevo() {
                             {section.options.map((option, optionIdx) => (
                               <div key={option.value} className="flex items-center">
                                 <input
-                                  id={`filter-${section.id}-${optionIdx}`}
-                                  name={`${section.id}[]`}
                                   defaultValue={option.value}
                                   type="checkbox"
-                                  checked={selectedCategories.includes(option.value)}
+                                  
                                   onChange={() => handleCategoryChange(section.id, option.value)}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
-                                <label htmlFor={`filter-${section.id}-${optionIdx}`} className="ml-3 text-sm text-gray-600">
+                                <label className="ml-3 text-sm text-gray-600">
                                   {option.label}
                                 </label>
                               </div>
@@ -493,6 +560,46 @@ export default function ProductoNuevo() {
                     )}
                   </Disclosure>
                 ))}
+                {/**incio */}
+                {precio.map((section) => (
+                  <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6" defaultOpen>
+                    {({ open }) => (
+                      <>
+                        <h3 className="-my-3 flow-root">
+                          <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+                            <span className="font-medium text-gray-900">{section.name}</span>
+                            <span className="ml-6 flex items-center">
+                              {open ? (
+                                <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                              ) : (
+                                <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                              )}
+                            </span>
+                          </Disclosure.Button>
+                        </h3>
+                        <Disclosure.Panel className="pt-6" defaultOpen>
+                          <div className="space-y-4">
+                            {section.options.map((option, optionIdx) => (
+                              <div key={option.value} className="flex items-center">
+                                <input
+                                  defaultValue={option.value}
+                                  type="checkbox"
+                                  value={option.value}
+                                  onChange={() => handlePrecioChange(option.value)}
+                                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                                />
+                                <label className="ml-3 text-sm text-gray-600">
+                                  {option.label}
+                                </label>
+                              </div>
+                            ))}
+                          </div>
+                        </Disclosure.Panel>
+                      </>
+                    )}
+                  </Disclosure>
+                ))}
+                {/**fin */}
               </div>
             </form>
 
