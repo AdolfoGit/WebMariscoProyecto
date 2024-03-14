@@ -260,53 +260,53 @@ export default function ProductoNuevo() {
   
   const handlePrecioChange = (precioSeleccionado) => {
     // Definir los rangos de precio según la selección
-    
+    console.log(precioSeleccionado)
+
     let precioMinimo = 0;
     let precioMaximo = Number.MAX_VALUE;
   
     // Verificar si se ha seleccionado un rango de precio
-    const hasSelectedPrice = precioSeleccionado > 0;
-
-    if (hasSelectedPrice) {
+    
+     if(precioSeleccionado===0){
+      setShowAllProducts(true)
+     }else{
       switch (precioSeleccionado) {
+
         case 1:
           precioMinimo = 100;
           precioMaximo = 150;
-          setShowAllProducts(false)
+       
           break;
         case 2:
           precioMinimo = 100;
           precioMaximo = 200;
-          setShowAllProducts(false)
+          
           break;
         case 3:
           precioMinimo = 100;
           precioMaximo = 250;
-          setShowAllProducts(false)
+        
           break;
         case 4:
           precioMinimo = 100;
           precioMaximo = 300;
-          setShowAllProducts(false)
+     
           break;
         case 5:
           precioMinimo = 100;
           precioMaximo = 350;
-          setShowAllProducts(false)
+   
           break;
         case 6:
           precioMinimo = 350;
           precioMaximo = Number.MAX_VALUE;
-          setShowAllProducts(false)
+   
           break;
         default:
           return; // No hay cambios en los productos
       }
-    } else {
-        // Mostrar todos los productos si no se ha seleccionado ninguna categoría
-        setShowAllProducts(true)
-
-    }
+    
+    
   
     // Filtrar productos por el rango de precio seleccionado
     const filteredProducts = productos.filter(producto => {
@@ -314,18 +314,13 @@ export default function ProductoNuevo() {
     });
   
    // Actualizar el estado de los productos filtrados
-   setFilteredProductos(filteredProducts);
+     setFilteredProductos(filteredProducts);
+     setShowAllProducts(false)
+     }
   
  
   };
   
-  
-  
-  
-  
-
-
-
 
   const eliminarDelCarrito = (productoAEliminar) => {
     // Filtra el array del carrito para mantener solo los productos que no coincidan con el producto a eliminar
@@ -585,7 +580,7 @@ export default function ProductoNuevo() {
                                   defaultValue={option.value}
                                   type="checkbox"
                                   value={option.value}
-                                  onChange={() => handlePrecioChange(option.value)}
+  onChange={(event) => handlePrecioChange(event.target.checked ? option.value : 0)}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label className="ml-3 text-sm text-gray-600">

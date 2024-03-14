@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useUser } from '../../UserContext';
 import Swal from 'sweetalert2';
 
-const ProtectorRutas = () => {
+const ProtectorRutasAdmin = () => {
     const { user } = useUser();
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
@@ -35,17 +35,13 @@ const ProtectorRutas = () => {
           });
           navigate('/login')
     }
-    else if (user.Rol===1){
-          return <Outlet />;
-        }
-        else if (user.Rol===2){
-            return <Outlet />;
-        }
-        else{
+    else if (user.Rol===2){
+        return <Outlet />;
+    }else{
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Parece que no eres administrador",
+            text: "Parece que no eres cliente.",
           });
         navigate('/')
     }
@@ -54,4 +50,4 @@ const ProtectorRutas = () => {
     return <Outlet />;
 };
 
-export default ProtectorRutas;
+export default ProtectorRutasAdmin;

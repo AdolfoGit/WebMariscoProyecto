@@ -96,6 +96,7 @@ const Perfil = () => {
             </Grid>
             <Box mt={3}>
               <Typography variant="h6">Opciones</Typography>
+              
               <List>
                 <ListItem button>
                   <ListItemIcon>
