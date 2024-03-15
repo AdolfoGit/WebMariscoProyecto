@@ -10,12 +10,12 @@ export default function PromoSecciones() {
       <div className="m-0 p-0 relative overflow-hidden bg-gray-200">
         <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
           <div className="relative mx-auto max-w-7xl px-2 sm:static sm:px-6 lg:px-8">
-            <div className="mr-20 sm:max-w-lg ">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <div className="mr-20 lg:max-w-lg ">
+              <h1 className="text-8xl font-bold tracking-tight text-gray-900">
                Diversidad de Actividades !Unetenos!
               </h1>
               
-              <p className="mt-4 text-xl text-gray-500">
+              <p className="mt-4 text-2xl text-gray-500 landing-9">
                 En la Casa del Marisco, hay gran diversidad de actividades, no solo somos un lugar para que puedas venir a degustar nuestros platillos
               </p>
             </div>
