@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import platillo from '../home/img/foto2.png'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PlatillosHome from './PlatillosDelInicio';
 import '../estilos.css';
-
+   import { uploadFilesUsuarios, uploadFilesProductos } from '../../firebase/firebase';
 import Pinterest from '../Pinteres'
 import TrandingSlider from '../Carousel/TradingSlider';
 import Ayuda from '../Empresa/Ayuda';
@@ -12,6 +12,19 @@ import Example from './Example'
 import PromoSecciones from './PromoSecciones';
 const Home = () => {
   
+   // const [File, setFile] =useState(null);
+
+   // const handleSubmit = async (e) =>{
+   //    e.preventDefault();  
+   //    const result = await uploadFilesUsuarios(File);
+   //    console.log(result);
+   // }
+   // const handleSubmit2 = async (e) =>{
+   //    e.preventDefault();  
+   //    const result = await uploadFilesUsuarios(File);
+   //    console.log(result);
+   // }
+
   return (
    <div className='transition-screen active'>
    <section className='home'>
@@ -39,7 +52,18 @@ const Home = () => {
    <TrandingSlider/>
    <PromoSecciones/>
    <Example/>
-    </div>
+{/* 
+   <form onSubmit={handleSubmit}>
+   <input type='file' accept='image/*' onChange={e => setFile(e.target.files[0])} />
+  <button type='submit'> Subir</button>
+</form>
+
+<form onSubmit={handleSubmit2}>
+<input type='file' accept='image/*' onChange={e => setFile(e.target.files[0])} />
+  <button type='submit'> Subir</button>
+</form> */}
+
+      </div>
    
    
   );
