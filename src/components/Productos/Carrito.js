@@ -1,13 +1,35 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useUser } from '../../UserContext';
 import { Button, Grid, Typography, Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
 
 const Carrito = () => {
-  const { cart, removeFromCart } = useUser();
+  const [carrito, setCarrito] = useState([]);
 
-  const handleRemoveFromCart = (productId) => {
-    removeFromCart(productId);
+  const loadCartFromLocalStorage = () => {
+    const cartString = localStorage.getItem('cart');
+    return cartString ? JSON.parse(cartString) : [];
   };
+
+  useEffect(() => {
+    const cartFromLocalStorage = loadCartFromLocalStorage();
+    setCarrito(cartFromLocalStorage);
+  }, []);
+
+  const saveCartToLocalStorage = (cart) => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+  
+  const eliminarDelCarrito = (productoAEliminar) => {
+    // Filtra el carrito para mantener solo los productos que no coincidan con el producto a eliminar
+    const nuevoCarrito = carrito.filter(producto => producto.id !== productoAEliminar.id);
+  
+    // Actualiza el estado del carrito en el componente
+    setCarrito(nuevoCarrito);
+  
+    // Guarda el nuevo carrito en el almacenamiento local
+    saveCartToLocalStorage(nuevoCarrito);
+  };
+
 
   return (
     <Grid container spacing={3}>
@@ -16,15 +38,8 @@ const Carrito = () => {
           Carrito de Compras
         </Typography>
       </Grid>
-      {cart.length === 0 ? (
-        <Grid item xs={12}>
-          <Typography variant="subtitle1" align="center">
-            El carrito está vacío.
-          </Typography>
-        </Grid>
-      ) : (
-        cart.map((producto) => (
-          <Grid item xs={12} key={producto.id}>
+      {(carrito.map((producto) => (
+          <Grid item xs={12} key={producto.nombre}>
             <Card>
               <CardActionArea>
                 <CardMedia
@@ -45,12 +60,16 @@ const Carrito = () => {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <Button onClick={() => handleRemoveFromCart(producto.id)}>Eliminar</Button>
+              <Button onClick={()=> eliminarDelCarrito(producto)}>Eliminar</Button>
             </Card>
+            
           </Grid>
         ))
       )}
+
+      
     </Grid>
+    
   );
 };
 

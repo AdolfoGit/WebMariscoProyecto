@@ -10,6 +10,7 @@ import TrandingSlider from '../Carousel/TradingSlider';
 import Ayuda from '../Empresa/Ayuda';
 import Example from './Example'
 import PromoSecciones from './PromoSecciones';
+
 const Home = () => {
   
    // const [File, setFile] =useState(null);
@@ -47,11 +48,14 @@ const Home = () => {
             </div>
          </div>
       </div>
+      
+
    </section>
    <PlatillosHome/>
    <TrandingSlider/>
    <PromoSecciones/>
    <Example/>
+   
 {/* 
    <form onSubmit={handleSubmit}>
    <input type='file' accept='image/*' onChange={e => setFile(e.target.files[0])} />
@@ -62,7 +66,7 @@ const Home = () => {
 <input type='file' accept='image/*' onChange={e => setFile(e.target.files[0])} />
   <button type='submit'> Subir</button>
 </form> */}
-
+      
       </div>
    
    

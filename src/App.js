@@ -39,6 +39,8 @@ import RecuperarContraSMS from './components/Usuarios/RecuperarSMS';
 import TokenSMS from './components/Usuarios/TokenSMS';
 import ActualizarSMS from './components/Usuarios/ActualizarSMS';
 
+import Mision from './components/Empresa/Nosotros';
+
 function App  (){
   
   return (
@@ -76,6 +78,7 @@ function App  (){
             <Route path="/terminos" element={<Terminos />} />
             <Route path="/recuperar" element={<RecuperarContra />} /> 
             <Route path="/recuperarSMS" element={<RecuperarContraSMS />} /> 
+         
 
             <Route path="/ayuda" element={<Ayuda/>} /> 
             <Route path="/token" element={<Token/>} /> 
@@ -90,7 +93,7 @@ function App  (){
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
            <Route path='/multifactor' element={<Bienvenida/>}></Route>
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
-          
+           <Route path='Mision' element={<Mision/>}/>
           </Routes>
           <Footer/>
        </Router>

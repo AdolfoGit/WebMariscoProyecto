@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
@@ -28,32 +28,36 @@ import imageen7 from '../home/img/bebida.jpg';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import { ShowerSharp } from '@mui/icons-material'
 
+import Carrito from './Carrito'
+
 const productos = [
 {
     id: 1,
-    nombre: 'Producto 1',
-    descripcion: 'Descripción del producto 1. Detalles adicionales sobre el producto.',
-    precio: '$19.99',
+    nombre: 'Bebida de Mango',
+    descripcion: 'Bebida de sabor natural de mango, con un toque fino de limon para una degustacion mejor',
+    precio:40,
     disponibles: 10,
-    categoria: 'bebida',
+    categoria: 'Bebidas de sabor',
+    Tamaño:['500 ml','1 L', '1.5 L'],
     imagen: imageen,
 },
 {
     id: 2,
-    nombre: 'Producto 2',
-    descripcion: 'Descripción del producto 2. Detalles adicionales sobre el producto.',
-    precio: '$29.99',
+    nombre: 'Bebida de Jamaica',
+    descripcion: 'Bebida de Jamaica de diferentes tamaños',
+    precio:45,
     disponibles: 5,
-    categoria: 'bebida',
+    categoria: 'Bebidas de sabor',
+    Tamaño:['500 ml','1 L', '1.5 L'],
     imagen: imageen3,
 },
 {
     id: 3,
-    nombre: 'Producto 3',
+    nombre: 'Bebida de Horchata',
     descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
     precio: '$39.99',
     disponibles: 15,
-    categoria: 'platillo',
+    categoria: 'Bebidas de sabor',
     imagen: imageen2,
 },
 {
@@ -136,13 +140,7 @@ const productos = [
 
 ]
 
-const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
-]
+
 const subCategories = [
   { name: 'Totes', href: '#' },
   { name: 'Backpacks', href: '#' },
@@ -185,17 +183,41 @@ function classNames(...classes) {
 }
 
 export default function ProductoNuevo() {
+
+  const saveCartToLocalStorage = (cart) => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  };
+  
+  const loadCartFromLocalStorage = () => {
+    const cartString = localStorage.getItem('cart');
+    return cartString ? JSON.parse(cartString) : [];
+  };
+
+
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [open, setOpen] = useState(false)
   const navigate=useNavigate();
-  const [carrito, setCarrito] = useState([]);
 
-    const agregarAlCarrito = (producto) => {
-      // Clona el array del carrito y agrega el nuevo producto
-      setCarrito([...carrito, producto]);
-      setOpen(true);
-      console.log(`Producto agregado al carrito: ${producto.nombre}`);
-    };
+  const [cart, setCart] = useState(loadCartFromLocalStorage());
+
+  const agregarAlCarrito = (producto) => {
+    const newCart = [...cart, producto];
+    setCart(newCart);
+    saveCartToLocalStorage(newCart);
+    <Carrito carrito={newCart}/>
+    setOpen(true);
+  };
+  
+  const eliminarDelCarrito = (productoAEliminar) => {
+    // Filtra el carrito para mantener solo los productos que no coincidan con el producto a eliminar
+    const nuevoCarrito = cart.filter(producto => producto.id !== productoAEliminar.id);
+  
+    // Actualiza el estado del carrito en el componente
+    setCart(nuevoCarrito);
+  
+    // Guarda el nuevo carrito en el almacenamiento local
+    saveCartToLocalStorage(nuevoCarrito);
+  };
 
  //funciones para las busquedas
   const [searchQuery, setSearchQuery] = useState('');
@@ -322,12 +344,7 @@ export default function ProductoNuevo() {
   };
   
 
-  const eliminarDelCarrito = (productoAEliminar) => {
-    // Filtra el array del carrito para mantener solo los productos que no coincidan con el producto a eliminar
-    const nuevoCarrito = carrito.filter(producto => producto !== productoAEliminar);
-    setCarrito(nuevoCarrito);
-    console.log(`Producto eliminado del carrito: ${productoAEliminar.nombre}`);
-  };
+ 
   
   const verDetalle = () => {
     // Clona el array del carrito y agrega el nuevo producto
@@ -397,7 +414,7 @@ export default function ProductoNuevo() {
                               </Disclosure.Button>
                             </h3>
                             <Disclosure.Panel className="pt-6">
-                              <div className="space-y-6">
+                              <div className="space-y-6" defaultOpen>
                                 {section.options.map((option, optionIdx) => (
                                   <div key={option.value} className="flex items-center">
                                     <input
@@ -405,7 +422,7 @@ export default function ProductoNuevo() {
                                       name={`${section.id}[]`}
                                       defaultValue={option.value}
                                       type="checkbox"
-                                      defaultChecked={option.checked}
+                                      onChange={() => handleCategoryChange(section.id, option.value)}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                     />
                                     <label
@@ -449,48 +466,7 @@ export default function ProductoNuevo() {
               </Button>
             </div>
             <div className="flex items-center">
-              <Menu as="div" className="relative inline-block text-left">
-                <div>
-                  <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Sort
-                    <ChevronDownIcon
-                      className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                  </Menu.Button>
-                </div>
-
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
-                >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
-                          {({ active }) => (
-                            <a
-                              href={option.href}
-                              className={classNames(
-                                option.current ? 'font-medium text-gray-900' : 'text-gray-500',
-                                active ? 'bg-gray-100' : '',
-                                'block px-4 py-2 text-sm'
-                              )}
-                            >
-                              {option.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
+             
 
               <button type="button" className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7">
                 <span className="sr-only">View grid</span>
@@ -516,7 +492,7 @@ export default function ProductoNuevo() {
               {/* Filters */}
               <form className="hidden lg:block max-w-[200px]" >
               <h3 className="sr-only bg-black">Categories</h3>
-              <div className="overflow-y-auto max-h-[450px]"> {/* Establece la altura máxima para mostrar el scroll */}
+              <div className="overflow-y-auto max-h-[450px]"> 
                 {filters.map((section) => (
                   <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6" defaultOpen>
                     {({ open }) => (
@@ -580,7 +556,7 @@ export default function ProductoNuevo() {
                                   defaultValue={option.value}
                                   type="checkbox"
                                   value={option.value}
-  onChange={(event) => handlePrecioChange(event.target.checked ? option.value : 0)}
+                                  onChange={(event) => handlePrecioChange(event.target.checked ? option.value : 0)}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label className="ml-3 text-sm text-gray-600">
@@ -631,7 +607,7 @@ export default function ProductoNuevo() {
                         Precio: {producto.precio}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        Disponibles: {producto.disponibles}
+                        Disponibles: {producto.categoria}
                         </Typography>
                     </CardContent>
                     </CardActionArea>
@@ -687,7 +663,7 @@ export default function ProductoNuevo() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {carrito.map((productoCarrito) => (
+                            {cart.map((productoCarrito) => (
                               <li  className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
@@ -714,7 +690,7 @@ export default function ProductoNuevo() {
                                       <button
                                         type="button"
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
-                                        onClick={() => eliminarDelCarrito(productoCarrito)}
+                                        onClick={()=>eliminarDelCarrito(productoCarrito)}
                                       >
                                         Eliminar
                                       </button>
@@ -750,7 +726,7 @@ export default function ProductoNuevo() {
                             className="font-medium text-indigo-600 hover:text-indigo-500"
                             onClick={() => setOpen(false)}
                           >
-                            Continuar con la compra
+                            Seguir agregando ->
                             <span aria-hidden="true"> &rarr;</span>
                           </button>
                         </p>

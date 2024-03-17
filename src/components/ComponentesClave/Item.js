@@ -8,7 +8,7 @@ const Item = ({ Links, title }) => {
         <li key={link.name}>
           <Link
             className="text-gray-400 hover:text-teal-400 duration-300
-          text-sm cursor-pointer leading-6"
+          text-lg cursor-pointer leading-6"
             to={link.link}
           >
             {link.name}

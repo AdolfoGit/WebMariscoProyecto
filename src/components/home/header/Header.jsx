@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment,useState } from 'react';
 import logo from '../img/LogoVersion2.png';
 import { Link } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -6,7 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import MenuFlotante from './MenuFlotante'
+
 
 // Importa el hook useUser para obtener la información del usuario
 import { useUser } from '../../../UserContext';
@@ -15,7 +15,10 @@ import { useUser } from '../../../UserContext';
 import { useLocation } from 'react-router-dom';
 import { fontSize } from '@mui/system';
 
+import MenuFlotante from './MenuFlotante';
+
 export const Header = () => {
+  
   const [sidebar, setSidebar] = useState(false);
   const location = useLocation();
 
@@ -27,11 +30,7 @@ export const Header = () => {
     header.classList.toggle('active', window.scrollY > 200);
   });
 
-  const [open, setOpen] = useState(false);
 
-    const handleHover = () => {
-    setOpen(!open);
-    }
   return (
     <>
       <header className="header">
@@ -42,18 +41,12 @@ export const Header = () => {
           <div className="nav">
             <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
               <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Inicio</Link></li>   
-                   <li className="submenu" onMouseEnter={handleHover} onMouseLeave={handleHover}>
-                      <Link to="/">Conocenos</Link>
-                      {open && 
-                          <ul className="submenu-items">
-                              <li><Link to="/">Mision</Link></li>
-                              <li><Link to="/">Vision</Link></li>
-                          </ul>
-                      }
+                   <li>
+                     <MenuFlotante/>
                   </li>
                    <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Menus</Link></li>
                    <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
-                   <li><MenuFlotante/></li>
+                 
               {user ? (
                 <>
                   <li className={location.pathname === '/pedidos' ? 'active' : ''}><Link to='/pedidos'>Pedidos</Link></li>
