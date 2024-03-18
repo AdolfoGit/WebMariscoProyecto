@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Colors from './Colors';
 import DetailsThumb from './DetailsThumb';
-import './Detail.css'
+import './css/Detail.css'
 
 import imagen from '../home/img/hamburguesa2.jpg';
 import imagen2 from '../home/img/hamburguesa.jpg';
@@ -42,7 +42,7 @@ const DetailsProduct = () => {
   }, [index]);
 
   return (
-    <div className="app">
+    <div className="">
       {
         products.map(item =>(
           <div className="details" key={item._id}>

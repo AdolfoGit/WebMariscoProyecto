@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './ImagenMagnifier.css'
+import './css/ImagenMagnifier.css'
 const ImageMagnifier =({ imageUrl })=> {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [showMagnifier, setShowMagnifier] = useState(false);

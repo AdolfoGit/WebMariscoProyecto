@@ -26,7 +26,7 @@ import Token from './components/Usuarios/Token';
 import Error500 from './components/CodigoError/Error500';
 import Actualizar from './components/Usuarios/actualizar';
 import ListaUsuarios from './components/Administrador/Usuarios';
-import DetailsProduct from './components/Carousel/DetailsProduct'
+import DetailsProduct from './components/Productos/DetailsProduct'
 import { UserProvider } from './UserContext';
 
 import Reservaciones from './components/Reservaciones/Reservaciones';
