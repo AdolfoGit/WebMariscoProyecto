@@ -1,64 +1,57 @@
-import React from 'react';
-import { Avatar, Button, Card, CardContent, Grid, Typography, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
-import { Lock } from '@mui/icons-material';
-import { useUser } from '../../UserContext'; // Ajusta la ruta según tu estructura de archivos
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import {
+  Avatar,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Box,
+} from "@mui/material";
+import { Lock } from "@mui/icons-material";
+import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estructura de archivos
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { uploadFilesUsuarios } from "../../firebase/firebase";
 const Perfil = () => {
-  //const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  
-  
+  const apiurll = "http://localhost:5029/";
+  const [File, setFile] = useState(null);
+
   const navigate = useNavigate();
   const { user, logoutUser } = useUser();
 
-  // const VerificarToken = async () => {
-  //   try {
-  //   const data = new FormData();
-  //   data.append("Correo", user.Correo);
-  //   data.append("Token", user.Token);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const result = await uploadFilesUsuarios(File);
 
-  //     const result = await fetch(
-  //       `${apiurll}api/CasaDelMarisco/MantenerSesion?Correo=${user.Correo}&Token=${user.Token}`,
-  //       {
-  //         method: "POST",
-  //         body: data,
-  //       }
-  //     );
-
-  //     const resultData = await result.json();
-
-  //     if (resultData === "Token invalido") {
-  //       console.log("Token inválido");
-  //       navigate("/");
-  //       Swal.fire({
-  //         icon: "warning",
-  //         title: "Al parecer iniciaste sesión en otro dispositivo",
-  //         text: "Tu cuenta en este dispositivo o navegador se cerro.",
-  //       });
-  //       logoutUser();
-
-  //     } else {
-  //       console.log("Token válido");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al verificar el token:", error);
-  //     logoutUser();
-  //     navigate("/");
-  //     Swal.fire({
-  //       icon: "warning",
-  //       title: "Al parecer iniciaste sesión en otro dispositivo",
-  //       text: "Tu cuenta en este dispositivo o navegador se cerro.",
-  //     });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const timerId = setTimeout(() => {
-  //     VerificarToken(navigate, setLoading);
-  //   }, 2000);
-  //   return () => clearTimeout(timerId);
-  // }, [navigate]);
-
+    const data = new FormData();
+      data.append("idUsuario", user.idUsuario);
+      data.append("Icono", result);
+      fetch(
+        apiurll +
+          "api/CasaDelMarisco/SubirIcono",
+        {
+          method: "POST",
+          body: data,
+          
+        }
+      ).then((res) => res.json())
+      .then((result) => {
+        if(result === 'Icono actualizado'){
+          Swal.fire({
+            icon: "warning",
+            title: "Nos vemos pronto",
+            text: "Si se subio",
+          });
+        }
+      }
+      )
+    console.log(result);
+  };
   const cerrarSesion = () => {
     logoutUser();
     navigate("/");
@@ -81,22 +74,51 @@ const Perfil = () => {
               justifyContent="center"
             >
               <Grid item>
-                <Avatar
-                  alt="Usuario"
-                  src="/ruta/a/tu/imagen.jpg"
-                  sx={{ width: 100, height: 100 }}
-                />
+                {user.Icono ? (
+                  <img
+                    src={user.Icono}
+                    class=""
+                    style={{ height: "150px", borderRadius: "40px" }}
+                    alt="..."
+                  ></img>
+                ) : (
+                  <img
+                    src="https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
+                    class=""
+                    style={{ height: "150px", borderRadius: "40px" }}
+                    alt="..."
+                  ></img>
+                )}
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setFile(e.target.files[0])}
+                  />
+                  {File && <button type="submit">Cambiar imagen</button>}{" "}
+                </form>
               </Grid>
               <Grid item>
-                <Typography variant="h4">{user ? `${user.Nombre} ${user.ApellidoPaterno}` : 'Nombre del Usuario'}</Typography>
-                <Typography variant="subtitle1">Correo: {user ? user.Correo : 'Correo del Usuario'}</Typography>
-                <Typography variant="subtitle1">Telefono: {user ? user.Telefono : 'Telefono del Usuario'}</Typography>
-                <Typography variant="subtitle1">Estado de la cuenta: {user ? user.Rol : 'Estado de la cuenta del Usuario'}</Typography>
+                <Typography variant="h5">
+                  {user
+                    ? `${user.Nombre} ${user.ApellidoPaterno}`
+                    : "Nombre del Usuario"}
+                </Typography>
+                <Typography variant="h5">
+                  Correo: {user ? user.Correo : "Correo del Usuario"}
+                </Typography>
+                <Typography variant="h5">
+                  Telefono: {user ? user.Telefono : "Telefono del Usuario"}
+                </Typography>
+                <Typography variant="h5">
+                  Estado de la cuenta:{" "}
+                  {user ? user.Rol : "Estado de la cuenta del Usuario"}
+                </Typography>
               </Grid>
             </Grid>
             <Box mt={3}>
-              <Typography variant="h6">Opciones</Typography>
-              
+              <Typography variant="h5">Opciones</Typography>
+
               <List>
                 <ListItem button>
                   <ListItemIcon>
