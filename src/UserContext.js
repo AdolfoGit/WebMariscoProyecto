@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import CryptoJS from 'crypto-js'; // Importa la biblioteca de encriptación
 
 const UserContext = createContext();
+const ENCRYPTION_KEY = 'Soymainekko1#'; // Clave para la encriptación, cámbiala por una clave segura
 
 export const UserProvider = ({ children }) => {
 
@@ -12,18 +14,22 @@ export const UserProvider = ({ children }) => {
     // Intentar cargar el usuario desde la cookie al cargar la aplicación
     const storedUser = Cookies.get('userData');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      // Desencriptar la información de la cookie
+      const decryptedUser = CryptoJS.AES.decrypt(storedUser, ENCRYPTION_KEY).toString(CryptoJS.enc.Utf8);
+      setUser(JSON.parse(decryptedUser));
     }
     const storedCart = Cookies.get('cart');
     if (storedCart) {
-      setCart(JSON.parse(storedCart));
+      // Desencriptar la información del carrito de la cookie
+      const decryptedCart = CryptoJS.AES.decrypt(storedCart, ENCRYPTION_KEY).toString(CryptoJS.enc.Utf8);
+      setCart(JSON.parse(decryptedCart));
     }
   }, []);
 
   const loginUser = (userData) => {
     setUser(userData);
-    // Almacenar el usuario en la cookie
-    Cookies.set('userData', JSON.stringify(userData));
+    // Encriptar y almacenar el usuario en la cookie
+    Cookies.set('userData', CryptoJS.AES.encrypt(JSON.stringify(userData), ENCRYPTION_KEY).toString());
   };
 
   const logoutUser = () => {
@@ -34,8 +40,8 @@ export const UserProvider = ({ children }) => {
   const addToCart = (item) => {
     const updatedCart = [...cart, item];
     setCart(updatedCart);
-    // Almacenar el carrito en la cookie
-    Cookies.set('cart', JSON.stringify(updatedCart));
+    // Encriptar y almacenar el carrito en la cookie
+    Cookies.set('cart', CryptoJS.AES.encrypt(JSON.stringify(updatedCart), ENCRYPTION_KEY).toString());
   };
   
 
@@ -43,7 +49,7 @@ export const UserProvider = ({ children }) => {
     const updatedCart = cart.filter(item => item.id !== itemId);
     setCart(updatedCart);
     // Actualizar el carrito en la cookie
-    Cookies.set('cart', JSON.stringify(updatedCart));
+    Cookies.set('cart', CryptoJS.AES.encrypt(JSON.stringify(updatedCart), ENCRYPTION_KEY).toString());
   };
 
   return (
