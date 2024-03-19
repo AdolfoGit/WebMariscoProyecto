@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const Reservaciones = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  //const apiurll = "http://localhost:5029";
   const navigate = useNavigate();
 
   const { user, logoutUser } = useUser();
@@ -31,6 +32,10 @@ const Reservaciones = () => {
   const [InformacionAdicionalError, setInformacionAdicionalError] =
     useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
+  const handleCancelReservation = (idReservacion) => {
+    setIdReservacion(idReservacion);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -81,52 +86,39 @@ const Reservaciones = () => {
     }
   };
 
+  const CancelarReservacion = () => {
+    const data = new FormData();
+    data.append("idReservacion", idReservacion);
+    try {
+      fetch(apiurll + "api/CasaDelMarisco/CancelarReservacion", {
+        method: "POST",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result === "Reservación cancelada") {
+            Swal.fire({
+              icon: "success",
+              title: "La cancelación ha sido exitosa",
+              showConfirmButton: false,
+              timer: 2500,
+            }).then(() => {
+              window.location.reload();
+            });
+          }
+        });
+    } catch {
+      Swal.fire({
+        icon: "warning",
+        title: "Lo sentimos",
+        text: "Parece que hay un error en el servidor. Por favor, inténtelo de nuevo más tarde.",
+      });
+    }
+  };
+
   function incrementProgress() {
     setProgress((prevProgress) => prevProgress + 15); // Ajusta según tu necesidad
   }
-  // const VerificarToken = async () => {
-  //   try {
-  //     if (user && user.Correo && user.Token) {
-  //       const data = new FormData();
-  //       data.append("Correo", user.Correo);
-  //       data.append("Token", user.Token);
-  
-  //       const result = await fetch(
-  //         `${apiurll}api/CasaDelMarisco/MantenerSesion?Correo=${user.Correo}&Token=${user.Token}`,
-  //         {
-  //           method: "POST",
-  //           body: data,
-  //         }
-  //       );
-  
-  //       const resultData = await result.json();
-  
-  //       if (resultData === "Token invalido") {
-  //         console.log("Token inválido");
-  //         logoutUser();
-  //       } else {
-  //         console.log("Token válido");
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error("Error al verificar el token:", error);
-  //     logoutUser();
-  //     navigate("/");
-  //     Swal.fire({
-  //       icon: "warning",
-  //       title: "Al parecer iniciaste sesión en otro dispositivo",
-  //       text: "Tu cuenta en este dispositivo o navegador se cerró.",
-  //     });
-  //   }
-  // };
-  
-  // useEffect(() => {
-  //   const timerId = setTimeout(() => {
-  //     VerificarToken(navigate, setLoading);
-  //   }, 2000);
-  //   return () => clearTimeout(timerId);
-  // }, [user, navigate]);
-  
 
   const validateNombre = (nombre) => {
     if (nombre === "") {
@@ -202,26 +194,6 @@ const Reservaciones = () => {
 
   const obtenerIdUsuario = (user) => {
     return user && user.idUsuario ? user.idUsuario : null;
-  };
-
-  const ObtenerReservaciones = () => {
-    const id = obtenerIdUsuario(user);
-    console.log(id);
-
-    fetch(apiurll + `/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setReservaciones(data);
-        } else {
-          console.error("El resultado de la API no es un array:", data);
-        }
-      })
-      .catch((error) => {
-        console.error("Error al obtener reservaciones:", error);
-      });
   };
 
   function Disponibilidad(nmesa, fecha) {
@@ -351,34 +323,35 @@ const Reservaciones = () => {
 
     ObtenerServicios();
   }, []);
-  useEffect(() => {
-    const obtenerReservacionesUsuario = async () => {
-      const id = obtenerIdUsuario(user);
+  const obtenerReservacionesUsuario = async () => {
+    const id = obtenerIdUsuario(user);
 
-      if (id !== null) {
-        try {
-          const response = await fetch(
-            apiurll + `/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
-            {
-              method: "GET",
-            }
-          );
-          const data = await response.json();
-
-          if (Array.isArray(data)) {
-            setReservaciones(data);
-          } else {
-            console.error("El resultado de la API no es un array:", data);
+    if (id !== null) {
+      try {
+        const response = await fetch(
+          apiurll + `/api/CasaDelMarisco/TraerReservaciones?idUsuario=${id}`,
+          {
+            method: "GET",
           }
-        } catch (error) {
-          console.error("Error al obtener reservaciones:", error);
-        } finally {
-          setLoading(false); // Marcar el estado de carga como falso una vez que se completa la solicitud
+        );
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+          setReservaciones(data);
+        } else {
+          console.error("El resultado de la API no es un array:", data);
         }
-      } else {
-        setLoading(false); // Marcar el estado de carga como falso si no hay un id válido
+      } catch (error) {
+        console.error("Error al obtener reservaciones:", error);
+      } finally {
+        setLoading(false); // Marcar el estado de carga como falso una vez que se completa la solicitud
       }
-    };
+    } else {
+      setLoading(false); // Marcar el estado de carga como falso si no hay un id válido
+    }
+  };
+  useEffect(() => {
+   obtenerReservacionesUsuario()
 
     obtenerReservacionesUsuario();
   }, [user]);
@@ -402,29 +375,106 @@ const Reservaciones = () => {
         </div>
       </div>
       <div className="mb-5">
-  {reservaciones.map((reservacion) => (
-    <div className="card mb-5" key={reservacion.idReservacion}>
-      <div className="card-body" style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-          <div>
-            <h2 className="card-title m-2">Nombre de quien reserva: {reservacion.NombreReserva}</h2>
-            <h3 className="card-text  m-2">Número de personas: {reservacion.NPersonas}</h3>
+        {reservaciones.map((reservacion) => (
+          <div className="card mb-5" key={reservacion.idReservacion}>
+            <div
+              className="card-body"
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginBottom: "10px",
+                }}
+              >
+                <div>
+                  <h2 className="card-title m-2">
+                    Nombre de quien reserva: {reservacion.NombreReserva}
+                  </h2>
+                  <h3 className="card-text  m-2">
+                    Número de personas: {reservacion.NPersonas}
+                  </h3>
+                </div>
+                <div>
+                  <h3 className="card-text m-2">Fecha: {reservacion.Fecha}</h3>
+                  <h3 className="card-text m-2">
+                    Número de mesa: {reservacion.NMesa}
+                  </h3>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal2"
+                    onClick={() =>
+                      handleCancelReservation(reservacion.idReservacion)
+                    }
+                  >
+                    Cancelar reserva
+                  </button>
+                </div>
+              </div>
+              <div>
+                <h3 className="card-text  m-2">
+                  Servicio: {reservacion.NombreServicio}
+                </h3>
+                <h3 className="card-text m-2">
+                  Método de pago: {reservacion.MetodoPago}
+                </h3>
+                <h3 className="card-text m-2">
+                  Información Adicional: {reservacion.InformacionAdicional}
+                </h3>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className="card-text m-2">Fecha: {reservacion.Fecha}</h3>
-            <h3 className="card-text m-2">Número de mesa: {reservacion.NMesa}</h3>
+        ))}
+      </div>
+      <div
+        className="modal fade"
+        id="exampleModal2"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Cancelar reservación
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form>
+              <div className="modal-body">
+                <p>¿Estás seguro de cancelar la reservación?</p>
+
+                {/* Mostrar el idReservacion */}
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cerrar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  onClick={CancelarReservacion}
+                >
+                  Save changes
+                </button>
+              </div>
+            </form>
           </div>
-        </div>
-        <div>
-          <h3 className="card-text  m-2">Servicio: {reservacion.IdServicio}</h3>
-          <h3 className="card-text m-2">Método de pago: {reservacion.MetodoPago}</h3>
-          <h3 className="card-text m-2">Información Adicional: {reservacion.InformacionAdicional}</h3>
         </div>
       </div>
-    </div>
-  ))}
-</div>
-
 
       <div
         class="modal fade"

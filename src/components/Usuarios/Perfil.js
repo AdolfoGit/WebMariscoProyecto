@@ -18,8 +18,10 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { uploadFilesUsuarios } from "../../firebase/firebase";
 const Perfil = () => {
-  const apiurll = "http://localhost:5029/";
-  const [File, setFile] = useState(null);
+ // const apiurll = "http://localhost:5029/";
+ const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+ 
+ const [File, setFile] = useState(null);
 
   const navigate = useNavigate();
   const { user, logoutUser } = useUser();
