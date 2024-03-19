@@ -1,4 +1,4 @@
-import React, { Fragment,useState } from 'react';
+import React, { useState } from 'react';
 import logo from '../img/LogoVersion2.png';
 import { Link } from 'react-router-dom';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -13,7 +13,6 @@ import { useUser } from '../../../UserContext';
 
 // Saber dónde estoy
 import { useLocation } from 'react-router-dom';
-import { fontSize } from '@mui/system';
 
 import MenuFlotante from './MenuFlotante';
 
