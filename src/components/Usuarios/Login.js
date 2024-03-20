@@ -29,7 +29,10 @@ export default function Login() {
   const loginAttemptsRef = useRef(loginAttempts);
   const loginAttemptsRef2 = useRef(loginAttempts2);
 
-  
+ 
+
+
+ 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -230,6 +233,7 @@ export default function Login() {
         </div>
           <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
         </form>
+       
       </div>
   </div>
     
