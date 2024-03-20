@@ -17,7 +17,7 @@ export default function TokenSMS() {
         // Eliminar el correo almacenado en localStorage
           localStorage.removeItem('userData');
 
-        navigate('/recuperarSMS');
+        navigate('/menuRecuperacion');
       }, 200); // Redirigir después de 5 segundos
     }, 30000); 
 

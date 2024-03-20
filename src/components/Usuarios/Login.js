@@ -215,7 +215,7 @@ export default function Login() {
           </div>
           {passwordError && <p className="error-message">{passwordError}</p>}
 
-          <Link to='/recuperar' className='forget'>¿Olvidaste tu password?</Link>
+          <Link to='/menuRecuperacion' className='forget'>¿Olvidaste tu password?</Link>
         
           <label className='recuerdame'>
             <input

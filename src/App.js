@@ -17,7 +17,6 @@ import Perfil from './components/Usuarios/Perfil';
 import VisuReservacion from './components/Reservaciones/Reservaciones';
 import Productos2 from './components/Productos/Productos';
 import Pedidos from './components/Pedidos/Pedidos'; 
-import RecuperarContra from './components/Usuarios/RecuperarContra'
 import NotFoundPage from './components/CodigoError/NotFoundPage';
 import Bienvenida from './components/Usuarios/pantallaMultifactor';
 
@@ -35,10 +34,9 @@ import ProtectorRutasAdmin from './components/Usuarios/ProtectorRutasAdmin';
 import ProductoNuevo from './components/Productos/ProductoNuevo';
 import Breadcrumbs from './components/ComponentesClave/Breadcrums'
 import Carrito from './components/Productos/Carrito';
-import RecuperarContraSMS from './components/Usuarios/RecuperarSMS';
 import TokenSMS from './components/Usuarios/TokenSMS';
 import ActualizarSMS from './components/Usuarios/ActualizarSMS';
-
+import MenuRecuperacion from './components/Usuarios/MenuRecuperacion';
 import Mision from './components/Empresa/Nosotros';
 
 function App  (){
@@ -76,8 +74,8 @@ function App  (){
             <Route path="/ofertas" element={<Ofertas />} />
             <Route path="/registrar" element={<Registrar />} />
             <Route path="/terminos" element={<Terminos />} />
-            <Route path="/recuperar" element={<RecuperarContra />} /> 
-            <Route path="/recuperarSMS" element={<RecuperarContraSMS />} /> 
+
+            <Route path="/menuRecuperacion"element={<MenuRecuperacion />} /> 
          
 
             <Route path="/ayuda" element={<Ayuda/>} /> 
