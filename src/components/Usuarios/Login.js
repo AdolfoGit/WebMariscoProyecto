@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { gapi } from 'gapi-script';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin from '@leecheuk/react-google-login';
 import { useUser } from '../../UserContext';
 
 export default function Login() {
@@ -189,7 +189,7 @@ export default function Login() {
         fetch(
           apiurll+"api/CasaDelMarisco/VerificarCorreo",
           {
-            
+
             method: "POST",
             body: data,
           }
