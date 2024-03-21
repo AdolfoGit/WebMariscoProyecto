@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/registro.css'
 import imagen from '../home/img/login.jpg'
 import { Link } from 'react-router-dom'
@@ -75,6 +75,25 @@ const Registro = () => {
       }else{
         if (validateEmail(email)===true && validatePassword2(password2) && validateApellidoM(ApellidoM)===true && validateApellidoP(ApellidoP)===true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
           fetch(
+            apiurll+"api/CasaDelMarisco/VerificarTelefono?Telefono=" +
+            telefono,
+          {
+            method: "POST",
+            body: data,
+          }
+          ) .then((res) =>res.json())
+          .then((result) => {
+            console.log(result)
+            if (result==="Telefono Existe"){
+              Swal.fire({
+                icon: 'error',
+                title: 'Parece que tu telefono ya esta registrado',
+                text: 'Ingresa un telefono nuevo o que sea valido antes de registrarte',
+              });  
+              setTelefonoError("Este telefono ya está registrado en la página");
+            }
+            else{
+                     fetch(
             apiurll+"api/CasaDelMarisco/ProbarAlgo?Correo=" +
               email,
             {
@@ -110,7 +129,8 @@ const Registro = () => {
                       )
                         .then((res) => res.json())
                         .then((result) => {
-                          //window.location.href='/login'
+                          localStorage.setItem('userData', JSON.stringify({ telefono }));
+                          window.location.href='/login'
                         }); 
                         Swal.fire({
                           icon: 'success',
@@ -129,6 +149,11 @@ const Registro = () => {
                 setEmailError('Correo invalido para registro');  
               }
             } );
+            }
+          })
+
+
+   
           
         } else {
           Swal.fire({
@@ -363,9 +388,16 @@ const Registro = () => {
 
       }
     };
-
+    useEffect(() => {
+      Swal.fire({
+        title: "Registro seguro",
+        text: "Esta por registrarse, asegurese de llenar cada campo y llenar con datos reales en cada apartado.",
+        icon: "warning"
+      });
+    }, []);
     return (
       <div className="registro-form-containerRegistro">
+       
     <div className="registro-image-containerRegistro">
       <img src={imagen} alt="Registro" className="registro-imageRegistro" />
     </div>

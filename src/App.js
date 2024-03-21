@@ -38,12 +38,14 @@ import TokenSMS from './components/Usuarios/TokenSMS';
 import ActualizarSMS from './components/Usuarios/ActualizarSMS';
 import MenuRecuperacion from './components/Usuarios/MenuRecuperacion';
 import Mision from './components/Empresa/Nosotros';
+import TokenRegistro from './components/Usuarios/ValidarUsuario/TokenRegistro';
 
 function App  (){
   
   return (
     <>
         <UserProvider>
+            
         <Router>
          
           <Header/>
@@ -81,6 +83,7 @@ function App  (){
             <Route path="/ayuda" element={<Ayuda/>} /> 
             <Route path="/token" element={<Token/>} /> 
             <Route path="/tokenSMS" element={<TokenSMS/>} /> 
+            <Route path="/tokenRegistro" element={<TokenRegistro/>} /> 
 
             <Route path="/actualizar" element={<Actualizar/>} /> 
             <Route path="/actualizarSMS" element={<ActualizarSMS/>} /> 
