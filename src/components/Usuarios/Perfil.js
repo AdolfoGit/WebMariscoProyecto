@@ -13,6 +13,7 @@ import {
   Box,
 } from "@mui/material";
 import { Lock } from "@mui/icons-material";
+import ImageIcon from '@mui/icons-material/Image';
 import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estructura de archivos
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -21,10 +22,31 @@ const Perfil = () => {
  // const apiurll = "http://localhost:5029/";
  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
  
+
+  const [isOpen, setIsOpen] = useState(false);
+  const abrir=()=>{
+    setIsOpen(true)
+  }
+  const cerar=()=>{
+    setIsOpen(false)
+    setFile(null)
+    setImageURL(null)
+
+  }
+
  const [File, setFile] = useState(null);
+ const [imageURL, setImageURL] = useState(null);
 
   const navigate = useNavigate();
   const { user, logoutUser } = useUser();
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+      setFile(droppedFile);
+    const imageURL = URL.createObjectURL(droppedFile);
+    setImageURL(imageURL);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +71,9 @@ const Perfil = () => {
             title: "Nos vemos pronto",
             text: "Si se subio",
           });
+          setIsOpen(false)
+          setFile(null)
+          setImageURL(null)
         }
       }
       )
@@ -77,12 +102,8 @@ const Perfil = () => {
             >
               <Grid item>
                 {user.Icono ? (
-                  <img
-                    src={user.Icono}
-                    class=""
-                    style={{ height: "150px", borderRadius: "40px" }}
-                    alt="..."
-                  ></img>
+                    <img class="inline-block h-40 w-40 rounded-full ring-2 ring-white" src={user.Icono} alt="" />
+
                 ) : (
                   <img
                     src="https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
@@ -91,14 +112,53 @@ const Perfil = () => {
                     alt="..."
                   ></img>
                 )}
-                <form onSubmit={handleSubmit}>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setFile(e.target.files[0])}
-                  />
-                  {File && <button type="submit">Cambiar imagen</button>}{" "}
-                </form>
+               
+                  {isOpen &&(
+                     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+                     <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                       <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                         <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-6 sm:w-full sm:max-w-lg">
+                           <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                           <form onSubmit={handleSubmit}>
+                            <div className="mx-auto max-w-xs" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+                              {imageURL ? (
+                                <img src={imageURL} alt="Imagen seleccionada" className="mx-auto inline-flex h-60 w-60 rounded-20 bg-gray-100" />
+                              ) : (
+                                <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all hover:border-primary-300">
+                                  <div className="space-y-2 text-center">
+                                    <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-6 w-6 text-gray-500">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                      </svg>
+                                    </div>
+                                    <div className="text-gray-600"><a href="#" className="font-medium text-primary-500 hover:text-primary-700">Haz clic para subir</a> o arrastra y suelta</div>
+                                    <p className="text-sm text-gray-800">PNG, JPG (máx. 800x400px)</p>
+                                  </div>
+                                  <input id="example5"
+                                    type="file"
+                                    className="sr-only"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                      setFile(e.target.files[0]);
+                                      const imageURL = URL.createObjectURL(e.target.files[0]);
+                                      setImageURL(imageURL);
+                                    }} />
+                                </label>
+                              )}
+                            </div>
+                            <div className="bg-gray-100 rounded-md mt-2 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                              {File && <button type="submit" className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Subir</button>}{""}
+                              <button type="button" onClick={()=>cerar()} className="mt-3 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-300 sm:mt-0 sm:w-auto">Cancelar</button>
+                            </div>
+                          </form>
+                           </div>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                  )}
+
               </Grid>
               <Grid item>
                 <Typography variant="h5">
@@ -122,13 +182,26 @@ const Perfil = () => {
               <Typography variant="h5">Opciones</Typography>
 
               <List>
-                <ListItem button>
+                <ListItem>
                   <ListItemIcon>
                     <Lock />
                   </ListItemIcon>
-                  <ListItemText primary="Cambiar Contraseña" />
-                </ListItem>
-                {/* Agrega más elementos de la lista según sea necesario */}
+                  <Button>Cambiar Contraseña</Button>
+                  <ListItemIcon>
+                    <ImageIcon />
+                  </ListItemIcon>
+                  <Button onClick={()=>abrir()}>Cambiar Foto de Perfil</Button>
+                </ListItem>  
+                <ListItem>
+                  <ListItemIcon>
+                    <Lock />
+                  </ListItemIcon>
+                  <Button>Cambiar Datos de Ubicacion</Button>
+                  <ListItemIcon>
+                    <ImageIcon />
+                  </ListItemIcon>
+                  <Button>Modificar Datos</Button>
+                </ListItem>  
               </List>
               <Button
                 variant="contained"
@@ -147,7 +220,13 @@ const Perfil = () => {
           </CardContent>
         </Card>
       </Grid>
+
+      
     </Grid>
+
+    
+    
+
   );
 };
 

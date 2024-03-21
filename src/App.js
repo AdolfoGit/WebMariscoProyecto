@@ -96,6 +96,7 @@ function App  (){
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
            <Route path='Mision' element={<Mision/>}/>
           </Routes>
+         
           <Footer/>
        </Router>
         </UserProvider>
