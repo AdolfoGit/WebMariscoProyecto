@@ -189,6 +189,7 @@ export default function Login() {
         fetch(
           apiurll+"api/CasaDelMarisco/VerificarCorreo",
           {
+            
             method: "POST",
             body: data,
           }
