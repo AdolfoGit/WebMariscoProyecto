@@ -1,6 +1,7 @@
 import img1 from '../../src/components/home/img/Actividad3.jpg'
 export const authorsTableData = [
   {
+    id:"1",
     img: img1,
     name: "John Michael",
     email: "john@creative-tim.com",
@@ -9,6 +10,7 @@ export const authorsTableData = [
     date: "23/04/18",
   },
   {
+    id:"1",
     img: img1,
     name: "Alexa Liras",
     email: "alexa@creative-tim.com",
@@ -17,6 +19,7 @@ export const authorsTableData = [
     date: "11/01/19",
   },
   {
+    id:"1",
     img: img1,
     name: "Laurent Perrier",
     email: "laurent@creative-tim.com",
@@ -25,6 +28,7 @@ export const authorsTableData = [
     date: "19/09/17",
   },
   {
+    id:"1",
     img: img1,
     name: "Michael Levi",
     email: "michael@creative-tim.com",
@@ -33,6 +37,7 @@ export const authorsTableData = [
     date: "24/12/08",
   },
   {
+    id:"1",
     img: img1,
     name: "Bruce Mars",
     email: "bruce@creative-tim.com",
@@ -41,6 +46,7 @@ export const authorsTableData = [
     date: "04/10/21",
   },
   {
+    id:"1",
     img: img1,
     name: "Alexander",
     email: "alexander@creative-tim.com",

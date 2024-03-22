@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink,useNavigate } from "react-router-dom";
 import { HomeIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import {
   Avatar,
@@ -8,7 +8,8 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useMaterialTailwindController, setOpenSidenav } from "../../context/index";
-
+import { useUser } from '../../UserContext';
+import Swal from "sweetalert2";
 
 export function Sidenav({ brandImg, brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
@@ -21,6 +22,19 @@ export function Sidenav({ brandImg, brandName, routes }) {
 
   const icon = {
     className: "w-10 h-10 text",
+  };
+
+  const {user, logoutUser } = useUser();
+  const navigate = useNavigate();
+  
+  const cerrarSesion = () => {
+    logoutUser();
+    navigate("/");
+    Swal.fire({
+      icon: "warning",
+      title: "Nos vemos pronto",
+      text: "Cerraste sesión, nos vemos y recuerdanos cuando te de hambre",
+    });
   };
 
   return (
@@ -101,6 +115,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                  <NavLink to='/login'>
                     {({ isActive }) => (
                       <Button
+                        onClick={()=>cerrarSesion()}
                         variant={isActive ? "gradient" : "text"}
                         color={
                           isActive
@@ -131,8 +146,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
         ))}
         <hr className="mb-2 mx-3.5 mt-3"/>
          <div className="leading-4 ml-3">
-              <h4 className="font-semibold text-md">John Doe</h4>
-              <span className="text-sm text-gray-600">johndoe@gmail.com</span>
+              <h4 className="font-semibold text-md">{user.Nombre}</h4>
+              <span className="text-sm text-gray-600">{user.Correo}</span>
         </div>
         
       </div>

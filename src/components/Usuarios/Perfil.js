@@ -18,6 +18,7 @@ import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estruct
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { uploadFilesUsuarios } from "../../firebase/firebase";
+
 const Perfil = () => {
  // const apiurll = "http://localhost:5029/";
  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";

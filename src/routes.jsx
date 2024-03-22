@@ -9,6 +9,7 @@ import {
 import { Home } from "./pages/dashboard/home";
 import { Tables, } from "./pages/dashboard/tables";
 import { Profile} from "./pages/dashboard/profile";
+import { AgregarProductos} from "./pages/dashboard/AgregarProductos";
 import {  Notifications } from "./pages/dashboard/notifications";
 import { ProductionQuantityLimits } from "@mui/icons-material";
 
@@ -28,21 +29,21 @@ export const routes = [
       },
       {
         icon: <UserCircleIcon {...icon} />,
-        name: "profile",
-        path: "/profile",
+        name: "Perfil",
+        path: "/Perfil",
         element: <Profile />,
       },
       {
         icon: <TableCellsIcon {...icon} />,
-        name: "Tablas",
-        path: "/Tablas",
+        name: "Usuarios",
+        path: "/Usuarios",
         element: <Tables />,
       },
       {
         icon: <NewspaperIcon {...icon} />,
         name: "Productos",
         path: "/Productos",
-        element: <Tables />,
+        element: <AgregarProductos />,
       },
       {
         icon: <GiftIcon {...icon} />,

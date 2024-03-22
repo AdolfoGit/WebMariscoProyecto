@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState, useEffect}from 'react';
 import {
   Card,
   CardHeader,
@@ -9,31 +9,36 @@ import {
   Tooltip,
   Progress,
   Button,
-  IconButton,
+  Dialog,
+  CardFooter,
+  Input,
+  Checkbox,
   Menu,
   MenuHandler,
-  MenuList,
-  MenuItem,
-} from "@material-tailwind/react";
+  IconButton,
+  MenuList
+} 
+from "@material-tailwind/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { authorsTableData} from "../../data/authors-table-data";
 import { projectsTableData } from "../../data/projects-table-data";
+import { ClassSharp } from "@mui/icons-material";
 
-export function Tables() {
+export function AgregarProductos() {
 
-  const [userData, setUserData] = useState(null);
+  const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
   useEffect(() => {
-    obtenerDatosUsuarios();
+    obtenterDatosProductos();
   }, []); // Se ejecuta solo una vez al montar el componente
 // Se ejecuta solo una vez al montar el componente
 
 
-  const obtenerDatosUsuarios = async () => {
+  const obtenterDatosProductos = async () => {
     try {
       const response = await fetch(
-        `${apiurll}/api/CasaDelMarisco/TraerUsuarios`,
+        `${apiurll}/api/CasaDelMarisco/TraerProductos`,
         {
           method: 'GET',
           // No es necesario incluir el body para una solicitud GET
@@ -41,9 +46,9 @@ export function Tables() {
       );
 
       if (response.ok) {
-        const userData = await response.json();
-        setUserData(userData);
-        console.log(userData)
+        const product1Data = await response.json();
+        setProductData(product1Data);
+        console.log(product1Data)
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }
@@ -53,19 +58,76 @@ export function Tables() {
   };
 
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
+  
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card>
-        <CardHeader variant="gradient" color="gray" className="mb-8 p-8">
+        <CardHeader variant="gradient" color="gray" className=" flex mb-8 p-8">
           <Typography variant="h6" color="white" className="text-2xl">
-            Tabla de Usuarios
+            Tabla de Productos
           </Typography>
+          <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i class="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Producto</Button>
+
+          <Dialog
+          size="xl"
+          open={open}
+          handler={handleOpen}
+          backdropClass="bg-transparent"
+          contentClass="bg-white"
+          >
+            <Card className="mx-auto w-full max-w-[24rem]">
+              <CardBody className="flex flex-col gap-4">
+                <Typography variant="h4" color="blue-gray">
+                  Sign In
+                </Typography>
+                <Typography
+                  className="mb-3 font-normal"
+                  variant="paragraph"
+                  color="gray"
+                >
+                  Enter your email and password to Sign In.
+                </Typography>
+                <Typography className="-mb-2" variant="h6">
+                  Your Email
+                </Typography>
+                <Input label="Email" size="lg" />
+                <Typography className="-mb-2" variant="h6">
+                  Your Password
+                </Typography>
+                <Input label="Password" size="lg" />
+                <div className="-ml-2.5 -mt-3">
+                  <Checkbox label="Remember Me" />
+                </div>
+              </CardBody>
+              <CardFooter className="pt-0">
+                <Button variant="gradient" onClick={handleOpen} fullWidth>
+                  Sign In
+                </Button>
+                <Typography variant="small" className="mt-4 flex justify-center">
+                  Don&apos;t have an account?
+                  <Typography
+                    as="a"
+                    href="#signup"
+                    variant="small"
+                    color="blue-gray"
+                    className="ml-1 font-bold"
+                    onClick={handleOpen}
+                  >
+                    Sign up
+                  </Typography>
+                </Typography>
+              </CardFooter>
+            </Card>
+          </Dialog>
+        
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["ID","Usuario", "Telefono","Rol", "Estado",  "Opciones"].map((el) => (
+                {["ID","Imagen", "Nombre","Descripcion", "Ingredientes","Precio", "Fecha de ingreso", "Categoria","Disponibilidad","Opciones"].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -81,62 +143,63 @@ export function Tables() {
               </tr>
             </thead>
             <tbody>
-              {userData !== null && userData.map(
-                ({ idUsuario,Icono, Nombre, Correo, Telefono, EstadoCuenta, Rol ,Token}, key) => {
+              {productData !== null && productData.map(
+                ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad }, key) => {
                   const className = `py-3 px-5 ${
-                    key === userData.length - 1
+                    key === productData.length - 1
                       ? ""
                       : "border-b border-blue-gray-50"
                   }`;
 
                   return (
                     <tr>
-                      <td className={className}>
+                        <td className={className}>
                       <Typography
                               variant="h5"
                               color="blue-gray"
                               className="font-semibold"
                             >
-                              {idUsuario}
+                              {idProducto}
                             </Typography>
                       </td>
                       <td className={className}>
-                        <div className="flex items-start gap-4 min-w-[20rem]">
-                          <Avatar src={Icono}  size="md" className="rounded-full" />
-                          <div className="flex-1">
-                            <Typography
-                              variant="h5"
-                              color="blue-gray"
-                              className="font-semibold"
-                            >
-                              {Nombre}
-                            </Typography>
-                            <Typography className="font-normal text-blue-gray-500" variant="h6">
-                              {Correo}
-                            </Typography>
-                          </div>
-                        </div>
+                      
+                          <Avatar src={Imagen} size="md" variant="rounded" />
+                    
+                    
                       </td>
                       <td className={className}>
-                        {Telefono}
-                      </td>
-                      <td className={className}>
-                        <Typography className="font-semibold text-blue-gray-600" variant="h5">
-                          {Rol}
+                        <Typography className="text-blue-gray-600" variant="h5">
+                          {Nombre}
                         </Typography>
                         
                       </td>
-                      <td className={className} style={{ width: '100px' }}>
-                        <Chip
-                          variant="gradient"
-                          color={EstadoCuenta==='Activo' ? "green" : "blue-gray"}
-                          value={EstadoCuenta==='Activo' ? "online" : "offline"}
-                          className="py-0.5 px-2 text-[10px] font-medium w-20"
-                        />
-                      </td>
                      
                       <td className={className}>
-                      <div>
+                      <Typography className=" text-blue-gray-600" variant="h5">
+                          {Descripcion}
+                        </Typography>
+                      </td>
+                      <td className={className}>
+                        <Typography className=" text-blue-gray-600" variant="h5">
+                          {Ingredientes}
+                        </Typography>
+                      </td>
+                      <td className={className}>
+                        {Precio}
+                      </td>
+                      <td className={className}>
+                       <Typography variant='h5'>
+                         {FechaIntroduccion}
+                       </Typography>
+                      </td>
+                      <td className={className} >
+                        {Categoria}
+                      </td>
+                      <td className={className} >
+                        {Disponibilidad}
+                      </td>
+                      <td className={className}>
                       <Menu placement="left-start" className='text-center'>
                         <MenuHandler>
                           <IconButton size="md" variant="text" color="blue-gray">
@@ -148,14 +211,12 @@ export function Tables() {
                           </IconButton>
                         </MenuHandler>
                         <MenuList>
-                          <div className="flex">
+                        <div className="flex">
                           <Button color="orange">Editar</Button>
-                            <Button color="red">Cambiar Estado</Button>
+                            <Button color="red">Eliminar</Button>
                           </div>
-                         
                         </MenuList>
                       </Menu>
-                      </div>
                       </td>
                     </tr>
                   );
@@ -273,9 +334,13 @@ export function Tables() {
             </tbody>
           </table>
         </CardBody>
+
+        
       </Card>
     </div>
   );
 }
 
-export default Tables;
+export default AgregarProductos;
+
+
