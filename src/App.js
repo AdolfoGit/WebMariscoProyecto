@@ -40,6 +40,12 @@ import MenuRecuperacion from './components/Usuarios/MenuRecuperacion';
 import Mision from './components/Empresa/Nosotros';
 import TokenRegistro from './components/Usuarios/ValidarUsuario/TokenRegistro';
 
+import { BarChart, BoxIcon, LayoutDashboard, LifeBuoy, Package, Settings, Sidebar, UserCircle,Boxes } from 'lucide-react';
+import SidebarN from './components/Administrador/Dashboard';
+import { SidebarItem } from './components/Administrador/Dashboard';
+
+
+
 
 function App  (){
 
@@ -66,13 +72,6 @@ function App  (){
              <Route path="/pedidos" element={<Pedidos />} /> 
              <Route path='/carrito' element={<Carrito/>} />
             </Route> 
-            <Route element={<ProtectorRutasAdmin/>}>
-
-              <Route path="/admin" element={<ListaUsuarios />} /> 
-
-            </Route>
-
-
             <Route path="/productos" element={<ProductoNuevo  />} />
             <Route path="/ofertas" element={<Ofertas />} />
             <Route path="/registrar" element={<Registrar />} />
@@ -95,10 +94,30 @@ function App  (){
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
            <Route path='/multifactor' element={<Bienvenida/>}></Route>
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
-           <Route path='Mision' element={<Mision/>}/>
+            <Route path='/admin' element={
+            <SidebarN>
+              <SidebarItem  icon={<BarChart size={20}/> }text='Home' active/>
+              <SidebarItem  icon={<UserCircle size={20}/> }text='Dashboard' />
+              <SidebarItem  icon={<Boxes size={20}/> }text='Perfil' />
+              <SidebarItem  icon={<Package size={20}/> }text='Usuarios' />
+              <SidebarItem  icon={<Package size={20}/> }text='Productos' />
+              <SidebarItem  icon={<Package size={20}/> }text='Promociones' />
+              <SidebarItem  icon={<Package size={20}/> }text='Empresa' />
+              <SidebarItem  icon={<Package size={20}/> }text='Informes' />
+
+              <hr className='my-3'/>
+              <SidebarItem  icon={<Settings size={20}/> }text='Settings' />
+              <SidebarItem  icon={<Package size={20}/> }text='Logout' />
+              <SidebarItem  icon={<Package size={20}/> }text='Notificaciones' />
+            </SidebarN>}
+            />
+
           </Routes>
          
-          <Footer/>
+        
+              <Footer/>
+       
+          
        </Router>
         </UserProvider>
 
@@ -106,6 +125,7 @@ function App  (){
     </>
   );
 };
+
 
 export default App;
 
