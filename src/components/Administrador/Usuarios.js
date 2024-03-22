@@ -1,9 +1,11 @@
 import React from 'react';
 import  './css/404.css'
 import { Link } from 'react-router-dom';
+
 const ListaUsuarios = () => {
   return (
     <section className="page_404">
+   
       <div className="container">
         <div className="row"> 
           <div className="col-sm-12 ">

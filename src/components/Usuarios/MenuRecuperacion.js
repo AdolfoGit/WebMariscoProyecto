@@ -109,16 +109,21 @@ export default function MenuRecuperacion() {
 
       <div className="registro-formLogin">
         <p className="loginTitulo">Recuperación</p>
+        
+       
         <div
-          className="container"
-          style={{ display: "flex", alignItems: "center" }}
+          className="container mt-3"
+          style={{ display: "flex", alignItems: "center" ,justifyContent:'space-between'}}
         >
-         <button className="btn btn-warning" onClick={() => setShowTelefonoForm(true)}>
-            <i class="fa-brands fa-whatsapp"></i> Por WhatsApp
-          </button>
-          <button className="btn btn-warning" onClick={() => setShowTelefonoForm(false)}>
-            <i class="fa-solid fa-envelope-circle-check"></i> Por Email
-          </button>
+           <button onClick={() => setShowTelefonoForm(true)} className="text-white bg-orange-400  font-medium rounded-lg text-md px-3 py-2.5 text-center inline-flex items-center  me-2 mb-2">
+           <i class="fa-brands fa-whatsapp mr-2"></i>             
+            Por Telefono
+            </button>
+            <button onClick={() => setShowTelefonoForm(false)} className="text-white bg-orange-400 font-medium rounded-lg  text-md px-3 py-2.5 text-center inline-flex items-center  me-2 mb-2">
+            <i class="fa-solid fa-envelope-circle-check mr-2"/>          
+            Por Correo
+            </button>
+        
         </div>
         {showTelefonoForm ? (
           <div className="container" id="FormularioTelefonico">
