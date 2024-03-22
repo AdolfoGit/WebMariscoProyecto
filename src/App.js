@@ -43,7 +43,7 @@ import TokenRegistro from './components/Usuarios/ValidarUsuario/TokenRegistro';
 import { BarChart, BoxIcon, LayoutDashboard, LifeBuoy, Package, Settings, Sidebar, UserCircle,Boxes } from 'lucide-react';
 import SidebarN from './components/Administrador/Dashboard';
 import { SidebarItem } from './components/Administrador/Dashboard';
-
+import  Dashboard  from './layouts/dashboard';
 
 
 function App  (){
@@ -56,6 +56,7 @@ function App  (){
          
           <Header/>
           <Breadcrumbs/>
+     
           
           <Routes>
             <Route path="/"   element={<Home/>} />
@@ -64,7 +65,8 @@ function App  (){
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/login" element={<Login />} />
             <Route path="/nosotros" element={<Nosotros />} />
-            
+      
+
           <Route element={<ProtectorRutas/>}>
              <Route path="/reservaciones" element={<VisuReservacion />} />
              <Route path="/perfil" element={<Perfil/>}/>
@@ -114,8 +116,8 @@ function App  (){
           </Routes>
          
         
-              <Footer/>
-       
+        
+       <Footer/>
           
        </Router>
         </UserProvider>

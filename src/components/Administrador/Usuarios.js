@@ -5,25 +5,6 @@ import { Link } from 'react-router-dom';
 const ListaUsuarios = () => {
   return (
     <section className="page_404">
-<<<<<<< HEAD
-   
-      <div className="container">
-        <div className="row"> 
-          <div className="col-sm-12 ">
-            <div className="col-sm-10 col-sm-offset-1  text-center">
-              <div className="four_zero_four_bg">
-                <h1 className="text-center">En construcción</h1>
-              </div>
-              <div className="contant_box_404">
-                <h3 className="h2">Este contenido está siendo trabajado poco a poco</h3>
-                <p className='p2'>¿Desea volver al inicio?</p>
-                <Link to="/" className="link_404">Volver al inicio</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-=======
       <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style={{width:'280px'}}>
     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <span class="fs-4">Sidebar</span>
@@ -69,7 +50,6 @@ const ListaUsuarios = () => {
       </ul>
     </div>
   </div>
->>>>>>> c46d286a8d28333ba802015fc188b343ac459f19
     </section>
   );
 };
