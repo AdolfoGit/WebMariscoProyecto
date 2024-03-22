@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import imagen from '../home/img/login.jpg';
+import imagen from '../../home/img/login.jpg';
 
-export default function TokenSMS() {
+export default function TokenRegistro() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const navigate = useNavigate();
   const [token, setToken] = useState('');
@@ -17,7 +17,7 @@ export default function TokenSMS() {
         // Eliminar el correo almacenado en localStorage
           localStorage.removeItem('userData');
 
-        navigate('/menuRecuperacion');
+        navigate('/registro');
       }, 200); // Redirigir después de 5 segundos
     }, 30000); 
 
@@ -53,7 +53,7 @@ export default function TokenSMS() {
       .then((res) => res.json())
       .then((result) => {
         if (result === 'Credenciales validas') {
-          navigate(`/actualizarSMS`);
+          navigate(`/login`);
         } else {
           setErroToken('Token inválido');
         }
@@ -69,7 +69,7 @@ export default function TokenSMS() {
       <div className="registro-formLogin">
         <p className="loginTitulo">Recuperación</p>
         <label className="loginText">
-          Ingrese el token que se le envió al telefono
+          Ingrese el token que se le envió al telefono para terminar su registro
         </label>
         <form onSubmit={handleSubmit}>
           <label htmlFor="nombre" className="loginLabel">

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../Usuarios/css/login.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -9,20 +9,22 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import ReCAPTCHA from 'react-google-recaptcha';
-
+import { gapi } from 'gapi-script';
+import GoogleLogin from '@leecheuk/react-google-login';
+import { useUser } from '../../UserContext';
 
 export default function Login() {
   //const apiurll ="http://localhost:5029/"
     const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+    const { loginUser } = useUser();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
   const [loginAttempts, setLoginAttempts] = useState(0);
   const [loginAttempts2, setLoginAttempts2] = useState(0);  
-
+  const ClientID ="581987127535-vrka2isr37etho1p5t4cfnq6lur1euum.apps.googleusercontent.com"
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const navigate = useNavigate();
@@ -167,6 +169,73 @@ export default function Login() {
     function onChange(value) {
       setIsButtonDisabled(false)
       }
+
+    useEffect(()=>{
+
+      
+        const start = ()=>{
+          gapi.auth2.init({
+            clientId:ClientID,
+          })
+        }
+        gapi.load("client:auth2", start)
+      },[])
+
+
+      const onSuccess = async (response)  =>{
+        const email = response.profileObj.email;
+        const data = new FormData();
+        data.append("Correo", email)
+        fetch(
+          apiurll+"api/CasaDelMarisco/VerificarCorreo",
+          {
+
+            method: "POST",
+            body: data,
+          }
+        ).then((res) =>res.json())
+        .then(async (result) => {
+          if(result === "Correo Existe"){
+            const resultado = await obtenerDatosUsuario(email)
+            loginUser(resultado);
+            navigate('/')
+            console.log(resultado)
+          }else{
+
+          }
+        })
+        console.log(response)
+        //console.log(response.profileObj.email)
+      }
+
+
+      const onFailure =() =>{
+        console.log("Algo salio mal")
+      }
+
+    const obtenerDatosUsuario = async (email) => {
+  
+    try {
+      const response = await fetch(
+        `${apiurll}/api/CasaDelMarisco/TraerUsuario?Correo=${encodeURIComponent(email)}`,
+        {
+          method: 'GET',
+          // No es necesario incluir el body para una solicitud GET
+        }
+      );
+  
+      if (response.ok) {
+        const userData = await response.json();
+        return userData;
+      } else {
+        console.error('Error al obtener datos del usuario que ingresaste:', response.statusText);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error al obtener datos del usuario:', error);
+      return null;
+    }
+  };
   return (
     <div className="registro-form-containerLogin">
       <div className="registro-image-containerLogin">
@@ -232,6 +301,12 @@ export default function Login() {
         <ReCAPTCHA sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
         </div>
           <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
+          <GoogleLogin
+            clientId={ClientID}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={"single_host_policy"}
+          />
         </form>
        
       </div>
