@@ -29,6 +29,10 @@ const Pedidos= () => {
   const [pedidos, setPedidos] = useState([
     { id: 1, producto: 'Camarones a la Diabla', tiempoEntrega: '30 minutos', direccion: 'Calle 123, Ciudad' },
     { id: 2, producto: 'Camarones a la Diabla', tiempoEntrega: '30 minutos', direccion: 'Calle 123, Ciudad' },
+    { id: 3, producto: 'Camarones a la Diabla', tiempoEntrega: '30 minutos', direccion: 'Calle 123, Ciudad' },
+    { id: 4, producto: 'Camarones a la Diabla', tiempoEntrega: '30 minutos', direccion: 'Calle 123, Ciudad' },
+    { id: 5, producto: 'Camarones a la Diabla', tiempoEntrega: '30 minutos', direccion: 'Calle 123, Ciudad' },
+
     // Agrega más pedidos según sea necesario
   ]);
   const [selectedPedido, setSelectedPedido] = useState(null);

@@ -33,7 +33,22 @@ export const Header = () => {
   return (
     <>
       <header className="header">
-        <div className="container flex">
+      {user && user.Rol ===2 ? (
+        <>
+
+                  <div className="nav">
+                  <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
+
+
+                  <li className='username'>{user.Nombre}</li>
+                  <Link to='perfil'><AccountCircleOutlinedIcon className='HeaderIcon' /></Link>
+                  </ul>
+                  </div>
+
+        </>
+              ) : (
+                <>
+                 <div className="container flex">
           <div className="logo">
             <img src={logo} alt="" />
           </div>
@@ -73,6 +88,10 @@ export const Header = () => {
             {sidebar ? <CloseIcon /> : <MenuIcon />}
           </button>
         </div>
+                </>
+                
+              )}
+      
       </header>
     </>
   );

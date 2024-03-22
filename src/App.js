@@ -1,5 +1,5 @@
-import React from 'react';
 import './App.css' 
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
 import Home from './components/Inicio/Inicio';
@@ -40,8 +40,9 @@ import MenuRecuperacion from './components/Usuarios/MenuRecuperacion';
 import Mision from './components/Empresa/Nosotros';
 import TokenRegistro from './components/Usuarios/ValidarUsuario/TokenRegistro';
 
+
 function App  (){
-  
+
   return (
     <>
         <UserProvider>
@@ -107,3 +108,4 @@ function App  (){
 };
 
 export default App;
+
