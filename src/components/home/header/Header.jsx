@@ -36,14 +36,7 @@ export const Header = () => {
       {user && user.Rol ===2 ? (
         <>
 
-                  <div className="nav">
-                  <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
-
-
-                  <li className='username'>{user.Nombre}</li>
-                  <Link to='perfil'><AccountCircleOutlinedIcon className='HeaderIcon' /></Link>
-                  </ul>
-                  </div>
+              
 
         </>
               ) : (

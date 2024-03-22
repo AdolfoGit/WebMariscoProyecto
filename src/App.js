@@ -67,7 +67,9 @@ function App  (){
             <Route path="/login" element={<Login />} />
             <Route path="/nosotros" element={<Nosotros />} />
       
-
+            <Route element={<ProtectorRutasAdmin/>}>
+              <Route path="/dashboard/*" element={<Dashboard />} />
+            </Route>
           <Route element={<ProtectorRutas/>}>
              <Route path="/reservaciones" element={<VisuReservacion />} />
              <Route path="/perfil" element={<Perfil/>}/>
@@ -96,23 +98,7 @@ function App  (){
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
            <Route path='/multifactor' element={<Bienvenida/>}></Route>
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
-            <Route path='/admin' element={
-            <SidebarN>
-              <SidebarItem  icon={<BarChart size={20}/> }text='Home' active/>
-              <SidebarItem  icon={<UserCircle size={20}/> }text='Dashboard' />
-              <SidebarItem  icon={<Boxes size={20}/> }text='Perfil' />
-              <SidebarItem  icon={<Package size={20}/> }text='Usuarios' />
-              <SidebarItem  icon={<Package size={20}/> }text='Productos' />
-              <SidebarItem  icon={<Package size={20}/> }text='Promociones' />
-              <SidebarItem  icon={<Package size={20}/> }text='Empresa' />
-              <SidebarItem  icon={<Package size={20}/> }text='Informes' />
-
-              <hr className='my-3'/>
-              <SidebarItem  icon={<Settings size={20}/> }text='Settings' />
-              <SidebarItem  icon={<Package size={20}/> }text='Logout' />
-              <SidebarItem  icon={<Package size={20}/> }text='Notificaciones' />
-            </SidebarN>}
-            />
+           
 
           </Routes>
          

@@ -198,7 +198,10 @@ export default function Login() {
           if(result === "Correo Existe"){
             const resultado = await obtenerDatosUsuario(email)
             loginUser(resultado);
-            navigate('/')
+            if(resultado.Rol===2){
+              navigate('/dashboard/home')
+            }else{
+            navigate('/')}
             console.log(resultado)
           }else{
 

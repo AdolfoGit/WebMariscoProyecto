@@ -58,6 +58,7 @@ export default function Bienvenida() {
           const { Correo, ...userDataWithoutEmail } = userData;
           const idUsuario = userData.idUsuario;
           loginUser(userData, idUsuario);
+          
           navigate('/');
           Swal.fire({
             icon: 'success',
