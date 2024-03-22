@@ -186,7 +186,11 @@ export function AgregarProductos() {
                         </Typography>
                       </td>
                       <td className={className}>
-                        {Precio}
+                        <Typography  variant="small"
+                            className="text-2xl font-medium text-blue-gray-600">
+                            {Precio}
+                        </Typography>
+                    
                       </td>
                       <td className={className}>
                        <Typography variant='h5'>

@@ -52,7 +52,30 @@ export function Tables() {
     }
   };
 
+  const estadoColor = (estado) => {
+    let color = '';
+    if (estado === 'Activo') {
+      color = "green"; 
+    } else if (estado === 'Bloqueado') {
+      color = 'red';
+    } else {
+      color = 'blue-gray';
+    }
+    return color;
+  };
 
+  
+  const estadoTexto = (estado) => {
+    let texto = '';
+    if (estado === 'Activo') {
+      texto = "Online"; 
+    } else if (estado === 'Bloqueado') {
+      texto = 'Bloqueado';
+    } else {
+      texto = 'Ofline';
+    }
+    return texto;
+  };
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card>
@@ -129,9 +152,9 @@ export function Tables() {
                       <td className={className} style={{ width: '100px' }}>
                         <Chip
                           variant="gradient"
-                          color={EstadoCuenta==='Activo' ? "green" : "blue-gray"}
-                          value={EstadoCuenta==='Activo' ? "online" : "offline"}
-                          className="py-0.5 px-2 text-[10px] font-medium w-20"
+                          color={estadoColor(EstadoCuenta)}
+                          value={estadoTexto(EstadoCuenta)}
+                          className="py-0.5 px-2 text-[10px] font-medium w-40"
                         />
                       </td>
                      
