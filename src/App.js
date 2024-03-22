@@ -1,5 +1,5 @@
-import React from 'react';
 import './App.css' 
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 
 import Home from './components/Inicio/Inicio';
@@ -46,8 +46,9 @@ import { SidebarItem } from './components/Administrador/Dashboard';
 import  Dashboard  from './layouts/dashboard';
 
 
+
 function App  (){
-  
+
   return (
     <>
         <UserProvider>
@@ -129,3 +130,4 @@ function App  (){
 
 
 export default App;
+
