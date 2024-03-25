@@ -17,13 +17,13 @@ import { useMaterialTailwindController, setOpenConfigurator } from "../../src/co
 export function Dashboard() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavType } = controller;
-
+  const dashboardRoutes = routes.filter(route => route.layout === "dashboard");
   
 
   return (
     <div className="min-h-screen bg-blue-gray-50/50 ">
       <Sidenav
-        routes={routes}
+        routes={dashboardRoutes}
         brandImg={
           sidenavType === "dark" ? "" : ""
         }
@@ -43,7 +43,7 @@ export function Dashboard() {
         <Routes>
           {routes.map(
             ({ layout, pages }) =>
-              layout === "dashboard" &&
+              layout === "dashboardLink" &&
               pages.map(({ path, element }) => (
                 <Route exact path={path} element={element} />
               ))

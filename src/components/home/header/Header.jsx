@@ -1,12 +1,40 @@
 import React, { useState } from 'react';
 import logo from '../img/LogoVersion2.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
+import {
+  Navbar,
+  MobileNav,
+  Typography,
+  Button,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Avatar,
+  Card,
+  IconButton,
+} from "@material-tailwind/react";
+
+import {
+  CubeTransparentIcon,
+  UserCircleIcon,
+  CodeBracketSquareIcon,
+  Square3Stack3DIcon,
+  ChevronDownIcon,
+  Cog6ToothIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon,
+  RocketLaunchIcon,
+  Bars2Icon,
+} from "@heroicons/react/24/solid";
 
 // Importa el hook useUser para obtener la información del usuario
 import { useUser } from '../../../UserContext';
@@ -15,20 +43,63 @@ import { useUser } from '../../../UserContext';
 import { useLocation } from 'react-router-dom';
 
 import MenuFlotante from './MenuFlotante';
+import { Label } from '@mui/icons-material';
+import { useButton } from '@nextui-org/react';
+import Breadcrumbs  from '../../ComponentesClave/Breadcrums';
 
 export const Header = () => {
+
+  const navigate = useNavigate();
+
+  const { user, logoutUser } = useUser();
+
+  const cerrarSesion = () => {
+    logoutUser();
+    navigate("/");
+    Swal.fire({
+      icon: "warning",
+      title: "Nos vemos pronto",
+      text: "Cerraste sesión, nos vemos y recuerdanos cuando te de hambre",
+    });
+  };
   
+  const profileMenuItems = [
+    {
+      label: "Mi Perfil",
+      icon: UserCircleIcon,
+       path:'/perfil'
+    },
+    {
+      label: "Editar Perfil",
+      icon: Cog6ToothIcon,
+      path:'/perfil'
+    },
+ 
+    {
+      label: "Ayuda",
+      icon: LifebuoyIcon,
+      path:'/ayuda'
+    },
+    {
+      label: "Cerrar Sesión",
+      icon: PowerIcon,
+      onClick: cerrarSesion,
+    },
+  ];
+
   const [sidebar, setSidebar] = useState(false);
   const location = useLocation();
 
-  // Obtén la información del usuario desde el contexto
-  const { user } = useUser();
+
 
   window.addEventListener('scroll', function () {
     const header = document.querySelector('.header');
     header.classList.toggle('active', window.scrollY > 200);
   });
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ 
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <>
@@ -44,26 +115,77 @@ export const Header = () => {
                  <div className="container flex">
           <div className="logo">
             <img src={logo} alt="" />
+            <Breadcrumbs className='bread'/>
           </div>
           <div className="nav">
             <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
               <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Inicio</Link></li>   
-                   <li>
-                     <MenuFlotante/>
-                  </li>
-                   <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Menus</Link></li>
-                   <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
-                 
+              <li>
+                <MenuFlotante/>
+              </li>
+              <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Menus</Link></li>
+              <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
+            
               {user ? (
                 <>
                   <li className={location.pathname === '/pedidos' ? 'active' : ''}><Link to='/pedidos'>Pedidos</Link></li>
                   <li className={location.pathname === '/reservaciones' ? 'active' : ''}><Link to='/reservaciones'>Reservaciones</Link></li  >
                   <li className='username'>{user.Nombre}</li>
                   <li className='icon'>
-                <Link to='carrito'><SearchOutlinedIcon className='HeaderIcon' /></Link>
-                <Link to='/carrito'><LocalGroceryStoreOutlinedIcon className='HeaderIcon' /></Link>
-                <Link to='perfil'><AccountCircleOutlinedIcon className='HeaderIcon' /></Link>
-              </li>
+                    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+                      <MenuHandler>
+                        <Button
+                          variant="text"
+                          color="blue-gray"
+                          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+                        >
+                          <Avatar
+                            variant="circular"
+                            className="border border-gray-900 p-0.5"
+                            withBorder={true}
+                            size='md'
+                            src={user.Icono}
+                          />
+                          <ChevronDownIcon
+                            strokeWidth={2.5}
+                            className={`h-6 w-6 transition-transform ${
+                              isMenuOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </Button>
+                      </MenuHandler>
+                      <MenuList className="p-2">
+                        {profileMenuItems.map(({ label, icon ,path ,onClick}, key) => {
+                          const isLastItem = key === profileMenuItems.length - 1;
+                          return (
+                            <MenuItem
+                              key={label}
+                              onClick={onClick ? onClick : closeMenu}
+                              className={`flex items-center rounded ${
+                                isLastItem
+                                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                                  : ""
+                              }`}
+                             
+                            >
+                              {React.createElement(icon, {
+                                className: `h-6 w-6 ${isLastItem ? "text-red-500" : ""}`,
+                                strokeWidth: 2,
+                              })}
+                              <Typography
+                                as="span"
+                                variant="small"
+                                className="font-normal text-xl"
+                                color={isLastItem ? "red" : "inherit"}
+                              >
+                               <Link to={path}>{label}</Link>
+                              </Typography>
+                            </MenuItem>
+                          );
+                        })}
+                      </MenuList>
+                    </Menu>
+                  </li>
                 </>
               ) : (
                 <li className={location.pathname === '/login' ? 'active' : ''}>

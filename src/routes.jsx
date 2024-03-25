@@ -12,6 +12,7 @@ import { Profile} from "./pages/dashboard/profile";
 import { AgregarProductos} from "./pages/dashboard/AgregarProductos";
 import {  Notifications } from "./pages/dashboard/notifications";
 import { ProductionQuantityLimits } from "@mui/icons-material";
+import FormProducto from "./pages/dashboard/FormNuevoProducto";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -63,6 +64,43 @@ export const routes = [
         path: "/informes",
         element: <Notifications />,  
          
+      },
+    ],
+  },
+  {
+    layout: "dashboardLink",
+    pages: [
+      { 
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/Perfil",
+        element: <Profile />,
+      },
+      {
+        path: "/Usuarios",
+        element: <Tables />,
+      },
+      {
+        path: "/Productos",
+        element: <AgregarProductos />,
+      },
+      {     
+        path: "/Promociones",
+        element: <Tables />,
+      },
+      {    
+        path: "/notificaciones",
+        element: <Notifications />,   
+      },
+      {  
+        path: "/informes",
+        element: <Notifications />,      
+      },
+      {
+        path: "/insertarproducto",
+        element: <FormProducto />,         
       },
     ],
   },

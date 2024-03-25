@@ -44,7 +44,7 @@ import { BarChart, BoxIcon, LayoutDashboard, LifeBuoy, Package, Settings, Sideba
 import SidebarN from './components/Administrador/Dashboard';
 import { SidebarItem } from './components/Administrador/Dashboard';
 import  Dashboard  from './layouts/dashboard';
-
+import FormProducto from './pages/dashboard/FormNuevoProducto';
 
 
 function App  (){
@@ -56,8 +56,7 @@ function App  (){
         <Router>
          
           <Header/>
-          <Breadcrumbs/>
-     
+       
           
           <Routes>
             <Route path="/"   element={<Home/>} />
@@ -66,9 +65,10 @@ function App  (){
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/login" element={<Login />} />
             <Route path="/nosotros" element={<Nosotros />} />
-      
+            
             <Route element={<ProtectorRutasAdmin/>}>
               <Route path="/dashboard/*" element={<Dashboard />} />
+             
             </Route>
           <Route element={<ProtectorRutas/>}>
              <Route path="/reservaciones" element={<VisuReservacion />} />

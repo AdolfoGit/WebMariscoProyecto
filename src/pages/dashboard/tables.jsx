@@ -71,7 +71,7 @@ export function Tables() {
       texto = "Online"; 
     } else if (estado === 'Bloqueado') {
       texto = 'Bloqueado';
-    } else {
+    } else if (estado==='Ofline'){
       texto = 'Ofline';
     }
     return texto;

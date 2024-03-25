@@ -46,10 +46,14 @@ header ul{
 }
 header ul li{
   display: inline-block;
-  margin-left: 14px;
+  margin-left: 10px;
+  padding: auto;
+}
+.header ul .icon{
+  vertical-align: middle;
 }
 .nav{
-  margin-top: 35px;
+  margin-top: 34px;
   margin-bottom: 18px;
 }
 header ul li a{
@@ -65,18 +69,19 @@ header ul li a:hover{
   color: blue;
   color:#38d16a;
 }
-.cd{
-  margin-right: 80px;
-}
-.HeaderIcon{
-  margin-left: 20px;
-  transition: 0.5s;
- 
-}
+
 
 .navbar-items-icon{
   color: black; 
   display: none;
+}
+.logo{
+  display: flex;
+  flex-direction: row ;
+ 
+}
+.logo .bread{
+  vertical-align: middle;
 }
 .logo img{
   width: 40vh;

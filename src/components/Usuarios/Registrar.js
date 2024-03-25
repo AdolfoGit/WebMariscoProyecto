@@ -100,7 +100,7 @@ const Registro = () => {
               method: "POST",
               body: formData,
             }
-          )
+            )
             .then((res) => res.json())
             .then((result) => {
               let resultado = result.Result;
@@ -120,8 +120,8 @@ const Registro = () => {
                       setEmailError('Invalido, correo existente');
                     }else{
                       fetch(
-                        apiurll+"api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
-                          email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento" + fechaNac,
+                        apiurll + "api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
+                          email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento=" + fechaNac,
                         {
                           method: "POST",
                           body: data,

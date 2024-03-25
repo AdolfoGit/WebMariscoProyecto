@@ -23,12 +23,13 @@ import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
 import { authorsTableData} from "../../data/authors-table-data";
 import { projectsTableData } from "../../data/projects-table-data";
 import { ClassSharp } from "@mui/icons-material";
+import { useNavigate } from 'react-router-dom';
 
 export function AgregarProductos() {
 
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-
+  const navigate=useNavigate();
   useEffect(() => {
     obtenterDatosProductos();
   }, []); // Se ejecuta solo una vez al montar el componente
@@ -57,9 +58,7 @@ export function AgregarProductos() {
     }
   };
 
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen((cur) => !cur);
+  const handleOpen = () => navigate('/dashboard/insertarproducto');
   
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
@@ -69,59 +68,6 @@ export function AgregarProductos() {
             Tabla de Productos
           </Typography>
           <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i class="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Producto</Button>
-
-          <Dialog
-          size="xl"
-          open={open}
-          handler={handleOpen}
-          backdropClass="bg-transparent"
-          contentClass="bg-white"
-          >
-            <Card className="mx-auto w-full max-w-[24rem]">
-              <CardBody className="flex flex-col gap-4">
-                <Typography variant="h4" color="blue-gray">
-                  Sign In
-                </Typography>
-                <Typography
-                  className="mb-3 font-normal"
-                  variant="paragraph"
-                  color="gray"
-                >
-                  Enter your email and password to Sign In.
-                </Typography>
-                <Typography className="-mb-2" variant="h6">
-                  Your Email
-                </Typography>
-                <Input label="Email" size="lg" />
-                <Typography className="-mb-2" variant="h6">
-                  Your Password
-                </Typography>
-                <Input label="Password" size="lg" />
-                <div className="-ml-2.5 -mt-3">
-                  <Checkbox label="Remember Me" />
-                </div>
-              </CardBody>
-              <CardFooter className="pt-0">
-                <Button variant="gradient" onClick={handleOpen} fullWidth>
-                  Sign In
-                </Button>
-                <Typography variant="small" className="mt-4 flex justify-center">
-                  Don&apos;t have an account?
-                  <Typography
-                    as="a"
-                    href="#signup"
-                    variant="small"
-                    color="blue-gray"
-                    className="ml-1 font-bold"
-                    onClick={handleOpen}
-                  >
-                    Sign up
-                  </Typography>
-                </Typography>
-              </CardFooter>
-            </Card>
-          </Dialog>
-        
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
