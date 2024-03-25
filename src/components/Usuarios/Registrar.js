@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/registro.css'
 import imagen from '../home/img/login.jpg'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -32,6 +32,7 @@ const Registro = () => {
   const [apellidoPError, setApellidoPError] = useState('');
   const [fechaError, setFechaError] = useState('');
   const [TerminosError, setTerminosError] = useState('');
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -39,7 +40,6 @@ const Registro = () => {
   const togglePasswordVisibility2 = () => {
     setPasswordVisible2(!passwordVisible2);
   };
-
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
@@ -104,7 +104,7 @@ const Registro = () => {
             .then((res) => res.json())
             .then((result) => {
               let resultado = result.Result;
-
+              console.log(resultado)
               if(resultado==='valid'){
                 fetch(
                   apiurll+"api/CasaDelMarisco/VerificarCorreo?Correo=" +
@@ -130,12 +130,12 @@ const Registro = () => {
                         .then((res) => res.json())
                         .then((result) => {
                           localStorage.setItem('userData', JSON.stringify({ telefono }));
-                          window.location.href='/login'
+                          navigate('/tokenRegistro')
                         }); 
                         Swal.fire({
                           icon: 'success',
                           title: 'Completo su registro',
-                          text: 'Ahora puede entrar para navegar y sorprenderse.',
+                          text: 'Ahora tendrá que verificar que el telefono sea real',
                         });  
                     }
                   });  
