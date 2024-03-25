@@ -91,6 +91,7 @@ function App  (){
 
             <Route path="/actualizar" element={<Actualizar/>} /> 
             <Route path="/actualizarSMS" element={<ActualizarSMS/>} /> 
+            <Route path="/tokenRegistro" element={<TokenRegistro/>} /> 
 
             <Route path="/404" element={<NotFoundPage />} />
             <Route path="/500" element={<Error500 />} />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import imagen from '../../home/img/login.jpg';
-
+import Swal from 'sweetalert2';
 export default function TokenRegistro() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const navigate = useNavigate();
@@ -17,9 +17,9 @@ export default function TokenRegistro() {
         // Eliminar el correo almacenado en localStorage
           localStorage.removeItem('userData');
 
-        navigate('/registro');
+        navigate('/');
       }, 200); // Redirigir después de 5 segundos
-    }, 30000); 
+    }, 90000); 
 
     return () => clearTimeout(timer);
   }, []); // Se ejecuta solo al montar el componente
@@ -53,6 +53,12 @@ export default function TokenRegistro() {
       .then((res) => res.json())
       .then((result) => {
         if (result === 'Credenciales validas') {
+          localStorage.removeItem('userData');
+          Swal.fire({
+            icon: 'success',
+            title: 'Completo su registro',
+            text: 'Ahora puede entrar para navegar y sorprenderse.',
+          });  
           navigate(`/login`);
         } else {
           setErroToken('Token inválido');
@@ -67,7 +73,7 @@ export default function TokenRegistro() {
       </div>
       
       <div className="registro-formLogin">
-        <p className="loginTitulo">Recuperación</p>
+        <p className="loginTitulo">Verificación</p>
         <label className="loginText">
           Ingrese el token que se le envió al telefono para terminar su registro
         </label>

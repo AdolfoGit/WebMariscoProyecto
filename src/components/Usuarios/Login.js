@@ -12,6 +12,7 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { gapi } from 'gapi-script';
 import GoogleLogin from '@leecheuk/react-google-login';
 import { useUser } from '../../UserContext';
+import './css/login.css'
 
 export default function Login() {
   //const apiurll ="http://localhost:5029/"
@@ -196,10 +197,18 @@ export default function Login() {
         ).then((res) =>res.json())
         .then(async (result) => {
           if(result === "Correo Existe"){
+
             const resultado = await obtenerDatosUsuario(email)
+            console.log(resultado)
             loginUser(resultado);
             if(resultado.Rol===2){
+              Swal.fire({
+                icon: 'success',
+                title: 'Login de administrador',
+                text: 'Cuidado, eres administrador. Puedes modificar datos de la página, siempre con cuidado.',
+              });  
               navigate('/dashboard/home')
+              
             }else{
             navigate('/')}
             console.log(resultado)
@@ -220,7 +229,7 @@ export default function Login() {
   
     try {
       const response = await fetch(
-        `${apiurll}/api/CasaDelMarisco/TraerUsuario?Correo=${encodeURIComponent(email)}`,
+        apiurll+"api/CasaDelMarisco/TraerUsuario?Correo="+email,
         {
           method: 'GET',
           // No es necesario incluir el body para una solicitud GET
@@ -289,29 +298,33 @@ export default function Login() {
             </button>
           </div>
           {passwordError && <p className="error-message">{passwordError}</p>}
-
-          <Link to='/menuRecuperacion' className='forget'>¿Olvidaste tu password?</Link>
-        
           <label className='recuerdame'>
             <input
               type="checkbox"
             className='cuadro'
+            style={{marginTop:'10px'}}
             />
             Recuérdame
           </label>
-            <Link to='/registrar' className='singText'>¿No tienes cuenta? Crea tu cuenta</Link>
-        <div className='recaptcha'>
-        <ReCAPTCHA sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
-        </div>
-          <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
+        
           <GoogleLogin
             clientId={ClientID}
             onSuccess={onSuccess}
             onFailure={onFailure}
             cookiePolicy={"single_host_policy"}
+            className="google-login-button"
           />
+        <div className='recaptcha'>
+        <ReCAPTCHA className='recaptch'  sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6" onChange={onChange}/>
+        </div>
+          <button  className='btn btn-warning text2' type="submit" disabled={isButtonDisabled}>Entrar</button><br/>
         </form>
        
+          <div  className='container'>
+          <Link to='/menuRecuperacion' className='singText'>¿Olvidaste tu password?</Link>
+          <Link to='/registrar' className='singText ms-3'>¿Sin cuenta? Registrate</Link>
+          <></>
+          </div>
       </div>
   </div>
     
