@@ -26,5 +26,5 @@ export const uploadFilesProductos = async (File) =>{
     const storageRef = ref(storage, 'productos/'+v4());
     await uploadBytes(storageRef, File)
     const url = await getDownloadURL(storageRef)
-    return url
+    return url  
 }
