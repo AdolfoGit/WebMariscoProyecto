@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState} from 'react';
 import {
   Card,
   CardHeader,
@@ -11,11 +11,13 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { uploadFilesUsuarios } from "../../firebase/firebase";
+import { uploadFilesProductos } from "../../firebase/firebase";
 
 export function FormProducto (){
+    const navigate=useNavigate();
     const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
     const [nombre,setNombre]=useState();
@@ -33,7 +35,7 @@ export function FormProducto (){
         
         e.preventDefault();
 
-        const resultImage = await uploadFilesUsuarios(File);
+        const resultImage = await uploadFilesProductos(File);
 
         const data =new FormData();
         data.append("Nombre",nombre)
@@ -57,12 +59,12 @@ export function FormProducto (){
         .then((result) => {
             console.log(result);
             if (result === 'Agregado!!') {
-                window.location.href = '/dashboard/Productos';
                 Swal.fire({
                     icon: 'success',
                     title: 'Registro Completo',
                     text: 'Realizado con exito',
                 });
+                navigate('/dashboard/Productos')
             } else {
                 Swal.fire({
                     icon: 'success',
@@ -116,7 +118,7 @@ export function FormProducto (){
                 </label>
                 <div className="mt-2">
                     <div className=" border border-gray-900 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                    <span className=" text-2xl flex select-none items-center pl-3 text-gray-500 ">$/</span>
+                    <span className=" text-2xl flex select-none items-center pl-3 text-gray-500 ">$</span>
                     <input
                         type="number"
                         value={precio}
@@ -126,22 +128,6 @@ export function FormProducto (){
 
                     />
                     </div>
-                </div>
-                </div>
-
-
-                <div className="sm:col-span-2">
-                <label htmlFor="postal-code" className="block text-2xl font-medium leading-6 text-gray-900">
-                    Fecha de Introducción
-                </label>
-                <div className="mt-2">
-                    <input
-                    type="date"
-                    value={fechaIntro}
-                    onChange={(e) => setFechaIntro(e.target.value)}
-         
-                    className=" text-2xl block w-full rounded-md border border-gray-900  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
-                    />
                 </div>
                 </div>
 

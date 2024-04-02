@@ -132,59 +132,59 @@ export const Header = () => {
                   <li className={location.pathname === '/reservaciones' ? 'active' : ''}><Link to='/reservaciones'>Reservaciones</Link></li  >
                   <li className='username'>{user.Nombre}</li>
                   <li className='icon'>
-                    <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
-                      <MenuHandler>
-                        <Button
-                          variant="text"
-                          color="blue-gray"
-                          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
-                        >
-                          <Avatar
-                            variant="circular"
-                            className="border border-gray-900 p-0.5"
-                            withBorder={true}
-                            size='md'
-                            src={user.Icono}
-                          />
-                          <ChevronDownIcon
-                            strokeWidth={2.5}
-                            className={`h-6 w-6 transition-transform ${
-                              isMenuOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                        </Button>
-                      </MenuHandler>
-                      <MenuList className="p-2">
-                        {profileMenuItems.map(({ label, icon ,path ,onClick}, key) => {
-                          const isLastItem = key === profileMenuItems.length - 1;
-                          return (
-                            <MenuItem
-                              key={label}
-                              onClick={onClick ? onClick : closeMenu}
-                              className={`flex items-center rounded ${
-                                isLastItem
-                                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                                  : ""
+                      <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+                        <MenuHandler>
+                          <Button
+                            variant="text"
+                            color="blue-gray"
+                            className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+                          >
+                            <Avatar
+                              variant="circular"
+                              className="border border-gray-900 p-0.5"
+                              withBorder={true}
+                              size='md'
+                              src={user.Icono}
+                            />
+                            <ChevronDownIcon
+                              strokeWidth={2.5}
+                              className={`h-6 w-6 transition-transform ${
+                                isMenuOpen ? "rotate-180" : ""
                               }`}
-                             
-                            >
-                              {React.createElement(icon, {
-                                className: `h-6 w-6 ${isLastItem ? "text-red-500" : ""}`,
-                                strokeWidth: 2,
-                              })}
-                              <Typography
-                                as="span"
-                                variant="small"
-                                className="font-normal text-xl"
-                                color={isLastItem ? "red" : "inherit"}
+                            />
+                          </Button>
+                        </MenuHandler>
+                        <MenuList className="p-2">
+                          {profileMenuItems.map(({ label, icon ,path ,onClick}, key) => {
+                            const isLastItem = key === profileMenuItems.length - 1;
+                            return (
+                              <MenuItem
+                                key={label}
+                                onClick={onClick ? onClick : closeMenu}
+                                className={`flex items-center rounded ${
+                                  isLastItem
+                                    ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                                    : ""
+                                }`}
+                              
                               >
-                               <Link to={path}>{label}</Link>
-                              </Typography>
-                            </MenuItem>
-                          );
-                        })}
-                      </MenuList>
-                    </Menu>
+                                {React.createElement(icon, {
+                                  className: `h-6 w-6 ${isLastItem ? "text-red-500" : ""}`,
+                                  strokeWidth: 2,
+                                })}
+                                <Typography
+                                  as="span"
+                                  variant="small"
+                                  className="font-normal text-xl"
+                                  color={isLastItem ? "red" : "inherit"}
+                                >
+                                <Link to={path}>{label}</Link>
+                                </Typography>
+                              </MenuItem>
+                            );
+                          })}
+                        </MenuList>
+                      </Menu>
                   </li>
                 </>
               ) : (

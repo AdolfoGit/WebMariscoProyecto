@@ -1,4 +1,5 @@
-import { useLocation, Link } from "react-router-dom";
+import React, {useState} from 'react';
+import { useLocation, Link ,useNavigate} from "react-router-dom";
 import {
   Navbar,
   Typography,
@@ -19,18 +20,70 @@ import {
   ClockIcon,
   CreditCardIcon,
   Bars3Icon,
+  CubeTransparentIcon,
+  CodeBracketSquareIcon,
+  Square3Stack3DIcon,
+  ChevronDownIcon,
+  InboxArrowDownIcon,
+  LifebuoyIcon,
+  PowerIcon,
+  RocketLaunchIcon,
 } from "@heroicons/react/24/solid";
 import {
   useMaterialTailwindController,
   setOpenConfigurator,
   setOpenSidenav,
 } from "../../context/index";
+import { useUser } from '../../UserContext';
+import Swal from "sweetalert2";
 
 export function DashboardNavbar() {
   const [controller, dispatch] = useMaterialTailwindController();
   const { fixedNavbar, openSidenav } = controller;
   const { pathname } = useLocation();
   const [layout, page] = pathname.split("/").filter((el) => el !== "");
+
+  const navigate = useNavigate();
+
+  const { user, logoutUser } = useUser();
+
+  const cerrarSesion = () => {
+    logoutUser();
+    navigate("/");
+    Swal.fire({
+      icon: "warning",
+      title: "Nos vemos pronto",
+      text: "Cerraste sesión, nos vemos y recuerdanos cuando te de hambre",
+    });
+  };
+  
+  const profileMenuItems = [
+    {
+      label: "Mi Perfil",
+      icon: UserCircleIcon,
+       path:'/perfil'
+    },
+    {
+      label: "Editar Perfil",
+      icon: Cog6ToothIcon,
+      path:'/perfil'
+    },
+ 
+    {
+      label: "Ayuda",
+      icon: LifebuoyIcon,
+      path:'/ayuda'
+    },
+    {
+      label: "Cerrar Sesión",
+      icon: PowerIcon,
+      onClick: cerrarSesion,
+    },
+  ];
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ 
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <Navbar
@@ -87,10 +140,11 @@ export function DashboardNavbar() {
             <Bars3Icon strokeWidth={3} className="h-20 w-20 text-blue-gray-500" />
           </IconButton>
                 
-          <Menu>
+          <div className='flex items-center justify-between h-full'>
+          <Menu className=''>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
-                <BellIcon className="h-10 w-10 text-blue-gray-500" />
+                <BellIcon className="h-11 w-11 text-blue-gray-500" />
               </IconButton>
             </MenuHandler>
             <MenuList className="w-max border-0">
@@ -165,7 +219,61 @@ export function DashboardNavbar() {
               </MenuItem>
             </MenuList>
           </Menu>
-         
+
+          <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+            <MenuHandler>
+              <Button
+                variant="text"
+                color="blue-gray"
+                className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+              >
+                <Avatar
+                  variant="circular"
+                  className="border border-gray-900 p-0.5"
+                  withBorder={true}
+                  size='md'
+                  src={user.Icono}
+                />
+                <ChevronDownIcon
+                  strokeWidth={2.5}
+                  className={`h-6 w-6 transition-transform ${
+                    isMenuOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </Button>
+            </MenuHandler>
+            <MenuList className="p-2">
+              {profileMenuItems.map(({ label, icon ,path ,onClick}, key) => {
+                const isLastItem = key === profileMenuItems.length - 1;
+                return (
+                  <MenuItem
+                    key={label}
+                    onClick={onClick ? onClick : closeMenu}
+                    className={`flex items-center rounded ${
+                      isLastItem
+                        ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                        : ""
+                    }`}
+                    
+                  >
+                    {React.createElement(icon, {
+                      className: `h-6 w-6 ${isLastItem ? "text-red-500" : ""}`,
+                      strokeWidth: 2,
+                    })}
+                    <Typography
+                      as="span"
+                      variant="small"
+                      className="font-normal text-xl"
+                      color={isLastItem ? "red" : "inherit"}
+                    >
+                      <Link to={path}>{label}</Link>
+                    </Typography>
+                  </MenuItem>
+                );
+              })}
+            </MenuList>
+          </Menu>
+          </div>
         </div>
       </div>
     </Navbar>
