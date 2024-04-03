@@ -225,7 +225,7 @@ export function Tables() {
                     </td>
                     <td className={className}>
                       <Typography className="font-semibold text-blue-gray-600" variant="h5">
-                        {Rol}
+                        {Rol===2?'Admin':'Usuario'}
                       </Typography>
                     </td>
                     <td className={className} style={{ width: '100px' }}>

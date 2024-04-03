@@ -124,24 +124,15 @@ export function DashboardNavbar() {
             {page}
           </Typography>
         </div>
-        <div className="flex items-center mr-3">
-        <div className="mr-40"> {/* Aumentar el margen derecho */}
+        <div className="flex items-center">
+         <div className="">
             <Input 
               label="Search" 
               size="md"              
             />
-          </div>
-          <IconButton
-            variant="text"
-            color="blue-gray"
-            className="grid xl:hidden"
-            onClick={() => setOpenSidenav(dispatch, !openSidenav)}
-          >
-            <Bars3Icon strokeWidth={3} className="h-20 w-20 text-blue-gray-500" />
-          </IconButton>
-                
-          <div className='flex items-center justify-between h-full'>
-          <Menu className=''>
+          </div>    
+          <div className='flex items-center justify-between h-full ml-2 '>
+          <Menu className='mr-2'>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
                 <BellIcon className="h-11 w-11 text-blue-gray-500" />
@@ -220,7 +211,7 @@ export function DashboardNavbar() {
             </MenuList>
           </Menu>
 
-          <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+          <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end" className=''>
             <MenuHandler>
               <Button
                 variant="text"
@@ -273,6 +264,14 @@ export function DashboardNavbar() {
               })}
             </MenuList>
           </Menu>
+          <IconButton
+            variant="text"
+            color="blue-gray"
+            className="grid xl:hidden"
+            onClick={() => setOpenSidenav(dispatch, !openSidenav)}
+          >
+            <Bars3Icon strokeWidth={3} className="h-10 w-10 text-blue-gray-500" />
+          </IconButton>
           </div>
         </div>
       </div>
