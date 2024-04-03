@@ -134,7 +134,7 @@ export function AgregarProductos() {
                       <td className={className}>
                         <Typography  variant="small"
                             className="text-2xl font-medium text-blue-gray-600">
-                            {Precio}
+                           $ {Precio}
                         </Typography>
                     
                       </td>
@@ -147,7 +147,9 @@ export function AgregarProductos() {
                         {Categoria}
                       </td>
                       <td className={className} >
-                        {Disponibilidad}
+                        <Typography style={{textAlign:'center'}}  variant='h5'>
+                          {Disponibilidad}
+                        </Typography>
                       </td>
                       <td className={className}>
                       <Menu placement="left-start" className='text-center'>
