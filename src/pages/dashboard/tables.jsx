@@ -221,7 +221,7 @@ export function Tables() {
                       </div>
                     </td>
                     <td className={className}>
-                      {Telefono}
+                        <Typography className='text-xl text-bold'> {Telefono}</Typography>
                     </td>
                     <td className={className}>
                       <Typography className="font-semibold text-blue-gray-600" variant="h5">

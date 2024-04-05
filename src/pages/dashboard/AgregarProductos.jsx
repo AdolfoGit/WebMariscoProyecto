@@ -5,14 +5,7 @@ import {
   CardBody,
   Typography,
   Avatar,
-  Chip,
-  Tooltip,
-  Progress,
   Button,
-  Dialog,
-  CardFooter,
-  Input,
-  Checkbox,
   Menu,
   MenuHandler,
   IconButton,
@@ -20,16 +13,15 @@ import {
 } 
 from "@material-tailwind/react";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline";
-import { authorsTableData} from "../../data/authors-table-data";
-import { projectsTableData } from "../../data/projects-table-data";
-import { ClassSharp } from "@mui/icons-material";
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export function AgregarProductos() {
 
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const navigate=useNavigate();
+  const [EstadoProd,setEstado]=useState('Inactivo');
   useEffect(() => {
     obtenterDatosProductos();
   }, []); // Se ejecuta solo una vez al montar el componente
@@ -58,6 +50,37 @@ export function AgregarProductos() {
     }
   };
 
+  const elimnarProducto=(idProducto)=>{
+    const data= new FormData();
+    data.append("idProducto",idProducto);
+    data.append("Estado",EstadoProd);
+    fetch(
+      apiurll + "/api/CasaDelMarisco/CambiarEstadoProducto?idProducto=" + idProducto + "&Estado=" + EstadoProd,
+      {
+        method:'POST',
+        body:data,
+      }
+    )
+    .then((res) => res.json())
+    .then((result) => {
+        console.log(result);
+        if (result === 'Producto actualizado') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro Completo',
+                text: 'Realizado con exito',
+            });
+           obtenterDatosProductos();
+        } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro incompleto',
+                text: 'Ha ocurrido un error verifique los datos',
+            });
+        }
+    })
+  }
+
   const handleOpen = () => navigate('/dashboard/insertarproducto');
   
   return (
@@ -73,7 +96,7 @@ export function AgregarProductos() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["ID","Imagen", "Nombre","Descripcion", "Ingredientes","Precio", "Fecha de ingreso", "Categoria","Disponibilidad","Opciones"].map((el) => (
+                {["ID","Imagen", "Nombre","Descripcion", "Ingredientes","Precio", "Fecha de ingreso", "Categoria","Disponibilidad","Estado","Opciones"].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -90,7 +113,7 @@ export function AgregarProductos() {
             </thead>
             <tbody>
               {productData !== null && productData.map(
-                ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad }, key) => {
+                ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad ,Estado}, key) => {
                   const className = `py-3 px-5 ${
                     key === productData.length - 1
                       ? ""
@@ -110,65 +133,74 @@ export function AgregarProductos() {
                       </td>
                       <td className={className}>
                       
-                          <Avatar src={Imagen} size="md" variant="rounded" />
+                          <Avatar src={Imagen} size="md" variant='square' />
                     
                     
                       </td>
                       <td className={className}>
-                        <Typography className="text-blue-gray-600" variant="h5">
+                        <Typography className=" text-xl  font-semibold text-bold">
                           {Nombre}
                         </Typography>
                         
                       </td>
                      
                       <td className={className}>
-                      <Typography className=" text-blue-gray-600" variant="h5">
+                      <Typography className="text-xl text-bold leadig-7 min-w-[20rem]" >
                           {Descripcion}
                         </Typography>
                       </td>
                       <td className={className}>
-                        <Typography className=" text-blue-gray-600" variant="h5">
+                        <Typography className=" text-xl text-bold min-w-[20rem]">
                           {Ingredientes}
                         </Typography>
                       </td>
                       <td className={className}>
                         <Typography  variant="small"
-                            className="text-2xl font-medium text-blue-gray-600">
+                            className="text-2xl font-semibold text-bold">
                            $ {Precio}
                         </Typography>
                     
                       </td>
                       <td className={className}>
-                       <Typography variant='h5'>
+                       <Typography className='text-xl text-bold'>
                          {FechaIntroduccion}
                        </Typography>
                       </td>
                       <td className={className} >
-                        {Categoria}
+                        <Typography className='text-xl text-center text-bold' >
+                          {(Categoria===1?'Platillo':'Bebida')}
+                        </Typography>
                       </td>
                       <td className={className} >
-                        <Typography style={{textAlign:'center'}}  variant='h5'>
+                        <Typography className='text-xl text-center text-bold'>
                           {Disponibilidad}
                         </Typography>
                       </td>
+                      <td className={className} >
+                        <Typography className='text-xl text-center text-bold'>
+                          {Estado}
+                        </Typography>
+                      </td>
                       <td className={className}>
-                      <Menu placement="left-start" className='text-center'>
-                        <MenuHandler>
-                          <IconButton size="md" variant="text" color="blue-gray">
-                            <EllipsisVerticalIcon
-                              strokeWidth={3}
-                              fill="currenColor"
-                              className="h-8 w-8"
-                            />
-                          </IconButton>
-                        </MenuHandler>
-                        <MenuList>
-                        <div className="flex">
-                          <Button color="orange">Editar</Button>
-                            <Button color="red">Eliminar</Button>
+                      <div>
+                            <Menu placement="left-start" className='text-center'>
+                              <MenuHandler>
+                                <IconButton size="md" variant="text" color="blue-gray">
+                                  <EllipsisVerticalIcon
+                                    strokeWidth={3}
+                                    fill="currenColor"
+                                    className="h-8 w-8"
+                                  />
+                                </IconButton>
+                              </MenuHandler>
+                              <MenuList>
+                                <div className="flex row items-start justify-start">
+                                  <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idProducto)} > Eliminar</Button>
+                                  <Button color="green" variant='text' className='text-md text-left' onClick={()=> navigate('/dashboard/editarproducto', { state: { idProducto } })}> Editar</Button>
+                                </div>
+                              </MenuList>
+                            </Menu>
                           </div>
-                        </MenuList>
-                      </Menu>
                       </td>
                     </tr>
                   );

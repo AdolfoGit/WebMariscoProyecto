@@ -1,39 +1,66 @@
 import React, { useEffect, useState} from 'react';
 import {
   Card,
-  CardHeader,
-  CardBody,
-  Typography,
-  Chip,
-  Tooltip,
-  Progress,
   Button,
-  IconButton,
+  Select,
+  Option,
 } from "@material-tailwind/react";
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-import { PhotoIcon } from '@heroicons/react/24/solid'
+import { PhotoIcon,  } from '@heroicons/react/24/solid'
 import { uploadFilesProductos } from "../../firebase/firebase";
 
-export function FormProducto (){
+
+export function AgregarPromocion (){
+
+
+
     const navigate=useNavigate();
     const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
+    
+    const [productData, setProductData] = useState([]);
+
+    useEffect(() => {
+        obtenterDatosProductos();
+      }, []); // Se ejecuta solo una vez al montar el componente
+    // Se ejecuta solo una vez al montar el componente
+    const [selectedProductId, setSelectedProductId] = useState(); // Estado para almacenar el ID del producto seleccionado
+
     const [nombre,setNombre]=useState();
-    const [precio,setPrecio]=useState();
     const [descripcion,setDescripcion]=useState();
-    const [ingredientes,setIngredientes]=useState();
-    const [categoria,setCategoria]=useState();
-    const [fechaIntro,setFechaIntro]=useState();
-    const [disponibilidad,setDisponibilidad]=useState();
-    const [estado,setEstado]=useState();
+    const [fechaFin,setFechaFin]=useState();
+    const[descuento,setDescuento]=useState();
+
     const [File, setFile] = useState(null);
     const [imageURL, setImageURL] = useState(null);
+
+    const obtenterDatosProductos = async () => {
+        try {
+          const response = await fetch(
+            `${apiurll}/api/CasaDelMarisco/TraerProductos`,
+            {
+              method: 'GET',
+              // No es necesario incluir el body para una solicitud GET
+            }
+          );
+    
+          if (response.ok) {
+            const product1Data = await response.json();
+            setProductData(product1Data);
+            console.log(product1Data)
+          } else {
+            console.error('Error al obtener datos de los usuarios:', response.statusText);
+          }
+        } catch (error) {
+          console.error('Error al obtener datos del usuario:', error);
+        }
+    };
     
     const cancelarProceso=()=>{
         setImageURL(null);
-        navigate('/dashboard/Productos');
+        navigate('/dashboard/Promociones');
     }
     const handleDrop = (e) => {
         e.preventDefault();
@@ -49,19 +76,16 @@ export function FormProducto (){
 
         const resultImage = await uploadFilesProductos(File);
       
-
         const data =new FormData();
         data.append("Nombre",nombre)
-        data.append("Ingredientes",ingredientes);
+        data.append("FechaFin",fechaFin);
+        data.append("idProducto",selectedProductId)
         data.append("Descripcion",descripcion);
-        data.append("Precio",precio);
-        data.append("Disponibilidad",disponibilidad);
-        data.append("Categoria",categoria);
-        data.append("Estado",estado);
+        data.append("Descuento", descuento)
         data.append("Imagen",resultImage);
 
         fetch(
-            apiurll + "api/CasaDelMarisco/AgregarProductos?Nombre=" + nombre+ "&Ingredientes=" + ingredientes + "&Descripcion=" + descripcion + "&Precio=" + precio + "&Disponibilidad=" + disponibilidad + "&Categoria=" + categoria + "&Estado=" + estado +
+            apiurll + "api/CasaDelMarisco/AgregarPromociones?Nombre=" + nombre +  "&FechaFin="  + fechaFin + "&idProducto=" + selectedProductId + "&Descripcion=" +  descripcion + "&Descuento=" + descuento +
             "&Imagen=" + resultImage,
             {
                 method: "POST",
@@ -77,7 +101,7 @@ export function FormProducto (){
                     title: 'Registro Completo',
                     text: 'Realizado con exito',
                 });
-                navigate('/dashboard/Productos')
+                navigate('/dashboard/Promociones')
             } else {
                 Swal.fire({
                     icon: 'success',
@@ -95,9 +119,13 @@ export function FormProducto (){
             });
         });
         
-     
+      
 
     }
+
+  
+
+
     return(
     <Card className='mt-6'>
         <form className='p-20' onSubmit={handleSubmit}>
@@ -110,37 +138,52 @@ export function FormProducto (){
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             
-                <div className="sm:col-span-4 sm:col-start-1">
-                <label  className="block text-2xl font-medium leading-6 text-gray-900">
-                    Nombre del Producto
-                </label>
-                <div className="mt-2">
-                    <input
-                    type="text"
-                    value={nombre}
-                    onChange={(e) => setNombre(e.target.value)}
-                    
-                    className="text-2xl block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
-                    />
-                </div>
+                <div className="sm:col-span-2 sm:col-start-1">
+                    <label  className="block text-2xl font-medium leading-6 text-gray-900">
+                        Nombre del la Promoción
+                    </label>
+                    <div className="mt-2">
+                        <input
+                        type="text"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        
+                        className="text-2xl block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
+                        />
+                    </div>
                 </div>
 
-                <div className="col-span-full">
-                <label htmlFor="about" className="block text-2xl font-medium leading-6 text-gray-900">
-                    Ingredientes
-                </label>
-                <div className="mt-2">
-                    <textarea
-                    id="about"
-                    value={ingredientes}
-                    onChange={(e) => setIngredientes(e.target.value)}
-                    name="about"
-                    rows={3}
-                    className="block w-full rounded-md border border-gray-900  py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-8"
-                 
-                    />
+                <div className=' sm:col-span-2 '>
+                    <label  className="block text-2xl font-medium leading-6 text-gray-900">
+                        Fecha de Expiracion
+                    </label>
+                    <div className="mt-2">
+                        <input
+                        type="date"
+                        value={fechaFin}
+                        onChange={(e) => setFechaFin(e.target.value)}
+                        
+                        className="text-2xl block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
+                        />
+                    </div>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-gray-600">Escribe los ingredientes de forma seguida sin parrafos</p>
+
+                <div className="sm:col-span-2 ">
+                <label htmlFor="username" className="block text-2xl font-medium leading-6 text-gray-900">
+                        Producto
+                    </label>
+
+                    <select 
+                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"  
+                        value={selectedProductId}
+                        onChange={(e) => setSelectedProductId(e.target.value)}
+                    >
+                        {productData !== null && productData.map(({ idProducto,Nombre }) => (
+                            <option  value={idProducto} className="flex items-center gap-2">
+                                {Nombre}
+                            </option>
+                        ))}
+                    </select>
                 </div>
 
                 <div className="col-span-full">
@@ -159,7 +202,7 @@ export function FormProducto (){
                 </div>
                 <p className="mt-3 text-sm leading-6 text-gray-600">Escribe la descripcion de forma seguida sin parrafos</p>
                 </div>
-
+ 
                
             </div>
             </div>
@@ -205,31 +248,18 @@ export function FormProducto (){
                                     <>    <div>
                                     <div className="sm:col-span-2 mb-5">
                                     <label htmlFor="region" className="block text-2xl font-medium leading-6 text-gray-900">
-                                        Disponibilidad
+                                        Descuento %
                                     </label>
                                     <div className="mt-2">
                                         <input
                                         type="number"
-                                        value={disponibilidad}
-                                        onChange={(e) => setDisponibilidad(e.target.value)}
+                                        value={descuento}
+                                        onChange={(e) => setDescuento(e.target.value)}
                                         className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                         />
                                     </div>
                                     </div>
-                                    <div className="sm:col-span-2">
-                                    <label htmlFor="postal-code" className="block text-2xl font-medium leading-6 text-gray-900">
-                                        Estado:
-                                    </label>
-                                    <div className="mt-2">
-                                        <input
-                                        value={estado}
-                                        type="text"
-                                        onChange={(e) => setEstado(e.target.value)}
-                                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
-                                        />
-                                        <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
-                                    </div>
-                                    </div>
+
                                     </div>
                                         <Button color='amber' className='mt-2 text-white' onClick={()=> setImageURL(null)}>Eliminar Foto</Button>
                                     </>
@@ -238,75 +268,27 @@ export function FormProducto (){
                                     <div>
                                         <div className="sm:col-span-1  mb-5">
                                         <label htmlFor="region" className="block text-2xl font-medium leading-6 text-gray-900">
-                                            Disponibilidad
+                                            Descuento %
                                         </label>
                                         <div className="mt-2">
                                             <input
                                             type="number"
-                                            value={disponibilidad}
-                                            onChange={(e) => setDisponibilidad(e.target.value)}
+                                            value={descuento}
+                                            onChange={(e) => setDescuento(e.target.value)}
                                             className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                             />
                                         </div>
                                         </div>
-                                        <div className="sm:col-span-1">
-                                        <label htmlFor="postal-code" className="block text-2xl font-medium leading-6 text-gray-900">
-                                            Estado:
-                                        </label>
-                                        <div className="mt-2">
-                                            <input
-                                            value={estado}
-                                            type="text"
-                                            onChange={(e) => setEstado(e.target.value)}
-                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
-                                            />
-                                            <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
-                                        </div>
-                                        </div>
+                                     
                                     </div>
                                 )}
                             </>
                         </div>
 
-
-                        <div className='col-span-3 flex-col  sm:flex-row'>
-                            <div className="sm:col-span-3 mb-5">
-                                <label htmlFor="username" className="block text-2xl font-medium leading-6 text-gray-900">
-                                    Precio
-                                </label>
-                                <div className="mt-2">
-                                    <div className=" border border-gray-900 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                    <span className=" text-2xl flex select-none items-center pl-3 text-gray-500 ">$</span>
-                                    <input
-                                        type="number"
-                                        value={precio}
-                                        onChange={(e) => setPrecio(e.target.value)}
-                
-                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 text-2xl placeholder:text-gray-400 focus:ring-0  sm:leading-6"
-
-                                    />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="sm:col-span-3">
-                                <label htmlFor="city" className="block text-2xl font-medium leading-6 text-gray-900">
-                                    Categoria
-                                </label>
-                                <div className="mt-2">
-                                    <select
-                                    value={categoria}
-                                    onChange={(e) => setCategoria(e.target.value)}
-                                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
-                                    >
-                                    <option value={1}>Platillo</option>
-                                    <option value={2}>Bebida</option>
-                                    <option value={3}>Postre</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>  
+                 
                     </div>
+
+                   
                 </div>
             </div>
         </div>
@@ -321,4 +303,4 @@ export function FormProducto (){
     )
 }
 
-export default FormProducto;
+export default AgregarPromocion;

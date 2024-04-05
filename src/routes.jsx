@@ -13,6 +13,9 @@ import { AgregarProductos} from "./pages/dashboard/AgregarProductos";
 import {  Notifications } from "./pages/dashboard/notifications";
 import { ProductionQuantityLimits } from "@mui/icons-material";
 import FormProducto from "./pages/dashboard/FormNuevoProducto";
+import EditarProducto from "./pages/dashboard/EditarProducto";
+import TablaPromociones from "./pages/dashboard/TablaPromociones";
+import AgregarPromocion from "./pages/dashboard/AgregarPromocion";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -44,7 +47,7 @@ export const routes = [
         icon: <GiftIcon {...icon} />,
         name: "Promociones",
         path: "/Promociones",
-        element: <Tables />,
+        element: <TablaPromociones />,
       },
       {
         icon: <InformationCircleIcon {...icon} />,
@@ -82,7 +85,7 @@ export const routes = [
       },
       {     
         path: "/Promociones",
-        element: <Tables />,
+        element: <TablaPromociones />,
       },
       {    
         path: "/notificaciones",
@@ -95,6 +98,14 @@ export const routes = [
       {
         path: "/insertarproducto",
         element: <FormProducto />,         
+      },
+      {
+        path: "/editarproducto",
+        element: <EditarProducto/>,         
+      },
+      {
+        path: "/agregarPromocion",
+        element: <AgregarPromocion/>,         
       },
     ],
   },
