@@ -81,7 +81,7 @@ export function AgregarPromocion (){
         data.append("FechaFin",fechaFin);
         data.append("idProducto",selectedProductId)
         data.append("Descripcion",descripcion);
-        data.append("Descuento", descuento)
+        data.append("Descuento",descuento)
         data.append("Imagen",resultImage);
 
         fetch(
@@ -159,7 +159,7 @@ export function AgregarPromocion (){
                     </label>
                     <div className="mt-2">
                         <input
-                        type="date"
+                        type="datetime-local"
                         value={fechaFin}
                         onChange={(e) => setFechaFin(e.target.value)}
                         

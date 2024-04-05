@@ -91,7 +91,7 @@ export  function TablaPromociones (){
         <Card>
           <CardHeader variant="gradient" color="gray" className=" flex mb-8 p-8">
             <Typography variant="h6" color="white" className="text-2xl">
-              Tabla de Productos
+              Tabla de Promociones
             </Typography>
             <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i class="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Promocion</Button>
           </CardHeader>
