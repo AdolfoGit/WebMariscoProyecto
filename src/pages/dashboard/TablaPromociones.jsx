@@ -20,20 +20,20 @@ import Swal from 'sweetalert2';
 
 export  function TablaPromociones (){
 
-    const [productData, setProductData] = useState(null);
+    const [promocionesData, setPromocionesData] = useState(null);
     const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
     const navigate=useNavigate();
-    const [EstadoProd,setEstado]=useState('Inactivo');
+    const [EstadoPromocion,setEstadoPromocion]=useState('Inactivo');
     useEffect(() => {
-      obtenterDatosProductos();
+      obtenerDatosPromociones();
     }, []); // Se ejecuta solo una vez al montar el componente
   // Se ejecuta solo una vez al montar el componente
   
   
-    const obtenterDatosProductos = async () => {
+    const obtenerDatosPromociones = async () => {
       try {
         const response = await fetch(
-          `${apiurll}/api/CasaDelMarisco/TraerProductos`,
+          `${apiurll}/api/CasaDelMarisco/TraerPromociones`,
           {
             method: 'GET',
             // No es necesario incluir el body para una solicitud GET
@@ -42,8 +42,7 @@ export  function TablaPromociones (){
   
         if (response.ok) {
           const product1Data = await response.json();
-          setProductData(product1Data);
-          console.log(product1Data)
+          setPromocionesData(product1Data);
         } else {
           console.error('Error al obtener datos de los usuarios:', response.statusText);
         }
@@ -54,12 +53,12 @@ export  function TablaPromociones (){
   
 
     
-    const elimnarProducto=(idProducto)=>{ 
+    const elimnarProducto=(idPromocion)=>{ 
         const data= new FormData();
-        data.append("idProducto",idProducto);
-        data.append("Estado",EstadoProd);
+        data.append("idPromocion",idPromocion);
+        data.append("Estado",EstadoPromocion);
         fetch(
-        apiurll + "/api/CasaDelMarisco/CambiarEstadoProducto?idProducto=" + idProducto + "&Estado=" + EstadoProd,
+        apiurll + "/api/CasaDelMarisco/CambiarEstadoPromociones?idPromocion=" + idPromocion + "&Estado=" + EstadoPromocion,
         {
             method:'POST',
             body:data,
@@ -68,13 +67,13 @@ export  function TablaPromociones (){
         .then((res) => res.json())
         .then((result) => {
             console.log(result);
-            if (result === 'Producto actualizado') {
+            if (result === 'Cambiado') {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Registro Completo',
-                    text: 'Realizado con exito',
+                    title: 'Completado con exito',
+                    text: 'El estado se cambio',
                 });
-            obtenterDatosProductos();
+            obtenerDatosPromociones();
             } else {
                 Swal.fire({
                     icon: 'success',
@@ -99,7 +98,7 @@ export  function TablaPromociones (){
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["ID","Imagen", "Nombre","Descripcion", "Ingredientes","Precio", "Fecha de ingreso", "Categoria","Disponibilidad","Estado","Opciones"].map((el) => (
+                  {["ID","Nombre", "Fecha de Terminacion","IdProducto", "Descripcion","Fecha de Publicacion", "Descuento", "Estado","Imagen"].map((el) => (
                     <th
                       key={el}
                       className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -115,10 +114,10 @@ export  function TablaPromociones (){
                 </tr>
               </thead>
               <tbody>
-                {productData !== null && productData.map(
-                  ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad ,Estado}, key) => {
+                {promocionesData !== null && promocionesData.map(
+                  ({ idPromocion,Nombre, FechaDeFin,IdProducto, Descripcion, FechaPublicacion ,Descuento, Estado, Imagen}, key) => {
                     const className = `py-3 px-5 ${
-                      key === productData.length - 1
+                      key === promocionesData.length - 1
                         ? ""
                         : "border-b border-blue-gray-50"
                     }`;
@@ -131,52 +130,41 @@ export  function TablaPromociones (){
                                 color="blue-gray"
                                 className="font-semibold"
                               >
-                                {idProducto}
+                                {idPromocion}
                               </Typography>
                         </td>
-                        <td className={className}>
-                        
-                            <Avatar src={Imagen} size="md" variant='square' />
-                      
-                      
-                        </td>
+                     
                         <td className={className}>
                           <Typography className=" text-xl  font-semibold text-bold">
                             {Nombre}
                           </Typography>
                           
                         </td>
-                       
-                        <td className={className}>
-                        <Typography className="text-xl text-bold  font-normal leadig-7 min-w-[20rem]" >
-                            {Descripcion}
-                          </Typography>
-                        </td>
-                        <td className={className}>
-                          <Typography className=" text-xl text-bold min-w-[20rem]">
-                            {Ingredientes}
-                          </Typography>
-                        </td>
                         <td className={className}>
                           <Typography  variant="small"
-                              className="text-2xl font-normal text-bold">
-                             $ {Precio}
+                              className="text-xl text-bold">
+                             {FechaDeFin}
                           </Typography>
                       
                         </td>
                         <td className={className}>
                          <Typography className='text-xl text-bold'>
-                           {FechaIntroduccion}
+                           {IdProducto}
+                         </Typography>
+                        </td>
+                        <td className={className}>
+                         <Typography className='text-xl text-bold'>
+                           {Descripcion}
                          </Typography>
                         </td>
                         <td className={className} >
-                          <Typography className='text-xl text-center text-bold' >
-                            {(Categoria===1?'Platillo':'Bebida')}
+                          <Typography className='text-xl text-center text-bold'>
+                            {FechaPublicacion}
                           </Typography>
                         </td>
                         <td className={className} >
                           <Typography className='text-xl text-center text-bold'>
-                            {Disponibilidad}
+                            {Descuento}%
                           </Typography>
                         </td>
                         <td className={className} >
@@ -198,9 +186,7 @@ export  function TablaPromociones (){
                                 </MenuHandler>
                                 <MenuList>
                                   <div className="flex row items-start justify-start">
-                                    <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idProducto)} > Eliminar</Button>
-                                    <Button color="green" variant='text' className='text-md text-left' onClick={()=> navigate('/dashboard/editarproducto', { state: { idProducto } })}> Editar</Button>
-                                  </div>
+                                    <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idPromocion)} > Eliminar</Button>                                  </div>
                                 </MenuList>
                               </Menu>
                             </div>

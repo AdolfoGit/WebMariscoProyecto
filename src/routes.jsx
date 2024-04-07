@@ -16,6 +16,7 @@ import FormProducto from "./pages/dashboard/FormNuevoProducto";
 import EditarProducto from "./pages/dashboard/EditarProducto";
 import TablaPromociones from "./pages/dashboard/TablaPromociones";
 import AgregarPromocion from "./pages/dashboard/AgregarPromocion";
+import TablaEmpresa from "./pages/dashboard/TablaEmpresa";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -59,8 +60,13 @@ export const routes = [
         icon: <DocumentTextIcon {...icon} />,
         name: "Informes",
         path: "/informes",
-        element: <Notifications />,  
-         
+        element: <Notifications />,    
+      },
+      {
+        icon: <DocumentTextIcon {...icon} />,
+        name: "Empresa",
+        path: "/empresa",
+        element: <TablaEmpresa />,    
       },
     ],
   },
@@ -106,6 +112,10 @@ export const routes = [
       {
         path: "/agregarPromocion",
         element: <AgregarPromocion/>,         
+      },
+      {
+        path: "/empresa",
+        element: <TablaEmpresa/>,         
       },
     ],
   },
