@@ -51,7 +51,7 @@ export function Tables() {
 
       if (response.ok) {
         const userData1 = await response.json();
-        setUserData(userData);
+        setUserData(userData1);
         console.log(userData1);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
@@ -287,6 +287,7 @@ export function Tables() {
                             <div className="flex row items-start justify-start">
                               <Button color="red" variant='text' className='text-md text-left' onClick={()=>eliminarUser(idUsuario)}> Eliminar</Button>
                               <Button color="blue" variant='text' className='text-md text-left'onClick={()=>bloquearUser(idUsuario)}> Bloquear</Button>
+                              <Button color="orange" variant='text' className='text-md text-left'onClick={()=>desbloquearUser(idUsuario)}> Desloquear</Button>
                             </div>
                           </MenuList>
                         </Menu>
