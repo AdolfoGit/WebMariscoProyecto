@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import imagen from '../home/img/login.jpg';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
-import { MedidorSeguridad } from './MedidorDeSeguridad';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import imagen from "../home/img/login.jpg";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import { MedidorSeguridad } from "./MedidorDeSeguridad";
+import Swal from "sweetalert2";
 
 export default function Actualizar() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  //const apiurll ="http://localhost:5029/"
 
   const navigate = useNavigate();
 
@@ -26,8 +27,6 @@ export default function Actualizar() {
     validatePassword(password);
   };
 
-
-
   const togglePasswordVisibility2 = () => {
     setPasswordVisible2(!passwordVisible2);
   };
@@ -39,21 +38,21 @@ export default function Actualizar() {
   const handleBlur2 = () => {
     validatePassword2(password2);
   };
-  
 
-  const [password,setPassword]=useState('')
-  const [password2,setPassword2]=useState('')
+  const [password, setPassword] = useState("");
+  const [ip, setIp] = useState("");
 
-  const [passwordError, setPasswordError] = useState('');
-  const [passwordError2, setPasswordError2] = useState('');
+  const [password2, setPassword2] = useState("");
 
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordError2, setPasswordError2] = useState("");
 
   function checkPasswordStrength(password, minChar, level) {
     const lowcase = /[a-z]/.test(password);
     const uppcase = /[A-Z]/.test(password);
     const numbers = /\d/.test(password);
     const special = /[^a-zA-Z\d]/.test(password);
-  
+
     let passed = true;
     switch (level) {
       case 5:
@@ -79,78 +78,79 @@ export default function Actualizar() {
     }
     return passed;
   }
-  
 
   const validatePassword = (password) => {
-    if(password===''){
-      setPasswordError('no puede estar vacio')
+    if (password === "") {
+      setPasswordError("no puede estar vacio");
       return false;
-    }else{
-      if(password.length<8){
-        setPasswordError('minimo de 8 caracteres');
+    } else {
+      if (password.length < 8) {
+        setPasswordError("minimo de 8 caracteres");
         return false;
-      }else{ 
-        const passwordValidate= checkPasswordStrength(password,8,5);
-        if(passwordValidate){
-          setPasswordError('')
+      } else {
+        const passwordValidate = checkPasswordStrength(password, 8, 5);
+        if (passwordValidate) {
+          ObtenerIp();
+          setPasswordError("");
           return true;
-        }else{
-          setPasswordError('Debe tener almenos una mayuscula, minuscula, numero y caracter especial')
+        } else {
+          setPasswordError(
+            "Debe tener almenos una mayuscula, minuscula, numero y caracter especial"
+          );
           return false;
-
         }
       }
     }
   };
 
-  const validatePassword2=(password2)=>{
-    if(password2===password){
-      setPasswordError2('')
-      return true;  
-
-    }else{
-      setPasswordError2('no son iguales las contraseñas')
+  const validatePassword2 = (password2) => {
+    if (password2 === password) {
+      setPasswordError2("");
+      return true;
+    } else {
+      setPasswordError2("no son iguales las contraseñas");
       return false;
     }
   };
-
-
+  function json(url) {
+    return fetch(url).then((res) => res.json());
+  }
 
   const data = new FormData();
 
-  const storedEmail = JSON.parse(localStorage.getItem('userData')).email; // Obtener el correo almacenado en localStorage
-
-  data.append('Correo', storedEmail);
-  data.append('Contrasena', password);
-
+  const storedEmail = JSON.parse(localStorage.getItem("userData")).email; // Obtener el correo almacenado en localStorage
+  
+  data.append("Correo", storedEmail);
+  data.append("Contrasena", password);
+  function ObtenerIp() {
+    let apiKey = "8c308d0e8f217c1a489e15cb1998c34ffcd76bcead2a2851c3878299";
+    json(`https://api.ipdata.co?api-key=${apiKey}`).then((data) => {
+      setIp(data.ip);
+    });
+  }
   const handleSubmit = (event) => {
+   
+    data.append("ip", ip);
     event.preventDefault();
 
-      fetch(
-        apiurll +
-          'api/CasaDelMarisco/RecuperarContrasena',
-        {
-          method: 'POST',
-          body: data,
-        }
-      )
-        .then((res) => res.json())
-        .then((result) => {
-          if (result === 'Contraseña modificada correctamente') {
-            // Eliminar el correo almacenado en localStorage
-              localStorage.removeItem('userData');
+    fetch(apiurll + "api/CasaDelMarisco/RecuperarContrasena", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result === "Contraseña modificada correctamente") {
+          localStorage.removeItem("userData");
 
-            Swal.fire({
-              icon: 'success',
-              title: 'Cambio de contraseña correcta',
-              text: 'Ahora puede entrar para navegar y sorprenderse.',
-            });  
-            navigate('/login');
-          } else if (result === 'Error en las credenciales') {
-            
-          }
-        });
-  
+          Swal.fire({
+            icon: "success",
+            title: "Cambio de contraseña correcta",
+            text: "Ahora puede entrar para navegar y sorprenderse.",
+          });
+          navigate("/login");
+        } else if (result === "Error en las credenciales") {
+        }
+      });
   };
 
   return (
@@ -161,43 +161,44 @@ export default function Actualizar() {
 
       <div className="registro-formLogin">
         <p className="loginTitulo">Actualizar Contraseña</p>
-        <label className="loginText">
-          Ingrese su nueva  contraseña
-        </label>
+        <label className="loginText">Ingrese su nueva contraseña</label>
         <form onSubmit={handleSubmit}>
-           <label htmlFor="password" className='RegistroLabel'>Contraseña :</label>
-         <div className="password-input-container">
-          <input
-            type={passwordVisible ? 'text' : 'password'}
-            id="password"
-            name="password"
-            value={password}
-            required
-            size={35}
-            onChange={handlePasswordChange}
-            onBlur={handleBlur}
-            className={passwordError ? 'input-error' : ''}
-            
-          />
-          <button
-            type="button"
-            onClick={togglePasswordVisibility}
-            class="btn btn-light"
-          >
-            {passwordVisible ? (
-              <VisibilityOutlinedIcon fontSize="small" />
-            ) : (
-              <VisibilityOffOutlinedIcon fontSize="small" />
-            )}
-          </button>
-        </div>
-          {passwordError && <p className="error-message">{passwordError}</p>}
-          <MedidorSeguridad password={password}/>
-
-          <label htmlFor="password2" className='RegistroLabel'>Repetir contraseña :</label>
+          <label htmlFor="password" className="RegistroLabel">
+            Contraseña :
+          </label>
           <div className="password-input-container">
             <input
-              type={passwordVisible2 ? 'text' : 'password'}
+              type={passwordVisible ? "text" : "password"}
+              id="password"
+              name="password"
+              value={password}
+              required
+              size={35}
+              onChange={handlePasswordChange}
+              onBlur={handleBlur}
+              className={passwordError ? "input-error" : ""}
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              class="btn btn-light"
+            >
+              {passwordVisible ? (
+                <VisibilityOutlinedIcon fontSize="small" />
+              ) : (
+                <VisibilityOffOutlinedIcon fontSize="small" />
+              )}
+            </button>
+          </div>
+          {passwordError && <p className="error-message">{passwordError}</p>}
+          <MedidorSeguridad password={password} />
+
+          <label htmlFor="password2" className="RegistroLabel">
+            Repetir contraseña :
+          </label>
+          <div className="password-input-container">
+            <input
+              type={passwordVisible2 ? "text" : "password"}
               id="password2"
               name="password2"
               value={password2}
@@ -205,7 +206,7 @@ export default function Actualizar() {
               size={35}
               onChange={handlePasswordChange2}
               onBlur={handleBlur2}
-              className={passwordError2 ? 'input-error' : ''}
+              className={passwordError2 ? "input-error" : ""}
             />
             <button
               type="button"
@@ -218,9 +219,9 @@ export default function Actualizar() {
                 <VisibilityOffOutlinedIcon fontSize="small" />
               )}
             </button>
-         </div>
+          </div>
           {passwordError2 && <p className="error-message">{passwordError2}</p>}
-      
+
           <br />
 
           <button className="btn btn-warning text2" type="submit">

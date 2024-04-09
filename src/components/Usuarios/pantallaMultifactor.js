@@ -26,6 +26,12 @@ export default function Bienvenida() {
   }, []); // Se ejecuta solo al montar el componente
 
   const handleSubmit = async (event) => {
+    //  let apiKey = '8c308d0e8f217c1a489e15cb1998c34ffcd76bcead2a2851c3878299';
+    // json(`https://api.ipdata.co?api-key=${apiKey}`).then(data => {
+    //  console.log(data.ip);
+    //  console.log(data.city);
+    //  console.log(data.country_code);
+    //   });
     event.preventDefault();
 
 
@@ -38,6 +44,7 @@ export default function Bienvenida() {
     const storedEmail = JSON.parse(localStorage.getItem('userData')).email; // Obtener el correo almacenado en localStorage
     data.append('Token', token);
     data.append('Correo', storedEmail); // Agregar el correo almacenado al FormData
+    //data.append('IP', data.ip); // Agregar el correo almacenado al FormData
 
     try {
       const result = await fetch(
