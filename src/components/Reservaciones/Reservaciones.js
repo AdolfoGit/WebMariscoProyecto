@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
-
+import {Button} from '@material-tailwind/react'
 const Reservaciones = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   //const apiurll = "http://localhost:5029";
@@ -468,7 +468,7 @@ const Reservaciones = () => {
                   class="btn btn-primary"
                   onClick={CancelarReservacion}
                 >
-                  Save changes
+                Cancelar reserva
                 </button>
               </div>
             </form>
