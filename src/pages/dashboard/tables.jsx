@@ -32,6 +32,7 @@ export function Tables() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const [Estado,setEstado]=useState('Ofline');
   const [EstadoB,setEstadoB]=useState('Bloqueado');
+  const [EstadoC,setEstadoC]=useState('Activo');
   const navigate=useNavigate();
 
   useEffect(() => {
@@ -49,9 +50,9 @@ export function Tables() {
       );
 
       if (response.ok) {
-        const userData = await response.json();
-        setUserData(userData);
-        console.log(userData);
+        const userData1 = await response.json();
+        setUserData(userData1);
+        console.log(userData1);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }
@@ -133,6 +134,40 @@ export function Tables() {
 
     fetch(
       apiurll + "api/CasaDelMarisco/CambiarEstadoUsuario?idUsuario=" + idUsuarioInt+ "&Estado="+ EstadoB,
+      {
+          method: "POST",
+          body: data,
+      }
+    )
+    .then((res) => res.json())
+    .then((result) => {
+        console.log(result);
+        if (result === 'Icono actualizado') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro Completo',
+                text: 'Realizado con exito',
+            });
+            obtenerDatosUsuarios();
+        } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro incompleto',
+                text: 'Ha ocurrido un error verifique los datos',
+            });
+        }
+    })
+  }
+
+  const desbloquearUser=(idUser)=>{
+
+    const idUsuarioInt = parseInt(idUser, 10);
+    const data = new FormData();
+    data.append("idUsuario",idUsuarioInt);
+    data.append("Estado",EstadoC);
+
+    fetch(
+      apiurll + "api/CasaDelMarisco/CambiarEstadoUsuario?idUsuario=" + idUsuarioInt+ "&Estado="+ EstadoC,
       {
           method: "POST",
           body: data,
@@ -252,6 +287,7 @@ export function Tables() {
                             <div className="flex row items-start justify-start">
                               <Button color="red" variant='text' className='text-md text-left' onClick={()=>eliminarUser(idUsuario)}> Eliminar</Button>
                               <Button color="blue" variant='text' className='text-md text-left'onClick={()=>bloquearUser(idUsuario)}> Bloquear</Button>
+                              <Button color="orange" variant='text' className='text-md text-left'onClick={()=>desbloquearUser(idUsuario)}> Desloquear</Button>
                             </div>
                           </MenuList>
                         </Menu>
