@@ -3,11 +3,36 @@ import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import {Chip} from "@material-tailwind/react";
+
 const Reservaciones = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   //const apiurll = "http://localhost:5029";
   const navigate = useNavigate();
 
+  const estadoColor = (estado) => {
+    let color = '';
+    if (estado === 'Agendada') {
+      color = "green"; 
+    } else if (estado === 'Cancelada') {
+      color = 'red';
+    } else if(estado==='Pendiente'){
+      color = 'blue';
+    }
+    return color;
+  };
+
+  const estadoTexto = (estado) => {
+    let texto = '';
+    if (estado === 'Agendada') {
+      texto = "Agendada"; 
+    } else if (estado === 'Pendiente') {
+      texto = 'Pendiente';
+    } else if (estado==='Cancelada'){
+      texto = 'Cancelada';
+    }
+    return texto;
+  };
   const { user, logoutUser } = useUser();
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
@@ -31,9 +56,15 @@ const Reservaciones = () => {
   const [PagoError, setPagoError] = useState("");
   const [InformacionAdicionalError, setInformacionAdicionalError] =
     useState("");
+    const [EstadoN, setEstadoN] = useState("Pendiente");
+    const [Correo, setCorreo] = useState("Pendiente");
+
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
   const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
-  const handleCancelReservation = (idReservacion) => {
+
+  const handleCancelReservation = (idReservacion, Correo) => {
+    setCorreo(Correo);
     setIdReservacion(idReservacion);
   };
 
@@ -89,14 +120,17 @@ const Reservaciones = () => {
   const CancelarReservacion = () => {
     const data = new FormData();
     data.append("idReservacion", idReservacion);
+    data.append("Estado", EstadoN);
+    data.append("Correo", Correo);
+
     try {
-      fetch(apiurll + "api/CasaDelMarisco/CancelarReservacion", {
+      fetch(apiurll + "api/CasaDelMarisco/CambiarEstadoReservacion", {
         method: "POST",
         body: data,
       })
         .then((res) => res.json())
         .then((result) => {
-          if (result === "Reservación cancelada") {
+          if (result === "Reservacion pendiente") {
             Swal.fire({
               icon: "success",
               title: "La cancelación ha sido exitosa",
@@ -399,15 +433,24 @@ const Reservaciones = () => {
                 <div>
                   <h3 className="card-text m-2">Fecha: {reservacion.Fecha}</h3>
                   <h3 className="card-text m-2">
-                    Número de mesa: {reservacion.NMesa}
+                    Número de mesa: {reservacion.NMesa} 
                   </h3>
+                    <h3 className="card-text m-2">
+                      Estado
+                    </h3>
+                  <Chip
+                        variant="gradient"
+                        color={estadoColor(reservacion.Estado)}
+                        value={estadoTexto(reservacion.Estado)}
+                        className="py-0.5 px-2 text-[10px] font-medium w-40 mb-3"
+                      />
                   <Button
                     type="button"
                     color="orange"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal2"
                     onClick={() =>
-                      handleCancelReservation(reservacion.idReservacion)
+                      handleCancelReservation(reservacion.idReservacion, reservacion.CorreoElectronico)
                     }
                   >
                     Cancelar reserva
