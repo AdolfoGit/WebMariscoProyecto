@@ -1,22 +1,21 @@
 import {
   HomeIcon,
-  UserCircleIcon,
   TableCellsIcon,
   InformationCircleIcon,
-  ServerStackIcon,
-  RectangleStackIcon,NewspaperIcon,GiftIcon,DocumentTextIcon
+  NewspaperIcon,GiftIcon,DocumentTextIcon
 } from "@heroicons/react/24/solid";
 import { Home } from "./pages/dashboard/home";
 import { Tables, } from "./pages/dashboard/tables";
 import { Profile} from "./pages/dashboard/profile";
 import { AgregarProductos} from "./pages/dashboard/AgregarProductos";
 import {  Notifications } from "./pages/dashboard/notifications";
-import { ProductionQuantityLimits } from "@mui/icons-material";
 import FormProducto from "./pages/dashboard/FormNuevoProducto";
 import EditarProducto from "./pages/dashboard/EditarProducto";
 import TablaPromociones from "./pages/dashboard/TablaPromociones";
 import AgregarPromocion from "./pages/dashboard/AgregarPromocion";
 import TablaEmpresa from "./pages/dashboard/TablaEmpresa";
+import EditarEmpresa from "./pages/dashboard/EditarEmpresa";
+import Reportes from "./pages/dashboard/Reportes";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -52,15 +51,9 @@ export const routes = [
       },
       {
         icon: <InformationCircleIcon {...icon} />,
-        name: "Notificaciones",
-        path: "/notificaciones",
-        element: <Notifications />,   
-      },
-      {
-        icon: <DocumentTextIcon {...icon} />,
-        name: "Informes",
-        path: "/informes",
-        element: <Notifications />,    
+        name: "Reportes",
+        path: "/Reportes",
+        element: <Reportes />, 
       },
       {
         icon: <DocumentTextIcon {...icon} />,
@@ -94,12 +87,8 @@ export const routes = [
         element: <TablaPromociones />,
       },
       {    
-        path: "/notificaciones",
-        element: <Notifications />,   
-      },
-      {  
-        path: "/informes",
-        element: <Notifications />,      
+        path: "/Reportes",
+        element: <Reportes />,   
       },
       {
         path: "/insertarproducto",
@@ -116,6 +105,10 @@ export const routes = [
       {
         path: "/empresa",
         element: <TablaEmpresa/>,         
+      },
+      {
+        path: "/editarempresa",
+        element: <EditarEmpresa/>,         
       },
     ],
   },

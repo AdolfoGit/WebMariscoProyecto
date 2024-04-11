@@ -135,7 +135,7 @@ export function TablaEmpresa(){
                                 </MenuHandler>
                                 <MenuList>
                                   <div className="flex row items-start justify-start">
-                                    <Button color="red" variant='text' className='text-md text-left' > Editar</Button>                                  </div>
+                                    <Button color="red" variant='text' className='text-md text-left' onClick={()=> navigate('/dashboard/editarempresa')}> Editar</Button>                                  </div>
                                 </MenuList>
                               </Menu>
                             </div>
