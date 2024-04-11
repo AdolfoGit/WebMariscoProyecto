@@ -242,7 +242,7 @@ export function Reservaciones() {
                       </Typography>
                     </td>
                     <td className={className}>
-                      <div className="flex items-start gap-4 min-w-[20rem]">
+                      <div className="flex items-start gap-4 min-w-[10rem]">
                         <div className="flex-1">
                           <Typography
                             variant="h5"
