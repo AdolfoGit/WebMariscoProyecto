@@ -147,13 +147,12 @@ export default function Login() {
   function ObtenerIp() {
     let apiKey = "8c308d0e8f217c1a489e15cb1998c34ffcd76bcead2a2851c3878299";
     json(`https://api.ipdata.co?api-key=${apiKey}`).then((data) => {
-      console.log(data.ip);
       setIp(data.ip);
-      console.log(data.city);
-      console.log(data.country_code);
+      console.log(ip);
     });
   }
   useEffect(() => {
+    ObtenerIp();
     const start = () => {
       gapi.auth2.init({
         clientId: ClientID,
@@ -166,39 +165,51 @@ export default function Login() {
     const email = response.profileObj.email;
     const data = new FormData();
     data.append("Correo", email);
+    data.append("ip", ip);
+
     fetch(apiurll + "api/CasaDelMarisco/VerificarCorreo", {
       method: "POST",
       body: data,
-    })
-      .then((res) => res.json())
-      .then(async (result) => {
-        data.append("ip", ip);
-        if (result === "Correo Existe") {
-          fetch(apiurll + "api/CasaDelMarisco/LoginOauth", {
-            method: "POST",
-            body: data,
-          });
-
+  })
+  .then((res) => res.json())
+  .then(async (result) => {
+      if (result === "Correo Existe") {
           const resultado = await obtenerDatosUsuario(email);
-          console.log(resultado);
-          loginUser(resultado);
-          if (resultado.Rol === 2) {
-            Swal.fire({
-              icon: "success",
-              title: "Login de administrador",
-              text: "Cuidado, eres administrador. Puedes modificar datos de la página, siempre con cuidado.",
-            });
-            navigate("/dashboard/home");
-          } else {
-            navigate("/");
-          }
-          console.log(resultado);
-        } else {
-        }
-      });
-    console.log(response);
-    //console.log(response.profileObj.email)
-  };
+
+          // Segunda llamada fetch
+          fetch(apiurll + "api/CasaDelMarisco/LoginOauth", {
+              method: "POST",
+              body: data,
+          })
+          .then((res) => res.json())
+          .then((loginResult) => {
+              loginUser(resultado);
+              if (resultado.Rol === 2) {
+                  Swal.fire({
+                      icon: "success",
+                      title: "Login de administrador",
+                      text: "Cuidado, eres administrador. Puedes modificar datos de la página, siempre con cuidado.",
+                  });
+                  navigate("/dashboard/home");
+              } else {
+                  navigate("/");
+              }
+              console.log(loginResult);
+          })
+          .catch((error) => {
+              console.error("Error en la segunda llamada fetch:", error);
+          });
+      } else {
+          // Aquí puedes manejar el caso en el que el correo no existe
+      }
+  })
+  .catch((error) => {
+      console.error("Error en la primera llamada fetch:", error);
+  });
+
+  console.log(response);
+};
+
 
   const onFailure = () => {
     console.log("Algo salio mal");
