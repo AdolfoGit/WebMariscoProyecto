@@ -59,9 +59,9 @@ const Reservaciones = () => {
     const [EstadoN, setEstadoN] = useState("Pendiente");
     const [Correo, setCorreo] = useState("Pendiente");
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
+    
+    const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
+    const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const handleCancelReservation = (idReservacion, Correo) => {
     setCorreo(Correo);

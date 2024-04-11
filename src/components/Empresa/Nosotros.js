@@ -1,19 +1,48 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Vision from '../home/img/Vision.jpg'
+
 const links = [
-    { name: 'Open roles', href: '#' },
-    { name: 'Internship program', href: '#' },
-    { name: 'Our values', href: '#' },
-    { name: 'Meet our leadership', href: '#' },
-  ]
+  { name: 'Open roles', href: '#' },
+  { name: 'Internship program', href: '#' },
+  { name: 'Our values', href: '#' },
+  { name: 'Meet our leadership', href: '#' },
+]
   const stats = [
     { name: 'Equipo de cocina', value: '20' },
     { name: 'Meseros', value: '+50' },
     { name: 'Mesas', value: '15' },
     { name: 'Variedad de Plarillos', value: '+200' },
   ]
-  
+ 
   export default function Mision() {
+    const [reservacionesData, setReservacionesData] = useState(null);
+    const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  
+    const DatosEmpresa= async()=>{
+      try {
+        const response = await fetch(
+          `${apiurll}/api/CasaDelMarisco/TraerDatosEmpresa`,
+          {
+            method: 'GET',
+            // No es necesario incluir el body para una solicitud GET
+          }
+        );
+  
+        if (response.ok) {
+          const reservaciones = await response.json();
+          setReservacionesData(reservaciones);
+          console.log(reservaciones);
+        } else {
+          console.error('Error al obtener datos de los usuarios:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error al obtener datos del usuario:', error);
+      }
+    }
+    useEffect(() => {
+  
+      DatosEmpresa();
+    }, []);
     return (
       <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-30">
         <img
@@ -49,7 +78,7 @@ const links = [
           <div className="mx-auto max-w-7xl lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">Misión</h2>
             <p className="mt-6 text-xl leading-8 text-gray-300">
-                En la Casa del Marsico, nuestra misión es crear un ambiente acogedor y enriquecedor donde cada persona se sienta valorada y empoderada para alcanzar su máximo potencial. Nos comprometemos a brindar experiencias excepcionales que promuevan el crecimiento personal, la conexión comunitaria y el amor por el aprendizaje. A través de nuestro compromiso con la excelencia, la creatividad y la colaboración, aspiramos a ser líderes en la promoción del bienestar integral y el desarrollo humano en nuestra comunidad y más allá.
+             {reservacionesData.Mision}
             </p>
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
@@ -88,8 +117,34 @@ const links = [
           <div className="mx-auto max-w-7xl lg:mx-0">
             <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">Visión</h2>
             <p className="mt-6 text-xl leading-8 text-gray-300">
-                 En La Casa del Marisco, nuestra visión es ser reconocidos como el destino gastronómico de referencia para los amantes de los mariscos en nuestra comunidad y más allá. Nos esforzamos por ofrecer una experiencia culinaria excepcional que deleite a nuestros clientes con la frescura, calidad y autenticidad de nuestros platos de mariscos.
+              {reservacionesData.Vision}
             </p>
+          </div>
+          <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
+            <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+              {links.map((link) => (
+                <a key={link.name} href={link.href}>
+                  {link.name} <span aria-hidden="true">&rarr;</span>
+                </a>
+              ))}
+            </div>
+           
+          </div>
+        </div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl lg:mx-0">
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">Horario</h2>
+            <h3 className="mt-6 text-4xl leading-8 text-gray-300">
+              {reservacionesData.Horario}
+            </h3>
+            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">Telefono</h2>
+            <p className="mt-6 text-4xl leading-8 text-gray-300">
+              {reservacionesData.Telefono}
+              </p>
+              <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">Dirección</h2>
+            <p className="mt-6 text-4xl leading-8 text-gray-300">
+              {reservacionesData.Direccion}
+              </p>
           </div>
           <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
             <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">

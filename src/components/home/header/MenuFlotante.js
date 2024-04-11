@@ -8,7 +8,6 @@ function classNames(...classes) {
 
 const sortOptions = [
   { name: 'Mision/Vision', href: '/Nosotros', current: true },
-  { name: 'Equipo de Trabajo', href: '#', current: false },
 ]
 
 
