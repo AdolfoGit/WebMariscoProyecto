@@ -2,7 +2,7 @@ import {
   HomeIcon,
   TableCellsIcon,
   InformationCircleIcon,
-  NewspaperIcon,GiftIcon,DocumentTextIcon
+  NewspaperIcon,GiftIcon,DocumentTextIcon,ChartBarIcon
 } from "@heroicons/react/24/solid";
 import { Home } from "./pages/dashboard/home";
 import { Tables, } from "./pages/dashboard/tables";
@@ -52,13 +52,10 @@ export const routes = [
         element: <TablaPromociones />,
       },
       {
-        icon: <InformationCircleIcon {...icon} />,
+        icon: <ChartBarIcon {...icon} />,
         name: "Reportes",
         path: "/Reportes",
         element: <Reportes />, 
-        name: "Notificaciones",
-        path: "/notificaciones",
-        element: <Notifications />,   
       },
       {
         icon: <DocumentTextIcon {...icon} />,
@@ -67,7 +64,7 @@ export const routes = [
         element: <Matematicas />,    
       },
       {
-        icon: <DocumentTextIcon {...icon} />,
+        icon: <HomeIcon {...icon} />,
         name: "Empresa",
         path: "/empresa",
         element: <TablaEmpresa />,    
@@ -104,10 +101,8 @@ export const routes = [
         element: <TablaPromociones />,
       },
       {    
-        path: "/Reportes",
-        element: <Reportes />,   
-        path: "/notificaciones",
-        element: <Notifications />,   
+        path: "/reportes",
+        element: <Reportes />,  
       },
       {  
         path: "/matematicas",
