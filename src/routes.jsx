@@ -18,6 +18,7 @@ import TablaPromociones from "./pages/dashboard/TablaPromociones";
 import AgregarPromocion from "./pages/dashboard/AgregarPromocion";
 import TablaEmpresa from "./pages/dashboard/TablaEmpresa";
 import Matematicas from "./pages/dashboard/matematicas";
+import Reservaciones from "./pages/dashboard/reservaciones";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -69,6 +70,12 @@ export const routes = [
         path: "/empresa",
         element: <TablaEmpresa />,    
       },
+      {
+        icon: <DocumentTextIcon {...icon} />,
+        name: "Reservaciones",
+        path: "/reservaciones",
+        element: <Reservaciones />,    
+      },
     ],
   },
   {
@@ -117,6 +124,9 @@ export const routes = [
       {
         path: "/empresa",
         element: <TablaEmpresa/>,         
+      },{
+        path: "/reservaciones",
+        element: <Reservaciones/>,         
       },
     ],
   },
