@@ -20,9 +20,8 @@ import { projectsTableData } from "../../data/projects-table-data";
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { user } from '@nextui-org/react';
-import ReservacionesPendientes from './Reservacionespendientes';
 
-export function Reservaciones() {
+export function ReservacionesPendientes() {
   
 
   const [active, setActive] = useState(1);
@@ -43,7 +42,7 @@ export function Reservaciones() {
   const obtenerDatosUsuarios = async () => {
     try {
       const response = await fetch(
-        `${apiurll}/api/CasaDelMarisco/ObtenerReservaciones`,
+        `${apiurll}/api/CasaDelMarisco/ObtenerReservacionesPendientes`,
         {
           method: 'GET',
           // No es necesario incluir el body para una solicitud GET
@@ -305,7 +304,7 @@ export function Reservaciones() {
                           </MenuHandler>
                           <MenuList>
                             <div className="flex row items-start justify-start">
-                            <Button color="red" variant='text' className='text-md text-left' onClick={()=>cancelarReservacion(idReservacion, CorreoElectronico)}> Cancelar</Button>
+                              <Button color="red" variant='text' className='text-md text-left' onClick={()=>cancelarReservacion(idReservacion, CorreoElectronico)}> Cancelar</Button>
                               <Button color="blue" variant='text' className='text-md text-left'onClick={()=>noCancelar(idReservacion, CorreoElectronico )}> No cancelar</Button>
                             </div>
                           </MenuList>
@@ -345,9 +344,9 @@ export function Reservaciones() {
         </CardBody>
 
       </Card>
-      <ReservacionesPendientes/>
+      
     </div>
   );
 }
 
-export default Reservaciones;
+export default ReservacionesPendientes;
