@@ -31,8 +31,7 @@ export function Matematicas() {
     { Semana: 10, Fecha: "09-03-2024", Consumo: 51 },
   ];
   const semana2 = [
-    { Semana: 1, Fecha: "06-01-2024" },
-    { Semana: 2, Fecha: "13-01-2024" },
+
     { Semana: 3, Fecha: "20-01-2024" },
     { Semana: 4, Fecha: "27-01-2024" },
     { Semana: 5, Fecha: "03-02-2024" },
@@ -315,7 +314,7 @@ export function Matematicas() {
             <option value="">Seleccione...</option>
             {semana2.map((semana) => (
               <option key={semana.Semana} value={semana.Semana}>
-                {semana.Semana}
+                {semana.Fecha}
               </option>
             ))}
           </select>
