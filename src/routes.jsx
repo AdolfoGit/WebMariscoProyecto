@@ -17,6 +17,7 @@ import EditarProducto from "./pages/dashboard/EditarProducto";
 import TablaPromociones from "./pages/dashboard/TablaPromociones";
 import AgregarPromocion from "./pages/dashboard/AgregarPromocion";
 import TablaEmpresa from "./pages/dashboard/TablaEmpresa";
+import Matematicas from "./pages/dashboard/matematicas";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -58,9 +59,9 @@ export const routes = [
       },
       {
         icon: <DocumentTextIcon {...icon} />,
-        name: "Informes",
-        path: "/informes",
-        element: <Notifications />,    
+        name: "Matematicas",
+        path: "/matematicas",
+        element: <Matematicas />,    
       },
       {
         icon: <DocumentTextIcon {...icon} />,
@@ -98,8 +99,8 @@ export const routes = [
         element: <Notifications />,   
       },
       {  
-        path: "/informes",
-        element: <Notifications />,      
+        path: "/matematicas",
+        element: <Matematicas />,   
       },
       {
         path: "/insertarproducto",
