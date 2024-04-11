@@ -100,47 +100,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
                   </NavLink>
                 </li>
               ))}
-             <li className="mx-3.5 mt-2 mb-2">
-                  <hr className="mb-3"/>
-                <Typography
-                  variant="small"
-                  color={sidenavType === "dark" ? "white" : "blue-gray"}
-                  className="font-black uppercase opacity-75 text-2xl"
-                >
-                  Opciones
-                </Typography>
-           
-              </li>
-              <li>
-                 <NavLink to='/login'>
-                    {({ isActive }) => (
-                      <Button
-                        onClick={()=>cerrarSesion()}
-                        variant={isActive ? "gradient" : "text"}
-                        color={
-                          isActive
-                            ? "red-300"
-                            : sidenavType === "green"
-                            ? "orange"
-                            : "blue-gray"
-                        }
-                        className="flex items-center justify-between px-11 capitalize"
-                        fullWidth
-                      >
-                        <div className="flex items-center gap-4">
-                        <HomeIcon {...icon} />
-                          <Typography
-                            color="inherit"
-                            className="font-medium capitalize text-3xl"
-                          >
-                            Cerrar Sesion
-                          </Typography>
-                        </div>
-                      </Button>
-                    )}
-                  </NavLink>
-               
-              </li>
+          
           </ul>
           
         ))}

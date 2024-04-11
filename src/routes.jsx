@@ -123,7 +123,8 @@ export const routes = [
       {
         path: "/empresa",
         element: <TablaEmpresa/>,         
-      },{
+      },
+      {
         path: "/reservaciones",
         element: <Reservaciones/>,         
       },

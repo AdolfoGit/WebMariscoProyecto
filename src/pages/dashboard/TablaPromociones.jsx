@@ -98,7 +98,7 @@ export  function TablaPromociones (){
             <table className="w-full min-w-[640px] table-auto">
               <thead>
                 <tr>
-                  {["ID","Nombre", "Fecha de Terminacion","IdProducto", "Descripcion","Fecha de Publicacion", "Descuento", "Estado","Imagen"].map((el) => (
+                  {["ID",'Imagen',"Nombre", "Fecha de Terminacion","IdProducto", "Descripcion","Fecha de Publicacion", "Descuento", "Estado","Imagen"].map((el) => (
                     <th
                       key={el}
                       className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -132,6 +132,9 @@ export  function TablaPromociones (){
                               >
                                 {idPromocion}
                               </Typography>
+                        </td>
+                        <td className={className}>
+                          <Avatar src={Imagen}></Avatar>
                         </td>
                      
                         <td className={className}>
