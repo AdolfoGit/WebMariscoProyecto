@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
-
+import { Button } from "@material-tailwind/react";
 const Reservaciones = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   //const apiurll = "http://localhost:5029";
@@ -401,9 +401,9 @@ const Reservaciones = () => {
                   <h3 className="card-text m-2">
                     Número de mesa: {reservacion.NMesa}
                   </h3>
-                  <button
+                  <Button
                     type="button"
-                    class="btn btn-danger"
+                    color="orange"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal2"
                     onClick={() =>
@@ -411,7 +411,7 @@ const Reservaciones = () => {
                     }
                   >
                     Cancelar reserva
-                  </button>
+                  </Button>
                 </div>
               </div>
               <div>
