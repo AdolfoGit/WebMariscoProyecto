@@ -111,6 +111,35 @@ export function Matematicas() {
       setTiempo1(parseInt(semanaEncontrada.Semana));
     }
   };
+  const calcularRsAnteriores = () => {
+    const rsAnteriores = [];
+
+    for (let i = tiempo2 + 1; i < tiempo3; i++) {
+      const k = Math.log(consumo2 / consumo1);
+      const r = consumo1 * Math.exp(k * i);
+
+      rsAnteriores.push(parseFloat(r.toFixed(4)));
+    }
+
+    return rsAnteriores;
+  };
+  const calcularRsAnteriores2 = () => {
+    const rsAnteriores = [];
+
+    for (let i = tiempo2 + 1; i < tiempo3; i++) {
+      const k = Math.log(consumo2 / consumo1);
+      const r = consumo1 * Math.exp(k * i);
+      const semanaEncontrada = semana2.find((item) => item.Semana === i);
+      const fecha = semanaEncontrada ? semanaEncontrada.Fecha : "";
+      rsAnteriores.push({
+        semana: i,
+        fecha: fecha,
+        r: parseFloat(r.toFixed(4)),
+      });
+    }
+
+    return rsAnteriores;
+  };
 
   const calcularK = () => {
     console.log(tiempo1);
@@ -119,9 +148,9 @@ export function Matematicas() {
     console.log(consumo1);
     console.log(consumo2);
 
-    const k = Math.log(consumo2 / consumo1) / (tiempo2 - tiempo1);
+    const k = Math.log(consumo2 / consumo1);
 
-    const r = consumo1 * Math.exp(k * (tiempo3 - tiempo1));
+    const r = consumo1 * Math.exp(k * tiempo3);
 
     console.log("k =", k.toFixed(4)); // Mostrar el valor de k con cuatro decimales
     console.log("r =", r.toFixed(4)); // Mostrar el valor de k con cuatro decimales
@@ -145,45 +174,44 @@ export function Matematicas() {
       setResultadoC("");
     }
   };
+
   React.useEffect(() => {
-    const ctx = document.getElementById('grafico').getContext('2d');
+    const ctx = document.getElementById("grafico").getContext("2d");
+
+    const data = [consumo1, consumo2, ...calcularRsAnteriores(), resultadoC];
+
     const myChart = new Chart(ctx, {
-      type: 'line', // Cambiamos el tipo de gráfico a "line"
+      type: "line",
       data: {
-        datasets: [{
-          label: 'Puntos',
-          data: [
-            { x: tiempo1, y: consumo1 },
-            { x: tiempo2, y: consumo2 },
-            { x: tiempo3, y: resultadoC }
-          ],
-          fill: false, // No rellenamos el área bajo la línea
-          borderColor: 'rgba(255, 99, 132, 1)', // Color de la línea
-          borderWidth: 2, // Grosor de la línea
-          pointRadius: 5, // Tamaño de los puntos
-          pointBackgroundColor: 'rgba(255, 99, 132, 1)', // Color de los puntos
-          pointBorderColor: 'rgba(255, 99, 132, 1)', // Borde de los puntos
-          pointHoverRadius: 7 // Tamaño de los puntos al pasar el ratón
-        }]
+        labels: [tiempo1, tiempo2, ...Array(data.length - 2).fill(""), tiempo3],
+        datasets: [
+          {
+            label: "Consumo",
+            data: data,
+            fill: false,
+            borderColor: "rgba(75, 192, 192, 1)",
+            tension: 0.1,
+          },
+        ],
       },
       options: {
         scales: {
           x: {
             title: {
               display: true,
-              text: 'Número de semana'
+              text: "Número de semana",
             },
-            beginAtZero: true
+            beginAtZero: true,
           },
           y: {
             title: {
               display: true,
-              text: 'Consumo'
+              text: "Consumo",
             },
-            beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+          },
+        },
+      },
     });
 
     // Limpia el gráfico cuando el componente se desmonta
@@ -202,6 +230,8 @@ export function Matematicas() {
               id="semanaInicialSelect"
               value={semanaInicial}
               onChange={handleSemanaInicialChange}
+              className="form-select text-2xl"
+
             >
               <option value="">Seleccione...</option>
               {semanas.map((semana) => (
@@ -210,19 +240,22 @@ export function Matematicas() {
                 </option>
               ))}
             </select>
-
-            <label>Fecha:</label>
-            {fechaSeleccionada && (
-              <div>
-                <label>{fechaSeleccionada}</label>
-              </div>
-            )}
-            <label>Consumo:</label>
-            {consumoSeleccionado && (
-              <div>
-                <label>{consumoSeleccionado} Kg</label>
-              </div>
-            )}
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Semana</th>
+                  <th>Fecha</th>
+                  <th>Consumo (Kg)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{semanaInicial}</td>
+                  <td>{fechaSeleccionada}</td>
+                  <td>{consumoSeleccionado} Kg</td>
+                </tr>
+              </tbody>
+            </table>
           </form>
         </CardBody>
       </Card>
@@ -237,6 +270,8 @@ export function Matematicas() {
                 id="semanaFinalSelect"
                 value={semanaFinal}
                 onChange={handleSemanaFinalChange}
+                className="form-select text-2xl"
+
               >
                 <option value="">Seleccione...</option>
                 {semanas
@@ -248,19 +283,22 @@ export function Matematicas() {
                   ))}
               </select>
               <br></br>
-              <label>Fecha:</label>
-              {fechaSeleccionadaFinal && (
-                <div>
-                  <label>{fechaSeleccionadaFinal}</label>
-                </div>
-              )}
-              <br></br>
-              <label>Consumo:</label>
-              {consumoSeleccionadoFinal && (
-                <div>
-                  <label>{consumoSeleccionadoFinal} Kg</label>
-                </div>
-              )}
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Semana</th>
+                    <th>Fecha</th>
+                    <th>Consumo (Kg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{semanaFinal}</td>
+                    <td>{fechaSeleccionadaFinal}</td>
+                    <td>{consumoSeleccionadoFinal} Kg</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           )}
         </CardBody>
@@ -272,6 +310,7 @@ export function Matematicas() {
             id="semanaSelect"
             value={semanaSeleccionada}
             onChange={handleSemanaChange}
+            className="form-select text-2xl"
           >
             <option value="">Seleccione...</option>
             {semana2.map((semana) => (
@@ -281,20 +320,50 @@ export function Matematicas() {
             ))}
           </select>
 
-          {fechaSeleccionada2 && (
-            <div>
-              <label>Fecha:</label>
-              <label>{fechaSeleccionada2}</label>
-            </div>
-          )}
-
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Semana</th>
+                <th>Fecha</th>
+                <th>Consumo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{semanaSeleccionada}</td>
+                <td>{fechaSeleccionada2}</td>
+               {resultadoC && <td>{resultadoC}</td>}
+              </tr>
+            </tbody>
+          </table>
           <button type="button" className="btn btn-warning" onClick={calcularK}>
             Calcular
           </button>
-          {resultadoC && (
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody>
+          {tiempo3 && (
             <div>
-              <h1>Resultado de c:</h1>
-              <h1>{resultadoC} Kg</h1>
+              <h2>Resultados anteriores:</h2>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Semana</th>
+                    <th>Fecha</th>
+                    <th>Consumo (Kg)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {calcularRsAnteriores2().map((item) => (
+                    <tr key={item.semana}>
+                      <td>{item.semana}</td>
+                      <td>{item.fecha}</td>
+                      <td>{item.r}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </CardBody>
