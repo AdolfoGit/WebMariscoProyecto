@@ -51,8 +51,25 @@ const Perfil = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!File) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Por favor selecciona una imagen.",
+      });
+      return;
+    }
+    
+    // Verificar si el archivo seleccionado es una imagen
+    if (!File.type.startsWith("image")) {
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "El archivo seleccionado no es una imagen.",
+      });
+      return;
+    }
     const result = await uploadFilesUsuarios(File);
-
     const data = new FormData();
       data.append("idUsuario", user.idUsuario);
       data.append("Icono", result);
@@ -155,7 +172,7 @@ const Perfil = () => {
                           </form>
                            </div>
                          </div>
-                       </div>
+                       </div> 
                      </div>
                    </div>
                   )}

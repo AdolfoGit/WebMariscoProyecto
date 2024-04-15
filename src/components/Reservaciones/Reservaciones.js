@@ -558,18 +558,31 @@ const Reservaciones = () => {
                   )}
                 </div>
                 <div class="mb-3">
+
                   <label for="NPersonas" class="form-label">
                     Número de personas
                   </label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="NPersonas"
-                    aria-describedby=""
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                    id="NMesa"
+                    name="NMesa"
                     onChange={(e) => setNPersonas(e.target.value)}
                     onBlur={() => validateNPersonas(NPersonas)}
-                  />
-                  {NPersonasError && (
+                  >
+                    <option value="">Seleccione el numero de personas</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                 {NPersonasError && (
                     <p className="error-message">{NPersonasError}</p>
                   )}
                 </div>
