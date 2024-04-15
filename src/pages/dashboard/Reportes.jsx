@@ -13,6 +13,7 @@ import ReportesOauht from './ReportesOauth';
 import ReportesBloque from './ReportesBloqueo';
 import ReportesCambioPasword from './ReporteCambioPasword';
 
+
 export function Reportes() {
   
 
@@ -157,6 +158,7 @@ export function Reportes() {
       <ReportesOauht/>
       <ReportesBloque/>
       <ReportesCambioPasword/>
+ 
       
     </div>
   );

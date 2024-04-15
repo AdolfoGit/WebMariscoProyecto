@@ -15,7 +15,6 @@ import CookieBanner from './components/Cookies/CookiBanner';
 import Ofertas from './components/Ofertas/Ofertas';
 import Perfil from './components/Usuarios/Perfil';
 import VisuReservacion from './components/Reservaciones/Reservaciones';
-import Productos2 from './components/Productos/Productos';
 import Pedidos from './components/Pedidos/Pedidos'; 
 import NotFoundPage from './components/CodigoError/NotFoundPage';
 import Bienvenida from './components/Usuarios/pantallaMultifactor';
