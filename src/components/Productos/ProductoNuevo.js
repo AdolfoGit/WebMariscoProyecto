@@ -2,7 +2,7 @@
 import { Fragment, useState,useEffect } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import { FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
 import {
     Card,
@@ -11,12 +11,7 @@ import {
     CardMedia,
     Typography,
     Grid,
-    Container,
     Button,
-    TextField,
-    MenuItem,
-    FormControlLabel,
-    Checkbox,
 } from '@mui/material';
   
 import imageen from '../home/img/platillo.jpg';
@@ -140,20 +135,12 @@ const productos = [
 
 ]
 
-
-const subCategories = [
-  { name: 'Totes', href: '#' },
-  { name: 'Backpacks', href: '#' },
-  { name: 'Travel Bags', href: '#' },
-  { name: 'Hip Bags', href: '#' },
-  { name: 'Laptop Sleeves', href: '#' },
-]
 const filters = [
   {
     id: 'category',
     name: 'Categoria',
     options: [
-      { value: 'platillo', label: 'Entradas',},
+      { value: 1, label: 'Entradas',},
       { value: 'postres', label: 'Postres',},
       { value: 'Comida Rapida', label: 'Comida Rapida', },
       { value: 'Bebidas de sabor', label: 'Bebidas de sabor',},
@@ -184,6 +171,37 @@ function classNames(...classes) {
 
 export default function ProductoNuevo() {
 
+  const [productData, setProductData] = useState(null);
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
+  useEffect(() => {
+    obtenterDatosProductos();
+  }, []); // Se ejecuta solo una vez al montar el componente
+// Se ejecuta solo una vez al montar el componente
+
+
+  const obtenterDatosProductos = async () => {
+    try {
+      const response = await fetch(
+        `${apiurll}/api/CasaDelMarisco/TraerProductos`,
+        {
+          method: 'GET',
+          // No es necesario incluir el body para una solicitud GET
+        }
+      );
+
+      if (response.ok) {
+        const product1Data = await response.json();
+        setProductData(product1Data);
+        console.log(product1Data)
+      } else {
+        console.error('Error al obtener datos de los usuarios:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al obtener datos del usuario:', error);
+    }
+  };
+
   const saveCartToLocalStorage = (cart) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   };
@@ -192,13 +210,13 @@ export default function ProductoNuevo() {
     const cartString = localStorage.getItem('cart');
     return cartString ? JSON.parse(cartString) : [];
   };
-
+  
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [open, setOpen] = useState(false)
   const navigate=useNavigate();
 
-  const [cart, setCart] = useState(loadCartFromLocalStorage());
+  const [cart, setCart] = useState([]);
 
   const agregarAlCarrito = (producto) => {
     const newCart = [...cart, producto];
@@ -236,8 +254,8 @@ export default function ProductoNuevo() {
     } else {
       setShowAllProducts(false);
       // Si hay una búsqueda, filtrar los productos que coincidan con el criterio
-      const filtered = productos.filter(
-        (producto) => producto.nombre.toLowerCase().includes(queryLowercase) // Convertir el nombre del producto a minúsculas
+      const filtered = productData.filter(
+        (producto) => producto.Nombre.toLowerCase().includes(queryLowercase) // Convertir el nombre del producto a minúsculas
       );
       setFilteredProductos(filtered);
       
@@ -262,8 +280,8 @@ export default function ProductoNuevo() {
     // Filtrar productos basados en las categorías seleccionadas y el rango de precios
     let filteredProducts = [];
     if (hasSelectedCategories) {
-      filteredProducts = productos.filter((producto) => {
-        return updatedCategories.includes(producto.categoria);
+      filteredProducts = productData.filter((producto) => {
+        return updatedCategories.includes(producto.Categoria);
       });
     } else {
       // Mostrar todos los productos si no se ha seleccionado ninguna categoría
@@ -331,8 +349,8 @@ export default function ProductoNuevo() {
     
   
     // Filtrar productos por el rango de precio seleccionado
-    const filteredProducts = productos.filter(producto => {
-      return (precioSeleccionado === null) || (producto.precio >= precioMinimo && producto.precio <= precioMaximo);
+    const filteredProducts = productData.filter(producto => {
+      return (precioSeleccionado === null) || (producto.Precio >= precioMinimo && producto.Precio <= precioMaximo);
     });
   
    // Actualizar el estado de los productos filtrados
@@ -572,18 +590,18 @@ export default function ProductoNuevo() {
                 ))}
                 {/**fin */}
               </div>
-            </form>
+              </form>
 
               {/* Product grid */}
               <div className="md:col-span-3"><Grid container spacing={3}>
-            {(showAllProducts ? productos : filteredProductos).map((producto) => (
-                <Grid item key={producto.id} xs={20} sm={6} md={4}>
+            {(showAllProducts ? productData : filteredProductos) && (showAllProducts ? productData : filteredProductos).map((producto) => (
+                <Grid item key={producto.idProducto} xs={20} sm={6} md={4}>
                 <Card>
                     <CardActionArea style={{ display: 'flex', flexDirection: 'column', background: 'transparent' }}>
                     <CardMedia
                         component="img"
-                        alt={producto.nombre}                     
-                        image={producto.imagen}
+                                         
+                        image={producto.Imagen}
                         style={{ transition: 'transform 0.3s' ,height: '200px',}}
                         onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
                         onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
@@ -591,7 +609,7 @@ export default function ProductoNuevo() {
                         />
                         <CardContent style={{ flex: '1' }}>
                         <Typography variant="h6" component="div">
-                        {producto.nombre}
+                        {producto.Nombre}
                         <Button
                         size="small"
                         onClick={() => agregarAlCarrito(producto)}
@@ -601,13 +619,13 @@ export default function ProductoNuevo() {
 
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        {producto.descripcion}
+                        {producto.Descripcion}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        Precio: {producto.precio}
+                        Precio: {producto.Precio}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                        Disponibles: {producto.categoria}
+                        Disponibles: {producto.Categoria}
                         </Typography>
                     </CardContent>
                     </CardActionArea>
@@ -663,11 +681,11 @@ export default function ProductoNuevo() {
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {cart.map((productoCarrito) => (
+                            {cart !== null && cart.map((productoCarrito) => (
                               <li  className="flex py-6">
                                 <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                   <img
-                                    src={productoCarrito.imagen}
+                                    src={productoCarrito.Imagen}
                                    
                                     className="h-full w-full object-cover object-center"
                                   />
@@ -677,14 +695,14 @@ export default function ProductoNuevo() {
                                   <div>
                                     <div className="flex justify-between text-base font-medium text-gray-900">
                                       <h3>
-                                        <a>{productoCarrito.nombre}</a>
+                                        <a>{productoCarrito.Nombre}</a>
                                       </h3>
-                                      <p className="ml-4">{productoCarrito.precio}</p>
+                                      <p className="ml-4">{productoCarrito.Precio}</p>
                                     </div>
-                                    <p className="mt-1 text-sm text-gray-500">{productoCarrito.descripcion}</p>
+                                    <p className="mt-1 text-sm text-gray-500">{productoCarrito.Descripcion}</p>
                                   </div>
                                   <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Categoria {productoCarrito.categoria}</p>
+                                    <p className="text-gray-500">Categoria {productoCarrito.Categoria}</p>
 
                                     <div className="flex">
                                       <button
