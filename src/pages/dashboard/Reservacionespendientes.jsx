@@ -67,7 +67,7 @@ export function ReservacionesPendientes() {
       color = "green"; 
     } else if (estado === 'Cancelada') {
       color = 'red';
-    } else if(estado==='Pendiente'){
+    } else if(estado==='En espera'){
       color = 'blue';
     }
     return color;
@@ -77,8 +77,8 @@ export function ReservacionesPendientes() {
     let texto = '';
     if (estado === 'Agendada') {
       texto = "Agendada"; 
-    } else if (estado === 'Pendiente') {
-      texto = 'Pendiente';
+    } else if (estado === 'En espera') {
+      texto = 'En espera';
     } else if (estado==='Cancelada'){
       texto = 'Cancelada';
     }
