@@ -221,13 +221,11 @@ export default function Login() {
         apiurll + "api/CasaDelMarisco/TraerUsuario?Correo=" + email,
         {
           method: "GET",
-          // No es necesario incluir el body para una solicitud GET
         }
       );
 
       if (response.ok) {
-        const userData = await response.json();
-        return userData;
+        return await response.json();
       } else {
         console.error(
           "Error al obtener datos del usuario que ingresaste:",

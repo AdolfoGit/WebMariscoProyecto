@@ -56,8 +56,8 @@ const Reservaciones = () => {
   const [PagoError, setPagoError] = useState("");
   const [InformacionAdicionalError, setInformacionAdicionalError] =
     useState("");
-    const [EstadoN, setEstadoN] = useState("Pendiente");
-    const [Correo, setCorreo] = useState("Pendiente");
+    const [EstadoN, setEstadoN] = useState("En espera");
+    const [Correo, setCorreo] = useState("En espera");
 
     
     const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
