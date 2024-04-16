@@ -30,7 +30,7 @@ export function ReservacionesPendientes() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7); // Cantidad de elementos por página
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [Estado,setEstado]=useState('Cancelada');
+  const [Estado,setEstado]=useState('Agendada');
   const [EstadoB,setEstadoB]=useState('Agendada');
   const [EstadoC,setEstadoC]=useState('Activo');
   const navigate=useNavigate();
@@ -114,8 +114,8 @@ export function ReservacionesPendientes() {
         if (result === 'Reservacion pendiente') {
             Swal.fire({
                 icon: 'success',
-                title: 'Reservación cancelada',
-                text: 'Se ha cancelado la reservación de forma exitosa',
+                title: 'Reservación Agendada',
+                text: 'Se ha Agendada la reservación de forma exitosa',
             });
             obtenerDatosUsuarios();
         } else {
@@ -304,8 +304,8 @@ export function ReservacionesPendientes() {
                           </MenuHandler>
                           <MenuList>
                             <div className="flex row items-start justify-start">
-                              <Button color="red" variant='text' className='text-md text-left' onClick={()=>cancelarReservacion(idReservacion, CorreoElectronico)}> Cancelar</Button>
-                              <Button color="blue" variant='text' className='text-md text-left'onClick={()=>noCancelar(idReservacion, CorreoElectronico )}> No cancelar</Button>
+                              <Button color="red" variant='text' className='text-md text-left' onClick={()=>cancelarReservacion(idReservacion, CorreoElectronico)}> Agendar</Button>
+                      
                             </div>
                           </MenuList>
                         </Menu>

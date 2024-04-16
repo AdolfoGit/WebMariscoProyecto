@@ -20,11 +20,8 @@ import { projectsTableData } from "../../data/projects-table-data";
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { user } from '@nextui-org/react';
-import ReservacionesPendientes from './Reservacionespendientes';
-import ReservacionesProcesoCan from './ReservacionProcesoCan';
-import ReservacionesCanceladas from './ReservacionCancelada';
 
-export function Reservaciones() {
+export function ReservacionesProcesoCan() {
   
 
   const [active, setActive] = useState(1);
@@ -45,7 +42,7 @@ export function Reservaciones() {
   const obtenerDatosUsuarios = async () => {
     try {
       const response = await fetch(
-        `${apiurll}/api/CasaDelMarisco/ObtenerReservaciones`,
+        `${apiurll}/api/CasaDelMarisco/ObtenerReservacionesProcesadas`,
         {
           method: 'GET',
           // No es necesario incluir el body para una solicitud GET
@@ -72,6 +69,8 @@ export function Reservaciones() {
       color = 'red';
     } else if(estado==='En espera'){
       color = 'blue';
+    }else{
+        color='yellow'
     }
     return color;
   };
@@ -84,6 +83,8 @@ export function Reservaciones() {
       texto = 'En espera';
     } else if (estado==='Cancelada'){
       texto = 'Cancelada';
+    }else{
+        texto='Proceso'
     }
     return texto;
   };
@@ -117,7 +118,7 @@ export function Reservaciones() {
         if (result === 'Reservacion pendiente') {
             Swal.fire({
                 icon: 'success',
-                title: 'Reservación cancelada',
+                title: 'Reservación Cancelada',
                 text: 'Se ha cancelado la reservación de forma exitosa',
             });
             obtenerDatosUsuarios();
@@ -199,12 +200,10 @@ export function Reservaciones() {
   }
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
-            <ReservacionesPendientes/>
-
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-8">
           <Typography variant="h6" color="white" className="text-2xl">
-            Tabla de reservaciones
+            Tabla de reservaciones en proceo de cancelacion
           </Typography>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
@@ -246,7 +245,7 @@ export function Reservaciones() {
                       </Typography>
                     </td>
                     <td className={className}>
-                      <div className="flex items-start gap-4 min-w-[10rem]">
+                      <div className="flex items-start gap-4 min-w-[20rem]">
                         <div className="flex-1">
                           <Typography
                             variant="h5"
@@ -309,8 +308,8 @@ export function Reservaciones() {
                           </MenuHandler>
                           <MenuList>
                             <div className="flex row items-start justify-start">
-                            <Button color="red" variant='text' className='text-md text-left' onClick={()=>cancelarReservacion(idReservacion, CorreoElectronico)}> Cancelar</Button>
-                              <Button color="blue" variant='text' className='text-md text-left'onClick={()=>noCancelar(idReservacion, CorreoElectronico )}> No cancelar</Button>
+                              <Button color="red" variant='text' className='text-md text-left' onClick={()=>cancelarReservacion(idReservacion, CorreoElectronico)}> Cancelar Reservacion</Button>
+                      
                             </div>
                           </MenuList>
                         </Menu>
@@ -349,10 +348,9 @@ export function Reservaciones() {
         </CardBody>
 
       </Card>
-      <ReservacionesProcesoCan/>
-      <ReservacionesCanceladas/>
+      
     </div>
   );
 }
 
-export default Reservaciones;
+export default ReservacionesProcesoCan;
