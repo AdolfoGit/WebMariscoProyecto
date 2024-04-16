@@ -25,115 +25,6 @@ import { ShowerSharp } from '@mui/icons-material'
 
 import Carrito from './Carrito'
 
-const productos = [
-{
-    id: 1,
-    nombre: 'Bebida de Mango',
-    descripcion: 'Bebida de sabor natural de mango, con un toque fino de limon para una degustacion mejor',
-    precio:40,
-    disponibles: 10,
-    categoria: 'Bebidas de sabor',
-    Tamaño:['500 ml','1 L', '1.5 L'],
-    imagen: imageen,
-},
-{
-    id: 2,
-    nombre: 'Bebida de Jamaica',
-    descripcion: 'Bebida de Jamaica de diferentes tamaños',
-    precio:45,
-    disponibles: 5,
-    categoria: 'Bebidas de sabor',
-    Tamaño:['500 ml','1 L', '1.5 L'],
-    imagen: imageen3,
-},
-{
-    id: 3,
-    nombre: 'Bebida de Horchata',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
-    disponibles: 15,
-    categoria: 'Bebidas de sabor',
-    imagen: imageen2,
-},
-{
-    id: 4,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
-    disponibles: 15,
-    categoria: 'platillo',
-    imagen: imageen5,
-},
-{
-    id: 5,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
-    disponibles: 15,
-    categoria: 'platillo',
-    imagen: imageen6,
-},{
-    id: 6,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
-    disponibles: 15,
-    categoria: 'postres',
-    imagen: imageen7,
-},
-{
-    id: 7,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
-    categoria: 'postres',
-    disponibles: 15,
-    imagen: imageen2,
-},
-{
-    id: 8,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: 500,
-    disponibles: 15,
-    categoria: 'postres',
-    imagen: imageen5,
-},
-{
-    id: 9,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$00',
-    disponibles: 15,
-    imagen: imageen6,
-},
-{
-    id: 10,
-    nombre: 'Producto 3',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '$39.99',
-    disponibles: 15,
-    imagen: imageen2,
-},
-{
-    id: 11,
-    nombre: 'bebida',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: '30',
-    disponibles: 15,
-    imagen: imageen5,
-},
-{
-    id: 12,
-    nombre: 'bebida',
-    descripcion: 'Descripción del producto 3. Detalles adicionales sobre el producto.',
-    precio: 500,
-    disponibles: 15,
-    imagen: imageen6,
-},
-
-
-]
 
 const filters = [
   {
@@ -285,8 +176,7 @@ export default function ProductoNuevo() {
       });
     } else {
       // Mostrar todos los productos si no se ha seleccionado ninguna categoría
-      filteredProducts = [...productos];
-    }
+      }
   
     // Actualizar el estado de los productos filtrados
     setFilteredProductos(filteredProducts);
