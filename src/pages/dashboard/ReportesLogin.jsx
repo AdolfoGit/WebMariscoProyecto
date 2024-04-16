@@ -84,7 +84,7 @@ export function Reportes1() {
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["IDBitacora","Nombre del Movimiento", "Usuario","Fecha"].map((el) => (
+                {["IDBitacora","Nombre del Movimiento", "Usuario","Fecha","IP"].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
