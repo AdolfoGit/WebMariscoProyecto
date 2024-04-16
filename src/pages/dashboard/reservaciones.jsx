@@ -197,10 +197,12 @@ export function Reservaciones() {
   }
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
+            <ReservacionesPendientes/>
+
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-8">
           <Typography variant="h6" color="white" className="text-2xl">
-            Tabla de Usuarios
+            Tabla de reservaciones
           </Typography>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
@@ -345,7 +347,6 @@ export function Reservaciones() {
         </CardBody>
 
       </Card>
-      <ReservacionesPendientes/>
     </div>
   );
 }

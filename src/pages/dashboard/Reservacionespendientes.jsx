@@ -199,7 +199,7 @@ export function ReservacionesPendientes() {
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-8">
           <Typography variant="h6" color="white" className="text-2xl">
-            Tabla de Usuarios
+            Tabla de reservaciones en espera
           </Typography>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
