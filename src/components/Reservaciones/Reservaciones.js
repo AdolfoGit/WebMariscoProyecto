@@ -18,7 +18,10 @@ const Reservaciones = () => {
       color = 'red';
     } else if(estado==='En espera'){
       color = 'blue';
+    }else if (estado==='Proceso'){
+      color = 'yellow';
     }
+
     return color;
   };
 
@@ -31,6 +34,10 @@ const Reservaciones = () => {
     } else if (estado==='Cancelada'){
       texto = 'Cancelada';
     }
+    else if (estado==='Proceso'){
+      texto = 'Proceso';
+    }
+
     return texto;
   };  
   const { user, logoutUser } = useUser();
@@ -58,6 +65,7 @@ const Reservaciones = () => {
     useState("");
     const [EstadoN, setEstadoN] = useState("En espera");
     const [Correo, setCorreo] = useState("En espera");
+    const [EstadoP, setEstadoP] = useState("Proceso")
 
     
     const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
@@ -120,7 +128,7 @@ const Reservaciones = () => {
   const CancelarReservacion = () => {
     const data = new FormData();
     data.append("idReservacion", idReservacion);
-    data.append("Estado", EstadoN);
+    data.append("Estado", EstadoP);
     data.append("Correo", Correo);
 
     try {
