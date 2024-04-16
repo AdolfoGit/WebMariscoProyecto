@@ -223,7 +223,6 @@ export default function Login() {
           method: "GET",
         }
       );
-
       if (response.ok) {
         return await response.json();
       } else {
