@@ -89,7 +89,7 @@ export default function TokenSMS() {
           <button className="btn btn-warning text2" type="submit" disabled={!timerActive}>
             Enviar
           </button>
-          <br />
+          <br/>
         </form>
       </div>
     </div>
