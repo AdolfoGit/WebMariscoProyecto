@@ -46,6 +46,15 @@ export function FormProducto (){
     const handleSubmit = async (e)=>{
         
         e.preventDefault();
+         // Verificar si el archivo seleccionado es una imagen
+    if (!File.type.startsWith("image")) {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "El archivo seleccionado no es una imagen.",
+        });
+        return;
+      }
 
         const resultImage = await uploadFilesProductos(File);
       
