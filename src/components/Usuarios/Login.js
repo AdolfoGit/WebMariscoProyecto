@@ -242,7 +242,6 @@ export default function Login() {
       <div className="registro-image-containerLogin">
         <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
-
       <div className="registro-formLogin">
         <p className="loginTitulo">
           Login <LoginIcon />
