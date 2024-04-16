@@ -100,7 +100,7 @@ export function Reportes1() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idBitacora,NombreMovimiento, Nombre, Fecha}, key) => {
+              {currentItems.map(({ idBitacora,NombreMovimiento, Nombre, Fecha, ip}, key) => {
                 const className = `py-3 px-5 ${
                   key === currentItems.length - 1
                     ? ""
@@ -128,6 +128,9 @@ export function Reportes1() {
                     </td>
                     <td className={className}>
                         <Typography className='text-xl text-bold'> {Fecha}</Typography>
+                    </td>
+                    <td className={className}>
+                        <Typography className='text-xl text-bold'> {ip}</Typography>
                     </td>
                    
                  

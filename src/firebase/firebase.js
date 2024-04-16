@@ -1,17 +1,15 @@
 import { initializeApp } from "firebase/app";
 import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage';
 import { v4 } from "uuid";
-import { reactApiFirebase } from "../variables";
 const firebaseConfig = {
-  apiKey: reactApiFirebase,
+  apiKey: "AIzaSyDNOE_BKFZl4zjBq98t3adrLEfIGuVxH6I",
   authDomain: "la-casa-del-marisco-web.firebaseapp.com",
   projectId: "la-casa-del-marisco-web",
   storageBucket: "la-casa-del-marisco-web.appspot.com",
   messagingSenderId: "23799570869",
-  appId: "1:23799570869:web:2784f4c572768da8ed79fc",
-  measurementId: "G-PTD40HRX5F"
+  appId: "1:23799570869:web:80564ce48501677fed79fc",
+  measurementId: "G-CD4CYZ9HLK"
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
@@ -24,7 +22,7 @@ export async function uploadFilesUsuarios (File){
 }
 
 export const uploadFilesProductos = async (File) =>{
-    const storageRef = ref(storage, 'productos/'+v4());
+    const storageRef = ref(storage, v4());
     await uploadBytes(storageRef, File)
     const url = await getDownloadURL(storageRef)
     return url  
