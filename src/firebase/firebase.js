@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
 import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage';
 import { v4 } from "uuid";
+import { reactApiFirebase } from "../variables";
 const firebaseConfig = {
-  apiKey: "AIzaSyDNOE_BKFZl4zjBq98t3adrLEfIGuVxH6I",
+  apiKey: reactApiFirebase,
   authDomain: "la-casa-del-marisco-web.firebaseapp.com",
   projectId: "la-casa-del-marisco-web",
   storageBucket: "la-casa-del-marisco-web.appspot.com",

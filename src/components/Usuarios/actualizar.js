@@ -5,6 +5,7 @@ import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { MedidorSeguridad } from "./MedidorDeSeguridad";
 import Swal from "sweetalert2";
+import { reactApiIP } from "../../variables";
 
 export default function Actualizar() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
@@ -123,7 +124,7 @@ export default function Actualizar() {
   data.append("Correo", storedEmail);
   data.append("Contrasena", password);
   function ObtenerIp() {
-    let apiKey = "8c308d0e8f217c1a489e15cb1998c34ffcd76bcead2a2851c3878299";
+    let apiKey = reactApiIP;
     json(`https://api.ipdata.co?api-key=${apiKey}`).then((data) => {
       setIp(data.ip);
     });

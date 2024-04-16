@@ -13,6 +13,7 @@ import { gapi } from "gapi-script";
 import GoogleLogin from "@leecheuk/react-google-login";
 import { useUser } from "../../UserContext";
 import "./css/login.css";
+import { reactApiIP } from "../../variables";
 
 export default function Login() {
   //const apiurll ="http://localhost:5029/"
@@ -145,7 +146,7 @@ export default function Login() {
 
   }
   function ObtenerIp() {
-    let apiKey = "8c308d0e8f217c1a489e15cb1998c34ffcd76bcead2a2851c3878299";
+    const apiKey = reactApiIP;
     json(`https://api.ipdata.co?api-key=${apiKey}`).then((data) => {
       setIp(data.ip);
       console.log(ip);
