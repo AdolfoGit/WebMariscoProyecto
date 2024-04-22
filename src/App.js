@@ -44,6 +44,7 @@ import SidebarN from './components/Administrador/Dashboard';
 import { SidebarItem } from './components/Administrador/Dashboard';
 import  Dashboard  from './layouts/dashboard';
 import FormProducto from './pages/dashboard/FormNuevoProducto';
+import FooterNuevo from './components/ComponentesClave/FotterNuevo';
 
 
 function App  (){
@@ -104,7 +105,7 @@ function App  (){
          
         
         
-       <Footer/>
+       <FooterNuevo/>
           
        </Router>
         </UserProvider>

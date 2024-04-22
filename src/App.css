@@ -442,6 +442,10 @@ p{
 /*------------pinterest layud2 fin--------------*/
 
 @media screen and (max-width: 768px){
+  .logo img{
+   display :none; 
+  }
+        
   .home{
     /* background-image: url('./components/home/img/wave.png'); */
     height: 64vh;
@@ -470,6 +474,7 @@ p{
    display:  block;
    flex-direction: column;
    margin-bottom: 30px;
+   margin-left: 7%;
    color: black;
   }
 
@@ -484,8 +489,8 @@ p{
     position: absolute;
     color: black;
     right: 30px;
-    border: 1px solid black;
-    padding: 5px 10px;
+    margin-top: 4%;
+
   }
 
   .left{

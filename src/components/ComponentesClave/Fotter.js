@@ -17,7 +17,7 @@ const Footer = () => {
       </>
       ):(
         <>
-        <footer className="bg-gray-900 text-white py-8" style={{marginTop:"150px"}} >
+        <footer className="bg-gray-900 text-white py-8" >
       <ItemsContainer />
       <div
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10 text-center pt-2 text-gray-400 text-lg pb-8"

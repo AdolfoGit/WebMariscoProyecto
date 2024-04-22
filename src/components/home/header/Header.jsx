@@ -9,8 +9,7 @@ import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStore
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 import {
-  Navbar,
-  MobileNav,
+
   Typography,
   Button,
   Menu,
@@ -18,22 +17,15 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  Card,
-  IconButton,
+
 } from "@material-tailwind/react";
 
 import {
-  CubeTransparentIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
-  InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
-  Bars2Icon,
 } from "@heroicons/react/24/solid";
 
 // Importa el hook useUser para obtener la información del usuario
@@ -43,8 +35,7 @@ import { useUser } from '../../../UserContext';
 import { useLocation } from 'react-router-dom';
 
 import MenuFlotante from './MenuFlotante';
-import { Label } from '@mui/icons-material';
-import { useButton } from '@nextui-org/react';
+
 import Breadcrumbs  from '../../ComponentesClave/Breadcrums';
 
 export const Header = () => {

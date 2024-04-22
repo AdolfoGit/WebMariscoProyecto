@@ -7,13 +7,13 @@ import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "./context/index";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+
      <ThemeProvider>
         <MaterialTailwindControllerProvider>
           <App />
         </MaterialTailwindControllerProvider>
       </ThemeProvider>
-  </React.StrictMode>
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

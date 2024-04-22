@@ -4,12 +4,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PlatillosHome from './PlatillosDelInicio';
 import '../estilos.css';
-   import { uploadFilesUsuarios, uploadFilesProductos } from '../../firebase/firebase';
-import Pinterest from '../Pinteres'
+
 import TrandingSlider from '../Carousel/TradingSlider';
-import Ayuda from '../Empresa/Ayuda';
+
 import Example from './Example'
 import PromoSecciones from './PromoSecciones';
+import Calendar from '../Reservaciones/Calendario'
 
 const Home = () => {
   
@@ -55,6 +55,7 @@ const Home = () => {
    <TrandingSlider/>
    <PromoSecciones/>
    <Example/>
+
    
 {/* 
    <form onSubmit={handleSubmit}>
