@@ -170,7 +170,6 @@ export function Reservaciones() {
     const data = new FormData();
     data.append("idUsuario",idUsuarioInt);
     data.append("Estado",EstadoC);
-
     fetch(
       apiurll + "api/CasaDelMarisco/CambiarEstadoUsuario?idUsuario=" + idUsuarioInt+ "&Estado="+ EstadoC,
       {
