@@ -138,8 +138,8 @@ const Perfil = () => {
                        <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
                          <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-6 sm:w-full sm:max-w-lg">
                            <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                           <form onSubmit={handleSubmit}>
-                            <div className="mx-auto max-w-xs" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
+                           <form onSubmit={(e) => handleSubmit(e)}>
+                           <div className="mx-auto max-w-xs" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
                               {imageURL ? (
                                 <img src={imageURL} alt="Imagen seleccionada" className="mx-auto inline-flex h-60 w-60 rounded-20 bg-gray-100" />
                               ) : (
