@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import logo from '../img/LogoVersion2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
@@ -39,6 +39,12 @@ import MenuFlotante from './MenuFlotante';
 import Breadcrumbs  from '../../ComponentesClave/Breadcrums';
 
 export const Header = () => {
+  const [isHome, setIsHome] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsHome(location.pathname === '/');
+  }, [location.pathname]);
 
   const navigate = useNavigate();
 
@@ -79,9 +85,6 @@ export const Header = () => {
   ];
 
   const [sidebar, setSidebar] = useState(false);
-  const location = useLocation();
-
-
 
   window.addEventListener('scroll', function () {
     const header = document.querySelector('.header');
@@ -94,28 +97,28 @@ export const Header = () => {
 
   return (
     <>
-      <header className="header">
+      <header className={`header ${isHome ? 'home-header' : ''}`}>
       {user && user.Rol ===2 ? (
         <>
 
-              
+     
 
         </>
               ) : (
                 <>
-                 <div className="container flex">
-          <div className="logo">
-            <img src={logo} alt="" />
-            <Breadcrumbs className='bread'/>
-          </div>
-          <div className="nav">
+                 <div className="container flex ">
+            <div className="logo z-10">
+              <img src={logo} alt="" />
+              <Breadcrumbs/>
+            </div>
+          <div className="nav z-10">
             <ul className={sidebar ? 'nav-links-sidebar' : 'nav-links'} onClick={() => setSidebar(false)}>
               <li className={location.pathname === '/' ? 'active' : ''}><Link to='/'>Inicio</Link></li>   
               <li>
                 <MenuFlotante/>
               </li>
               <li className={location.pathname === '/productos' ? 'active' : ''}><Link to='/productos'>Menus</Link></li>
-              <li className={location.pathname === '/ofertas' ? 'active' : ''}><Link to='/ofertas'>Ofertas</Link></li>
+              <li className={location.pathname === '/ofertas' ? 'active' : ''} ><Link to='/ofertas'>Ofertas</Link></li>
             
               {user ? (
                 <>
@@ -181,10 +184,18 @@ export const Header = () => {
               ) : (
                 <li className={location.pathname === '/login' ? 'active' : ''}>
                   <Link to='/login'>
-                    <button className='btn btn-outline-warning cd'>Login</button>
+                  <Button
+                    variant='text'
+                    className={`Button ${isHome ? ' text-[14px] text-white lg:ml-[190px] sm:ml-0 ' : '  negro text-[14px] text-black-900  lg:ml-[190px] sm:ml-0'}`}
+                  >
+                    Login
+                  </Button>
+                  </Link>
+                  <Link to='/registrar'>
+                    <Button color='orange' variant='filled' className='text-[14px] ml-5 sm:ml-0'>Sing Up</Button>
                   </Link>
                 </li>
-                
+ 
               )}
               
              

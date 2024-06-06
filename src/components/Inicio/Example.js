@@ -56,13 +56,10 @@ const posts = [
   export default function Example() {
     return (
       <div className="bg-white py-20 sm:py-29 w-full">
-        <div className="mx-20 max-w-8xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-4xl font-bold tracking-tight text-gray-900 md:text-4xl">From the blog</h2>
-            <p className="mt-2 text-md leading-8 text-gray-600">
-              Learn how to grow your business with our expert advice.
-            </p>
-          </div>
+        <h3 className="text-6xl font-bold tracking-tight text-gray-900 text-start ml-40 mt-10">
+        Testiomonios de clientes
+        </h3>
+        <div className="pl-40  pr-40 max-w-8xl">
           <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {posts.map((post) => (
               <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">

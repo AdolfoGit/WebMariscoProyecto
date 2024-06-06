@@ -6,6 +6,7 @@ import platillo3 from '../home/img/bebida.jpg'
 
 import Rating from 'react-rating-stars-component';
 import { useState } from 'react'
+import Header from '../home/header/Header'
 export default function PlatillosHome() {
 
     const [rating, setRating] = useState(0);
