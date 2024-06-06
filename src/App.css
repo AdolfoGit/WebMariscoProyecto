@@ -38,8 +38,7 @@ a{
 /*------------header--------*/
 header{
   padding: 0px 0;
-  /* background-color: #ff8827; */
-  
+  z-index: 10;  
 }
 header ul{
   display: inline-block;
@@ -53,13 +52,15 @@ header ul li{
   vertical-align: middle;
 }
 .nav{
-  margin-top: 34px;
-  margin-bottom: 18px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 header ul li a{
   font-weight: 600;
   transition: 0.5s;
 }
+
+
 header ul li a:hover{
   color: #38d16a;
   font-weight: 800;
@@ -70,7 +71,17 @@ header ul li a:hover{
   color:#38d16a;
 }
 
+.header.home-header .nav-links li  {
+  color: #ffffff; /* Color de texto para la página de inicio */
+}
 
+.header.active .nav-links li  {
+  color: #000000; /* Color de texto para los elementos li cuando el header está activo */
+}
+
+.header.active .negro{
+  color: #000;
+}
 .navbar-items-icon{
   color: black; 
   display: none;
@@ -80,12 +91,12 @@ header ul li a:hover{
   flex-direction: row ;
  
 }
-.logo .bread{
-  vertical-align: middle;
+.logo .bread{ 
+  vertical-align: top;
 }
 .logo img{
-  width: 40vh;
-  height: 14vh;
+  width: 35vh;
+  height: 9vh;
   padding: 0,  
 }
                                        
@@ -135,8 +146,10 @@ header.active{
 /*------------header--------*/
 
 /*----------------home----------*/
+
+
 .right,.left{
-  width: 50%;
+  width: 40%;
   position: relative;
 }
 .espacio{
@@ -151,12 +164,12 @@ header.active{
   position: relative;
 }
 .home{
-  /* background-image: url('./components/home/img/wave.png'); */
-  height: 75vh;
-  padding-right: 3.5%;
-  padding-left: 3.5%;
+  /* background-image: url('./components/home/img/wave.png');
+   background-image: url('../src/components/home/img/fondo2.jpg');
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+  background-size:cover; */
+  height: 95vh;
 }
-
 
 @keyframes moveAnimation {
   0% {
@@ -172,12 +185,11 @@ header.active{
 .home .img{
   width: 100%;
 }
-.home img{
+.home .animate{
   will-change: transform;
   position: relative;
-  top:10px;
-  left: 120px;
-  width: 80%;
+  width: 100%;
+  bottom: 20%;
   object-fit: contain;
   transform: scale(1);
   border-radius: 50%;
@@ -189,8 +201,8 @@ header.active{
 .home h1{
   font-size: 70px;
   font-family: 'Oswald', sans-serif;
-  margin-top: 20px;
-  color: #29e70c98;
+  margin-top: 60px;
+  color: rgb(44, 162, 44);
 }
 .socialIcon i{
   width: 35px;
@@ -206,24 +218,27 @@ header.active{
   color: #fff;
 }
 .facebook{
-  color: #4267b2;
-  border: 1px solid #4267b2;
+  color: black;
+  border: 1px solid black;
 }
 .facebook:hover{
   background-color: #4267b2;
-}
-.twitter{
-  color: #4267b2;
   border: 1px solid #4267b2;
 }
+.twitter{
+  color: black;
+  border: 1px solid black;
+}
 .twitter:hover{
+  border: 1px solid #4267b2;
   background-color: #4267b2;
 }
 .instagram{
-  color: #c8232c;
-  border: 1px solid #c8232c;
+  color: black;
+  border: 1px solid black;
 }
 .instagram:hover{
+  border: 1px solid #c8232c;
   background-color: #c8232c;
 }
 .home  .right{
@@ -441,6 +456,7 @@ p{
 }
 /*------------pinterest layud2 fin--------------*/
 
+/* -------------------- responsive------------*/
 @media screen and (max-width: 768px){
   .logo img{
    display :none; 
@@ -448,7 +464,7 @@ p{
         
   .home{
     /* background-image: url('./components/home/img/wave.png'); */
-    height: 64vh;
+    height: 94vh;
   }
   .home.flex {
     flex-direction: row;
@@ -473,6 +489,7 @@ p{
   .nav-links-sidebar li{
    display:  block;
    flex-direction: column;
+   margin-top: 10%;
    margin-bottom: 30px;
    margin-left: 7%;
    color: black;
@@ -487,12 +504,15 @@ p{
     outline: none;
     border: none;
     position: absolute;
+    z-index: 15;
     color: black;
+    box-shadow: rgb(255, 255, 255);
     right: 30px;
-    margin-top: 4%;
 
   }
-
+  .container .logo .bread{
+    display: none;
+  }
   .left{
     width: 100%;
     order: 1;

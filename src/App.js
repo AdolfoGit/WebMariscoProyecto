@@ -60,6 +60,7 @@ function App  (){
        
           
           <Routes>
+            
             <Route path="/"   element={<Home/>} />
             <Route path="/politicas" element={<Politicas />} />
             <Route path="/Img" element={<ImageUpload />} />
