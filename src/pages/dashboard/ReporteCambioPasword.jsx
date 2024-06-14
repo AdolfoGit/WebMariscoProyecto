@@ -52,7 +52,7 @@ export function ReportesCambioPasword() {
       if (response.ok) {
         const userData1 = await response.json();
         setUserData(userData1);
-        console.log(userData1);
+        //console.log(userData1);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }

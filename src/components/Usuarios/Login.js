@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import ReCAPTCHA from "react-google-recaptcha";
 import { gapi } from "gapi-script";
-import GoogleLogin from "@leecheuk/react-google-login";
+import GoogleLogin from "@leecheuk/react-google-login"; 
 import { useUser } from "../../UserContext";
 import "./css/login.css";
 import { reactApiIP } from "../../variables";
@@ -149,7 +149,7 @@ export default function Login() {
     const apiKey = reactApiIP;
     json(`https://api.ipdata.co?api-key=${apiKey}`).then((data) => {
       setIp(data.ip);
-      console.log(ip);
+      //console.log(ip);
     });
   }
   useEffect(() => {
@@ -195,7 +195,7 @@ export default function Login() {
               } else {
                   navigate("/");
               }
-              console.log(loginResult);
+              //console.log(loginResult);
           })
           .catch((error) => {
               console.error("Error en la segunda llamada fetch:", error);
@@ -208,7 +208,7 @@ export default function Login() {
       console.error("Error en la primera llamada fetch:", error);
   });
 
-  console.log(response);
+  //console.log(response);
 };
 
 

@@ -52,7 +52,7 @@ export function ReservacionesPendientes() {
       if (response.ok) {
         const reservaciones = await response.json();
         setReservacionesData(reservaciones);
-        console.log(reservaciones);
+        //console.log(reservaciones);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }
@@ -110,7 +110,7 @@ export function ReservacionesPendientes() {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === 'Reservacion pendiente') {
             Swal.fire({
                 icon: 'success',
@@ -177,7 +177,7 @@ export function ReservacionesPendientes() {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === 'Icono actualizado') {
             Swal.fire({
                 icon: 'success',

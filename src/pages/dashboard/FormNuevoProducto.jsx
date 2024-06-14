@@ -79,7 +79,7 @@ export function FormProducto (){
         )
         .then((res) => res.json())
         .then((result) => {
-            console.log(result);
+            //console.log(result);
             if (result === 'Agregado!!') {
                 Swal.fire({
                     icon: 'success',

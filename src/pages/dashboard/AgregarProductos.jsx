@@ -41,7 +41,7 @@ export function AgregarProductos() {
       if (response.ok) {
         const product1Data = await response.json();
         setProductData(product1Data);
-        console.log(product1Data)
+        //console.log(product1Data)
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }
@@ -63,7 +63,7 @@ export function AgregarProductos() {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === 'Producto actualizado') {
             Swal.fire({
                 icon: 'success',

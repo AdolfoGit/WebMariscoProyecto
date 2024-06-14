@@ -47,7 +47,7 @@ export function AgregarPromocion (){
           if (response.ok) {
             const product1Data = await response.json();
             setProductData(product1Data);
-            console.log(product1Data)
+            //console.log(product1Data)
           } else {
             console.error('Error al obtener datos de los usuarios:', response.statusText);
           }
@@ -92,7 +92,7 @@ export function AgregarPromocion (){
         )
         .then((res) => res.json())
         .then((result) => {
-            console.log(result);
+            //console.log(result);
             if (result === 'Agregado!!') {
                 Swal.fire({
                     icon: 'success',
