@@ -66,7 +66,7 @@ export  function TablaPromociones (){
         )
         .then((res) => res.json())
         .then((result) => {
-            console.log(result);
+            //console.log(result);
             if (result === 'Cambiado') {
                 Swal.fire({
                     icon: 'success',

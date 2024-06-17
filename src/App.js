@@ -45,6 +45,7 @@ import { SidebarItem } from './components/Administrador/Dashboard';
 import  Dashboard  from './layouts/dashboard';
 import FormProducto from './pages/dashboard/FormNuevoProducto';
 import FooterNuevo from './components/ComponentesClave/FotterNuevo';
+import ImageUpload from './supabase/carga';
 
 
 function App  (){
@@ -62,6 +63,7 @@ function App  (){
             
             <Route path="/"   element={<Home/>} />
             <Route path="/politicas" element={<Politicas />} />
+            <Route path="/Img" element={<ImageUpload />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/login" element={<Login />} />

@@ -52,7 +52,7 @@ export function ReservacionesCanceladas() {
       if (response.ok) {
         const reservaciones = await response.json();
         setReservacionesData(reservaciones);
-        console.log(reservaciones);
+        //console.log(reservaciones);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }

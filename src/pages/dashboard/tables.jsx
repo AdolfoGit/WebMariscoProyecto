@@ -52,7 +52,7 @@ export function Tables() {
       if (response.ok) {
         const userData1 = await response.json();
         setUserData(userData1);
-        console.log(userData1);
+        //console.log(userData1);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }
@@ -108,7 +108,7 @@ export function Tables() {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === 'Icono actualizado') {
             Swal.fire({
                 icon: 'success',
@@ -141,7 +141,7 @@ export function Tables() {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === 'Icono actualizado') {
             Swal.fire({
                 icon: 'success',
@@ -175,7 +175,7 @@ export function Tables() {
     )
     .then((res) => res.json())
     .then((result) => {
-        console.log(result);
+        //console.log(result);
         if (result === 'Icono actualizado') {
             Swal.fire({
                 icon: 'success',
