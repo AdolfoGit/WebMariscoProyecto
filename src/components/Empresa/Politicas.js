@@ -52,8 +52,8 @@ const Politicas = () => {
         Víctor Hugo Navarrete, mejor conocido como La Casa Del Marisco, con domicilio en Calle 20 de Noviembre, número 1, colonia Colonia Comaltepec, ciudad Huejutla de Reyes, municipio o delegación Huejutla de Reyes, c.p. 43000, en la entidad de Hidalgo, país México, y portal de internet<a href="https://lacasadelmarisco.com.mx" target="_blank" rel="noopener noreferrer">https://lacasadelmarisco.com.mx</a>, es el responsable del uso y protección de sus datos personales, y al respecto le informamos lo siguiente:
       </p>
 
-      <h5>¿Para qué fines utilizaremos sus datos personales?</h5>
-      <p>
+      <h5 className='font-bold'>¿Para qué fines utilizaremos sus datos personales?</h5>
+      <p >
         De manera adicional, utilizaremos su información personal para las siguientes finalidades secundarias que no son necesarias para el servicio solicitado, pero que nos permiten y facilitan brindarle una mejor atención:
       </p>
       <ul>
@@ -65,7 +65,7 @@ const Politicas = () => {
         <li>Publicidad de ofertas y promociones</li>
         <li>Para poder acceder a pedidos anteriores</li>
       </ul>
-
+      <br></br>
       <p>En caso de que no desee que sus datos personales se utilicen para estos fines secundarios, indíquelo a continuación:</p>
 
       <form>
@@ -81,11 +81,11 @@ const Politicas = () => {
           </div>
         ))}
       </form>
-
+        <br></br>
       <p>
         La negativa para el uso de sus datos personales para estas finalidades no podrá ser un motivo para que le neguemos los servicios y productos que solicita o contrata con nosotros.
       </p>
-      <h5>¿Qué datos personales utilizaremos para estos fines?</h5>
+      <h5 className='font-bold'>¿Qué datos personales utilizaremos para estos fines?</h5>
       <div className="dos-columnas">
         <div className="columna">
           <ul>
@@ -102,6 +102,7 @@ const Politicas = () => {
           </ul>
         </div>
       </div>
+      <br></br>
       <p>Además de los datos personales mencionados anteriormente, para las finalidades informadas en el presente aviso de privacidad utilizaremos los siguientes datos personales considerados como sensibles, que requieren de especial protección:</p>
       <h5>Datos Personales Sensibles</h5>
       <ul>
@@ -112,8 +113,8 @@ const Politicas = () => {
         <li>Estado de salud físico presente, pasado o futuro</li>
         <li>Pertenencia a un pueblo, etnia o región</li>
       </ul>
-
-      <h5>Compartición de Datos Personales</h5>
+            <br></br>
+      <h5 className='font-bold'>Compartición de Datos Personales</h5>
       <p>
         Le informamos que sus datos personales son compartidos dentro del país con las siguientes personas, empresas, organizaciones o autoridades distintas a nosotros, para los siguientes fines:
       </p>
@@ -166,7 +167,7 @@ const Politicas = () => {
       </table>
       
       <br></br>
-      <h5>¿Cómo puede acceder, rectificar o cancelar sus datos personales, u oponerse a su uso?</h5>
+      <h5 className='font-bold'>¿Cómo puede acceder, rectificar o cancelar sus datos personales, u oponerse a su uso?</h5>
       <p>
         Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación); que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está siendo utilizada adecuadamente (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición). Estos derechos se conocen como derechos ARCO.
       </p>
@@ -236,19 +237,7 @@ const Politicas = () => {
           </tr>
         </tbody>
       </table>
-
-      <p>
-        Asimismo, usted se podrá inscribir a los siguientes registros, en caso de que no desee obtener publicidad de nuestra parte:
-      </p>
-      <ul>
-        <li>
-          Registro Público para Evitar Publicidad, para mayor información consulte el portal de internet de la PROFECO
-        </li>
-        <li>
-          Registro Público de Usuarios, para mayor información consulte el portal de internet de la CONDUSEF
-        </li>
-      </ul>
-
+      <br></br>
       <h5>Uso de Tecnologías de Rastreo</h5>
       <p>
         Le informamos que en nuestra página de internet utilizamos cookies, web beacons u otras tecnologías, a través de las cuales es posible monitorear su comportamiento como usuario de internet, así como brindarle un mejor servicio y experiencia al navegar en nuestra página. Los datos personales que recabamos a través de estas tecnologías, los utilizaremos para los siguientes fines:
@@ -261,7 +250,7 @@ const Politicas = () => {
         <li>Generar reportes de pedidos</li>
         <li>Rastreo de pedidos</li>
       </ul>
-
+            <br></br>
       <p>
         Los datos personales que obtenemos de estas tecnologías de rastreo son los siguientes:
       </p>
@@ -275,7 +264,7 @@ const Politicas = () => {
         <li>Medios de pago</li>
         <li>Geolocalización</li>
       </ul>
-
+          <br></br>
       <p>Asimismo, le informamos que su información personal será compartida con las siguientes personas, empresas, organizaciones o autoridades distintas a nosotros, para los siguientes fines:</p>
 
       <table className='tabla'> 
@@ -316,7 +305,7 @@ const Politicas = () => {
         Por peticiones al correo <a href="mailto:lacasadelmarisco@gmail.com">lacasadelmarisco@gmail.com</a> o a través de la plataforma web se podrán desvincular o desactivar las diferentes cookies y usos de tecnologías de terceros. También se establecerá una guía de cómo actuar o proceder si este que usuario tiene y quiere desactivar dichas tecnologías.
       </p>
 
-      <h5>¿Cómo puede conocer los cambios en este aviso de privacidad?</h5>
+      <h5 className='font-bold'>¿Cómo puede conocer los cambios en este aviso de privacidad?</h5>
       <p>
         El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales; de nuestras propias necesidades por los productos o servicios que ofrecemos; de nuestras prácticas de privacidad; de cambios en nuestro modelo de negocio, o por otras causas.
       </p>
