@@ -30,14 +30,14 @@ function Footer() {
                       <a
                         target="_blank"
                         rel="noreferrer"
-                        href="https://www.radiustheme.com/"
+                        href="https://web-marisco-proyecto-2z3t.vercel.app/politicas"
                       >
                         Politicas de Privacidad |
                       </a> 
                       <a
                         target="_blank"
                         rel="noreferrer"
-                        href="https://www.radiustheme.com/"
+                        href="https://web-marisco-proyecto-2z3t.vercel.app/terminos"
                       >
                         {' '} Terminos y Condiciones
                       </a>
