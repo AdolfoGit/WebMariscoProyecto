@@ -15,9 +15,10 @@ import {
 import { Lock } from "@mui/icons-material";
 import ImageIcon from '@mui/icons-material/Image';
 import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estructura de archivos
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { uploadFilesUsuarios } from "../../firebase/firebase";
+import Direcciones from "./Direcciones";
 
 const Perfil = () => {
  // const apiurll = "http://localhost:5029/";
@@ -106,7 +107,9 @@ const Perfil = () => {
       text: "Cerraste sesión, nos vemos y recuerdanos cuando te de hambre",
     });
   };
-
+  const irDirecciones = () => {
+    navigate('/direcciones');
+  };
   return (
     <Grid container spacing={3} justifyContent="center" marginBottom={5}>
       <Grid item xs={12} sm={8} md={6}>
@@ -214,7 +217,7 @@ const Perfil = () => {
                   <ListItemIcon>
                     <Lock />
                   </ListItemIcon>
-                  <Button>Cambiar Datos de Ubicacion</Button>
+                  <Button onClick={irDirecciones}>Direcciones</Button>
                   <ListItemIcon>
                     <ImageIcon />
                   </ListItemIcon>

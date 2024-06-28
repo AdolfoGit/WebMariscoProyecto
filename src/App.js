@@ -46,6 +46,7 @@ import  Dashboard  from './layouts/dashboard';
 import FormProducto from './pages/dashboard/FormNuevoProducto';
 import FooterNuevo from './components/ComponentesClave/FotterNuevo';
 import ImageUpload from './supabase/carga';
+import Direcciones from './components/Usuarios/Direcciones';
 
 
 function App  (){
@@ -75,6 +76,8 @@ function App  (){
             </Route>
           <Route element={<ProtectorRutas/>}>
              <Route path="/reservaciones" element={<VisuReservacion />} />
+             <Route path="/direcciones" element={<Direcciones />} />
+
              <Route path="/perfil" element={<Perfil/>}/>
              <Route path="/pedidos" element={<Pedidos />} /> 
              <Route path='/carrito' element={<Carrito/>} />
