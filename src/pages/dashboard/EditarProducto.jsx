@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { useNavigate, useLocation} from 'react-router-dom';
 
 import { PhotoIcon, } from '@heroicons/react/24/solid'
-import { uploadFilesProductos } from "../../firebase/firebase";
+import { uploadFilesProductos, uploadFilesUsuarios } from "../../firebase/firebase";
 
 export function EditarProducto(){
     const location = useLocation();
@@ -88,7 +88,7 @@ export function EditarProducto(){
         
         e.preventDefault();
 
-        const resultImage2 = await uploadFilesProductos(File);
+        const resultImage2 = await uploadFilesUsuarios(File);
       
         
         const data =new FormData();
