@@ -218,10 +218,7 @@ const Perfil = () => {
                     <Lock />
                   </ListItemIcon>
                   <Button onClick={irDirecciones}>Direcciones</Button>
-                  <ListItemIcon>
-                    <ImageIcon />
-                  </ListItemIcon>
-                  <Button>Modificar Datos</Button>
+                  
                 </ListItem>  
               </List>
               <Button

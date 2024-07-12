@@ -25,6 +25,16 @@ const Reservaciones = () => {
   const [direcciones,setDirecciones]= useState([]);
 
 
+  const [calleE, setCalleE] = useState("");
+  const [coloniaE, setColoniaE] = useState("");
+  const [numeroExteriorE, setNumeroExteriorE] = useState("");
+  const [numeroInteriorE, setNumeroInteriorE] = useState("");
+  const [municipioE, setMunicipioE] = useState("");
+  const [estadoE, setEsadoE] = useState("");
+  const [cpE, setCPE] = useState("");
+  const [InformacionAdicionalE, setInformacionAdicionalE] = useState("");
+  const [idDireccionEspecifica, setIdDireccionEspecifica]= useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -66,12 +76,38 @@ const Reservaciones = () => {
         });
   };
 
+  
+  const direccionEspecifica= async (idDireccion)=>{
+    setIdDireccionEspecifica(idDireccion)
+    try {
+      const response = await fetch(
+        apiurll + `/api/CasaDelMarisco/TraerDireccionPorId?DireccionID=${idDireccion}`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await response.json();
+      console.log(data)     
+      setCalleE(data.Calle);
+      setColoniaE(data.Colonia);
+      setNumeroExteriorE(data.NumeroExterior);
+      setNumeroInteriorE(data.NumeroInterior);
+      setMunicipioE(data.Ciudad);
+      setEsadoE(data.Estado);
+      setCPE(data.CP);
+      setInformacionAdicionalE(data.Referencias);
+    } catch (error) {
+      console.error("Error al obtener la informacion:", error);
+    } finally {
+      setLoading(false); 
+    }
+  }
+
 
 
   useEffect(() => {
     obtenerDirecciones()
-    console.log("Direcciones actualizadas:", direcciones);
-  }, [direcciones]);
+  }, []);
 
 
   const obtenerIdUsuario = (user) => {
@@ -104,6 +140,54 @@ const Reservaciones = () => {
   
   };
 
+  const actualizarDireccion = async () => {
+    const data = new FormData();
+    data.append("Calle",calleE);
+    data.append("Colonia",coloniaE);
+    data.append("NumeroInterior",numeroInteriorE);
+    data.append("NumeroExterior",numeroExteriorE);
+    data.append("CP",cpE);
+    data.append("Estado",estadoE);
+    data.append("Ciudad",municipioE);
+    data.append("UsuarioID",user.idUsuario);
+    data.append("DireccionID",idDireccionEspecifica);
+    data.append("Referencias",InformacionAdicionalE)
+   
+     fetch(
+        apiurll + "/api/CasaDelMarisco/EditarDireccion",
+        {
+          method: "POST",
+          body: data,
+        }
+      )
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result)
+        if (result === 'Exito') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Actualizado',
+                text: 'Realizado con exito',
+            });
+            window.location.reload();
+        } else {
+            Swal.fire({
+                icon: 'failed',
+                title: 'Failed',
+                text: 'Ha ocurrido un error verifique los datos',
+            });
+        }
+        })
+        .catch((error) => {
+            console.error('Error al realizar la solicitud:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ha ocurrido un error al procesar la solicitud',
+            });
+        });
+   
+  }
  
   return (
     <div className="container mt-3 mb-5">
@@ -173,7 +257,7 @@ const Reservaciones = () => {
                  className="flex items-center gap-2 text-[12px]"
                  data-bs-toggle="modal"
                  data-bs-target="#exampleModal2"  
-                  
+                 onClick={()=> direccionEspecifica(midirecciones.DireccionID)}
                  >
                    Editar dirección
                    <svg
@@ -425,11 +509,12 @@ const Reservaciones = () => {
                     <input
                       type="text"
                       style={{height:'30px'}}
+                      value={calleE}
                       class="form-control rounded-lg w-full text-xl"
                       placeholder="ingresa tu calle aqui"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setCalle(e.target.value)}
+                      onChange={(e) => setCalleE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                   
@@ -440,12 +525,13 @@ const Reservaciones = () => {
                     </label>
                     <input
                       type="number"
+                      value={numeroExteriorE}
                       style={{height:'30px'}}
                       class="form-control rounded-lg text-xl"
                       placeholder="203"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setNumeroExterior(e.target.value)}
+                      onChange={(e) => setNumeroExteriorE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                    
@@ -456,12 +542,13 @@ const Reservaciones = () => {
                     </label>
                     <input
                       type="text"
+                      value={numeroInteriorE}
                       style={{height:'30px'}}
                       class="form-control rounded-lg text-xl"
                       placeholder="Hidalgo"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setNumeroInterior(e.target.value)}
+                      onChange={(e) => setNumeroInteriorE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                    
@@ -472,12 +559,13 @@ const Reservaciones = () => {
                     </label>
                     <input
                       type="text"
+                      value={coloniaE}
                       style={{height:'30px'}}
                       class="form-control rounded-lg text-xl"
                       placeholder="5 de Mayo"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setColonia(e.target.value)}
+                      onChange={(e) => setColoniaE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                     
@@ -488,12 +576,13 @@ const Reservaciones = () => {
                     </label>
                     <input
                       type="text"
+                      value={municipioE}
                       style={{height:'30px'}}
                       class="form-control rounded-lg text-xl"
                       placeholder="Huejutla"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setMunicipio(e.target.value)}
+                      onChange={(e) => setMunicipioE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                   
@@ -504,12 +593,13 @@ const Reservaciones = () => {
                     </label>
                     <input
                       type="text"
+                      value={estadoE}
                       style={{height:'30px'}}
                       class="form-control rounded-lg text-xl"
                       placeholder="Hidalgo"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setEsado(e.target.value)}
+                      onChange={(e) => setEsadoE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                    
@@ -521,12 +611,13 @@ const Reservaciones = () => {
                     </label>
                     <input
                       type="number"
+                      value={cpE}
                       style={{height:'30px'}}
                       class="form-control rounded-lg text-xl"
                       placeholder="43000"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setCP(e.target.value)}
+                      onChange={(e) => setCPE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                    
@@ -537,12 +628,12 @@ const Reservaciones = () => {
                     </label>
                     <textarea
                       type="text"
-                      
+                      value={InformacionAdicionalE}
                       class="form-control rounded-lg borde-0 h-40 text-xl"
                       placeholder="Referencias a lado de un pozo color azul"
                       id="Nombre"
                       aria-describedby=""
-                      onChange={(e) => setInformacionAdicional(e.target.value)}
+                      onChange={(e) => setInformacionAdicionalE(e.target.value)}
                       //onBlur={() => validateNombre(nombre)}
                     />
                   
@@ -555,8 +646,8 @@ const Reservaciones = () => {
                     
                 <div className=" w-full">
                   <Button 
+                  onClick={()=>actualizarDireccion()}
                   color="blue"
-                  type="submit"
                   className="text-[12px] w-full "
                   variant="filled">
                     Actualizar
