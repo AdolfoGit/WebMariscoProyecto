@@ -85,10 +85,17 @@ export function EditarProducto(){
       };
     
     const handleSubmit = async (e)=>{
-        
-        e.preventDefault();
 
-        const resultImage2 = await uploadFilesUsuarios(File);
+        let resultImage2 ="";
+        e.preventDefault();
+        if (File != null) {
+            resultImage2 = await uploadFilesUsuarios(File);
+        }else{
+            resultImage2 = result.Imagen;
+        }
+
+        console.log(resultImage2);
+
       
         
         const data =new FormData();

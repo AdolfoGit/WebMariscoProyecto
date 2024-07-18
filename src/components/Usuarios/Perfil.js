@@ -35,6 +35,43 @@ const Perfil = () => {
     setImageURL(null)
 
   }
+  async function getLatLong(address, apiKey) {
+    const baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
+    const url = `${baseUrl}?address=${encodeURIComponent(address)}&key=${apiKey}`;
+    
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        if (data.status === "OK") {
+            const location = data.results[0].geometry.location;
+            return { lat: location.lat, lng: location.lng };
+        } else {
+            console.error("Error en la geocodificación:", data.status);
+            return null;
+        }
+    } catch (error) {
+        console.error("Error en la solicitud de geocodificación:", error);
+        return null;
+    }
+}
+
+// Ejemplo de uso
+const address = "43000";
+const apiKey = "AIzaSyBMZxb7lHGBmYbaV8uDoiSjenlPxhwgS1M";
+
+getLatLong(address, apiKey).then(location => {
+    if (location) {
+        console.log(`Latitud: ${location.lat}, Longitud: ${location.lng}`);
+    } else {
+        console.log("No se pudo obtener la latitud y longitud.");
+    }
+});
+
+
+// Ejemplo de uso
+
+
 
  const [File, setFile] = useState(null);
  const [imageURL, setImageURL] = useState(null);
