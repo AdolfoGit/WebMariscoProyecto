@@ -4,6 +4,7 @@ import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@material-tailwind/react'
 import {
     Card,
     CardActionArea,
@@ -11,7 +12,7 @@ import {
     CardMedia,
     Typography,
     Grid,
-    Button,
+
 } from '@mui/material';
   
 import imageen from '../home/img/platillo.jpg';
@@ -252,7 +253,11 @@ export default function ProductoNuevo() {
   };
   
 
- 
+  const getCategoriaText = (categoria) => {
+    if (categoria === 1) return 'Platillo';
+    if (categoria === 2) return 'Bebida';
+    return categoria; // Valor original si no es 1 ni 2
+  }
   
   const verDetalle = () => {
     // Clona el array del carrito y agrega el nuevo producto
@@ -484,170 +489,219 @@ export default function ProductoNuevo() {
 
               {/* Product grid */}
               <div className="md:col-span-3"><Grid container spacing={3}>
-            {(showAllProducts ? productData : filteredProductos) && (showAllProducts ? productData : filteredProductos).map((producto) => (
-                <Grid item key={producto.idProducto} xs={20} sm={6} md={4}>
-                <Card>
-                    <CardActionArea style={{ display: 'flex', flexDirection: 'column', background: 'transparent' }}>
-                    <CardMedia
-                        component="img"
-                                         
+              {(showAllProducts ? productData : filteredProductos) && (showAllProducts ? productData : filteredProductos).map((producto) => (
+                  <Grid item key={producto.idProducto} xs={20} sm={6} md={4}>
+                    <Card className='shadow-none'>
+                      <CardActionArea >
+                        <CardMedia
+                        className='rounded-[9px]'
+                        component="img"       
                         image={producto.Imagen}
                         style={{ transition: 'transform 0.3s' ,height: '200px',}}
                         onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
                         onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                         onClick={()=>verDetalle()}
                         />
-                        <CardContent style={{ flex: '1' }}>
-                        <Typography variant="h6" component="div">
-                        {producto.Nombre}
-                        <Button
-                        size="small"
-                        onClick={() => agregarAlCarrito(producto)}
-                        style={{ marginLeft: '37%', margin: '10px', backgroundColor: 'orange', color: 'white' }}>
-                        <LocalGroceryStoreOutlinedIcon /> Carrito
-                        </Button>
+                          <CardContent m-0 p-0 >
+                          <div className='flex flex-wrap gap-4'>
+                            <Typography 
+                              variant="text" 
+                              
+                              className="font-bold text-[17px] mb-1"
+                            >
+                              {producto.Nombre}
+                            </Typography>
+                            <button className="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200" onClick={()=>agregarAlCarrito(producto)}>
+                              <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                className="h-6 w-6 text-gray-600" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke="currentColor"
+                              >
+                                <path 
+                                  strokeLinecap="round" 
+                                  strokeLinejoin="round" 
+                                  strokeWidth={2} 
+                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" 
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                          <Typography variant='text' className='text-xl' color="text.secondary">
+                            Categoria - Platillos fueres
+                          </Typography>
+                          <div className='flex flex-wrap gap-4 mt-2'>
+                            <Typography variant="text" color="black" className='font-bold text-2xl'>
+                              {producto.Precio} $
+                            </Typography>
+                            <Typography variant="text" color="text.secondary" className='text-xl'>
+                              Disponibles: {producto.Disponibilidad}
+                            </Typography>
+                          </div>
+                        
+                          </CardContent>
+                      </CardActionArea>
+                    </Card>
+                  </Grid>
+              ))}
+              </Grid>
+              </div>
+            <Transition.Root show={open} as={Fragment}>
+              <Dialog as="div" className="relative z-20" onClose={setOpen}>
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-in-out duration-500"
+                  enterFrom="opacity-0"
+                  enterTo="opacity-100"
+                  leave="ease-in-out duration-500"
+                  leaveFrom="opacity-100"
+                  leaveTo="opacity-0"
+                >
+                  <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                </Transition.Child>
 
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                        {producto.Descripcion}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                        Precio: {producto.Precio}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                        Disponibles: {producto.Categoria}
-                        </Typography>
-                    </CardContent>
-                    </CardActionArea>
-                </Card>
-                </Grid>
-            ))}
-            </Grid>
-            </div>
-      <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-20" onClose={setOpen}>
-        <Transition.Child
-          as={Fragment}
-          enter="ease-in-out duration-500"
-          enterFrom="opacity-0"
-          enterTo="opacity-100"
-          leave="ease-in-out duration-500"
-          leaveFrom="opacity-100"
-          leaveTo="opacity-0"
-        >
-          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
-
-        <div className="fixed inset-0 overflow-hidden">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-              <Transition.Child
-                as={Fragment}
-                enter="transform transition ease-in-out duration-500 sm:duration-700"
-                enterFrom="translate-x-full"
-                enterTo="translate-x-0"
-                leave="transform transition ease-in-out duration-500 sm:duration-700"
-                leaveFrom="translate-x-0"
-                leaveTo="translate-x-full"
-              >
-                <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-                    <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-                      <div className="flex items-start justify-between">
-                        <Dialog.Title className="text-lg font-medium text-gray-900">Carrito de Compras</Dialog.Title>
-                        <div className="ml-3 flex h-7 items-center">
-                          <button
-                            type="button"
-                            className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => setOpen(false)}
-                          >
-                            <span className="absolute -inset-0.5" />
-                            <span className="sr-only">Cerrar</span>
-                            <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="mt-8">
-                        <div className="flow-root">
-                          <ul role="list" className="-my-6 divide-y divide-gray-200">
-                            {cart !== null && cart.map((productoCarrito) => (
-                              <li  className="flex py-6">
-                                <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                  <img
-                                    src={productoCarrito.Imagen}
-                                   
-                                    className="h-full w-full object-cover object-center"
-                                  />
+                <div className="fixed inset-0 overflow-hidden">
+                  <div className="absolute inset-0 overflow-hidden">
+                    <div className="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                      <Transition.Child
+                        as={Fragment}
+                        enter="transform transition ease-in-out duration-500 sm:duration-700"
+                        enterFrom="translate-x-full"
+                        enterTo="translate-x-0"
+                        leave="transform transition ease-in-out duration-500 sm:duration-700"
+                        leaveFrom="translate-x-0"
+                        leaveTo="translate-x-full"
+                      >
+                        <Dialog.Panel className="pointer-events-auto w-screen max-w-[35rem]">
+                          <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                            <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
+                              <div className="flex items-start justify-between">
+                                <Dialog.Title className="font-medium text-gray-600 text-2xl">Platillos Seleccionados</Dialog.Title>
+                                <div className="ml-3 flex h-7 items-center">
+                                  <button
+                                    type="button"
+                                    className="relative -m-2 p-2 text-gray-400 hover:text-gray-500"
+                                    onClick={() => setOpen(false)}
+                                  >
+                                    <span className="absolute -inset-0.5" />
+                                    <span className="sr-only">Cerrar</span>
+                                    <XMarkIcon className="h-8 w-8" aria-hidden="true" />
+                                  </button>
                                 </div>
+                              </div>
 
-                                <div className="ml-4 flex flex-1 flex-col">
-                                  <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                      <h3>
-                                        <a>{productoCarrito.Nombre}</a>
-                                      </h3>
-                                      <p className="ml-4">{productoCarrito.Precio}</p>
-                                    </div>
-                                    <p className="mt-1 text-sm text-gray-500">{productoCarrito.Descripcion}</p>
-                                  </div>
-                                  <div className="flex flex-1 items-end justify-between text-sm">
-                                    <p className="text-gray-500">Categoria {productoCarrito.Categoria}</p>
+                              <div className="mt-8">
+                                <div className="flow-root">
+                                  <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                    {cart !== null && cart.map((productoCarrito) => (
+                                      <li  className="flex py-6">
+                                        <div className="h-40 w-40 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                                          <img
+                                            src={productoCarrito.Imagen}
+                                            className="h-full w-full object-cover object-center"
+                                          />
+                                        </div>
 
-                                    <div className="flex">
-                                      <button
-                                        type="button"
-                                        className="font-medium text-indigo-600 hover:text-indigo-500"
-                                        onClick={()=>eliminarDelCarrito(productoCarrito)}
-                                      >
-                                        Eliminar
-                                      </button>
-                                    </div>
-                                  </div>
+                                        <div className="ml-4 w-full">
+                                         
+                                          <Typography variant='text' className='text-2xl font-bold'>{productoCarrito.Nombre}</Typography>
+
+                                          <div className="flex flex-wrap gap-8 mt-2">
+                                            <Typography variant="text" className="text-2xl text-gray-500">Categoria - {getCategoriaText(productoCarrito.Categoria)}</Typography>
+                                            <Typography  variant="text" className="ml-4 text-2xl font-bold">${productoCarrito.Precio}</Typography>
+                                          </div>
+                                          <div className='flex flex-wrap gap-2'>
+                                            <Typography variant="text" className="text-2xl text-gray-500">Cantidad:</Typography>
+                                         
+                                            <button
+                                              type="button"
+                                              className="text-xl text-indigo-600 hover:text-indigo-500 p-1"
+                                              //onClick={() => decrementarCantidad(productoCarrito)}
+                                            >
+                                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                                              </svg>
+                                            </button>
+                                            
+                                            <span className="mx-2 text-xl">2</span>
+                                            
+                                            <button
+                                              type="button"
+                                              className="text-xl text-indigo-600 hover:text-indigo-500 p-1"
+                                              //onClick={() => incrementarCantidad(productoCarrito)}
+                                            >
+                                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                              </svg>
+                                            </button>
+                                            
+                                        
+                                          </div>
+                                       
+                                            <button
+                                                type="button"
+                                                className="text-xl text-indigo-600 hover:text-indigo-500"
+                                                onClick={()=>eliminarDelCarrito(productoCarrito)}
+                                            >
+                                                Eliminar
+                                            </button>
+                                       
+                                        </div>
+                                      </li>
+                                    ))}
+                                  </ul>
                                 </div>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
+                              </div>
+                            </div>
 
-                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                      <div className="flex justify-between text-base font-medium text-gray-900">
-                        <p>Subtotal</p>
-                        <p>$262.00</p>
-                      </div>
-                      <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
-                      <div className="mt-6">
-                        <a
-                          href="#"
-                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                        >
-                          Comprar
-                        </a>
-                      </div>
-                      <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-                        <p>
-                          or{' '}
-                          <button
-                            type="button"
-                            className="font-medium text-indigo-600 hover:text-indigo-500"
-                            onClick={() => setOpen(false)}
-                          >
-                            Seguir agregando ->
-                            <span aria-hidden="true"> &rarr;</span>
-                          </button>
-                        </p>
-                      </div>
+                            <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                            
+                              <Typography variant='text' className="mt-0.5 text-xl text-gray-500 leading-tight">Si desea encargar los paltillos a domicilio por favor presione el boton para comprar </Typography>
+                              <div className="mt-6">
+                                <a
+                                  href="#"
+                                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-2xl font-medium text-white shadow-sm hover:bg-indigo-700"
+                                >
+                                   <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    className="h-7 w-7 mr-2" 
+                                    fill="none" 
+                                    viewBox="0 0 24 24" 
+                                    stroke="currentColor"
+                                  >
+                                    <path 
+                                      strokeLinecap="round" 
+                                      strokeLinejoin="round" 
+                                      strokeWidth={2} 
+                                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" 
+                                    />
+                                  </svg>
+                                  Comprar
+                                </a>
+                              </div>
+                              <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
+                                <p>
+                                  
+                                  <button
+                                    type="button"
+                                    className=" text-xl font-bold"
+                                    onClick={() => setOpen(false)}
+                                  >
+                                    Seguir agregando 
+                                    <span aria-hidden="true"> &rarr;</span>
+                                  </button>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </Dialog.Panel>
+                      </Transition.Child>
                     </div>
                   </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </div>
-      </Dialog>
-    </Transition.Root>
+                </div>
+              </Dialog>
+            </Transition.Root>
             </div>
           </section>
         </main>
