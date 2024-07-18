@@ -113,30 +113,18 @@ const Registro = () => {
                     method: "POST",
                     body: formData,
                   }
-                )
+                )   
                   .then((res) => res.json())
                   .then((result) => {
                     if(result==='Correo Existe'){
                       setEmailError('Invalido, correo existente');
                     }else{
-                      fetch(
-                        apiurll + "api/CasaDelMarisco/AgregarUsuarios?Nombre=" + nombre + "&ApellidoPaterno=" + ApellidoP + "&ApellidoMaterno=" + ApellidoM + "&Correo=" +
-                          email + "&Telefono=" + telefono + "&Contrasena=" + password +  "&FechaNacimiento=" + fechaNac,
-                        {
-                          method: "POST",
-                          body: data,
-                        }
-                      )
-                        .then((res) => res.json())
-                        .then((result) => {
-                          localStorage.setItem('userData', JSON.stringify({ telefono }));
-                          navigate('/tokenRegistro')
-                        }); 
                         Swal.fire({
                           icon: 'success',
                           title: 'Completo su registro',
                           text: 'Ahora tendrá que verificar que el telefono sea real',
                         });  
+                        navigate("/login")
                     }
                   });  
               }
@@ -170,7 +158,7 @@ const Registro = () => {
     const handleCheckboxChange = () => {
       setIsChecked(!isChecked);
     };
-    //validaciones jsjsjjs
+
     const validateNombre =(nombre)=>{
       if(nombre===''){
        setNombreError('Acomplete este campo')

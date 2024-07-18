@@ -14,18 +14,8 @@ import {
     Grid,
 
 } from '@mui/material';
-  
-import imageen from '../home/img/platillo.jpg';
-import imageen2 from '../home/img/hamburguesa.jpg';
-import imageen3 from '../home/img/cotel.jpg';
-import imageen5 from '../home/img/pescado.jpeg';
-import imageen6 from '../home/img/brocheta.jpg';
-import imageen7 from '../home/img/bebida.jpg';
-import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
-import { ShowerSharp } from '@mui/icons-material'
-
-import Carrito from './Carrito'
-
+import { useUser } from "../../UserContext";
+import Swal from "sweetalert2";
 
 const filters = [
   {
@@ -65,11 +55,12 @@ export default function ProductoNuevo() {
 
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  const [cantidad,setCantidad]= useState(1);
 
   useEffect(() => {
     obtenterDatosProductos();
-  }, []); // Se ejecuta solo una vez al montar el componente
-// Se ejecuta solo una vez al montar el componente
+    obtenerProductoCarrito();
+  }, []); 
 
 
   const obtenterDatosProductos = async () => {
@@ -94,14 +85,9 @@ export default function ProductoNuevo() {
     }
   };
 
-  const saveCartToLocalStorage = (cart) => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  };
-  
-  const loadCartFromLocalStorage = () => {
-    const cartString = localStorage.getItem('cart');
-    return cartString ? JSON.parse(cartString) : [];
-  };
+
+
+  const { user } = useUser();
   
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
@@ -110,23 +96,86 @@ export default function ProductoNuevo() {
 
   const [cart, setCart] = useState([]);
 
-  const agregarAlCarrito = (producto) => {
-    const newCart = [...cart, producto];
-    setCart(newCart);
-    saveCartToLocalStorage(newCart);
-    <Carrito carrito={newCart}/>
-    setOpen(true);
+  const agregarAlCarrito = async (producto) => {
+    const data = new FormData();
+    data.append("idUsuario",user.idUsuario)
+    data.append("idProducto",producto.idProducto)
+
+    fetch(
+      apiurll + "/api/CasaDelMarisco/AgregarProductosCarrito",
+      {
+        method: "POST",
+        body: data,
+      }
+    )
+    .then((res) => res.json())
+    .then((result) => {
+      console.log(result)
+      if (result === 'Exito') {
+        obtenerProductoCarrito();
+        setOpen(true);
+      } else {
+          setOpen(false)
+      }
+      })
+      .catch((error) => {
+          console.error('Error al realizar la solicitud:', error);
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Ha ocurrido un error al procesar la solicitud',
+          });
+      });
+    
   };
   
+  const obtenerProductoCarrito= async()=>{
+    try {
+      const response = await fetch(
+        apiurll + `/api/CasaDelMarisco/TraerCarritoPorUsuario?idUsuario=${user.idUsuario}`,
+        {
+          method: "GET",
+        }
+      );
+      const data = await response.json();
+      console.log(data)     
+      setCart(data)
+    } catch (error) {
+      console.error("Error al obtener la informacion:", error);
+    } 
+  }
   const eliminarDelCarrito = (productoAEliminar) => {
-    // Filtra el carrito para mantener solo los productos que no coincidan con el producto a eliminar
-    const nuevoCarrito = cart.filter(producto => producto.id !== productoAEliminar.id);
-  
-    // Actualiza el estado del carrito en el componente
-    setCart(nuevoCarrito);
-  
-    // Guarda el nuevo carrito en el almacenamiento local
-    saveCartToLocalStorage(nuevoCarrito);
+    const data = new FormData();
+    data.append("idUsuario",user.idUsuario)
+    data.append("idProducto",productoAEliminar.idProducto)
+    data.append("idCarritoProductos",productoAEliminar.idCarritoProductos)
+
+    fetch(
+      apiurll + "/api/CasaDelMarisco/QuitarProductosCarrito",
+      {
+        method: "POST",
+        body: data,
+      }
+    )
+    .then((res) => res.json())
+    .then((result) => {
+      console.log(result)
+      if (result === 'Exito') {
+        obtenerProductoCarrito();
+        setOpen(true);
+      } else {
+          setOpen(false)
+      }
+      })
+      .catch((error) => {
+          console.error('Error al realizar la solicitud:', error);
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Ha ocurrido un error al procesar la solicitud',
+          });
+      });
+    
   };
 
  //funciones para las busquedas
@@ -377,6 +426,22 @@ export default function ProductoNuevo() {
                 onClick={handleSearchClick}>
                 Buscar
               </Button>
+              <button className="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200" onClick={()=>setOpen(true)}>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-gray-600" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" 
+                  />
+                </svg>
+              </button>
             </div>
             <div className="flex items-center">
              
@@ -608,28 +673,28 @@ export default function ProductoNuevo() {
                                           <Typography variant='text' className='text-2xl font-bold'>{productoCarrito.Nombre}</Typography>
 
                                           <div className="flex flex-wrap gap-8 mt-2">
-                                            <Typography variant="text" className="text-2xl text-gray-500">Categoria - {getCategoriaText(productoCarrito.Categoria)}</Typography>
+                                            <Typography variant="text" className="text-2xl text-gray-500">Precio unitario - {getCategoriaText(productoCarrito.PrecioUnitario)}</Typography>
                                             <Typography  variant="text" className="ml-4 text-2xl font-bold">${productoCarrito.Precio}</Typography>
                                           </div>
                                           <div className='flex flex-wrap gap-2'>
-                                            <Typography variant="text" className="text-2xl text-gray-500">Cantidad:</Typography>
+                                            <Typography variant="text" className="text-2xl text-gray-500">Cantidad: </Typography>
                                          
                                             <button
                                               type="button"
                                               className="text-xl text-indigo-600 hover:text-indigo-500 p-1"
-                                              //onClick={() => decrementarCantidad(productoCarrito)}
+                                              onClick={() => eliminarDelCarrito(productoCarrito)}
                                             >
                                               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                                               </svg>
                                             </button>
                                             
-                                            <span className="mx-2 text-xl">2</span>
+                                            <span className="mx-2 text-xl">{productoCarrito.Cantidad}</span>
                                             
                                             <button
                                               type="button"
                                               className="text-xl text-indigo-600 hover:text-indigo-500 p-1"
-                                              //onClick={() => incrementarCantidad(productoCarrito)}
+                                              onClick={() => agregarAlCarrito(productoCarrito)}
                                             >
                                               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -639,13 +704,7 @@ export default function ProductoNuevo() {
                                         
                                           </div>
                                        
-                                            <button
-                                                type="button"
-                                                className="text-xl text-indigo-600 hover:text-indigo-500"
-                                                onClick={()=>eliminarDelCarrito(productoCarrito)}
-                                            >
-                                                Eliminar
-                                            </button>
+                                            
                                        
                                         </div>
                                       </li>
@@ -659,9 +718,9 @@ export default function ProductoNuevo() {
                             
                               <Typography variant='text' className="mt-0.5 text-xl text-gray-500 leading-tight">Si desea encargar los paltillos a domicilio por favor presione el boton para comprar </Typography>
                               <div className="mt-6">
-                                <a
-                                  href="#"
-                                  className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-2xl font-medium text-white shadow-sm hover:bg-indigo-700"
+                                <button
+                                  onClick={()=>navigate("/detalleCarrito")}
+                                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-2xl font-medium text-white shadow-sm hover:bg-indigo-700"
                                 >
                                    <svg 
                                     xmlns="http://www.w3.org/2000/svg" 
@@ -678,7 +737,7 @@ export default function ProductoNuevo() {
                                     />
                                   </svg>
                                   Comprar
-                                </a>
+                                </button>
                               </div>
                               <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>

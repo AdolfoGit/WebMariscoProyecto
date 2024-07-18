@@ -39,6 +39,7 @@ import MenuRecuperacion from './components/Usuarios/MenuRecuperacion';
 import Mision from './components/Empresa/Nosotros';
 import TokenRegistro from './components/Usuarios/ValidarUsuario/TokenRegistro';
 
+
 import { BarChart, BoxIcon, LayoutDashboard, LifeBuoy, Package, Settings, Sidebar, UserCircle,Boxes } from 'lucide-react';
 import SidebarN from './components/Administrador/Dashboard';
 import { SidebarItem } from './components/Administrador/Dashboard';
@@ -47,7 +48,7 @@ import FormProducto from './pages/dashboard/FormNuevoProducto';
 import FooterNuevo from './components/ComponentesClave/FotterNuevo';
 import ImageUpload from './supabase/carga';
 import Direcciones from './components/Usuarios/Direcciones';
-
+import CarritoDetalle from './components/Productos/CarritoDetalle';
 
 function App  (){
 
@@ -81,6 +82,8 @@ function App  (){
              <Route path="/perfil" element={<Perfil/>}/>
              <Route path="/pedidos" element={<Pedidos />} /> 
              <Route path='/carrito' element={<Carrito/>} />
+             <Route path='/detalleCarrito' element={<CarritoDetalle/>}></Route>
+
             </Route> 
             <Route path="/productos" element={<ProductoNuevo  />} />
             <Route path="/ofertas" element={<Ofertas />} />
@@ -93,7 +96,6 @@ function App  (){
             <Route path="/ayuda" element={<Ayuda/>} /> 
             <Route path="/token" element={<Token/>} /> 
             <Route path="/tokenSMS" element={<TokenSMS/>} /> 
-            <Route path="/tokenRegistro" element={<TokenRegistro/>} /> 
 
             <Route path="/actualizar" element={<Actualizar/>} /> 
             <Route path="/actualizarSMS" element={<ActualizarSMS/>} /> 
@@ -105,7 +107,6 @@ function App  (){
            <Route path='/listausuarios' element={<ListaUsuarios/>}></Route>
            <Route path='/multifactor' element={<Bienvenida/>}></Route>
            <Route path='/detalleProduct' element={<DetailsProduct/>}></Route> 
-           
 
           </Routes>
          
