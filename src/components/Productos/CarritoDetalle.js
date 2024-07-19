@@ -11,7 +11,9 @@ const CarritoDetalle = () => {
   const [carrito, setCarrito] = useState([]);
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
-  const paypalRef = useRef();
+  const [pago,setPago]= useState(1)
+  const [Direccion,setDirecion]= useState();
+
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
   const obtenerIdUsuario = (user) => {
@@ -162,10 +164,41 @@ const CarritoDetalle = () => {
   
   const onApprove = async (data, actions) => {
     try {
-      const order = await actions.order.capture();
-      console.log('Orden capturada:', order);
-      alert("Pago completado con éxito!");
-      return order;
+     
+      const data= new FormData();
+      data.append("idTipoPago",1)
+      data.append("idUsuario",user.idUsuario)
+      data.append("idCarrito",carrito.idCarrito)
+      data.append("Total",total)
+      data.append("idDireccion",Direccion)
+      const response = await fetch(
+        apiurll + "/api/CasaDelMarisco/AgregarPedido",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const result = await response.json();
+      console.log(result);
+      if (result === 'Exito') {
+        const order = await actions.order.capture();
+        console.log('Orden capturada:', order);
+        
+        Swal.fire({
+          icon: 'success',
+          title: 'Éxito',
+          text: 'El pedido se ha guardado y procesado correctamente',
+        });
+        
+        return order;
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ha ocurrido un error al procesar la solicitud',
+      });
+      }
+    
     } catch (error) {
       console.error('Error al capturar la orden:', error);
       alert(`Error al completar el pago: ${error.message}`);
@@ -179,7 +212,7 @@ const CarritoDetalle = () => {
   
     const subtotal = carrito.reduce((acc, item) => acc + item.Precio, 0);
     const iva = subtotal * 0.16;
-    const envio = 30;
+    const envio = 1;
     const total = subtotal + iva + envio;
   
     return {
@@ -192,7 +225,7 @@ const CarritoDetalle = () => {
 
 
   useEffect(() => {
-    obtenerProductoCarrito();
+    obtenerProductoCarrito(); 
     obtenerDirecciones();
     
   }, []);
@@ -252,15 +285,15 @@ const CarritoDetalle = () => {
                     </div>
                   </div>
                   <div className='w-1/4 flex items-center justify-center'>
-                    <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}</Typography>
+                    <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}{carritoInfo.idCarrito}</Typography>
                   </div>
                 </div>
                 <Typography variant='text' className='text-2xl font-bold mb-2'>Elije tu direccion para la entrega de tus pedidos</Typography>
-                 <select>
+                 <select onChange={(e) => setDirecion(e.target.value)}>
                  {direcciones !=null ? (
                  direcciones.map((midirecciones) => (
                    <>
-                       <option>
+                       <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
                          calle {midirecciones.Calle}, colonia{midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
                        </option>
                    </>

@@ -629,3 +629,10 @@ p{
 .overflow-y-auto::-webkit-scrollbar {
   display: none; /* Oculta la barra de desplazamiento */
 }
+
+
+  .dotted-line {
+    background-image: linear-gradient(to bottom, #000 40%, #ffff 40%);
+    background-size: 2px 12px;
+    background-repeat: repeat-y;
+  }
