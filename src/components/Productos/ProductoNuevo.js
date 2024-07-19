@@ -52,16 +52,17 @@ function classNames(...classes) {
 }
 
 export default function ProductoNuevo() {
+ 
 
+  const { user } = useUser();
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [cantidad,setCantidad]= useState(1);
+ 
 
   useEffect(() => {
     obtenterDatosProductos();
     obtenerProductoCarrito();
   }, []); 
-
 
   const obtenterDatosProductos = async () => {
     try {
@@ -85,9 +86,6 @@ export default function ProductoNuevo() {
     }
   };
 
-
-
-  const { user } = useUser();
   
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)

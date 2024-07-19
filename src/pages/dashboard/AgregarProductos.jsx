@@ -1,4 +1,4 @@
-import React, {useState, useEffect}from 'react';
+  import React, {useState, useEffect}from 'react';
 import {
   Card,
   CardHeader,
@@ -111,102 +111,102 @@ export function AgregarProductos() {
                 ))}
               </tr>
             </thead>
-            <tbody>
-              {productData !== null && productData.map(
-                ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad ,Estado}, key) => {
-                  const className = `py-3 px-5 ${
-                    key === productData.length - 1
-                      ? ""
-                      : "border-b border-blue-gray-50"
-                  }`;
+              <tbody>
+                {productData !== null && productData.map(
+                  ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad ,Estado}, key) => {
+                    const className = `py-3 px-5 ${
+                      key === productData.length - 1
+                        ? ""
+                        : "border-b border-blue-gray-50"
+                    }`;
 
-                  return (
-                    <tr>
+                    return (
+                      <tr>
+                          <td className={className}>
+                        <Typography
+                                variant="h5"
+                                color="blue-gray"
+                                className="font-semibold"
+                              >
+                                {idProducto}
+                              </Typography>
+                        </td>
                         <td className={className}>
-                      <Typography
-                              variant="h5"
-                              color="blue-gray"
-                              className="font-semibold"
-                            >
-                              {idProducto}
-                            </Typography>
-                      </td>
-                      <td className={className}>
-                      
-                          <Avatar src={Imagen} size="md" variant='square' />
-                    
-                    
-                      </td>
-                      <td className={className}>
-                        <Typography className=" text-xl  font-semibold text-bold">
-                          {Nombre}
-                        </Typography>
                         
-                      </td>
-                     
-                      <td className={className}>
-                      <Typography className="text-xl text-bold leadig-7 min-w-[20rem]" >
-                          {Descripcion}
+                            <Avatar src={Imagen} size="md" variant='square' />
+                      
+                      
+                        </td>
+                        <td className={className}>
+                          <Typography className=" text-xl  font-semibold text-bold">
+                            {Nombre}
+                          </Typography>
+                          
+                        </td>
+                      
+                        <td className={className}>
+                        <Typography className="text-xl text-bold leadig-7 min-w-[20rem]" >
+                            {Descripcion}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography className=" text-xl text-bold min-w-[20rem]">
+                            {Ingredientes}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography  variant="small"
+                              className="text-2xl font-semibold text-bold">
+                            $ {Precio}
+                          </Typography>
+                      
+                        </td>
+                        <td className={className}>
+                        <Typography className='text-xl text-bold'>
+                          {FechaIntroduccion}
                         </Typography>
-                      </td>
-                      <td className={className}>
-                        <Typography className=" text-xl text-bold min-w-[20rem]">
-                          {Ingredientes}
-                        </Typography>
-                      </td>
-                      <td className={className}>
-                        <Typography  variant="small"
-                            className="text-2xl font-semibold text-bold">
-                           $ {Precio}
-                        </Typography>
-                    
-                      </td>
-                      <td className={className}>
-                       <Typography className='text-xl text-bold'>
-                         {FechaIntroduccion}
-                       </Typography>
-                      </td>
-                      <td className={className} >
-                        <Typography className='text-xl text-center text-bold' >
-                          {(Categoria===1?'Platillo':'Bebida')}
-                        </Typography>
-                      </td>
-                      <td className={className} >
-                        <Typography className='text-xl text-center text-bold'>
-                          {Disponibilidad}
-                        </Typography>
-                      </td>
-                      <td className={className} >
-                        <Typography className='text-xl text-center text-bold'>
-                          {Estado}
-                        </Typography>
-                      </td>
-                      <td className={className}>
-                      <div>
-                            <Menu placement="left-start" className='text-center'>
-                              <MenuHandler>
-                                <IconButton size="md" variant="text" color="blue-gray">
-                                  <EllipsisVerticalIcon
-                                    strokeWidth={3}
-                                    fill="currenColor"
-                                    className="h-8 w-8"
-                                  />
-                                </IconButton>
-                              </MenuHandler>
-                              <MenuList>
-                                <div className="flex row items-start justify-start">
-                                  <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idProducto)} > Eliminar</Button>
-                                  <Button color="green" variant='text' className='text-md text-left' onClick={()=> navigate('/dashboard/editarproducto', { state: { idProducto } })}> Editar</Button>
-                                </div>
-                              </MenuList>
-                            </Menu>
-                          </div>
-                      </td>
-                    </tr>
-                  );
-                }
-              )}
-            </tbody>
+                        </td>
+                        <td className={className} >
+                          <Typography className='text-xl text-center text-bold' >
+                            {(Categoria===1?'Platillo':'Bebida')}
+                          </Typography>
+                        </td>
+                        <td className={className} >
+                          <Typography className='text-xl text-center text-bold'>
+                            {Disponibilidad}
+                          </Typography>
+                        </td>
+                        <td className={className} >
+                          <Typography className='text-xl text-center text-bold'>
+                            {Estado}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                        <div>
+                              <Menu placement="left-start" className='text-center'>
+                                <MenuHandler>
+                                  <IconButton size="md" variant="text" color="blue-gray">
+                                    <EllipsisVerticalIcon
+                                      strokeWidth={3}
+                                      fill="currenColor"
+                                      className="h-8 w-8"
+                                    />
+                                  </IconButton>
+                                </MenuHandler>
+                                <MenuList>
+                                  <div className="flex row items-start justify-start">
+                                    <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idProducto)} > Eliminar</Button>
+                                    <Button color="green" variant='text' className='text-md text-left' onClick={()=> navigate('/dashboard/editarproducto', { state: { idProducto } })}> Editar</Button>
+                                  </div>
+                                </MenuList>
+                              </Menu>
+                            </div>
+                        </td>
+                      </tr>
+                    );
+                  }
+                )}
+              </tbody>
           </table>
         </CardBody>
       </Card>
