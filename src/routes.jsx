@@ -18,6 +18,7 @@ import EditarEmpresa from "./pages/dashboard/EditarEmpresa";
 import Reportes from "./pages/dashboard/Reportes";
 import Matematicas from "./pages/dashboard/matematicas";
 import Reservaciones from "./pages/dashboard/reservaciones";
+import PedidosGeneral from "./pages/dashboard/pedidos";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -59,9 +60,9 @@ export const routes = [
       },
       {
         icon: <DocumentTextIcon {...icon} />,
-        name: "Matematicas",
-        path: "/matematicas",
-        element: <Matematicas />,    
+        name: "pedidos",
+        path: "/pedidos",
+        element: <PedidosGeneral />,    
       },
       {
         icon: <HomeIcon {...icon} />,
@@ -105,8 +106,8 @@ export const routes = [
         element: <Reportes />,  
       },
       {  
-        path: "/matematicas",
-        element: <Matematicas />,   
+        path: "/pedidos",
+        element: <PedidosGeneral />,   
       },
       {
         path: "/insertarproducto",

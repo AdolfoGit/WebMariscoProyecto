@@ -49,7 +49,8 @@ const obtenerPromociones = async () => {
        <Typography variant="h2" color="blue-gray" className="mb-2 text-center text-4xl">
           Promociones
         </Typography>
-     
+     <div className='container d-flex'>
+
       {promocionesData !== null && promocionesData.map((promocion) =>(
          <div className='flex'>
 
@@ -64,6 +65,9 @@ const obtenerPromociones = async () => {
            <Typography variant="h5" color="blue-gray">
             {promocion.Nombre}
            </Typography>
+           <Typography variant="h6" color="blue-gray">
+            {promocion.Descripcion}
+           </Typography>
            <Typography color="gray" className="mt-2 font-normal">
            {`Termina el ${promocion.FechaDeFin.split('T')[0]}`}
            </Typography>
@@ -77,6 +81,7 @@ const obtenerPromociones = async () => {
  
        </div>
       ))}
+     </div>
      
 
     </div>

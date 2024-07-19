@@ -1,74 +1,104 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Colors from './Colors';
+import { useLocation } from 'react-router-dom';
 import DetailsThumb from './DetailsThumb';
-import './css/Detail.css'
+import './css/Detail.css';
+import ImageMagnifier from './ImageMagnifier';
 
+// Importa imágenes de ejemplo si es necesario
 import imagen from '../home/img/hamburguesa2.jpg';
 import imagen2 from '../home/img/hamburguesa.jpg';
 import imagen3 from '../home/img/ham2.jpg';
-import ImageMagnifier from './ImageMagnifier';
+import Swal from 'sweetalert2';
 
 const DetailsProduct = () => {
-  const [products, setProducts] = useState([
-    {
-      "_id": "1",
-      "title": "Hamburguesas de Mariscos",
-      "src": [
-          imagen,
-          imagen2,
-          imagen3
-        ],
-      "description": "XSL,M, G, XG",
-      "content": "La Hamburguesa de Mariscos es una innovadora delicia culinaria que combina la jugosidad de una hamburguesa con la exquisitez de diversos tipos de mariscos. Este manjar se distingue por su fusión de sabores marinos y su textura única, ofreciendo una experiencia gastronómica fuera de lo común",
-      "price": 129,
-      "colors":["Blue","black","Green","Red"],
-      "count": 1
-    }
-  ]);
+  const location = useLocation();
+  const idProducto = location.state?.idProducto; // Obtener idProducto del estado de navegación
+  const apiUrl = "https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductoPorId";
+  
+  const [product, setProductData] = useState(null); // Estado inicial como null para manejar el estado de carga
+  const [loading, setLoading] = useState(true); // Estado de carga
   const [index, setIndex] = useState(0);
   const myRef = useRef();
 
-  const handleTab = index =>{
-    setIndex(index);
-    const images = myRef.current.children;
-    for(let i=0; i<images.length; i++){
-      images[i].className = images[i].className.replace("active", "");
+
+
+  const fetchProductData = async () => {
+    setLoading(true); // Iniciar carga
+    try {
+      const dat = new FormData()
+      dat.append("idProducto",idProducto)
+      const response = await fetch(`${apiUrl}?idProducto=${idProducto}`, {
+        method: 'POST',
+        body: dat,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        setProductData(data);
+      } else {
+        console.error('Error al obtener datos del producto:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al obtener datos del producto:', error);
+    } finally {
+      setLoading(false); // Finalizar carga
     }
-    images[index].className = "active";
   };
 
   useEffect(() => {
-    myRef.current.children[index].className = "active";
-  }, [index]);
+    if (idProducto) {
+      fetchProductData();
+    }
+  }, [idProducto]);
+
+  if (loading) {
+    let timerInterval;
+    Swal.fire({
+      title: "Cargando!",
+      html: "Cargando producto en <b></b> milliseconds.",
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        timerInterval = setInterval(() => {
+          timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+      }
+
+  if (!product) {
+    return <div>Producto no encontrado</div>; // Mostrar mensaje si no se encuentra el producto
+  }
 
   return (
-    <div className="">
-      {
-        products.map(item =>(
-          <div className="details" key={item._id}>
-            <div className="big-img">
-              <ImageMagnifier imageUrl={item.src[index]}/>
-            </div>
-
-            <div className="box">
-              <div className="row">
-                <h2>{item.title}</h2>
-                <span>${item.price}</span>
-              </div>
-            
-
-            
-              <p>{item.content}</p>
-
-              <DetailsThumb images={item.src} tab={handleTab} myRef={myRef} />
-              <button className="cart">Comprar</button>
-
-            </div>
-            
-          </div>
-        ))
-      }
+    <div className="" style={{ display: 'flex', gap: '1000px', marginLeft:'20%' }}>
+    <div className="details" key={product.idProducto}>
+      <div className="big-img" style={{ marginRight: '10px' }}>
+        <ImageMagnifier imageUrl={product.Imagen} />
+      </div>
+  
+      <div className="box">
+        <div className="row">
+          <h2 >{product.Nombre}</h2>
+          <span>${product.Precio}</span>
+        </div>
+  
+        <p>{product.Descripcion}</p>
+        </div>
     </div>
+  </div>
+  
   );
 };
 
