@@ -8,6 +8,7 @@ import ImageMagnifier from './ImageMagnifier';
 import imagen from '../home/img/hamburguesa2.jpg';
 import imagen2 from '../home/img/hamburguesa.jpg';
 import imagen3 from '../home/img/ham2.jpg';
+import Swal from 'sweetalert2';
 
 const DetailsProduct = () => {
   const location = useLocation();
@@ -52,8 +53,29 @@ const DetailsProduct = () => {
   }, [idProducto]);
 
   if (loading) {
-    return <div>Cargando...</div>; // Mostrar indicador de carga
-  }
+    let timerInterval;
+    Swal.fire({
+      title: "Cargando!",
+      html: "Cargando producto en <b></b> milliseconds.",
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        timerInterval = setInterval(() => {
+          timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+      }
 
   if (!product) {
     return <div>Producto no encontrado</div>; // Mostrar mensaje si no se encuentra el producto
