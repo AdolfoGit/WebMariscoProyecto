@@ -72,7 +72,8 @@ const Registro = () => {
       // Validar campos antes de enviar el formulario
       if(isChecked === false){
         setTerminosError('Acepte los terminos y condiciones')
-      }else{
+      }
+      else{
         if (validateEmail(email)===true && validatePassword2(password2) && validateApellidoM(ApellidoM)===true && validateApellidoP(ApellidoP)===true && validateNombre(nombre) && validateTelefono(telefono)&& validateFecha(fechaNac) ) {
           fetch(
             apiurll+"api/CasaDelMarisco/VerificarTelefono?Telefono=" +
@@ -93,7 +94,7 @@ const Registro = () => {
               setTelefonoError("Este telefono ya está registrado en la página");
             }
             else{
-                     fetch(
+            fetch(
             apiurll+"api/CasaDelMarisco/ProbarAlgo?Correo=" +
               email,
             {
@@ -118,13 +119,33 @@ const Registro = () => {
                   .then((result) => {
                     if(result==='Correo Existe'){
                       setEmailError('Invalido, correo existente');
-                    }else{
-                        Swal.fire({
-                          icon: 'success',
-                          title: 'Completo su registro',
-                          text: 'Ahora tendrá que verificar que el telefono sea real',
-                        });  
-                        navigate("/login")
+                    }
+                    else
+                    {
+                        fetch(
+                          apiurll+"api/CasaDelMarisco/AgregarUsuarios",
+                          {
+                            method: "POST",
+                            body: data,
+                          }
+                        ) 
+                        .then((res) => res.json())
+                        .then((result) => {
+                          if(result=="Agregado!!"){
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Completo su registro',
+                              text: 'Ahora ya puede logearse',
+                            });  
+                            navigate("/login")
+                          }else{
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'Error',
+                              text: 'Verifique los datos',
+                            });  
+                          }     
+                        });              
                     }
                   });  
               }
