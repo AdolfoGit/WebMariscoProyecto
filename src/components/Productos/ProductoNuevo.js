@@ -54,7 +54,7 @@ function classNames(...classes) {
 export default function ProductoNuevo() {
 
   const [productData, setProductData] = useState(null);
-  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+    const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const [cantidad,setCantidad]= useState(1);
 
   useEffect(() => {
@@ -308,9 +308,8 @@ export default function ProductoNuevo() {
     return categoria; // Valor original si no es 1 ni 2
   }
   
-  const verDetalle = () => {
-    // Clona el array del carrito y agrega el nuevo producto
-    navigate('/detalleProduct')
+  const verDetalle = (idProducto) => {
+    navigate('/detalleProduct', { state: { idProducto } }); // Pasar idProducto en el estado de navegación
   };
 
   return (
@@ -553,65 +552,68 @@ export default function ProductoNuevo() {
               </form>
 
               {/* Product grid */}
-              <div className="md:col-span-3"><Grid container spacing={3}>
-              {(showAllProducts ? productData : filteredProductos) && (showAllProducts ? productData : filteredProductos).map((producto) => (
-                  <Grid item key={producto.idProducto} xs={20} sm={6} md={4}>
-                    <Card className='shadow-none'>
-                      <CardActionArea >
-                        <CardMedia
-                        className='rounded-[9px]'
-                        component="img"       
-                        image={producto.Imagen}
-                        style={{ transition: 'transform 0.3s' ,height: '200px',}}
-                        onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
-                        onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-                        onClick={()=>verDetalle()}
-                        />
-                          <CardContent m-0 p-0 >
-                          <div className='flex flex-wrap gap-4'>
-                            <Typography 
-                              variant="text" 
-                              
-                              className="font-bold text-[17px] mb-1"
-                            >
-                              {producto.Nombre}
-                            </Typography>
-                            <button className="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200" onClick={()=>agregarAlCarrito(producto)}>
-                              <svg 
-                                xmlns="http://www.w3.org/2000/svg" 
-                                className="h-6 w-6 text-gray-600" 
-                                fill="none" 
-                                viewBox="0 0 24 24" 
-                                stroke="currentColor"
-                              >
-                                <path 
-                                  strokeLinecap="round" 
-                                  strokeLinejoin="round" 
-                                  strokeWidth={2} 
-                                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" 
-                                />
-                              </svg>
-                            </button>
-                          </div>
-                          <Typography variant='text' className='text-xl' color="text.secondary">
-                            Categoria - Platillos fueres
-                          </Typography>
-                          <div className='flex flex-wrap gap-4 mt-2'>
-                            <Typography variant="text" color="black" className='font-bold text-2xl'>
-                              {producto.Precio} $
-                            </Typography>
-                            <Typography variant="text" color="text.secondary" className='text-xl'>
-                              Disponibles: {producto.Disponibilidad}
-                            </Typography>
-                          </div>
-                        
-                          </CardContent>
-                      </CardActionArea>
-                    </Card>
-                  </Grid>
-              ))}
-              </Grid>
-              </div>
+              <div className="md:col-span-3">
+      <Grid container spacing={3}>
+        {(showAllProducts ? productData : filteredProductos) &&
+          (showAllProducts ? productData : filteredProductos).map((producto) => (
+            <Grid item key={producto.idProducto} xs={20} sm={6} md={4}>
+              <Card className='shadow-none'>
+                <CardActionArea>
+                  <CardMedia
+                    className='rounded-[9px]'
+                    component="img"
+                    image={producto.Imagen}
+                    style={{ transition: 'transform 0.3s', height: '200px' }}
+                    onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.3)')}
+                    onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    onClick={() => verDetalle(producto.idProducto)} // Llama a verDetalle con idProducto
+                  />
+                  <CardContent m-0 p-0>
+                    <div className='flex flex-wrap gap-4'>
+                      <Typography
+                        variant="text"
+                        className="font-bold text-[17px] mb-1"
+                      >
+                        {producto.Nombre}
+                      </Typography>
+                      <button
+                        className="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200"
+                        onClick={() => agregarAlCarrito(producto)}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-6 w-6 text-gray-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                    <Typography variant='text' className='text-xl' color="text.secondary">
+                      Categoria - Platillos fueres
+                    </Typography>
+                    <div className='flex flex-wrap gap-4 mt-2'>
+                      <Typography variant="text" color="black" className='font-bold text-2xl'>
+                        {producto.Precio} $
+                      </Typography>
+                      <Typography variant="text" color="text.secondary" className='text-xl'>
+                        Disponibles: {producto.Disponibilidad}
+                      </Typography>
+                    </div>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+      </Grid>
+    </div>
             <Transition.Root show={open} as={Fragment}>
               <Dialog as="div" className="relative z-20" onClose={setOpen}>
                 <Transition.Child
