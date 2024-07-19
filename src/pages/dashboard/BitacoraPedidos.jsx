@@ -4,26 +4,36 @@ import {
   CardHeader,
   CardBody,
   Typography,
+  Avatar,
+  Chip,
+  Tooltip,
+  Progress,
   Button,
+  IconButton,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
 } from "@material-tailwind/react";
+import { EllipsisVerticalIcon, ArrowRightIcon, ArrowLeftIcon  } from "@heroicons/react/24/outline";
+import { projectsTableData } from "../../data/projects-table-data";
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import { user } from '@nextui-org/react';
 
-
-import Reportes1 from './ReportesLogin';
-import ReportesOauht from './ReportesOauth';
-import ReportesBloque from './ReportesBloqueo';
-import ReportesCambioPasword from './ReporteCambioPasword';
-import ReportesPago from './BitacoraPedidos';
-
-
-export function Reportes() {
+export function ReportesPago() {
   
 
+  const [active, setActive] = useState(1);
 
   const [userData, setUserData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7); // Cantidad de elementos por página
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
- 
+  const [Estado,setEstado]=useState('Ofline');
+  const [EstadoB,setEstadoB]=useState('Bloqueado');
+  const [EstadoC,setEstadoC]=useState('Activo');
+  const navigate=useNavigate();
 
   useEffect(() => {
     obtenerDatosUsuarios();
@@ -32,7 +42,7 @@ export function Reportes() {
   const obtenerDatosUsuarios = async () => {
     try {
       const response = await fetch(
-        `${apiurll}/api/CasaDelMarisco/ReportesRegistro`,
+        `${apiurll}/api/CasaDelMarisco/ObtenerBitacoraDePagos`,
         {
           method: 'GET',
           // No es necesario incluir el body para una solicitud GET
@@ -42,7 +52,7 @@ export function Reportes() {
       if (response.ok) {
         const userData1 = await response.json();
         setUserData(userData1);
-        //console.log(userData1);
+      //console.log(userData1);
       } else {
         console.error('Error al obtener datos de los usuarios:', response.statusText);
       }
@@ -67,14 +77,14 @@ export function Reportes() {
       <Card>
         <CardHeader variant="gradient" color="gray" className="mb-8 p-8">
           <Typography variant="h6" color="white" className="text-2xl">
-            Reportes de Registro
+            Reportes de pagos
           </Typography>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
             <thead>
               <tr>
-                {["IDBitacora","Nombre del Movimiento", "Usuario","Fecha"].map((el) => (
+                {["idPago","Total", "idPedido","idTipoDePago",'Fecha'].map((el) => (
                   <th
                     key={el}
                     className="border-b border-blue-gray-50 py-3 px-5 text-left"
@@ -90,7 +100,7 @@ export function Reportes() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idBitacora,NombreMovimiento, Nombre, Fecha}, key) => {
+              {currentItems.map(({ idPago,Total, idPedido, idTipoDePago,Fecha}, key) => {
                 const className = `py-3 px-5 ${
                   key === currentItems.length - 1
                     ? ""
@@ -105,22 +115,24 @@ export function Reportes() {
                         color="blue-gray"
                         className="font-semibold"
                       >
-                        {idBitacora}
+                        {idPago}
                       </Typography>
                     </td>
                    
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {NombreMovimiento}</Typography>
+                        <Typography className='text-xl text-bold'> {Total}</Typography>
                     </td>
            
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {Nombre}</Typography>
+                        <Typography className='text-xl text-bold'> {idPedido}</Typography>
+                    </td>
+                    <td className={className}>
+                        <Typography className='text-xl text-bold'> {idTipoDePago}</Typography>
                     </td>
                     <td className={className}>
                         <Typography className='text-xl text-bold'> {Fecha}</Typography>
                     </td>
-                   
-                   
+
                  
                   </tr>
                 );
@@ -155,16 +167,9 @@ export function Reportes() {
         </CardBody>
 
       </Card>
-
-      <Reportes1/>
-      <ReportesOauht/>
-      <ReportesBloque/>
-      <ReportesCambioPasword/>
-      <ReportesPago/>
- 
       
     </div>
   );
 }
 
-export default Reportes;
+export default ReportesPago;
