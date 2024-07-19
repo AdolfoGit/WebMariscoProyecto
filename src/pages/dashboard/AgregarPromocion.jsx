@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 import { PhotoIcon,  } from '@heroicons/react/24/solid'
-import { uploadFilesProductos } from "../../firebase/firebase";
+import { uploadFilesProductos, uploadFilesUsuarios } from "../../firebase/firebase";
 
 
 export function AgregarPromocion (){
@@ -72,7 +72,7 @@ export function AgregarPromocion (){
         
         e.preventDefault();
 
-        const resultImage = await uploadFilesProductos(File);
+        const resultImage = await uploadFilesUsuarios(File);
       
         const data =new FormData();
         data.append("Nombre",nombre)

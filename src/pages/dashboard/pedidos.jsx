@@ -1,31 +1,19 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
   Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
 } from '@mui/material';
 import { styled } from '@mui/system';
 import { useUser } from "../../UserContext";
+
 const useStyles = styled({
   root: {
     marginTop: '20px',
-  
   },
 });
 
-const PedidosGeneral= () => {
-
+const PedidosGeneral = () => {
   const classes = useStyles();
   const [isLoading, setLoading] = useState(true);
   const { user } = useUser();
@@ -39,7 +27,6 @@ const PedidosGeneral= () => {
   };
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  
 
   const obtenerPedidos = async () => {
     try {
@@ -53,7 +40,12 @@ const PedidosGeneral= () => {
       
       // Manejar tanto un solo pedido como múltiples pedidos
       if (data.Pedidos) {
-        setPedidos(Array.isArray(data.Pedidos) ? data.Pedidos : [data.Pedidos]);
+        const pedidosArray = Array.isArray(data.Pedidos) ? data.Pedidos : [data.Pedidos];
+
+        // Ordenar los pedidos por fecha en orden descendente
+        pedidosArray.sort((a, b) => new Date(b.Fecha) - new Date(a.Fecha));
+
+        setPedidos(pedidosArray);
       } else {
         setPedidos([]);
       }
@@ -65,20 +57,20 @@ const PedidosGeneral= () => {
     }
   };
 
-
   useEffect(() => {
     obtenerPedidos(); 
-    console.log(pedidos)
+    console.log(pedidos);
   }, []);
 
   return (
-    <Container className={classes.root}  style={{ marginBottom: '10px' }} >
+    <Container className={classes.root} style={{ marginBottom: '10px' }} >
       
       <div className='justify-center'>
         {isLoading ? (
           <Typography>Cargando pedidos...</Typography>
-        ) : pedidos.length > 0 ? (
-          <div className="flex flex-wrap justify-start gap-6  mt-5 pl-28 pr-28">
+        ) : pedidos.length > 0
+        ? (
+          <div className="flex flex-wrap justify-start gap-6 mt-5 pl-28 pr-28">
             {pedidos.map((pedido) => (
               <div key={pedido.IdPedido} className="bg-white rounded-lg shadow-md p-10 w-full max-w-lg">
                 <div className="flex items-center justify-center mb-4">

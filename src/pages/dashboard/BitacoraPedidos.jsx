@@ -120,7 +120,7 @@ export function ReportesPago() {
                     </td>
                    
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {Total}</Typography>
+                        <Typography className='text-xl text-bold'> $ {Total}</Typography>
                     </td>
            
                     <td className={className}>
