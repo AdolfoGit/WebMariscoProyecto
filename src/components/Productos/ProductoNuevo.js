@@ -15,7 +15,7 @@ import {
 
 } from '@mui/material';
 import { useUser } from "../../UserContext";
-import Swal from "sweetalert2";
+  import Swal from "sweetalert2";
 
 const filters = [
   {
@@ -52,16 +52,17 @@ function classNames(...classes) {
 }
 
 export default function ProductoNuevo() {
+ 
 
+  const { user } = useUser();
   const [productData, setProductData] = useState(null);
-    const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const [cantidad,setCantidad]= useState(1);
 
   useEffect(() => {
     obtenterDatosProductos();
     obtenerProductoCarrito();
   }, []); 
-
 
   const obtenterDatosProductos = async () => {
     try {
@@ -85,9 +86,6 @@ export default function ProductoNuevo() {
     }
   };
 
-
-
-  const { user } = useUser();
   
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
@@ -658,62 +656,6 @@ export default function ProductoNuevo() {
                                 </div>
                               </div>
 
-                              <div className="mt-8">
-                                <div className="flow-root">
-                                  <ul role="list" className="-my-6 divide-y divide-gray-200">
-                                    {cart !== null && cart.map((productoCarrito) => (
-                                      <li  className="flex py-6">
-                                        <div className="h-40 w-40 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                          <img
-                                            src={productoCarrito.Imagen}
-                                            className="h-full w-full object-cover object-center"
-                                          />
-                                        </div>
-
-                                        <div className="ml-4 w-full">
-                                         
-                                          <Typography variant='text' className='text-2xl font-bold'>{productoCarrito.Nombre}</Typography>
-
-                                          <div className="flex flex-wrap gap-8 mt-2">
-                                            <Typography variant="text" className="text-2xl text-gray-500">Precio unitario - {getCategoriaText(productoCarrito.PrecioUnitario)}</Typography>
-                                            <Typography  variant="text" className="ml-4 text-2xl font-bold">${productoCarrito.Precio}</Typography>
-                                          </div>
-                                          <div className='flex flex-wrap gap-2'>
-                                            <Typography variant="text" className="text-2xl text-gray-500">Cantidad: </Typography>
-                                         
-                                            <button
-                                              type="button"
-                                              className="text-xl text-indigo-600 hover:text-indigo-500 p-1"
-                                              onClick={() => eliminarDelCarrito(productoCarrito)}
-                                            >
-                                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                                              </svg>
-                                            </button>
-                                            
-                                            <span className="mx-2 text-xl">{productoCarrito.Cantidad}</span>
-                                            
-                                            <button
-                                              type="button"
-                                              className="text-xl text-indigo-600 hover:text-indigo-500 p-1"
-                                              onClick={() => agregarAlCarrito(productoCarrito)}
-                                            >
-                                              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                              </svg>
-                                            </button>
-                                            
-                                        
-                                          </div>
-                                       
-                                            
-                                       
-                                        </div>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </div>
                             </div>
 
                             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">

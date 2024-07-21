@@ -39,7 +39,6 @@ import MenuRecuperacion from './components/Usuarios/MenuRecuperacion';
 import Mision from './components/Empresa/Nosotros';
 import TokenRegistro from './components/Usuarios/ValidarUsuario/TokenRegistro';
 
-
 import { BarChart, BoxIcon, LayoutDashboard, LifeBuoy, Package, Settings, Sidebar, UserCircle,Boxes } from 'lucide-react';
 import SidebarN from './components/Administrador/Dashboard';
 import { SidebarItem } from './components/Administrador/Dashboard';
@@ -49,6 +48,7 @@ import FooterNuevo from './components/ComponentesClave/FotterNuevo';
 import ImageUpload from './supabase/carga';
 import Direcciones from './components/Usuarios/Direcciones';
 import CarritoDetalle from './components/Productos/CarritoDetalle';
+import RegistrarDireccion from './components/Usuarios/maps';
 
 function App  (){
 
@@ -78,7 +78,7 @@ function App  (){
           <Route element={<ProtectorRutas/>}>
              <Route path="/reservaciones" element={<VisuReservacion />} />
              <Route path="/direcciones" element={<Direcciones />} />
-
+             <Route path="/direcciones2" element={<RegistrarDireccion/>} />
              <Route path="/perfil" element={<Perfil/>}/>
              <Route path="/pedidos" element={<Pedidos />} /> 
              <Route path='/carrito' element={<Carrito/>} />
