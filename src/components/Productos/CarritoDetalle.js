@@ -175,7 +175,7 @@ const CarritoDetalle = () => {
         apiurll + "/api/CasaDelMarisco/AgregarPedido",
         {
           method: "POST",
-          body: data,
+          body: data, 
         }
       );
       const result = await response.json();
@@ -285,7 +285,8 @@ const CarritoDetalle = () => {
                     </div>
                   </div>
                   <div className='w-1/4 flex items-center justify-center'>
-                    <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}{carritoInfo.idCarrito}</Typography>
+                  <input value={carritoInfo.idCarrito} hidden></input>
+                    <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}</Typography>
                   </div>
                 </div>
                 <Typography variant='text' className='text-2xl font-bold mb-2'>Elije tu direccion para la entrega de tus pedidos</Typography>
