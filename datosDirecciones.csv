@@ -1,0 +1,741 @@
+﻿DireccionID,Calle,Colonia,NumeroInterior,NumeroExterior,CP,Estado,Ciudad,UsuarioID,Referencias,Lat,Long
+1,Mexico,Adolfo Lopez Mateos,20,4,43000,Hidalgo,Huejutla,20,A lado de una tienda llamada Josefa,21.1235,-98.4321
+2,Merida,5 de mayo,12,12,43000,Hidalgo,Huejutla,6,A lado de una tienda llamada plásticos Juquila,21.1239,-98.4325
+3,conocido ,Huitzachahuatl,203,167,43003,Hidalgo,Huejutla,6,Cerca de la primaria Leona Vicario,21.1241,-98.4327
+4,Charco Azul,Charco Azul,12,21,43000,Hidalgo,Huejutla de Reyes,4,En frente de la UTHH,21.1243,-98.4329
+5,3 El Naranjal,Santa Elena,115,265,43000,Hgo.,Huejutla de Reyes,6,Frente a una iglesia,21.1473,-98.4166
+6, Ignacio Ramírez,El Maguey,0,5,92148,Ver.,Platón Sánchez,20,Polleria Azuara ua,21.146355,-98.426277
+7,4 Caminos,Anahuac,12,2,43000,Hgo.,Huejutla de Reyes,20,Cerca de las artesanías ,21.1501,-98.3977
+8, Framboyan,Los Prados,134,3,43000,Hgo.,Huejutla de Reyes,20,Es una casa con arboles de naranja,21.1466,-98.4013
+9,142 Palma,Valle del Encinal,134,2,43000,Hgo.,Huejutla de Reyes,20,Una casa amarrilla de 3 pisos,21.1451,-98.406
+10, Azafrán,Valle del Encinal,21,31,43000,Hgo.,Huejutla de Reyes,20,Cerca de purificadora reyes,21.1441,-98.4055
+11, Lima,Valle del Encinal,,14,43000,Hgo.,Huejutla de Reyes,20,"Cerca de estafeta a un lado de doña Miriam
+",21.1466,-98.403
+12, Escuadrón 201,Aviación Civil,,10,43000,Hgo.,Huejutla de Reyes,20,Pasando barbería caitlyn,21.1475,-98.4031
+13,405 Monte Alban,Valle del Encinal,1,12,43000,Hgo.,Huejutla de Reyes,20,Cerca de uñas Linda,21.1457,-98.4032
+14, Clavel,Aviación Civil,0,12,43000,Hgo.,Huejutla de Reyes,20,A lado del señor de la tienda,21.1423,-98.408
+15, Quebrache,Fovissste,,12,43000,Hgo.,Huejutla de Reyes,20,"A un lado de las comidas
+",21.1419,-98.405
+16, Bougambilias,Comaltepec,43,5,43000,Hgo.,Huejutla de Reyes,6,edificio color verde,21.1479,-98.407
+17,151 Guerrero,Nuevo México,63,94,43000,Hgo.,Huejutla de Reyes,6,casa color rosa,21.1505,-98.4011
+18, La Paz,Nuevo México,163,76,43000,Hgo.,Huejutla de Reyes,6,casa con portón café,21.1537,-98.4015
+19,192 Fco I Madero,Marcelo Vite,123,765,43000,Hgo.,Huejutla de Reyes,6,casa verde,21.1528,-98.3994
+20,649 Independencia,Flavio Crespo,654,9876,43000,Hgo.,Huejutla de Reyes,6,qwertyuh,21.1537,-98.4008
+21, Bálsamo,Valle del Encinal,,21,43000,Hgo.,Huejutla de Reyes,20,Es una casa roja,21.1427,-98.4054
+22, Niños Heroes,Carlos Fayad Orozco,34,567,43000,Hgo.,Huejutla de Reyes,6,al lado de una farmacia,21.1431,-98.4251
+23, Calle Hidalgo,Santa Irene,345,876,43000,Hgo.,Huejutla de Reyes,6,casa café con portón azul,21.1424,-98.4166
+24, Aldama,5 de Mayo,,1,43000,Hgo.,Huejutla de Reyes,20,Frente un restaurante,21.1382,-98.415
+25,111 Boulevar 3 Huastecas,Paraíso de las Huastecas,765,8765,43000,Hgo.,Huejutla de Reyes,6,casa amarilla con arcos blancos,21.1555,-98.3995
+26, Telegrafista,Obrera,22,,43000,Hgo.,Huejutla de Reyes,9,Casa roja,21.1454,-98.4268
+27,17 Coahuila,Tahuizan,345,765,43000,Hgo.,Huejutla de Reyes,6,casa color naranja con café,21.1436,-98.4222
+28,443 Allende,Tahuizan,345,876,43000,Hgo.,Huejutla de Reyes,6,asdfghj,21.144,-98.4228
+29,382 Allende,Tahuizan,638,644,43000,Hgo.,Huejutla de Reyes,6,al lado de una tienda de bicicletas,21.1451,-98.4222
+30,45 San Luis,Tahuizan,462,637,43000,Hgo.,Huejutla de Reyes,6,cas con portón blanco,21.1441,-98.4236
+31, Aldama,El Campamento,253,753,43000,Hgo.,Huejutla de Reyes,6,al lado de un taller,21.1341,-98.3975
+32, Ecuador,La Providencia,,,43000,Hgo.,Huejutla de Reyes,1,Conjunto de la señora de las tostadas,21.1412,-98.4259
+33, Venezuela,La Providencia,,2,43000,Hgo.,Huejutla de Reyes,1,A la altura del señor de los botellones,21.1398,-98.4276
+34, Revolución,Luis Donaldo Colosio,2,1,43000,Hgo.,Huejutla de Reyes,1,Llegando a las pizzas,21.1413,-98.424
+35, A Serdán,Luis Donaldo Colosio,,,43000,Hgo.,Huejutla de Reyes,1,Sn,21.1402,-98.4238
+36, Principal,Capitán Antonio Reyes,,1,43000,Hgo.,Huejutla de Reyes,1,Casi llegando a los panes,21.1391,-98.4248
+37, 16 de Sept,La Providencia,,21,43000,Hgo.,Huejutla de Reyes,1,Frente a las tostadas,21.1413,-98.4274
+38,209 Telegrafista,Obrera,356,3456,43000,Hgo.,Huejutla de Reyes,6,casa con arbustos en frente,21.1458,-98.4278
+39, Valenzuela,Huasteco,,1,43000,Hgo.,Huejutla de Reyes,3,Sn,21.1484,-98.422
+40, Belizario Domínguez,Lomas de Chapultepec,,23,43000,Hgo.,Huejutla de Reyes,3,Sn,21.1506,-98.4222
+41, 21 de Mayo,Lomas de Chapultepec,,12,43000,Hgo.,Huejutla de Reyes,3,Junto al poste de mango,21.1497,-98.4228
+42,25 Díaz Mirón,Rojo Lugo,,23,43000,Hgo.,Huejutla de Reyes,3,Frente a direccion general,21.1511,-98.4253
+43,55 Díaz Mirón,Electricistas,1,23,43000,Hgo.,Huejutla de Reyes,3,Frente a la cancha,21.1492,-98.4269
+44,6 Pipila,Jesús Murillo Karam,,14,43000,Hgo.,Huejutla de Reyes,3,A un lado de los antojitos,21.1511,-98.4259
+45, Anís,Obrera,345,765,43000,Hgo.,Huejutla de Reyes,6,casa con portón rojo,21.1449,-98.4275
+46,176 Rubén Darío,Jesús Murillo Karam,2,21,43000,Hgo.,Huejutla de Reyes,3,Frente al terreno,21.1531,-98.4242
+47, Maria Garante,Jesús Murillo Karam,,21,43000,Hgo.,Huejutla de Reyes,3,Frente a la sitcom,21.1535,-98.4237
+48, Aracely Molinos,Jesús Murillo Karam,,2,43000,Hgo.,Huejutla de Reyes,3,sN,21.1535,-98.4243
+49, Alberto Lara Zúñiga,Jesús Murillo Karam,,25,43000,Hgo.,Huejutla de Reyes,3,Sn,21.1535,-98.4255
+50, Elpidio Lara,Jesús Murillo Karam,,32,43000,Hgo.,Huejutla de Reyes,3,Junto a salidas a san felipe,21.1541,-98.4253
+51,10 Juan Escutia,Obrera,34,765,43000,Hgo.,Huejutla de Reyes,6,al lado de un jardín de niños,21.1449,-98.4273
+52,54 Xochicalco,Obrera,543,456,43000,Hgo.,Huejutla de Reyes,6,casa amarilla de dos pisos,21.1444,-98.4274
+53,Juarez,Adolfo Lopez Mateos,20,4,43000,Hidalgo,Huejutla,20,A un lado de la casa de Doña Mary,21.1236,-98.4322
+54,Silencio,Hidalgo,10,,43000,Hidalgo,Huejutla,1,Es una tienda llamada Panchito,21.124,-98.4326
+55,Madero,Parajes,232,234,43000,Hidalgo,Huejutla,6,"Cerca del oxo,, cerca de la entrada principal",21.1242,-98.4328
+56,Ignacio Ramirez,La loma,5,0,92148,Veracruz,Platon Sanchez,4,Polleria,21.145994,-98.424538
+57,Merida,5 de Mayo,0,13,43000,Hgo.,Huejutla de Reyes,20,Es una tienda cerca de chacharas Miguel,21.1385,-98.4136
+58, Palma,Adolfo López Mateos,23,0,43000,Hgo.,Huejutla de Reyes,20,A lado de los tritones,21.151,-98.4071
+59, Encino,Valle del Encinal,3,14,43000,Hgo.,Huejutla de Reyes,20,Una casa naranja,21.1433,-98.4054
+60,331 Encino,Valle del Encinal,13,21,43000,Hgo.,Huejutla de Reyes,20,Por un arbol loco,21.1436,-98.407
+61, Calle Las Flores,Valle del Encinal,2,41,43000,Hgo.,Huejutla de Reyes,20,Una casa cerca de albercas Bikini,21.1439,-98.4041
+62,Doctor Coss,El Maguey,0,5,91148,Veracruz,Platón Sánchez,4,frente a una casa roja,21.145418,-98.426354
+63, Numero Dos,Los Prados,,3,43000,Hgo.,Huejutla de Reyes,20,A lado de las Ventanas de don Julio,21.1458,-98.4007
+64,787 Palma,Valle del Encinal,,2,43000,Hgo.,Huejutla de Reyes,20,Con pasandia de Barbería Carlyn,21.1464,-98.4043
+65, Lirio,Los Cantores,13,2,43000,Hgo.,Huejutla de Reyes,20,Cerca de papelería Esther,21.1438,-98.4108
+66, Jalamates,Valle del Encinal,2,10,43000,Hgo.,Huejutla de Reyes,20,Junto a una palmera,21.1417,-98.4051
+67, Calle Doctor Coss,La Loma,5,0,93142,Ver.,Platón Sánchez,4,alado de una casa color rojo,21.146842,-98.426876
+68, Adolfo López Mateos,Aviación Civil,36,65,43000,Hgo.,Huejutla de Reyes,6,casa de dos pisos color azul,21.1463,-98.4065
+69,123 Veracruz,Nuevo México,53,87,43000,Hgo.,Huejutla de Reyes,6,edificio color naranja,21.1521,-98.4015
+70,29 Arboleda,Flavio Crespo,65,23,43000,Hgo.,Huejutla de Reyes,6,edificio morado,21.1516,-98.3999
+71,192 Fco I Madero,Cruz Verde,234,753,43000,Hgo.,Huejutla de Reyes,6,asdfghjkl,21.1392,-98.4293
+72, Rev Mexicana,Flavio Crespo,2345,54,43000,Hgo.,Huejutla de Reyes,6,asdfghjlkjhgfdfghj,21.154,-98.4012
+73, V Gro,Flavio Crespo,456,567,43000,Hgo.,Huejutla de Reyes,6,en frente de una ferreteria,21.1551,-98.4012
+74,32 Fco I Madero,Marcelo Vite,34,7654,43000,Hgo.,Huejutla de Reyes,6,casa rosa,21.152,-98.3992
+75, Jaltocan,Paraíso de las Huastecas,34,765,43000,Hgo.,Huejutla de Reyes,6,casa azul de tres pisos,21.1552,-98.3993
+76, Nicolás Romero,Tahuizan,12,3,43000,Hgo.,Huejutla de Reyes,20,Casa de gris,21.1441,-98.4228
+77, San Luis,Tahuizan,,2,43000,Hgo.,Huejutla de Reyes,20,Una casa roja,21.1443,-98.424
+78,8 Ignacio Lugo Terán,Juárez,456,45,43000,Hgo.,Huejutla de Reyes,6,casa con portón café,21.1435,-98.4197
+79,422 Nicolás Romero,Tahuizan,345,7654,43000,Hgo.,Huejutla de Reyes,6,sdfgh,21.1436,-98.4223
+80, Anís,Obrera,,4,43000,Hgo.,Huejutla de Reyes,9,De lado izquierdo de la salida,21.1449,-98.4275
+81, Ruíz Palacios,Carlos Fayad Orozco,21,1,43000,Hgo.,Huejutla de Reyes,1,Sn,21.1441,-98.4272
+82, Zapata,Carlos Fayad Orozco,,1,43000,Hgo.,Huejutla de Reyes,1,A lado del terreno valdió,21.1426,-98.4273
+83,18 Francisco Villa,Huasteco,1,21,43000,Hgo.,Huejutla de Reyes,1,Sn,21.1474,-98.4227
+84,107 San Luis,Tahuizan,765,876,43000,Hgo.,Huejutla de Reyes,6,casa con portón blanco al lado de una tienda,21.1445,-98.4241
+85, Tecoluco,La Providencia,1,2,43000,Hgo.,Huejutla de Reyes,1,Pozo a un lado,21.1401,-98.4259
+86,77 Telegrafista,Tahuizan,375,863,43000,Hgo.,Huejutla de Reyes,6,casa rosa con blanco,21.1449,-98.4257
+87, Principal,Los Frailes,,1,43000,Hgo.,Huejutla de Reyes,1,Sn,21.1331,-98.4273
+88, San José,Bernabé Cruz Flores,,12,43000,Hgo.,Huejutla de Reyes,1,Frente al gim,21.1396,-98.426
+89,206 Anís,Obrera,256,353,43000,Hgo.,Huejutla de Reyes,6,casa blanca en la esquina,21.1457,-98.4271
+90, Anís,Obrera,54,765,43000,Hgo.,Huejutla de Reyes,6,en frente del centro pastoral,21.1449,-98.4275
+91,10 Juan Escutia,Obrera,456,765,43000,Hgo.,Huejutla de Reyes,6,casa blanca de dos pisos,21.1449,-98.4273
+92, 5 de Feb,Lomas de Chapultepec,,2,43000,Hgo.,Huejutla de Reyes,3,Junto a las canchas,21.1495,-98.4222
+93, 24 de Junio,Jesús Murillo Karam,,32,43000,Hgo.,Huejutla de Reyes,3,Frente al kiosco,21.1521,-98.425
+94,102 Juan Escutia,Obrera,763,165,43000,Hgo.,Huejutla de Reyes,6,casa con barda naranja,21.1448,-98.4281
+95, Tenochtitlan,Obrera,65,765,43000,Hgo.,Huejutla de Reyes,6,casa de dos pisos con rejas negras,21.1444,-98.4286
+96,11 Xochicalco,Obrera,654,8765,43000,Hgo.,Huejutla de Reyes,6,casa verde con portón naranja y blanco,21.1444,-98.428
+97, Justo Sierra,Jesús Murillo Karam,12,9,43000,Hgo.,Huejutla de Reyes,3,sn,21.1521,-98.4262
+98, 20 de Noviembre,Lomas de Chapultepec,,2,43000,Hgo.,Huejutla de Reyes,3,Sn,21.1527,-98.4234
+99, J o de Domínguez,Rojo Lugo,,21,43000,Hgo.,Huejutla de Reyes,3,Frente a la salida,21.1526,-98.4239
+100, Calle Agustin Escamilla,Jesús Murillo Karam,,3,43000,Hgo.,Huejutla de Reyes,3,Frente a las sucursal de doña elote,21.1536,-98.4251
+101,15 Las Norias,Obrera,765,76,43000,Hgo.,Huejutla de Reyes,6,casa de dos pisos blanco con café,21.144,-98.4285
+102,54 Xochicalco,Obrera,34,54,43000,Hgo.,Huejutla de Reyes,6,casa con portón de madera,21.1444,-98.4274
+103,12 Xochicalco,Obrera,345,76,43000,Hgo.,Huejutla de Reyes,6,casa con molduras de cisne,21.1444,-98.4279
+104, Río Papaloapan,Tahuizan,34,765,43000,Hgo.,Huejutla de Reyes,6,casa naranja con portón verde al lado de una polleria,21.1446,-98.4262
+105,9 California,San José,245,765,43000,Hgo.,Huejutla de Reyes,4,casa azul con portón rojo,21.1470004,-98.42844649999999
+106,26 5 de Mayo,San José,34,654,43000,Hgo.,Huejutla de Reyes,4,casa verde junto a abarrotes y novedades chavely,21.1454881,-98.42862559999999
+107,138 Calle 20 de Noviembre,San José,678,234,43000,Hgo.,Huejutla de Reyes,4,casa azul,21.1464426,-98.42895279999999
+108,119 Justo Sierra,San José,456,67,43000,Hgo.,Huejutla de Reyes,4,casa azul de dos pisos,21.14659929999999,-98.4293745
+109,177 Santa Cecilia,San José,67,43,43000,Hgo.,Huejutla de Reyes,4,casa blanca con portón negro,21.1466422,-98.42742129999999
+110,15 California,San José,56,345,43000,Hgo.,Huejutla de Reyes,4,casa blanca con rojo,21.1466808,-98.42836439999999
+111,9 California,San José,567,432,43000,Hgo.,Huejutla de Reyes,4,casa azul celeste,21.1470004,-98.42844649999999
+112,7 California,San José,345,876,43000,Hgo.,Huejutla de Reyes,4,casa con barda de piedra,21.1471768,-98.42833519999999
+113, Calle 20 de Noviembre,San José,45,654,43000,Hgo.,Huejutla de Reyes,4,casa amarilla con ventanas negras,21.1464456,-98.4288321
+114, José Alfredo San Roman Duval,San José,45,98,43000,Hgo.,Huejutla de Reyes,4,cerca de modelorama san José,21.1482131,-98.4295696
+115, José Alfredo San Roman Duval,San José,345765,65,43000,Hgo.,Huejutla de Reyes,4,cerca de un taller de suspencion,21.1482131,-98.4295696
+116,235 Doctores,Loma Bonita,34,54,43000,Hgo.,Huejutla de Reyes,4,frente a una panaderia,21.1502547,-98.4295794
+117,235 Doctores,Loma Bonita,654,432,43000,Hgo.,Huejutla de Reyes,4,casa naranja de dos pisos,21.1502547,-98.4295794
+118,91 Bernabé Cruz Flores,Loma Bonita,234,765,43000,Hgo.,Huejutla de Reyes,4,casa naranja,21.1497193,-98.43087949999999
+119,328 Doctores,Loma Bonita,234,624,43000,Hgo.,Huejutla de Reyes,4,casa con portón blanco,21.1495817,-98.4296986
+120,350 Lomas Verdes,Loma Bonita,627,45,43000,Hgo.,Huejutla de Reyes,4,casa con puerta blanca y portón verde,21.1490939,-98.4291696
+121, 20 de Noviembre,Loma Bonita,432,523,43000,Hgo.,Huejutla de Reyes,4,casa de piedra,21.1493334,-98.4293115
+122,4 20 de Noviembre,Loma Bonita,128,93,43000,Hgo.,Huejutla de Reyes,4,casa naranja,21.149457,-98.4291078
+123,235 Doctores,Loma Bonita,123,765,43000,Hgo.,Huejutla de Reyes,4,casa al final de la calle,21.1502547,-98.4295794
+124,4 20 de Noviembre,Loma Bonita,654,542,43000,Hgo.,Huejutla de Reyes,4,casa tosa con portón amarillo,21.149457,-98.4291078
+125,12 Lomas Verdes,Electricistas,432,567,43000,Hgo.,Huejutla de Reyes,4,casa morada,21.1493852,-98.4289609
+126, L Cárdenas,Loma Bonita,567,123,43000,Hgo.,Huejutla de Reyes,4,asdfghjkl,21.1498293,-98.4296555
+127,330 L Cárdenas,Loma Bonita,543,23,43000,Hgo.,Huejutla de Reyes,4,casa rosa con puerta café en la esquina,21.1497671,-98.4296135
+128, 18 de Marzo,Loma Bonita,1237543,754,43000,Hgo.,Huejutla de Reyes,4,casa roja,21.1504978,-98.4300241
+129, 18 de Marzo,Loma Bonita,321,987,43000,Hgo.,Huejutla de Reyes,4,casa rosa de dos pisos,21.1504978,-98.4300241
+130,201 18 de Marzo,Loma Bonita,542,235,43000,Hgo.,Huejutla de Reyes,4,casa al final de la calle,21.1502205,-98.429464
+131,265 Lomas Verdes,Loma Bonita,365,235,43000,Hgo.,Huejutla de Reyes,4,casa con barda de piedra color naranja,21.1504185,-98.4289088
+132,117 Lomas Verdes,Loma Bonita,234,567,43000,Hgo.,Huejutla de Reyes,4,al lado de la iglesia monte de los olivos,21.1507959,-98.4285096
+133,273 Lomas Verdes,Loma Bonita,234,654,43000,Hgo.,Huejutla de Reyes,4,casa blanca de dos pisos,21.1496737,-98.4288574
+134,20 27 de Septiembre,Electricistas,456,765,43000,Hgo.,Huejutla de Reyes,4,casa rosa con barda de ladrillo,21.1494206,-98.4274353
+135,57 Electricistas,Electricistas,345,54,43000,Hgo.,Huejutla de Reyes,4,casa verde con techo de teja rojo y portón blanco,21.148464,-98.4270306
+136,61 Electricistas,Electricistas,234,654,43000,Hgo.,Huejutla de Reyes,4,casa roja de la esquina con portón y barda blanca,21.1491253,-98.4268883
+137,55 Díaz Mirón,Electricistas,653,234,43000,Hgo.,Huejutla de Reyes,4,casa con barda de piedra,21.1492098,-98.4269278
+138,16 27 de Septiembre,Electricistas,123,654,43000,Hgo.,Huejutla de Reyes,4,casa blanca con un pino,21.1491691,-98.4270779
+139,23 27 de Septiembre,Electricistas,567,43,43000,Hgo.,Huejutla de Reyes,4,casa morada con portón morado,21.1496208,-98.4276416
+140,60 Díaz Mirón,Electricistas,654,234,43000,Hgo.,Huejutla de Reyes,4,casa amarilla con escaleras en la entrada,21.1501795,-98.42609209999999
+141,25 Díaz Mirón,Rojo Lugo,234,765,43000,Hgo.,Huejutla de Reyes,4,junto a una taqueria,21.151113,-98.425293
+142,320 24 de Junio,Jesús Murillo Karam,654,876,43000,Hgo.,Huejutla de Reyes,4,casa rosa,21.1519444,-98.4246599
+143,130 Justo Sierra,Jesús Murillo Karam,542,765,43000,Hgo.,Huejutla de Reyes,4,casa azul de dos pisos,21.1521909,-98.42622229999999
+144,28 Flores Magón,Jesús Murillo Karam,543,157,43000,Hgo.,Huejutla de Reyes,4,casa verde con blanco,21.1525986,-98.4268444
+145, Profesor Toribio Reyes,San José,S/N,21,43000,Hgo.,Huejutla de Reyes,3,Frente a la casa de doña pelos,21.1474992,-98.42831699999999
+146, Telegrafista,Obrera,S/N,2,43000,Hgo.,Huejutla de Reyes,3,"Casa café
+",21.1454457,-98.4268487
+147,10 Juan Escutia,Obrera,S/N,21,43000,Hgo.,Huejutla de Reyes,3,Cerca de la escuela,21.1449263,-98.4272836
+148,32 San Luis,Tahuizan,S/N,2,43000,Hgo.,Huejutla de Reyes,3,En la esquina,21.1439171,-98.4233794
+149, Independencia,Flavio Crespo,0,2,43000,Hgo.,Huejutla de Reyes,3,a lado de la señal de carros,21.153455,-98.40053549999999
+150, Niños Heroes,Carlos Fayad Orozco,2,2,43000,Hgo.,Huejutla de Reyes,3,Cerca de la casa de empeño,21.1430713,-98.4250641
+151,8 Calle Morelos,Centro,S/N,2,43000,Hgo.,Huejutla de Reyes,3,Terminando la calle,21.1391456,-98.42231579999999
+152, Javier Rojo Gómez,La Lomita,S/N,23,43000,Hgo.,Huejutla de Reyes,3,Sin,21.1388764,-98.4114139
+153, Quintana Roo,5 de Mayo,S/N,21,43000,Hgo.,Huejutla de Reyes,3,Casa azul,21.140056,-98.413343
+154,111 La Lomita,La Lomita,2,11,43000,Hgo.,Huejutla de Reyes,3,Sn,21.1408601,-98.41306809999999
+155,5 Principal,Jericó,S/N,12,43000,Hgo.,Huejutla de Reyes,10,Cerca de la ferreteria,21.1375362,-98.41151880000001
+156,908 Principal,Jericó,S/N,28,43000,Hgo.,Huejutla de Reyes,10,Sn,21.1376628,-98.4117887
+157,2 Mirador,Jericó,S/N,2,43000,Hgo.,Huejutla de Reyes,10,Cerca del gimnasio casa roja,21.1367095,-98.4109567
+158, Del Beso,Jericó,1,23,43000,Hgo.,Huejutla de Reyes,10,Ninguna,21.1374535,-98.411717
+159,398 Mirador,Cerecedo Estrada,32,12,43000,Hgo.,Huejutla de Reyes,10,Justo en la esquina,21.1367551,-98.4122222
+160, Mirador,Cerecedo Estrada,S/N,12,43000,Hgo.,Huejutla de Reyes,10,Pasando la calle,21.1370151,-98.4119959
+161, 20 de Diciembre,Comaltepec,S/N,2,43000,Hgo.,Huejutla de Reyes,10,Es una casa roja,21.1531985,-98.4136284
+162, 20 de Diciembre,Comaltepec,S/N,2,43000,Hgo.,Huejutla de Reyes,10,Es una casa roja,21.1531985,-98.4136284
+163, Avenida Juarez,Juárez,S/N,5,43000,Hgo.,Huejutla de Reyes,10,Casa azul,21.1457864,-98.4192398
+164,73 Avenida Juarez,Juárez,S/N,20,43000,Hgo.,Huejutla de Reyes,10,Casa con 2 pisos,21.1484528,-98.4186545
+165, Revolución,La Garita,S/N,8,43000,Hgo.,Huejutla de Reyes,10,Colindando con la taquería,21.1521334,-98.41772979999999
+166, Calle California,Juárez,S/N,4,43000,Hgo.,Huejutla de Reyes,10,Una casa con arboles de mango,21.1481454,-98.41987309999999
+167, Carretera Federal 105,Santa Elena,S/N,2,43000,Hidalgo,Huejutla de Reyes,10,A lado de las casa de armas,21.1477135,-98.4179092
+168, Refaccionaria,Santa Elena,S/N,1,43000,Hgo.,Huejutla de Reyes,10,Es la refaccionaria,21.1464559,-98.41806100000001
+169, El Naranjal,Santa Elena,1,21,43000,Hgo.,Huejutla de Reyes,10,Es la primer casa despues de la refaccionaria,21.1476408,-98.4164263
+170,7 El Naranjal,Santa Elena,32,2,43000,Hgo.,Huejutla de Reyes,10,En la curva,21.1465267,-98.41689099999999
+171,40 El Naranjal,Santa Elena,S/N,15,43000,Hgo.,Huejutla de Reyes,10,Frente al terreno vacío,21.148242,-98.4163128
+172,14 El Naranjal,Santa Elena,S/N,23,43000,Hgo.,Huejutla de Reyes,10,Sn,21.1472509,-98.41647499999999
+173,39 El Naranjal,Santa Elena,2,21,43000,Hgo.,Huejutla de Reyes,10,Casa azul,21.1461606,-98.4170495
+174, 1a Ciprés,Santa Elena,S/N,8,43000,Hgo.,Huejutla de Reyes,10,sn,21.1471878,-98.4165833
+175,24 2a Ciprés,Santa Elena,S/N,12,43000,Hgo.,Huejutla de Reyes,10,Sn,21.1476965,-98.41652289999999
+176, 3a Ciprés,Santa Elena,1,3,43000,Hgo.,Huejutla de Reyes,10,Frente a los pollos,21.1481246,-98.41657819999999
+177, Crisoforo Sánchez Trujillo,Santa Elena,1,2,43000,Hgo.,Huejutla de Reyes,10,En la calle,21.1484822,-98.41684029999999
+178,23 Grecia,Olimpia,S/N,21,43000,Hgo.,Huejutla de Reyes,10,Sn,21.1492141,-98.41683090000001
+179,39 Grecia,Olimpia,21,2,43000,Hgo.,Huejutla de Reyes,10,Subiendo,21.1489442,-98.41694729999999
+180, Calle Olimpia,Olimpia,S/N,21,43000,Hgo.,Huejutla de Reyes,10,Casa café,21.1492879,-98.4164722
+181,370 Calle Olimpia,Olimpia,S/N,7,43000,Hgo.,Huejutla de Reyes,10,Casa naranja,21.1493381,-98.41667299999999
+182, Calle Melchor Ocampo,Juárez,S/N,3,43000,Hgo.,Huejutla de Reyes,11,En la base,21.1447207,-98.4187504
+183, Calle Melchor Ocampo,Juárez,S/N,2,43000,Hgo.,Huejutla de Reyes,11,"En la casa roja
+",21.1445062,-98.4191656
+184,3 Calle Melchor Ocampo,Juárez,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Frente la plaza,21.1450132,-98.4190821
+185, Avenida Juarez,Juárez,S/N,23,43000,Hgo.,Huejutla de Reyes,11,Pasando la farmacia,21.1457864,-98.4192398
+186,26 Avenida Juarez,Juárez,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Local de Fedex,21.1454828,-98.41925119999999
+187, Avenida Juarez,Centro,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Geo climas,21.1454613,-98.41931699999999
+188, Zacatecas,Centro,S/N,12,43000,Hgo.,Huejutla de Reyes,11,En el local,21.141672,-98.4210006
+189, 16 de Enero,Centro,S/N,23,43000,Hgo.,Huejutla de Reyes,11,A lado de la peluquería,21.1408172,-98.42104789999999
+190, Velázquez Ibarra,Centro,S/N,3,43000,Hgo.,Huejutla de Reyes,11,En el autolavado,21.1408172,-98.42104789999999
+191, Nicandro Castillo,Centro,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Local de aguas,21.1404074,-98.42178179999999
+192,No. 25 Nicandro Castillo,Centro,S/N,26,43000,Hgo.,Huejutla de Reyes,11,cl,21.1407053,-98.4216579
+193,960 Nicandro Castillo,Centro,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Capash,21.1406402,-98.42166759999999
+194, Nicandro castillo,Centro,2,2,43000,Hgo.,Huejutla de Reyes,11,SN,21.1404687,-98.4217062
+195, Doctor Gea González,Centro,S/N,1,43000,Hgo.,Huejutla de Reyes,11,En el hospital,21.1396067,-98.42119369999999
+196, centro,Centro,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Viper táctico ,21.1388529,-98.42085630000001
+197, Calle Cuauhtémoc,Capitán Antonio Reyes,S/N,2,43000,Hidalgo,Huejutla de Reyes,11,"Casa roja
+",21.1359887,-98.42345279999999
+198,1270 Calle Cuauhtémoc,Centro,2,3,43000,Hgo.,Huejutla de Reyes,11,Casa roja,21.1392952,-98.4203957
+199,27 Calle Cuauhtémoc,Centro,S/N,2,43000,Hgo.,Huejutla de Reyes,11,COn la doctora,21.1386288,-98.4207677
+200, Calle Profesor Juan Mojica Ugalde,Centro,2,2,43000,Hgo.,Huejutla de Reyes,11,Juan,21.1384557,-98.4218375
+201,391 Calle Cuauhtémoc,Capitán Antonio Reyes,2,391,43000,Hgo.,Huejutla de Reyes,11,Con el profe ramón,21.1379166,-98.4212959
+202,32 Calle Cuauhtémoc,Capitán Antonio Reyes,S/N,32,43000,Hgo.,Huejutla de Reyes,11,Con doña sandra,21.13771,-98.4214024
+203, Luis donaldo colosio,Pozo Limón,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Calle cerrada,21.1364969,-98.41996449999999
+204, Jacinto Martínez,Adolfo López Mateos,S/N,1,43000,Hgo.,Huejutla de Reyes,11,Tienda,21.1350324,-98.4218866
+205, Diana Laura,El Mirador,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Casa azul,21.1335175,-98.4077152
+206, E Zapata,El Mirador,S/N,2,43000,Hgo.,Huejutla de Reyes,11,Con don Jacinto,21.1324422,-98.4063589
+207,Avenida Hidalgo,Centro,Int 1,1,43000,Hidalgo,Huejutla de Reyes,12,Cerca de la Plaza Principal,21.1426,-98.4217
+208,Calle 16 de Septiembre,Centro,Int 2,2,43000,Hidalgo,Huejutla de Reyes,12,Frente al Mercado Municipal,21.1431,-98.4222
+209,Calle Reforma,Centro,Int 3,3,43000,Hidalgo,Huejutla de Reyes,12,Junto a la Iglesia,21.1428,-98.4219
+210,Calle Benito Juárez,Centro,Int 4,4,43000,Hidalgo,Huejutla de Reyes,12,A un lado de la Presidencia Municipal,21.1424,-98.4225
+211,Calle Zaragoza,Centro,Int 5,5,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Parque Municipal,21.1427,-98.4215
+212,Calle Morelos,Centro,Int 6,6,43000,Hidalgo,Huejutla de Reyes,12,Detrás del Palacio Municipal,21.1430,-98.4221
+213,Calle Allende,Centro,Int 7,7,43000,Hidalgo,Huejutla de Reyes,12,Junto a la Biblioteca,21.1429,-98.4213
+214,Calle Victoria,Centro,Int 8,8,43000,Hidalgo,Huejutla de Reyes,12,Cerca de la Estación de Policía,21.1432,-98.4218
+215,Calle Iturbide,Centro,Int 9,9,43000,Hidalgo,Huejutla de Reyes,12,Frente a la Secundaria Técnica,21.1425,-98.4220
+216,Calle Hidalgo,Tehuetlan,Int 10,10,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Hospital Regional,21.1445,-98.4245
+217,Calle Francisco I. Madero,Tehuetlan,Int 11,11,43000,Hidalgo,Huejutla de Reyes,12,A un lado de la Farmacia,21.1448,-98.4248
+218,Calle Emiliano Zapata,Tehuetlan,Int 12,12,43000,Hidalgo,Huejutla de Reyes,12,Junto al Colegio,21.1442,-98.4250
+219,Calle Independencia,Tehuetlan,Int 13,13,43000,Hidalgo,Huejutla de Reyes,12,Frente a la Unidad Deportiva,21.1446,-98.4252
+220,Calle Venustiano Carranza,Tehuetlan,Int 14,14,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Centro de Salud,21.1441,-98.4255
+221,Calle Miguel Hidalgo,Tehuetlan,Int 15,15,43000,Hidalgo,Huejutla de Reyes,12,A un lado del Jardín de Niños,21.1449,-98.4258
+222,Calle Luis Donaldo Colosio,Tehuetlan,Int 16,16,43000,Hidalgo,Huejutla de Reyes,12,Frente a la Universidad,21.1450,-98.4260
+223,Calle Ignacio Zaragoza,Tehuetlan,Int 17,17,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Supermercado,21.1443,-98.4263
+224,Calle Vicente Guerrero,Tehuetlan,Int 18,18,43000,Hidalgo,Huejutla de Reyes,12,Junto al Parque Infantil,21.1447,-98.4265
+225,Calle Ignacio Allende,Tehuetlan,Int 19,19,43000,Hidalgo,Huejutla de Reyes,12,Frente a la Plaza,21.1444,-98.4268
+226,Calle Adolfo López Mateos,Tehuetlan,Int 20,20,43000,Hidalgo,Huejutla de Reyes,12,A un lado del Teatro,21.1440,-98.4270
+227,Avenida Hidalgo,Centro,Int 1,1,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Plaza Principal,21.1430,-98.4215
+228,Calle 16 de Septiembre,Centro,Int 2,2,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado Municipal,21.1431,-98.4216
+229,Calle Reforma,Centro,Int 3,3,43000,Hidalgo,Huejutla de Reyes,4,Junto a la Iglesia,21.1432,-98.4217
+230,Calle Benito Juárez,Centro,Int 4,4,43000,Hidalgo,Huejutla de Reyes,5,A un lado de la Presidencia Municipal,21.1433,-98.4218
+231,Calle Zaragoza,Centro,Int 5,5,43000,Hidalgo,Huejutla de Reyes,6,Cerca del Parque Municipal,21.1434,-98.4219
+232,Calle Morelos,Centro,Int 6,6,43000,Hidalgo,Huejutla de Reyes,9,Detrás del Palacio Municipal,21.1435,-98.4220
+233,Calle Allende,Centro,Int 7,7,43000,Hidalgo,Huejutla de Reyes,10,Junto a la Biblioteca,21.1436,-98.4221
+234,Calle Victoria,Centro,Int 8,8,43000,Hidalgo,Huejutla de Reyes,11,Cerca de la Estación de Policía,21.1437,-98.4222
+235,Calle Iturbide,Centro,Int 9,9,43000,Hidalgo,Huejutla de Reyes,12,Frente a la Secundaria Técnica,21.1438,-98.4223
+236,Calle Hidalgo,Tehuetlan,Int 10,10,43000,Hidalgo,Huejutla de Reyes,13,Cerca del Hospital Regional,21.1439,-98.4224
+237,Calle Francisco I. Madero,Tehuetlan,Int 11,11,43000,Hidalgo,Huejutla de Reyes,14,A un lado de la Farmacia,21.1440,-98.4225
+238,Calle Emiliano Zapata,Tehuetlan,Int 12,12,43000,Hidalgo,Huejutla de Reyes,15,Junto al Colegio,21.1441,-98.4226
+239,Calle Independencia,Tehuetlan,Int 13,13,43000,Hidalgo,Huejutla de Reyes,16,Frente a la Unidad Deportiva,21.1442,-98.4227
+240,Calle Venustiano Carranza,Tehuetlan,Int 14,14,43000,Hidalgo,Huejutla de Reyes,17,Cerca del Centro de Salud,21.1443,-98.4228
+241,Calle Miguel Hidalgo,Tehuetlan,Int 15,15,43000,Hidalgo,Huejutla de Reyes,18,A un lado del Jardín de Niños,21.1444,-98.4229
+242,Calle Luis Donaldo Colosio,Tehuetlan,Int 16,16,43000,Hidalgo,Huejutla de Reyes,19,Frente a la Universidad,21.1445,-98.4230
+243,Calle Ignacio Zaragoza,Tehuetlan,Int 17,17,43000,Hidalgo,Huejutla de Reyes,20,Cerca del Supermercado,21.1446,-98.4231
+244,Calle Vicente Guerrero,Tehuetlan,Int 18,18,43000,Hidalgo,Huejutla de Reyes,21,Junto al Parque Infantil,21.1447,-98.4232
+245,Calle Ignacio Allende,Tehuetlan,Int 19,19,43000,Hidalgo,Huejutla de Reyes,3,Frente a la Plaza,21.1448,-98.4233
+246,Calle Adolfo López Mateos,Tehuetlan,Int 20,20,43000,Hidalgo,Huejutla de Reyes,4,A un lado del Teatro,21.1449,-98.4234
+247,Calle Lázaro Cárdenas,Tehuetlan,Int 21,21,43000,Hidalgo,Huejutla de Reyes,5,Cerca del Estadio,21.1450,-98.4235
+248,Calle Melchor Ocampo,Tehuetlan,Int 22,22,43000,Hidalgo,Huejutla de Reyes,6,A un lado del Gimnasio,21.1451,-98.4236
+249,Calle Juan Escutia,Tehuetlan,Int 23,23,43000,Hidalgo,Huejutla de Reyes,9,Frente a la Escuela Primaria,21.1452,-98.4237
+250,Calle Cristóbal Colón,Tehuetlan,Int 24,24,43000,Hidalgo,Huejutla de Reyes,10,Cerca de la Biblioteca Pública,21.1453,-98.4238
+251,Calle Ignacio López Rayón,Tehuetlan,Int 25,25,43000,Hidalgo,Huejutla de Reyes,11,A un lado del Museo,21.1454,-98.4239
+252,Calle Juan Álvarez,Tehuetlan,Int 26,26,43000,Hidalgo,Huejutla de Reyes,12,Frente al Parque de la Ciudad,21.1455,-98.4240
+253,Calle Agustín Melgar,Tehuetlan,Int 27,27,43000,Hidalgo,Huejutla de Reyes,13,Cerca del Centro Comunitario,21.1456,-98.4241
+254,Calle Francisco Villa,Tehuetlan,Int 28,28,43000,Hidalgo,Huejutla de Reyes,14,A un lado del Centro Deportivo,21.1457,-98.4242
+255,Calle Francisco Márquez,Tehuetlan,Int 29,29,43000,Hidalgo,Huejutla de Reyes,15,Frente a la Plaza Principal,21.1458,-98.4243
+256,Calle Ignacio Aldama,Tehuetlan,Int 30,30,43000,Hidalgo,Huejutla de Reyes,16,Cerca del Auditorio Municipal,21.1459,-98.4244
+257,Calle Manuel Doblado,Tehuetlan,Int 31,31,43000,Hidalgo,Huejutla de Reyes,17,A un lado del Centro de Convenciones,21.1460,-98.4245
+258,Calle Mariano Matamoros,Tehuetlan,Int 32,32,43000,Hidalgo,Huejutla de Reyes,18,Frente a la Estación de Bomberos,21.1461,-98.4246
+259,Calle Vicente Suárez,Tehuetlan,Int 33,33,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Parque Industrial,21.1462,-98.4247
+260,Calle Francisco Márquez,Tehuetlan,Int 41,41,43000,Hidalgo,Huejutla de Reyes,3,Cerca del Gimnasio Municipal,21.1470,-98.4255
+261,Calle Manuel Doblado,Tehuetlan,Int 42,42,43000,Hidalgo,Huejutla de Reyes,4,Frente a la Escuela Técnica,21.1471,-98.4256
+262,Calle Juan Escutia,Tehuetlan,Int 43,43,43000,Hidalgo,Huejutla de Reyes,5,Junto a la Librería,21.1472,-98.4257
+263,Calle Ignacio López Rayón,Tehuetlan,Int 44,44,43000,Hidalgo,Huejutla de Reyes,6,A un lado de la Panadería,21.1473,-98.4258
+264,Calle Cristóbal Colón,Tehuetlan,Int 45,45,43000,Hidalgo,Huejutla de Reyes,9,Cerca de la Clínica,21.1474,-98.4259
+265,Calle Juan Álvarez,Tehuetlan,Int 46,46,43000,Hidalgo,Huejutla de Reyes,10,Frente a la Cafetería,21.1475,-98.4260
+266,Calle Agustín Melgar,Tehuetlan,Int 47,47,43000,Hidalgo,Huejutla de Reyes,11,Junto al Centro Deportivo,21.1476,-98.4261
+267,Calle Francisco Villa,Tehuetlan,Int 48,48,43000,Hidalgo,Huejutla de Reyes,12,A un lado del Centro Cultural,21.1477,-98.4262
+268,Calle Ignacio Aldama,Tehuetlan,Int 49,49,43000,Hidalgo,Huejutla de Reyes,13,Cerca del Estadio,21.1478,-98.4263
+269,Calle Vicente Suárez,Tehuetlan,Int 50,50,43000,Hidalgo,Huejutla de Reyes,14,Frente al Hospital,21.1479,-98.4264
+270,Calle Pedro Moreno,Tehuetlan,Int 51,51,43000,Hidalgo,Huejutla de Reyes,15,Cerca del Supermercado,21.1480,-98.4265
+271,Calle José María Morelos,Tehuetlan,Int 52,52,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Jardín de Niños,21.1481,-98.4266
+272,Calle Joséfa Ortiz de Domínguez,Tehuetlan,Int 53,53,43000,Hidalgo,Huejutla de Reyes,17,Frente al Instituto Tecnológico,21.1482,-98.4267
+273,Calle Mariana Rodríguez,Tehuetlan,Int 54,54,43000,Hidalgo,Huejutla de Reyes,18,Cerca de la Casa de la Cultura,21.1483,-98.4268
+274,Calle Juan Pablo II,Tehuetlan,Int 55,55,43000,Hidalgo,Huejutla de Reyes,19,A un lado del Centro Médico,21.1484,-98.4269
+275,Calle Alfredo Nobel,Tehuetlan,Int 56,56,43000,Hidalgo,Huejutla de Reyes,20,Cerca de la Plaza de Toros,21.1485,-98.4270
+276,Calle Manuel Robles,Tehuetlan,Int 57,57,43000,Hidalgo,Huejutla de Reyes,21,Frente al Centro Cultural,21.1486,-98.4271
+277,Calle Mariano Matamoros,Tehuetlan,Int 58,58,43000,Hidalgo,Huejutla de Reyes,22,Cerca del Auditorio Municipal,21.1487,-98.4272
+278,Calle Vicente Guerrero,Tehuetlan,Int 59,59,43000,Hidalgo,Huejutla de Reyes,23,A un lado del Centro de Convenciones,21.1488,-98.4273
+279,Calle Francisco I. Madero,Tehuetlan,Int 60,60,43000,Hidalgo,Huejutla de Reyes,24,Cerca de la Plaza Principal,21.1489,-98.4274
+280,Calle Emiliano Zapata,Tehuetlan,Int 61,61,43000,Hidalgo,Huejutla de Reyes,25,A un lado del Museo,21.1490,-98.4275
+281,Calle Independencia,Tehuetlan,Int 62,62,43000,Hidalgo,Huejutla de Reyes,26,Cerca del Parque Infantil,21.1491,-98.4276
+282,Calle Venustiano Carranza,Tehuetlan,Int 63,63,43000,Hidalgo,Huejutla de Reyes,27,Frente al Instituto Tecnológico,21.1492,-98.4277
+283,Calle Miguel Hidalgo,Tehuetlan,Int 64,64,43000,Hidalgo,Huejutla de Reyes,28,Cerca del Centro Comunitario,21.1493,-98.4278
+284,Calle Luis Donaldo Colosio,Tehuetlan,Int 65,65,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Centro Deportivo,21.1494,-98.4279
+285,Calle Ignacio Zaragoza,Tehuetlan,Int 66,66,43000,Hidalgo,Huejutla de Reyes,30,Frente a la Plaza Principal,21.1495,-98.4280
+286,Calle Vicente Guerrero,Tehuetlan,Int 67,67,43000,Hidalgo,Huejutla de Reyes,31,Cerca del Centro de Idiomas,21.1496,-98.4281
+287,Calle Ignacio Allende,Tehuetlan,Int 68,68,43000,Hidalgo,Huejutla de Reyes,32,A un lado del Jardín de Niños,21.1497,-98.4282
+288,Calle Adolfo López Mateos,Tehuetlan,Int 69,69,43000,Hidalgo,Huejutla de Reyes,33,Cerca del Estadio,21.1498,-98.4283
+289,Calle Lázaro Cárdenas,Tehuetlan,Int 70,70,43000,Hidalgo,Huejutla de Reyes,34,Frente al Centro Médico,21.1499,-98.4284
+290,Calle Melchor Ocampo,Tehuetlan,Int 71,71,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Centro Cultural,21.1500,-98.4285
+291,Calle Juan Escutia,Tehuetlan,Int 72,72,43000,Hidalgo,Huejutla de Reyes,36,Frente al Supermercado,21.1501,-98.4286
+292,Calle Ignacio López Rayón,Tehuetlan,Int 73,73,43000,Hidalgo,Huejutla de Reyes,37,A un lado del Parque Industrial,21.1502,-98.4287
+293,Calle Cristóbal Colón,Tehuetlan,Int 74,74,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Biblioteca Pública,21.1503,-98.4288
+294,Calle Juan Álvarez,Tehuetlan,Int 75,75,43000,Hidalgo,Huejutla de Reyes,3,Frente al Museo,21.1504,-98.4289
+295,Calle Agustín Melgar,Tehuetlan,Int 76,76,43000,Hidalgo,Huejutla de Reyes,4,A un lado del Centro de Salud,21.1505,-98.4290
+296,Calle Francisco Villa,Tehuetlan,Int 77,77,43000,Hidalgo,Huejutla de Reyes,5,Frente al Auditorio Municipal,21.1506,-98.4291
+297,Calle Ignacio Aldama,Tehuetlan,Int 78,78,43000,Hidalgo,Huejutla de Reyes,6,Cerca del Centro Cultural,21.1507,-98.4292
+298,Calle Vicente Suárez,Tehuetlan,Int 79,79,43000,Hidalgo,Huejutla de Reyes,9,A un lado del Centro de Convenciones,21.1508,-98.4293
+299,Calle Pedro Moreno,Tehuetlan,Int 80,80,43000,Hidalgo,Huejutla de Reyes,10,Frente a la Plaza Principal,21.1509,-98.4294
+300,Calle José María Morelos,Tehuetlan,Int 81,81,43000,Hidalgo,Huejutla de Reyes,11,Cerca del Centro Médico,21.1510,-98.4295
+301,Calle Joséfa Ortiz de Domínguez,Tehuetlan,Int 82,82,43000,Hidalgo,Huejutla de Reyes,12,A un lado del Hospital,21.1511,-98.4296
+302,Calle Mariana Rodríguez,Tehuetlan,Int 83,83,43000,Hidalgo,Huejutla de Reyes,13,Cerca de la Casa de la Cultura,21.1512,-98.4297
+303,Calle Juan Pablo II,Tehuetlan,Int 84,84,43000,Hidalgo,Huejutla de Reyes,14,Frente al Centro Médico,21.1513,-98.4298
+304,Calle Alfredo Nobel,Tehuetlan,Int 85,85,43000,Hidalgo,Huejutla de Reyes,15,Cerca del Parque de la Ciudad,21.1514,-98.4299
+305,Calle Manuel Robles,Tehuetlan,Int 86,86,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Centro Deportivo,21.1515,-98.4300
+306,Calle Mariano Matamoros,Tehuetlan,Int 87,87,43000,Hidalgo,Huejutla de Reyes,17,Frente a la Biblioteca Pública,21.1516,-98.4301
+307,Calle Vicente Guerrero,Tehuetlan,Int 88,88,43000,Hidalgo,Huejutla de Reyes,18,Cerca del Auditorio Municipal,21.1517,-98.4302
+308,Calle Francisco I. Madero,Tehuetlan,Int 89,89,43000,Hidalgo,Huejutla de Reyes,19,A un lado del Centro Cultural,21.1518,-98.4303
+309,Calle Emiliano Zapata,Tehuetlan,Int 90,90,43000,Hidalgo,Huejutla de Reyes,20,Frente al Instituto Tecnológico,21.1519,-98.4304
+310,Calle Independencia,Tehuetlan,Int 91,91,43000,Hidalgo,Huejutla de Reyes,21,Cerca de la Casa de la Cultura,21.1520,-98.4305
+311,Calle Venustiano Carranza,Tehuetlan,Int 92,92,43000,Hidalgo,Huejutla de Reyes,22,A un lado del Centro Deportivo,21.1521,-98.4306
+312,Calle Miguel Hidalgo,Tehuetlan,Int 93,93,43000,Hidalgo,Huejutla de Reyes,23,Cerca del Estadio,21.1522,-98.4307
+313,Calle Luis Donaldo Colosio,Tehuetlan,Int 94,94,43000,Hidalgo,Huejutla de Reyes,24,Frente al Supermercado,21.1523,-98.4308
+314,Calle Ignacio Zaragoza,Tehuetlan,Int 95,95,43000,Hidalgo,Huejutla de Reyes,25,A un lado del Centro de Idiomas,21.1524,-98.4309
+315,Calle Vicente Guerrero,Tehuetlan,Int 96,96,43000,Hidalgo,Huejutla de Reyes,26,Cerca del Parque Infantil,21.1525,-98.4310
+316,Calle Ignacio Allende,Tehuetlan,Int 97,97,43000,Hidalgo,Huejutla de Reyes,27,Frente a la Plaza Principal,21.1526,-98.4311
+317,Calle Adolfo López Mateos,Tehuetlan,Int 98,98,43000,Hidalgo,Huejutla de Reyes,28,Cerca del Parque de la Ciudad,21.1527,-98.4312
+318,Calle Lázaro Cárdenas,Tehuetlan,Int 99,99,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Centro Médico,21.1528,-98.4313
+319,Calle Melchor Ocampo,Tehuetlan,Int 100,100,43000,Hidalgo,Huejutla de Reyes,30,Frente a la Biblioteca Pública,21.1529,-98.4314
+320,Calle Benito Juárez,La Palma,Int 1,1,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Escuela Primaria,21.1553,-98.4167
+321,Calle Francisco I. Madero,San Juan,Int 2,2,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado Municipal,21.1512,-98.4102
+322,Calle Emiliano Zapata,El Rosario,Int 3,3,43000,Hidalgo,Huejutla de Reyes,4,Cerca del Parque Ecológico,21.1485,-98.4189
+323,Calle Lázaro Cárdenas,Santa Clara,Int 4,4,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Centro Comercial,21.1499,-98.4136
+324,Calle José María Morelos,San Pedro,Int 5,5,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Clínica de Salud,21.1460,-98.4201
+325,Calle Juan Escutia,Las Flores,Int 6,6,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Centro Cultural,21.1502,-98.4256
+326,Calle Vicente Guerrero,Tehuetlan,Int 7,7,43000,Hidalgo,Huejutla de Reyes,10,A un lado del Centro de Idiomas,21.1523,-98.4192
+327,Calle Ignacio López Rayón,El Castillo,Int 8,8,43000,Hidalgo,Huejutla de Reyes,11,Frente al Supermercado,21.1538,-98.4148
+328,Calle Miguel Hidalgo,Centro,Int 9,9,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Jardín Principal,21.1490,-98.4264
+329,Calle Adolfo López Mateos,Las Mercedes,Int 10,10,43000,Hidalgo,Huejutla de Reyes,13,A un lado de la Plaza de Toros,21.1473,-98.4115
+330,Calle Francisco Villa,San José,Int 11,11,43000,Hidalgo,Huejutla de Reyes,14,Cerca del Instituto Tecnológico,21.1504,-98.4238
+331,Calle Juan Pablo II,Tehuetlan,Int 12,12,43000,Hidalgo,Huejutla de Reyes,15,Frente al Centro Médico,21.1520,-98.4161
+332,Calle Joséfa Ortiz de Domínguez,La Candelaria,Int 13,13,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Centro de Salud,21.1489,-98.4254
+333,Calle Manuel Robles,San Miguel,Int 14,14,43000,Hidalgo,Huejutla de Reyes,17,Cerca de la Casa de la Cultura,21.1515,-98.4222
+334,Calle Mariana Rodríguez,San Andrés,Int 15,15,43000,Hidalgo,Huejutla de Reyes,18,Frente al Centro Cultural,21.1491,-98.4187
+335,Calle Alfredo Nobel,La Esperanza,Int 16,16,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Centro Deportivo,21.1524,-98.4206
+336,Calle Ignacio Aldama,El Progreso,Int 17,17,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1483,-98.4140
+337,Calle Venustiano Carranza,La Cruz,Int 18,18,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Centro Comercial,21.1466,-98.4198
+338,Calle Pedro Moreno,Las Ánimas,Int 19,19,43000,Hidalgo,Huejutla de Reyes,22,A un lado del Mercado Municipal,21.1529,-98.4123
+339,Calle Ignacio Zaragoza,La Rivera,Int 20,20,43000,Hidalgo,Huejutla de Reyes,23,Frente a la Clínica,21.1498,-98.4268
+340,Calle Emiliano Zapata,El Rancho,Int 21,21,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Parque Ecológico,21.1461,-98.4155
+341,Calle Francisco I. Madero,La Joya,Int 22,22,43000,Hidalgo,Huejutla de Reyes,25,Frente al Estadio,21.1474,-98.4221
+342,Calle Benito Juárez,La Esperanza,Int 23,23,43000,Hidalgo,Huejutla de Reyes,26,A un lado del Centro de Salud,21.1490,-98.4180
+343,Calle José María Morelos,El Álamo,Int 24,24,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Centro Cultural,21.1518,-98.4242
+344,Calle Miguel Hidalgo,San Luis,Int 25,25,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1501,-98.4178
+345,Calle Adolfo López Mateos,El Sol,Int 26,26,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Jardín Principal,21.1527,-98.4214
+346,Calle Francisco Villa,Santa Teresa,Int 27,27,43000,Hidalgo,Huejutla de Reyes,30,Cerca del Parque Infantil,21.1493,-98.4149
+347,Calle Juan Pablo II,La Misión,Int 28,28,43000,Hidalgo,Huejutla de Reyes,31,Frente al Centro Médico,21.1519,-98.4184
+348,Calle Joséfa Ortiz de Domínguez,Los Pinos,Int 29,29,43000,Hidalgo,Huejutla de Reyes,32,A un lado del Mercado Municipal,21.1479,-98.4261
+349,Calle Manuel Robles,La Cima,Int 30,30,43000,Hidalgo,Huejutla de Reyes,33,Cerca de la Plaza de Toros,21.1508,-98.4173
+350,Calle Mariana Rodríguez,San Francisco,Int 31,31,43000,Hidalgo,Huejutla de Reyes,34,Frente a la Clínica de Salud,21.1486,-98.4237
+351,Calle Alfredo Nobel,La Victoria,Int 32,32,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Centro Deportivo,21.1492,-98.4169
+352,Calle Ignacio Aldama,San Nicolás,Int 33,33,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca Pública,21.1465,-98.4250
+353,Calle Benito Juárez,La Palma,Int 101,101,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Escuela Primaria,21.1385,-98.4051
+354,Calle Francisco I. Madero,San Juan,Int 102,102,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado Municipal,21.1352,-98.4039
+355,Calle Emiliano Zapata,El Rosario,Int 103,103,43000,Hidalgo,Huejutla de Reyes,4,Cerca del Parque Ecológico,21.1400,-98.4075
+356,Calle Lázaro Cárdenas,Santa Clara,Int 104,104,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Centro Comercial,21.1377,-98.4098
+357,Calle José María Morelos,San Pedro,Int 105,105,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Clínica de Salud,21.1394,-98.4057
+358,Calle Juan Escutia,Las Flores,Int 106,106,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Centro Cultural,21.1410,-98.4064
+359,Calle Vicente Guerrero,Tehuetlan,Int 107,107,43000,Hidalgo,Huejutla de Reyes,10,A un lado del Centro de Idiomas,21.1361,-98.4079
+360,Calle Ignacio López Rayón,El Castillo,Int 108,108,43000,Hidalgo,Huejutla de Reyes,11,Frente al Supermercado,21.1346,-98.4056
+361,Calle Miguel Hidalgo,Centro,Int 109,109,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Jardín Principal,21.1370,-98.4100
+362,Calle Adolfo López Mateos,Las Mercedes,Int 110,110,43000,Hidalgo,Huejutla de Reyes,13,A un lado de la Plaza de Toros,21.1382,-98.4069
+363,Calle Francisco Villa,San José,Int 111,111,43000,Hidalgo,Huejutla de Reyes,14,Cerca del Instituto Tecnológico,21.1408,-98.4074
+364,Calle Juan Pablo II,Tehuetlan,Int 112,112,43000,Hidalgo,Huejutla de Reyes,15,Frente al Centro Médico,21.1424,-98.4047
+365,Calle Joséfa Ortiz de Domínguez,La Candelaria,Int 113,113,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Centro de Salud,21.1371,-98.4091
+366,Calle Manuel Robles,San Miguel,Int 114,114,43000,Hidalgo,Huejutla de Reyes,17,Cerca de la Casa de la Cultura,21.1415,-98.4088
+367,Calle Mariana Rodríguez,San Andrés,Int 115,115,43000,Hidalgo,Huejutla de Reyes,18,Frente al Centro Cultural,21.1397,-98.4060
+368,Calle Alfredo Nobel,La Esperanza,Int 116,116,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Centro Deportivo,21.1411,-98.4076
+369,Calle Ignacio Aldama,El Progreso,Int 117,117,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1383,-98.4054
+370,Calle Venustiano Carranza,La Cruz,Int 118,118,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Centro Comercial,21.1357,-98.4072
+371,Calle Pedro Moreno,Las Ánimas,Int 119,119,43000,Hidalgo,Huejutla de Reyes,22,A un lado del Mercado Municipal,21.1399,-98.4095
+372,Calle Ignacio Zaragoza,La Rivera,Int 120,120,43000,Hidalgo,Huejutla de Reyes,23,Frente a la Clínica,21.1412,-98.4067
+373,Calle Emiliano Zapata,El Rancho,Int 121,121,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Parque Ecológico,21.1374,-98.4104
+374,Calle Francisco I. Madero,La Joya,Int 122,122,43000,Hidalgo,Huejutla de Reyes,25,Frente al Estadio,21.1365,-98.4085
+375,Calle Benito Juárez,La Esperanza,Int 123,123,43000,Hidalgo,Huejutla de Reyes,26,A un lado del Centro de Salud,21.1403,-98.4069
+376,Calle José María Morelos,El Álamo,Int 124,124,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Centro Cultural,21.1378,-98.4107
+377,Calle Miguel Hidalgo,San Luis,Int 125,125,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1391,-98.4070
+378,Calle Adolfo López Mateos,El Sol,Int 126,126,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Jardín Principal,21.1425,-98.4089
+379,Calle Francisco Villa,Santa Teresa,Int 127,127,43000,Hidalgo,Huejutla de Reyes,30,Cerca del Parque Infantil,21.1369,-98.4066
+380,Calle Juan Pablo II,La Misión,Int 128,128,43000,Hidalgo,Huejutla de Reyes,31,Frente al Centro Médico,21.1418,-98.4071
+381,Calle Joséfa Ortiz de Domínguez,Los Pinos,Int 129,129,43000,Hidalgo,Huejutla de Reyes,32,A un lado del Mercado Municipal,21.1396,-98.4098
+382,Calle Manuel Robles,La Cima,Int 130,130,43000,Hidalgo,Huejutla de Reyes,33,Cerca de la Plaza de Toros,21.1420,-98.4101
+383,Calle Mariana Rodríguez,San Francisco,Int 131,131,43000,Hidalgo,Huejutla de Reyes,34,Frente a la Clínica de Salud,21.1379,-98.4078
+384,Calle Alfredo Nobel,La Victoria,Int 132,132,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Centro Deportivo,21.1388,-98.4082
+385,Calle Ignacio Aldama,San Nicolás,Int 133,133,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca Pública,21.1393,-98.4094
+386,Calle Venustiano Carranza,La Libertad,Int 134,134,43000,Hidalgo,Huejutla de Reyes,37,Cerca del Estadio,21.1414,-98.4062
+387,Calle Benito Juárez,La Palma,Int 201,201,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Escuela Primaria,21.1275,-98.4145
+388,Calle Francisco I. Madero,San Juan,Int 202,202,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado Municipal,21.1268,-98.4120
+389,Calle Emiliano Zapata,El Rosario,Int 203,203,43000,Hidalgo,Huejutla de Reyes,4,Cerca del Parque Ecológico,21.1300,-98.4108
+390,Calle Lázaro Cárdenas,Santa Clara,Int 204,204,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Centro Comercial,21.1324,-98.4087
+391,Calle José María Morelos,San Pedro,Int 205,205,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Clínica de Salud,21.1342,-98.4103
+392,Calle Juan Escutia,Las Flores,Int 206,206,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Centro Cultural,21.1298,-98.4134
+393,Calle Vicente Guerrero,Tehuetlan,Int 207,207,43000,Hidalgo,Huejutla de Reyes,10,A un lado del Centro de Idiomas,21.1264,-98.4099
+394,Calle Ignacio López Rayón,El Castillo,Int 208,208,43000,Hidalgo,Huejutla de Reyes,11,Frente al Supermercado,21.1312,-98.4068
+395,Calle Miguel Hidalgo,Centro,Int 209,209,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Jardín Principal,21.1328,-98.4104
+396,Calle Adolfo López Mateos,Las Mercedes,Int 210,210,43000,Hidalgo,Huejutla de Reyes,13,A un lado de la Plaza de Toros,21.1283,-98.4072
+397,Calle Francisco Villa,San José,Int 211,211,43000,Hidalgo,Huejutla de Reyes,14,Cerca del Instituto Tecnológico,21.1331,-98.4142
+398,Calle Juan Pablo II,Tehuetlan,Int 212,212,43000,Hidalgo,Huejutla de Reyes,15,Frente al Centro Médico,21.1269,-98.4080
+399,Calle Joséfa Ortiz de Domínguez,La Candelaria,Int 213,213,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Centro de Salud,21.1316,-98.4111
+400,Calle Manuel Robles,San Miguel,Int 214,214,43000,Hidalgo,Huejutla de Reyes,17,Cerca de la Casa de la Cultura,21.1293,-98.4128
+401,Calle Mariana Rodríguez,San Andrés,Int 215,215,43000,Hidalgo,Huejutla de Reyes,18,Frente al Centro Cultural,21.1338,-98.4065
+402,Calle Alfredo Nobel,La Esperanza,Int 216,216,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Centro Deportivo,21.1274,-98.4101
+403,Calle Ignacio Aldama,El Progreso,Int 217,217,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1347,-98.4132
+404,Calle Venustiano Carranza,La Cruz,Int 218,218,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Centro Comercial,21.1260,-98.4059
+405,Calle Pedro Moreno,Las Ánimas,Int 219,219,43000,Hidalgo,Huejutla de Reyes,22,A un lado del Mercado Municipal,21.1279,-98.4123
+406,Calle Ignacio Zaragoza,La Rivera,Int 220,220,43000,Hidalgo,Huejutla de Reyes,23,Frente a la Clínica,21.1303,-98.4078
+407,Calle Emiliano Zapata,El Rancho,Int 221,221,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Parque Ecológico,21.1258,-98.4135
+408,Calle Francisco I. Madero,La Joya,Int 222,222,43000,Hidalgo,Huejutla de Reyes,25,Frente al Estadio,21.1343,-98.4064
+409,Calle Benito Juárez,La Esperanza,Int 223,223,43000,Hidalgo,Huejutla de Reyes,26,A un lado del Centro de Salud,21.1320,-98.4093
+410,Calle José María Morelos,El Álamo,Int 224,224,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Centro Cultural,21.1294,-98.4131
+411,Calle Miguel Hidalgo,San Luis,Int 225,225,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1278,-98.4127
+412,Calle Adolfo López Mateos,El Sol,Int 226,226,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Jardín Principal,21.1334,-98.4090
+413,Calle Francisco Villa,Santa Teresa,Int 227,227,43000,Hidalgo,Huejutla de Reyes,30,Cerca del Parque Infantil,21.1270,-98.4063
+414,Calle Juan Pablo II,La Misión,Int 228,228,43000,Hidalgo,Huejutla de Reyes,31,Frente al Centro Médico,21.1345,-98.4074
+415,Calle Joséfa Ortiz de Domínguez,Los Pinos,Int 229,229,43000,Hidalgo,Huejutla de Reyes,32,A un lado del Mercado Municipal,21.1314,-98.4115
+416,Calle Manuel Robles,La Cima,Int 230,230,43000,Hidalgo,Huejutla de Reyes,33,Cerca de la Plaza de Toros,21.1306,-98.4109
+417,Calle Mariana Rodríguez,San Francisco,Int 231,231,43000,Hidalgo,Huejutla de Reyes,34,Frente a la Clínica de Salud,21.1273,-98.4081
+418,Calle Alfredo Nobel,La Victoria,Int 232,232,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Centro Deportivo,21.1341,-98.4062
+419,Calle Ignacio Aldama,San Nicolás,Int 233,233,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca Pública,21.1299,-98.4096
+420,Calle Venustiano Carranza,La Libertad,Int 234,234,43000,Hidalgo,Huejutla de Reyes,37,Cerca del Estadio,21.1326,-98.4073
+421,Calle Benito Juárez,La Palma,Int 301,301,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Escuela Primaria,21.1485,-98.4125
+422,Calle Francisco I. Madero,San Juan,Int 302,302,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado Municipal,21.1468,-98.4091
+423,Calle Emiliano Zapata,El Rosario,Int 303,303,43000,Hidalgo,Huejutla de Reyes,4,Cerca del Parque Ecológico,21.1500,-98.4057
+424,Calle Lázaro Cárdenas,Santa Clara,Int 304,304,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Centro Comercial,21.1534,-98.4078
+425,Calle José María Morelos,San Pedro,Int 305,305,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Clínica de Salud,21.1521,-98.4100
+426,Calle Juan Escutia,Las Flores,Int 306,306,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Centro Cultural,21.1490,-98.4083
+427,Calle Vicente Guerrero,Tehuetlan,Int 307,307,43000,Hidalgo,Huejutla de Reyes,10,A un lado del Centro de Idiomas,21.1474,-98.4058
+428,Calle Ignacio López Rayón,El Castillo,Int 308,308,43000,Hidalgo,Huejutla de Reyes,11,Frente al Supermercado,21.1507,-98.4071
+429,Calle Miguel Hidalgo,Centro,Int 309,309,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Jardín Principal,21.1538,-98.4095
+430,Calle Adolfo López Mateos,Las Mercedes,Int 310,310,43000,Hidalgo,Huejutla de Reyes,13,A un lado de la Plaza de Toros,21.1483,-98.4076
+431,Calle Francisco Villa,San José,Int 311,311,43000,Hidalgo,Huejutla de Reyes,14,Cerca del Instituto Tecnológico,21.1510,-98.4112
+432,Calle Juan Pablo II,Tehuetlan,Int 312,312,43000,Hidalgo,Huejutla de Reyes,15,Frente al Centro Médico,21.1461,-98.4090
+433,Calle Joséfa Ortiz de Domínguez,La Candelaria,Int 313,313,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Centro de Salud,21.1495,-98.4127
+434,Calle Manuel Robles,San Miguel,Int 314,314,43000,Hidalgo,Huejutla de Reyes,17,Cerca de la Casa de la Cultura,21.1523,-98.4085
+435,Calle Mariana Rodríguez,San Andrés,Int 315,315,43000,Hidalgo,Huejutla de Reyes,18,Frente al Centro Cultural,21.1517,-98.4061
+436,Calle Alfredo Nobel,La Esperanza,Int 316,316,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Centro Deportivo,21.1470,-98.4109
+437,Calle Ignacio Aldama,El Progreso,Int 317,317,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1487,-98.4122
+438,Calle Venustiano Carranza,La Cruz,Int 318,318,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Centro Comercial,21.1520,-98.4075
+439,Calle Pedro Moreno,Las Ánimas,Int 319,319,43000,Hidalgo,Huejutla de Reyes,22,A un lado del Mercado Municipal,21.1498,-98.4093
+440,Calle Ignacio Zaragoza,La Rivera,Int 320,320,43000,Hidalgo,Huejutla de Reyes,23,Frente a la Clínica,21.1516,-98.4053
+441,Calle Emiliano Zapata,El Rancho,Int 321,321,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Parque Ecológico,21.1540,-98.4097
+442,Calle Francisco I. Madero,La Joya,Int 322,322,43000,Hidalgo,Huejutla de Reyes,25,Frente al Estadio,21.1474,-98.4069
+443,Calle Benito Juárez,La Esperanza,Int 323,323,43000,Hidalgo,Huejutla de Reyes,26,A un lado del Centro de Salud,21.1510,-98.4081
+444,Calle José María Morelos,El Álamo,Int 324,324,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Centro Cultural,21.1457,-98.4054
+445,Calle Miguel Hidalgo,San Luis,Int 325,325,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1491,-98.4106
+446,Calle Adolfo López Mateos,El Sol,Int 326,326,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Jardín Principal,21.1508,-98.4093
+447,Calle Francisco Villa,Santa Teresa,Int 327,327,43000,Hidalgo,Huejutla de Reyes,30,Cerca del Parque Infantil,21.1452,-98.4079
+448,Calle Juan Pablo II,La Misión,Int 328,328,43000,Hidalgo,Huejutla de Reyes,31,Frente al Centro Médico,21.1495,-98.4102
+449,Calle Joséfa Ortiz de Domínguez,Los Pinos,Int 329,329,43000,Hidalgo,Huejutla de Reyes,32,A un lado del Mercado Municipal,21.1467,-98.4057
+450,Calle Manuel Robles,La Cima,Int 330,330,43000,Hidalgo,Huejutla de Reyes,33,Cerca de la Plaza de Toros,21.1501,-98.4090
+451,Calle Mariana Rodríguez,San Francisco,Int 331,331,43000,Hidalgo,Huejutla de Reyes,34,Frente a la Clínica de Salud,21.1540,-98.4073
+452,Calle Alfredo Nobel,La Victoria,Int 332,332,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Centro Deportivo,21.1492,-98.4107
+453,Calle Ignacio Aldama,San Nicolás,Int 333,333,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca Pública,21.1514,-98.4062
+454,Calle Venustiano Carranza,La Libertad,Int 334,334,43000,Hidalgo,Huejutla de Reyes,37,Cerca del Estadio,21.1530,-98.4079
+455,Calle Benito Juárez,La Palma,Int 335,335,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Escuela Primaria,21.1465,-98.4034
+456,Calle Francisco I. Madero,San Juan,Int 336,336,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado Municipal,21.1482,-98.4084
+457,Calle Emiliano Zapata,El Rosario,Int 337,337,43000,Hidalgo,Huejutla de Reyes,4,Cerca del Parque Ecológico,21.1520,-98.4052
+458,Calle Lázaro Cárdenas,Santa Clara,Int 338,338,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Centro Comercial,21.1510,-98.4038
+459,Calle José María Morelos,San Pedro,Int 339,339,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Clínica de Salud,21.1531,-98.4079
+460,Calle Juan Escutia,Las Flores,Int 340,340,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Centro Cultural,21.1459,-98.4089
+461,Calle Vicente Guerrero,Tehuetlan,Int 341,341,43000,Hidalgo,Huejutla de Reyes,10,A un lado del Centro de Idiomas,21.1478,-98.4061
+462,Calle Ignacio López Rayón,El Castillo,Int 342,342,43000,Hidalgo,Huejutla de Reyes,11,Frente al Supermercado,21.1512,-98.4059
+463,Calle Miguel Hidalgo,Centro,Int 343,343,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Jardín Principal,21.1496,-98.4077
+464,Calle Adolfo López Mateos,Las Mercedes,Int 344,344,43000,Hidalgo,Huejutla de Reyes,13,A un lado de la Plaza de Toros,21.1489,-98.4036
+465,Calle Francisco Villa,San José,Int 345,345,43000,Hidalgo,Huejutla de Reyes,14,Cerca del Instituto Tecnológico,21.1504,-98.4051
+466,Calle Juan Pablo II,Tehuetlan,Int 346,346,43000,Hidalgo,Huejutla de Reyes,15,Frente al Centro Médico,21.1533,-98.4068
+467,Calle Joséfa Ortiz de Domínguez,La Candelaria,Int 347,347,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Centro de Salud,21.1453,-98.4104
+468,Calle Manuel Robles,San Miguel,Int 348,348,43000,Hidalgo,Huejutla de Reyes,17,Cerca de la Casa de la Cultura,21.1520,-98.4052
+469,Calle Mariana Rodríguez,San Andrés,Int 349,349,43000,Hidalgo,Huejutla de Reyes,18,Frente al Centro Cultural,21.1499,-98.4095
+470,Calle Alfredo Nobel,La Esperanza,Int 350,350,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Centro Deportivo,21.1466,-98.4064
+471,Calle Ignacio Aldama,El Progreso,Int 351,351,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1505,-98.4070
+472,Calle Venustiano Carranza,La Cruz,Int 352,352,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Centro Comercial,21.1535,-98.4055
+473,Calle Pedro Moreno,Las Ánimas,Int 353,353,43000,Hidalgo,Huejutla de Reyes,22,A un lado del Mercado Municipal,21.1484,-98.4076
+474,Calle Ignacio Zaragoza,La Rivera,Int 354,354,43000,Hidalgo,Huejutla de Reyes,23,Frente a la Clínica,21.1490,-98.4065
+475,Calle Emiliano Zapata,El Rancho,Int 355,355,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Parque Ecológico,21.1530,-98.4050
+476,Calle Francisco I. Madero,La Joya,Int 356,356,43000,Hidalgo,Huejutla de Reyes,25,Frente al Estadio,21.1514,-98.4086
+477,Calle Benito Juárez,La Esperanza,Int 357,357,43000,Hidalgo,Huejutla de Reyes,26,A un lado del Centro de Salud,21.1521,-98.4054
+478,Calle José María Morelos,El Álamo,Int 358,358,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Centro Cultural,21.1543,-98.4075
+479,Calle Miguel Hidalgo,San Luis,Int 359,359,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1509,-98.4096
+480,Calle Adolfo López Mateos,El Sol,Int 360,360,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Jardín Principal,21.1530,-98.4059
+481,Calle Francisco Villa,Santa Teresa,Int 361,361,43000,Hidalgo,Huejutla de Reyes,30,Cerca del Parque Infantil,21.1475,-98.4070
+482,Calle Juan Pablo II,La Misión,Int 362,362,43000,Hidalgo,Huejutla de Reyes,31,Frente al Centro Médico,21.1494,-98.4056
+483,Calle Joséfa Ortiz de Domínguez,Los Pinos,Int 363,363,43000,Hidalgo,Huejutla de Reyes,32,A un lado del Mercado Municipal,21.1536,-98.4074
+484,Calle Manuel Robles,La Cima,Int 364,364,43000,Hidalgo,Huejutla de Reyes,33,Cerca de la Plaza de Toros,21.1469,-98.4080
+485,Calle Mariana Rodríguez,San Francisco,Int 365,365,43000,Hidalgo,Huejutla de Reyes,34,Frente a la Clínica de Salud,21.1541,-98.4062
+486,Calle Alfredo Nobel,La Victoria,Int 366,366,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Centro Deportivo,21.1479,-98.4053
+487,Calle Ignacio Aldama,San Nicolás,Int 367,367,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca Pública,21.1527,-98.4087
+488,Calle Venustiano Carranza,La Libertad,Int 368,368,43000,Hidalgo,Huejutla de Reyes,37,Cerca del Estadio,21.1542,-98.4058
+489,Calle 1 de Mayo,El Encino,Int 401,401,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Plaza,21.1284,-98.4291
+490,Calle Libertad,San Antonio,Int 402,402,43000,Hidalgo,Huejutla de Reyes,2,Frente al Banco,21.1311,-98.4237
+491,Calle Morelos,El Roble,Int 403,403,43000,Hidalgo,Huejutla de Reyes,3,Cerca de la Iglesia,21.1269,-98.4253
+492,Calle Reforma,La Palma,Int 404,404,43000,Hidalgo,Huejutla de Reyes,4,A un lado del Mercado,21.1298,-98.4265
+493,Calle Juárez,Las Lomas,Int 405,405,43000,Hidalgo,Huejutla de Reyes,5,Frente a la Biblioteca,21.1340,-98.4280
+494,Calle Hidalgo,Carmen,Int 406,406,43000,Hidalgo,Huejutla de Reyes,6,Cerca del Parque,21.1275,-98.4274
+495,Calle Zapata,San Juan,Int 407,407,43000,Hidalgo,Huejutla de Reyes,7,A un lado del Hospital,21.1302,-98.4248
+496,Calle Villalongín,Santa Clara,Int 408,408,43000,Hidalgo,Huejutla de Reyes,8,Frente al Colegio,21.1329,-98.4261
+497,Calle Coyoacán,Los Molinos,Int 409,409,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Supermercado,21.1258,-98.4282
+498,Calle Insurgentes,La Merced,Int 410,410,43000,Hidalgo,Huejutla de Reyes,10,Frente a la Farmacia,21.1292,-98.4205
+499,Calle Carranza,El Rosario,Int 411,411,43000,Hidalgo,Huejutla de Reyes,11,A un lado del Centro de Salud,21.1336,-98.4256
+500,Calle Galindo,Las Flores,Int 412,412,43000,Hidalgo,Huejutla de Reyes,12,Cerca de la Plaza de Toros,21.1279,-98.4224
+501,Calle Salazar,El Paraíso,Int 413,413,43000,Hidalgo,Huejutla de Reyes,13,Frente a la Escuela,21.1324,-98.4287
+502,Calle Pino Suárez,Santa Rita,Int 414,414,43000,Hidalgo,Huejutla de Reyes,14,Cerca del Mercado,21.1307,-98.4260
+503,Calle 5 de Febrero,El Mirador,Int 415,415,43000,Hidalgo,Huejutla de Reyes,15,Frente a la Clínica,21.1289,-98.4229
+504,Calle Gómez Farías,La Joya,Int 416,416,43000,Hidalgo,Huejutla de Reyes,16,A un lado del Parque,21.1274,-98.4255
+505,Calle Juan de la Barrera,Las Brisas,Int 417,417,43000,Hidalgo,Huejutla de Reyes,17,Cerca del Centro Comercial,21.1345,-98.4281
+506,Calle Benjamín Hill,San Rafael,Int 418,418,43000,Hidalgo,Huejutla de Reyes,18,Frente a la Biblioteca,21.1262,-98.4267
+507,Calle Matamoros,El Álamo,Int 419,419,43000,Hidalgo,Huejutla de Reyes,19,A un lado de la Farmacia,21.1291,-98.4233
+508,Calle Querétaro,La Esperanza,Int 420,420,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1334,-98.4257
+509,Calle Querétaro,El Castillo,Int 421,421,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Hospital,21.1268,-98.4295
+510,Calle Morelos,El Progreso,Int 422,422,43000,Hidalgo,Huejutla de Reyes,22,Frente al Jardín,21.1304,-98.4227
+511,Calle Lerdo de Tejada,La Victoria,Int 423,423,43000,Hidalgo,Huejutla de Reyes,23,Cerca del Mercado Municipal,21.1321,-98.4273
+512,Calle Independencia,Los Pinos,Int 424,424,43000,Hidalgo,Huejutla de Reyes,24,Frente al Centro de Salud,21.1260,-98.4241
+513,Calle Venustiano Carranza,La Cima,Int 425,425,43000,Hidalgo,Huejutla de Reyes,25,Cerca del Colegio,21.1296,-98.4269
+514,Calle Hidalgo,San Juan,Int 426,426,43000,Hidalgo,Huejutla de Reyes,26,Frente al Parque,21.1342,-98.4292
+515,Calle 16 de Septiembre,El Rosario,Int 427,427,43000,Hidalgo,Huejutla de Reyes,27,A un lado de la Farmacia,21.1278,-98.4223
+516,Calle Allende,El Encino,Int 428,428,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1339,-98.4245
+517,Calle Juárez,San José,Int 429,429,43000,Hidalgo,Huejutla de Reyes,29,Cerca del Centro Cultural,21.1293,-98.4259
+518,Calle Melchor Múzquiz,El Mirador,Int 430,430,43000,Hidalgo,Huejutla de Reyes,30,Frente a la Escuela,21.1265,-98.4236
+519,Calle Simón Bolívar,San Andrés,Int 431,431,43000,Hidalgo,Huejutla de Reyes,31,Cerca del Parque Infantil,21.1310,-98.4289
+520,Calle López Mateos,La Joya,Int 432,432,43000,Hidalgo,Huejutla de Reyes,32,Frente a la Clínica,21.1256,-98.4263
+521,Calle Lerdo de Tejada,Santa Clara,Int 433,433,43000,Hidalgo,Huejutla de Reyes,33,Cerca del Mercado,21.1325,-98.4258
+522,Calle Venustiano Carranza,San Luis,Int 434,434,43000,Hidalgo,Huejutla de Reyes,34,Frente al Centro de Salud,21.1277,-98.4220
+523,Calle Hidalgo,El Álamo,Int 435,435,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Supermercado,21.1299,-98.4279
+524,Calle Francisco Villa,El Sol,Int 436,436,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca,21.1332,-98.4251
+525,Calle Matamoros,La Esperanza,Int 437,437,43000,Hidalgo,Huejutla de Reyes,37,Cerca del Parque,21.1264,-98.4246
+526,Calle Ignacio Allende,La Rivera,Int 438,438,43000,Hidalgo,Huejutla de Reyes,38,Frente al Centro Comercial,21.1323,-98.4268
+527,Calle 5 de Febrero,Las Brisas,Int 439,439,43000,Hidalgo,Huejutla de Reyes,39,Cerca de la Clínica de Salud,21.1272,-98.4276
+528,Calle Galeana,La Palma,Int 440,440,43000,Hidalgo,Huejutla de Reyes,40,Frente al Mercado Municipal,21.1318,-98.4231
+529,Calle Juárez,San Pedro,Int 441,441,43000,Hidalgo,Huejutla de Reyes,41,Cerca del Centro Cultural,21.1263,-98.4283
+530,Calle Villalongín,Santa Rita,Int 442,442,43000,Hidalgo,Huejutla de Reyes,42,Frente a la Farmacia,21.1300,-98.4266
+531,Calle 16 de Septiembre,La Cruz,Int 443,443,43000,Hidalgo,Huejutla de Reyes,43,Cerca del Jardín Principal,21.1346,-98.4252
+532,Calle Coyoacán,San Francisco,Int 444,444,43000,Hidalgo,Huejutla de Reyes,44,Frente a la Biblioteca,21.1286,-98.4288
+533,Calle Adolfo López Mateos,Las Mercedes,Int 445,445,43000,Hidalgo,Huejutla de Reyes,45,Cerca del Mercado,21.1330,-98.4254
+534,Calle Miguel Hidalgo,El Castillo,Int 446,446,43000,Hidalgo,Huejutla de Reyes,46,Frente al Supermercado,21.1267,-98.4269
+535,Calle Benito Juárez,La Esperanza,Int 447,447,43000,Hidalgo,Huejutla de Reyes,47,Cerca de la Clínica,21.1305,-98.4242
+536,Calle Ignacio Aldama,San Miguel,Int 448,448,43000,Hidalgo,Huejutla de Reyes,48,Frente al Centro Comercial,21.1273,-98.4281
+537,Calle Ignacio López Rayón,El Álamo,Int 449,449,43000,Hidalgo,Huejutla de Reyes,49,Cerca del Parque Infantil,21.1338,-98.4263
+538,Calle Juan Escutia,La Palma,Int 450,450,43000,Hidalgo,Huejutla de Reyes,50,Frente al Mercado Municipal,21.1259,-98.4275
+539,Calle 1 de Mayo,El Encino,Int 401,401,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Plaza,21.1511,-98.4092
+540,Calle Libertad,San Antonio,Int 402,402,43000,Hidalgo,Huejutla de Reyes,3,Frente al Banco,21.1523,-98.4056
+541,Calle Morelos,El Roble,Int 403,403,43000,Hidalgo,Huejutla de Reyes,4,Cerca de la Iglesia,21.1534,-98.4074
+542,Calle Reforma,La Palma,Int 404,404,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Mercado,21.1545,-98.4038
+543,Calle Juárez,Las Lomas,Int 405,405,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Biblioteca,21.1556,-98.4083
+544,Calle Hidalgo,Carmen,Int 406,406,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Parque,21.1567,-98.4027
+545,Calle Zapata,San Juan,Int 407,407,43000,Hidalgo,Huejutla de Reyes,10,A un lado del Hospital,21.1578,-98.4045
+546,Calle Villalongín,Santa Clara,Int 408,408,43000,Hidalgo,Huejutla de Reyes,11,Frente al Colegio,21.1589,-98.4062
+547,Calle Coyoacán,Los Molinos,Int 409,409,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Supermercado,21.1501,-98.4080
+548,Calle Insurgentes,La Merced,Int 410,410,43000,Hidalgo,Huejutla de Reyes,13,Frente a la Farmacia,21.1512,-98.4019
+549,Calle Carranza,El Rosario,Int 411,411,43000,Hidalgo,Huejutla de Reyes,14,A un lado del Centro de Salud,21.1523,-98.4053
+550,Calle Galindo,Las Flores,Int 412,412,43000,Hidalgo,Huejutla de Reyes,15,Cerca de la Plaza de Toros,21.1534,-98.4037
+551,Calle Salazar,El Paraíso,Int 413,413,43000,Hidalgo,Huejutla de Reyes,16,Frente a la Escuela,21.1545,-98.4072
+552,Calle Pino Suárez,Santa Rita,Int 414,414,43000,Hidalgo,Huejutla de Reyes,17,Cerca del Mercado,21.1556,-98.4046
+553,Calle 5 de Febrero,El Mirador,Int 415,415,43000,Hidalgo,Huejutla de Reyes,18,Frente a la Clínica,21.1567,-98.4025
+554,Calle Gómez Farías,La Joya,Int 416,416,43000,Hidalgo,Huejutla de Reyes,19,A un lado del Parque,21.1578,-98.4091
+555,Calle Juan de la Barrera,Las Brisas,Int 417,417,43000,Hidalgo,Huejutla de Reyes,20,Cerca del Centro Comercial,21.1589,-98.4085
+556,Calle Benjamín Hill,San Rafael,Int 418,418,43000,Hidalgo,Huejutla de Reyes,21,Frente a la Biblioteca,21.1502,-98.4042
+557,Calle Matamoros,El Álamo,Int 419,419,43000,Hidalgo,Huejutla de Reyes,22,A un lado de la Farmacia,21.1513,-98.4067
+558,Calle Querétaro,La Esperanza,Int 420,420,43000,Hidalgo,Huejutla de Reyes,23,Frente al Supermercado,21.1524,-98.4024
+559,Calle Querétaro,El Castillo,Int 421,421,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Hospital,21.1535,-98.4015
+560,Calle Morelos,El Progreso,Int 422,422,43000,Hidalgo,Huejutla de Reyes,25,Frente al Jardín,21.1546,-98.4073
+561,Calle Lerdo de Tejada,La Victoria,Int 423,423,43000,Hidalgo,Huejutla de Reyes,26,Cerca del Mercado Municipal,21.1557,-98.4061
+562,Calle Independencia,Los Pinos,Int 424,424,43000,Hidalgo,Huejutla de Reyes,27,Frente al Centro de Salud,21.1568,-98.4018
+563,Calle Venustiano Carranza,La Cima,Int 425,425,43000,Hidalgo,Huejutla de Reyes,28,Cerca del Colegio,21.1579,-98.4059
+564,Calle Hidalgo,San Juan,Int 426,426,43000,Hidalgo,Huejutla de Reyes,29,Frente al Parque,21.1503,-98.4044
+565,Calle 16 de Septiembre,El Rosario,Int 427,427,43000,Hidalgo,Huejutla de Reyes,30,A un lado de la Farmacia,21.1514,-98.4036
+566,Calle Allende,El Encino,Int 428,428,43000,Hidalgo,Huejutla de Reyes,31,Frente al Supermercado,21.1525,-98.4094
+567,Calle Juárez,San José,Int 429,429,43000,Hidalgo,Huejutla de Reyes,32,Cerca del Centro Cultural,21.1536,-98.4088
+568,Calle Melchor Múzquiz,El Mirador,Int 430,430,43000,Hidalgo,Huejutla de Reyes,33,Frente a la Escuela,21.1547,-98.4060
+569,Calle Simón Bolívar,San Andrés,Int 431,431,43000,Hidalgo,Huejutla de Reyes,34,Cerca del Parque Infantil,21.1558,-98.4047
+570,Calle López Mateos,La Joya,Int 432,432,43000,Hidalgo,Huejutla de Reyes,35,Frente a la Clínica,21.1569,-98.4071
+571,Calle Lerdo de Tejada,Santa Clara,Int 433,433,43000,Hidalgo,Huejutla de Reyes,36,Cerca del Mercado,21.1580,-98.4028
+572,Calle Venustiano Carranza,San Luis,Int 434,434,43000,Hidalgo,Huejutla de Reyes,37,Frente al Centro de Salud,21.1591,-98.4063
+573,Calle Hidalgo,El Álamo,Int 435,435,43000,Hidalgo,Huejutla de Reyes,1,A un lado del Supermercado,21.1504,-98.4081
+574,Calle 16 de Septiembre,El Progreso,Int 436,436,43000,Hidalgo,Huejutla de Reyes,3,Cerca de la Iglesia,21.1515,-98.4017
+575,Calle Galeana,La Palma,Int 437,437,43000,Hidalgo,Huejutla de Reyes,4,Frente al Mercado Municipal,21.1526,-98.4054
+576,Calle Coyoacán,Santa Clara,Int 438,438,43000,Hidalgo,Huejutla de Reyes,5,Cerca del Supermercado,21.1537,-98.4077
+577,Calle Insurgentes,La Merced,Int 439,439,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Farmacia,21.1548,-98.4026
+578,Calle Carranza,El Rosario,Int 440,440,43000,Hidalgo,Huejutla de Reyes,9,A un lado del Centro de Salud,21.1559,-98.4065
+579,Calle Galindo,Las Flores,Int 441,441,43000,Hidalgo,Huejutla de Reyes,10,Cerca de la Plaza de Toros,21.1570,-98.4050
+580,Calle Salazar,El Paraíso,Int 442,442,43000,Hidalgo,Huejutla de Reyes,11,Frente a la Escuela,21.1581,-98.4016
+581,Calle Pino Suárez,Santa Rita,Int 443,443,43000,Hidalgo,Huejutla de Reyes,12,Cerca del Mercado,21.1592,-98.4048
+582,Calle 5 de Febrero,El Mirador,Int 444,444,43000,Hidalgo,Huejutla de Reyes,13,Frente a la Clínica,21.1505,-98.4089
+583,Calle Gómez Farías,La Joya,Int 445,445,43000,Hidalgo,Huejutla de Reyes,14,A un lado del Parque,21.1516,-98.4029
+584,Calle Juan de la Barrera,Las Brisas,Int 446,446,43000,Hidalgo,Huejutla de Reyes,15,Cerca del Centro Comercial,21.1527,-98.4066
+585,Calle Benjamín Hill,San Rafael,Int 447,447,43000,Hidalgo,Huejutla de Reyes,16,Frente a la Biblioteca,21.1538,-98.4043
+586,Calle Matamoros,El Álamo,Int 448,448,43000,Hidalgo,Huejutla de Reyes,17,A un lado de la Farmacia,21.1549,-98.4030
+587,Calle Querétaro,La Esperanza,Int 449,449,43000,Hidalgo,Huejutla de Reyes,18,Frente al Supermercado,21.1560,-98.4075
+588,Calle Pedro Moreno,El Paraíso,Int 451,451,43000,Hidalgo,Huejutla de Reyes,19,Cerca de la Plaza Principal,21.1510,-98.4080
+589,Calle 20 de Noviembre,El Mirador,Int 452,452,43000,Hidalgo,Huejutla de Reyes,20,Frente al Banco,21.1512,-98.4092
+590,Calle Vicente Guerrero,San Antonio,Int 453,453,43000,Hidalgo,Huejutla de Reyes,21,A un lado del Parque,21.1514,-98.4104
+591,Calle Independencia,El Roble,Int 454,454,43000,Hidalgo,Huejutla de Reyes,23,Frente a la Biblioteca,21.1516,-98.4116
+592,Calle Nicolás Bravo,La Palma,Int 455,455,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Mercado,21.1518,-98.4128
+593,Calle Pino Suárez,Las Lomas,Int 456,456,43000,Hidalgo,Huejutla de Reyes,25,Frente a la Iglesia,21.1520,-98.4140
+594,Calle Leandro Valle,San Juan,Int 457,457,43000,Hidalgo,Huejutla de Reyes,26,A un lado del Hospital,21.1522,-98.4152
+595,Calle Galeana,Santa Clara,Int 458,458,43000,Hidalgo,Huejutla de Reyes,27,Cerca de la Escuela,21.1524,-98.4164
+596,Calle Francisco Villa,Los Molinos,Int 459,459,43000,Hidalgo,Huejutla de Reyes,29,Frente a la Farmacia,21.1526,-98.4176
+597,Calle Morelos,La Merced,Int 460,460,43000,Hidalgo,Huejutla de Reyes,30,Cerca del Supermercado,21.1528,-98.4188
+598,Calle 16 de Septiembre,El Rosario,Int 461,461,43000,Hidalgo,Huejutla de Reyes,31,Frente al Centro de Salud,21.1530,-98.4200
+599,Calle Venustiano Carranza,Las Flores,Int 462,462,43000,Hidalgo,Huejutla de Reyes,32,A un lado de la Plaza,21.1532,-98.4212
+600,Calle José María Morelos,El Paraíso,Int 463,463,43000,Hidalgo,Huejutla de Reyes,33,Cerca del Mercado,21.1534,-98.4224
+767,Calle 1 de Mayo,San Rafael,Int 401,401,43000,Hidalgo,Huejutla de Reyes,1,Cerca del Parque,21.1540,-98.4205
+768,Calle Revolución,El Progreso,Int 402,402,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado,21.1535,-98.4180
+769,Calle Morelos,San Juan,Int 403,403,43000,Hidalgo,Huejutla de Reyes,4,A un lado de la Biblioteca,21.1550,-98.4195
+770,Calle Hidalgo,El Roble,Int 404,404,43000,Hidalgo,Huejutla de Reyes,5,Cerca del Centro Comercial,21.1560,-98.4175
+771,Calle Juárez,Santa Clara,Int 405,405,43000,Hidalgo,Huejutla de Reyes,6,Frente al Banco,21.1565,-98.4165
+772,Calle Allende,San Rafael,Int 406,406,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Supermercado,21.1555,-98.4185
+773,Calle Zaragoza,San Antonio,Int 407,407,43000,Hidalgo,Huejutla de Reyes,10,Frente a la Clínica,21.1570,-98.4200
+774,Calle Guerrero,El Progreso,Int 408,408,43000,Hidalgo,Huejutla de Reyes,11,Cerca del Mercado,21.1575,-98.4210
+775,Calle Morelos,San Juan,Int 409,409,43000,Hidalgo,Huejutla de Reyes,12,Frente al Hospital,21.1580,-98.4220
+776,Calle Reforma,El Roble,Int 410,410,43000,Hidalgo,Huejutla de Reyes,13,Cerca del Supermercado,21.1585,-98.4230
+777,Calle Madero,Santa Clara,Int 411,411,43000,Hidalgo,Huejutla de Reyes,14,Frente al Centro Comercial,21.1590,-98.4240
+778,Calle Juárez,San Rafael,Int 412,412,43000,Hidalgo,Huejutla de Reyes,15,A un lado del Parque,21.1595,-98.4250
+779,Calle Guerrero,San Antonio,Int 413,413,43000,Hidalgo,Huejutla de Reyes,16,Cerca del Banco,21.1600,-98.4260
+780,Calle Morelos,El Progreso,Int 414,414,43000,Hidalgo,Huejutla de Reyes,17,Frente a la Biblioteca,21.1605,-98.4270
+781,Calle Reforma,San Juan,Int 415,415,43000,Hidalgo,Huejutla de Reyes,18,Cerca del Centro de Salud,21.1610,-98.4280
+782,Calle Madero,Santa Clara,Int 416,416,43000,Hidalgo,Huejutla de Reyes,19,Frente al Mercado,21.1615,-98.4290
+783,Calle Juárez,San Rafael,Int 417,417,43000,Hidalgo,Huejutla de Reyes,20,A un lado del Hospital,21.1620,-98.4300
+784,Calle Guerrero,San Antonio,Int 418,418,43000,Hidalgo,Huejutla de Reyes,21,Frente a la Clínica,21.1625,-98.4310
+785,Calle Morelos,El Progreso,Int 419,419,43000,Hidalgo,Huejutla de Reyes,22,Cerca del Centro Comercial,21.1630,-98.4320
+786,Calle Reforma,San Juan,Int 420,420,43000,Hidalgo,Huejutla de Reyes,23,Frente al Supermercado,21.1635,-98.4330
+787,Calle Madero,Santa Clara,Int 421,421,43000,Hidalgo,Huejutla de Reyes,24,Cerca del Mercado,21.1640,-98.4340
+788,Calle Juárez,San Rafael,Int 422,422,43000,Hidalgo,Huejutla de Reyes,25,Frente a la Biblioteca,21.1645,-98.4350
+789,Calle Guerrero,El Roble,Int 423,423,43000,Hidalgo,Huejutla de Reyes,26,Cerca del Centro de Salud,21.1650,-98.4360
+790,Calle Morelos,El Progreso,Int 424,424,43000,Hidalgo,Huejutla de Reyes,27,A un lado del Banco,21.1655,-98.4370
+791,Calle Reforma,San Juan,Int 425,425,43000,Hidalgo,Huejutla de Reyes,28,Frente al Hospital,21.1660,-98.4380
+792,Calle Madero,Santa Clara,Int 426,426,43000,Hidalgo,Huejutla de Reyes,29,Cerca del Parque,21.1665,-98.4390
+793,Calle Juárez,San Rafael,Int 427,427,43000,Hidalgo,Huejutla de Reyes,30,Frente al Mercado,21.1670,-98.4400
+794,Calle Guerrero,San Antonio,Int 428,428,43000,Hidalgo,Huejutla de Reyes,31,Cerca del Supermercado,21.1675,-98.4410
+795,Calle Morelos,El Roble,Int 429,429,43000,Hidalgo,Huejutla de Reyes,32,Frente al Centro Comercial,21.1680,-98.4420
+796,Calle Reforma,Santa Clara,Int 430,430,43000,Hidalgo,Huejutla de Reyes,33,Cerca del Hospital,21.1685,-98.4430
+797,Calle Madero,San Juan,Int 431,431,43000,Hidalgo,Huejutla de Reyes,34,A un lado del Mercado,21.1690,-98.4440
+798,Calle Juárez,San Rafael,Int 432,432,43000,Hidalgo,Huejutla de Reyes,35,Frente a la Clínica,21.1695,-98.4450
+799,Calle Guerrero,El Progreso,Int 433,433,43000,Hidalgo,Huejutla de Reyes,36,Cerca del Centro de Salud,21.1700,-98.4460
+800,Calle Morelos,El Roble,Int 434,434,43000,Hidalgo,Huejutla de Reyes,37,Frente al Supermercado,21.1705,-98.4470
+801,Calle Reforma,San Juan,Int 435,435,43000,Hidalgo,Huejutla de Reyes,1,A un lado del Parque,21.1710,-98.4480
+802,Calle Benito Juárez,San Rafael,Int 1,1,43000,Hidalgo,Huejutla de Reyes,1,Cerca de la Plaza Principal,21.1510,-98.4210
+803,Calle Francisco I. Madero,El Paraíso,Int 2,2,43000,Hidalgo,Huejutla de Reyes,3,Frente al Mercado,21.1511,-98.4211
+804,Calle Vicente Guerrero,El Roble,Int 3,3,43000,Hidalgo,Huejutla de Reyes,4,Cerca del Supermercado,21.1512,-98.4212
+805,Calle Leandro Valle,San Juan,Int 4,4,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Hospital,21.1513,-98.4213
+806,Calle Pino Suárez,Santa Clara,Int 5,5,43000,Hidalgo,Huejutla de Reyes,6,Frente al Centro de Salud,21.1514,-98.4214
+807,Calle Hermenegildo Galeana,San Rafael,Int 6,6,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Parque,21.1515,-98.4215
+808,Calle Adolfo López Mateos,El Álamo,Int 7,7,43000,Hidalgo,Huejutla de Reyes,10,Frente al Supermercado,21.1516,-98.4216
+809,Calle Pedro Moreno,El Progreso,Int 8,8,43000,Hidalgo,Huejutla de Reyes,11,A un lado del Banco,21.1517,-98.4217
+810,Calle 16 de Septiembre,San Antonio,Int 9,9,43000,Hidalgo,Huejutla de Reyes,12,Frente a la Biblioteca,21.1518,-98.4218
+811,Calle Venustiano Carranza,San Rafael,Int 10,10,43000,Hidalgo,Huejutla de Reyes,13,Cerca del Hospital,21.1519,-98.4219
+812,Calle Nicolás Bravo,El Paraíso,Int 11,11,43000,Hidalgo,Huejutla de Reyes,14,Frente al Centro Comercial,21.1520,-98.4220
+813,Calle Ignacio Allende,El Roble,Int 12,12,43000,Hidalgo,Huejutla de Reyes,15,Cerca del Mercado,21.1521,-98.4221
+814,Calle 5 de Febrero,San Juan,Int 13,13,43000,Hidalgo,Huejutla de Reyes,16,Frente al Supermercado,21.1522,-98.4222
+815,Calle Benito Juárez,Santa Clara,Int 14,14,43000,Hidalgo,Huejutla de Reyes,17,A un lado del Banco,21.1523,-98.4223
+816,Calle Francisco I. Madero,El Álamo,Int 15,15,43000,Hidalgo,Huejutla de Reyes,18,Frente a la Biblioteca,21.1524,-98.4224
+817,Calle Vicente Guerrero,El Progreso,Int 16,16,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Hospital,21.1525,-98.4225
+818,Calle Leandro Valle,San Rafael,Int 17,17,43000,Hidalgo,Huejutla de Reyes,20,Frente al Centro Comercial,21.1526,-98.4226
+819,Calle Pino Suárez,El Paraíso,Int 18,18,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Mercado,21.1527,-98.4227
+820,Calle Hermenegildo Galeana,El Roble,Int 19,19,43000,Hidalgo,Huejutla de Reyes,22,Frente al Supermercado,21.1528,-98.4228
+821,Calle Adolfo López Mateos,San Juan,Int 20,20,43000,Hidalgo,Huejutla de Reyes,23,A un lado del Banco,21.1529,-98.4229
+822,Calle Pedro Moreno,Santa Clara,Int 21,21,43000,Hidalgo,Huejutla de Reyes,24,Frente a la Biblioteca,21.1530,-98.4230
+823,Calle 16 de Septiembre,El Álamo,Int 22,22,43000,Hidalgo,Huejutla de Reyes,25,Cerca del Hospital,21.1531,-98.4231
+824,Calle Venustiano Carranza,El Progreso,Int 23,23,43000,Hidalgo,Huejutla de Reyes,26,Frente al Centro Comercial,21.1532,-98.4232
+825,Calle Nicolás Bravo,San Rafael,Int 24,24,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Mercado,21.1533,-98.4233
+826,Calle Ignacio Allende,El Paraíso,Int 25,25,43000,Hidalgo,Huejutla de Reyes,28,Frente al Supermercado,21.1534,-98.4234
+827,Calle 5 de Febrero,San Antonio,Int 26,26,43000,Hidalgo,Huejutla de Reyes,29,A un lado del Banco,21.1535,-98.4235
+828,Calle Benito Juárez,El Roble,Int 27,27,43000,Hidalgo,Huejutla de Reyes,30,Frente a la Biblioteca,21.1536,-98.4236
+829,Calle Francisco I. Madero,San Juan,Int 28,28,43000,Hidalgo,Huejutla de Reyes,31,Cerca del Hospital,21.1537,-98.4237
+830,Calle Vicente Guerrero,Santa Clara,Int 29,29,43000,Hidalgo,Huejutla de Reyes,32,Frente al Centro Comercial,21.1538,-98.4238
+831,Calle Leandro Valle,El Álamo,Int 30,30,43000,Hidalgo,Huejutla de Reyes,33,Cerca del Mercado,21.1539,-98.4239
+832,Calle Pino Suárez,El Progreso,Int 31,31,43000,Hidalgo,Huejutla de Reyes,34,Frente al Supermercado,21.1540,-98.4240
+833,Calle Hermenegildo Galeana,San Rafael,Int 32,32,43000,Hidalgo,Huejutla de Reyes,35,A un lado del Banco,21.1541,-98.4241
+834,Calle Adolfo López Mateos,El Paraíso,Int 33,33,43000,Hidalgo,Huejutla de Reyes,36,Frente a la Biblioteca,21.1542,-98.4242
+835,Calle Pedro Moreno,El Roble,Int 34,34,43000,Hidalgo,Huejutla de Reyes,37,Cerca del Hospital,21.1543,-98.4243
+836,Calle 16 de Septiembre,San Juan,Int 35,35,43000,Hidalgo,Huejutla de Reyes,1,Frente al Centro Comercial,21.1544,-98.4244
+837,Calle Venustiano Carranza,Santa Clara,Int 36,36,43000,Hidalgo,Huejutla de Reyes,3,Cerca del Mercado,21.1545,-98.4245
+838,Calle Nicolás Bravo,El Álamo,Int 37,37,43000,Hidalgo,Huejutla de Reyes,4,Frente al Supermercado,21.1546,-98.4246
+839,Calle Ignacio Allende,El Progreso,Int 38,38,43000,Hidalgo,Huejutla de Reyes,5,A un lado del Banco,21.1547,-98.4247
+840,Calle 5 de Febrero,San Rafael,Int 39,39,43000,Hidalgo,Huejutla de Reyes,6,Frente a la Biblioteca,21.1548,-98.4248
+841,Calle Benito Juárez,El Paraíso,Int 40,40,43000,Hidalgo,Huejutla de Reyes,9,Cerca del Hospital,21.1549,-98.4249
+842,Calle Francisco I. Madero,San Juan,Int 41,41,43000,Hidalgo,Huejutla de Reyes,10,Frente al Centro Comercial,21.1550,-98.4250
+843,Calle Vicente Guerrero,Santa Clara,Int 42,42,43000,Hidalgo,Huejutla de Reyes,11,Cerca del Mercado,21.1551,-98.4251
+844,Calle Leandro Valle,El Roble,Int 43,43,43000,Hidalgo,Huejutla de Reyes,12,Frente al Supermercado,21.1552,-98.4252
+845,Calle Pino Suárez,San Rafael,Int 44,44,43000,Hidalgo,Huejutla de Reyes,13,A un lado del Banco,21.1553,-98.4253
+846,Calle Hermenegildo Galeana,El Progreso,Int 45,45,43000,Hidalgo,Huejutla de Reyes,14,Frente a la Biblioteca,21.1554,-98.4254
+847,Calle Adolfo López Mateos,El Álamo,Int 46,46,43000,Hidalgo,Huejutla de Reyes,15,Cerca del Hospital,21.1555,-98.4255
+848,Calle Pedro Moreno,San Antonio,Int 47,47,43000,Hidalgo,Huejutla de Reyes,16,Frente al Centro Comercial,21.1556,-98.4256
+849,Calle 16 de Septiembre,San Rafael,Int 48,48,43000,Hidalgo,Huejutla de Reyes,17,Cerca del Mercado,21.1557,-98.4257
+850,Calle Venustiano Carranza,El Álamo,Int 49,49,43000,Hidalgo,Huejutla de Reyes,18,Frente al Supermercado,21.1558,-98.4258
+851,Calle Nicolás Bravo,Santa Clara,Int 50,50,43000,Hidalgo,Huejutla de Reyes,19,A un lado del Banco,21.1559,-98.4259
+852,Calle Ignacio Allende,El Progreso,Int 51,51,43000,Hidalgo,Huejutla de Reyes,20,Frente a la Biblioteca,21.1560,-98.4260
+853,Calle 5 de Febrero,San Antonio,Int 52,52,43000,Hidalgo,Huejutla de Reyes,21,Cerca del Hospital,21.1561,-98.4261
+854,Calle Benito Juárez,El Roble,Int 53,53,43000,Hidalgo,Huejutla de Reyes,22,Frente al Centro Comercial,21.1562,-98.4262
+855,Calle Francisco I. Madero,San Juan,Int 54,54,43000,Hidalgo,Huejutla de Reyes,23,Cerca del Mercado,21.1563,-98.4263
+856,Calle Vicente Guerrero,El Álamo,Int 55,55,43000,Hidalgo,Huejutla de Reyes,24,Frente al Supermercado,21.1564,-98.4264
+857,Calle Leandro Valle,Santa Clara,Int 56,56,43000,Hidalgo,Huejutla de Reyes,25,A un lado del Banco,21.1565,-98.4265
+858,Calle Pino Suárez,El Progreso,Int 57,57,43000,Hidalgo,Huejutla de Reyes,26,Frente a la Biblioteca,21.1566,-98.4266
+859,Calle Hermenegildo Galeana,San Rafael,Int 58,58,43000,Hidalgo,Huejutla de Reyes,27,Cerca del Hospital,21.1567,-98.4267
+860,Calle Adolfo López Mateos,El Paraíso,Int 59,59,43000,Hidalgo,Huejutla de Reyes,28,Frente al Centro Comercial,21.1568,-98.4268
+861,Calle Pedro Moreno,San Rafael,Int 60,60,43000,Hidalgo,Huejutla de Reyes,29,Cerca del Mercado,21.1569,-98.4269
+862,Calle 16 de Septiembre,San Juan,Int 61,61,43000,Hidalgo,Huejutla de Reyes,30,Frente al Supermercado,21.1570,-98.4270
+863,Calle Venustiano Carranza,San Antonio,Int 62,62,43000,Hidalgo,Huejutla de Reyes,31,A un lado del Banco,21.1571,-98.4271
+864,Calle Nicolás Bravo,El Roble,Int 63,63,43000,Hidalgo,Huejutla de Reyes,32,Frente a la Biblioteca,21.1572,-98.4272
+865,Calle Ignacio Allende,Santa Clara,Int 64,64,43000,Hidalgo,Huejutla de Reyes,33,Cerca del Hospital,21.1573,-98.4273
+866,Calle 5 de Febrero,El Paraíso,Int 65,65,43000,Hidalgo,Huejutla de Reyes,34,Frente al Centro Comercial,21.1574,-98.4274
+867,Calle Benito Juárez,El Progreso,Int 66,66,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Mercado,21.1575,-98.4275
+868,Calle Francisco I. Madero,San Rafael,Int 67,67,43000,Hidalgo,Huejutla de Reyes,36,Frente al Supermercado,21.1576,-98.4276
+869,Calle Vicente Guerrero,San Juan,Int 68,68,43000,Hidalgo,Huejutla de Reyes,37,A un lado del Banco,21.1577,-98.4277
+870,Calle Leandro Valle,Santa Clara,Int 69,69,43000,Hidalgo,Huejutla de Reyes,1,Frente a la Biblioteca,21.1578,-98.4278
+871,Calle Pino Suárez,San Rafael,Int 70,70,43000,Hidalgo,Huejutla de Reyes,3,Cerca del Hospital,21.1579,-98.4279
+872,Calle Hermenegildo Galeana,El Paraíso,Int 71,71,43000,Hidalgo,Huejutla de Reyes,4,Frente al Centro Comercial,21.1580,-98.4280
+873,Calle Adolfo López Mateos,El Roble,Int 72,72,43000,Hidalgo,Huejutla de Reyes,5,Cerca del Mercado,21.1581,-98.4281
+874,Calle Pedro Moreno,San Juan,Int 73,73,43000,Hidalgo,Huejutla de Reyes,6,Frente al Supermercado,21.1582,-98.4282
+875,Calle 16 de Septiembre,Santa Clara,Int 74,74,43000,Hidalgo,Huejutla de Reyes,9,A un lado del Banco,21.1583,-98.4283
+876,Calle Venustiano Carranza,El Paraíso,Int 75,75,43000,Hidalgo,Huejutla de Reyes,10,Frente a la Biblioteca,21.1584,-98.4284
+877,Calle Nicolás Bravo,San Rafael,Int 76,76,43000,Hidalgo,Huejutla de Reyes,11,Cerca del Hospital,21.1585,-98.4285
+878,Calle Ignacio Allende,El Álamo,Int 77,77,43000,Hidalgo,Huejutla de Reyes,12,Frente al Centro Comercial,21.1586,-98.4286
+879,Calle 5 de Febrero,El Progreso,Int 78,78,43000,Hidalgo,Huejutla de Reyes,13,Cerca del Mercado,21.1587,-98.4287
+880,Calle Benito Juárez,San Rafael,Int 79,79,43000,Hidalgo,Huejutla de Reyes,14,Frente al Supermercado,21.1588,-98.4288
+881,Calle Francisco I. Madero,El Roble,Int 80,80,43000,Hidalgo,Huejutla de Reyes,15,A un lado del Banco,21.1589,-98.4289
+882,Calle Vicente Guerrero,San Juan,Int 81,81,43000,Hidalgo,Huejutla de Reyes,16,Frente a la Biblioteca,21.1590,-98.4290
+883,Calle Leandro Valle,Santa Clara,Int 82,82,43000,Hidalgo,Huejutla de Reyes,17,Cerca del Hospital,21.1591,-98.4291
+884,Calle Pino Suárez,El Álamo,Int 83,83,43000,Hidalgo,Huejutla de Reyes,18,Frente al Centro Comercial,21.1592,-98.4292
+885,Calle Hermenegildo Galeana,El Progreso,Int 84,84,43000,Hidalgo,Huejutla de Reyes,19,Cerca del Mercado,21.1593,-98.4293
+886,Calle Adolfo López Mateos,San Rafael,Int 85,85,43000,Hidalgo,Huejutla de Reyes,20,Frente al Supermercado,21.1594,-98.4294
+887,Calle Pedro Moreno,El Paraíso,Int 86,86,43000,Hidalgo,Huejutla de Reyes,21,A un lado del Banco,21.1595,-98.4295
+888,Calle 16 de Septiembre,El Roble,Int 87,87,43000,Hidalgo,Huejutla de Reyes,22,Frente a la Biblioteca,21.1596,-98.4296
+889,Calle Venustiano Carranza,San Juan,Int 88,88,43000,Hidalgo,Huejutla de Reyes,23,Cerca del Hospital,21.1597,-98.4297
+890,Calle Nicolás Bravo,Santa Clara,Int 89,89,43000,Hidalgo,Huejutla de Reyes,24,Frente al Centro Comercial,21.1598,-98.4298
+891,Calle Ignacio Allende,El Álamo,Int 90,90,43000,Hidalgo,Huejutla de Reyes,25,Cerca del Mercado,21.1599,-98.4299
+892,Calle 5 de Febrero,San Rafael,Int 91,91,43000,Hidalgo,Huejutla de Reyes,26,Frente al Supermercado,21.1600,-98.4300
+893,Calle Benito Juárez,El Progreso,Int 92,92,43000,Hidalgo,Huejutla de Reyes,27,A un lado del Banco,21.1501,-98.4201
+894,Calle Francisco I. Madero,San Rafael,Int 93,93,43000,Hidalgo,Huejutla de Reyes,28,Frente a la Biblioteca,21.1502,-98.4202
+895,Calle Vicente Guerrero,El Paraíso,Int 94,94,43000,Hidalgo,Huejutla de Reyes,29,Cerca del Hospital,21.1503,-98.4203
+896,Calle Leandro Valle,El Roble,Int 95,95,43000,Hidalgo,Huejutla de Reyes,30,Frente al Centro Comercial,21.1504,-98.4204
+897,Calle Pino Suárez,San Juan,Int 96,96,43000,Hidalgo,Huejutla de Reyes,31,Cerca del Mercado,21.1505,-98.4205
+898,Calle Hermenegildo Galeana,Santa Clara,Int 97,97,43000,Hidalgo,Huejutla de Reyes,32,Frente al Supermercado,21.1506,-98.4206
+899,Calle Adolfo López Mateos,El Álamo,Int 98,98,43000,Hidalgo,Huejutla de Reyes,33,A un lado del Banco,21.1507,-98.4207
+900,Calle Pedro Moreno,El Progreso,Int 99,99,43000,Hidalgo,Huejutla de Reyes,34,Frente a la Biblioteca,21.1508,-98.4208
+901,Calle 16 de Septiembre,San Rafael,Int 100,100,43000,Hidalgo,Huejutla de Reyes,35,Cerca del Hospital,21.1509,-98.4209
