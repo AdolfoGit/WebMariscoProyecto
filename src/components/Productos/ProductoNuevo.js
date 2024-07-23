@@ -111,6 +111,7 @@ export default function ProductoNuevo() {
       console.log(result)
       if (result === 'Exito') {
         obtenerProductoCarrito();
+        
         setOpen(true);
       } else {
           setOpen(false)
