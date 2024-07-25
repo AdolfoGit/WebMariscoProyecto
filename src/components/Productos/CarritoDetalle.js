@@ -285,7 +285,6 @@ const CarritoDetalle = () => {
                     </div>
                   </div>
                   <div className='w-1/4 flex items-center justify-center'>
-                  <input value={carritoInfo.idCarrito} hidden></input>
                     <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}</Typography>
                   </div>
                 </div>
