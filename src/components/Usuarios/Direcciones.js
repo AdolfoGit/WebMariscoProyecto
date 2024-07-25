@@ -86,7 +86,7 @@ const Reservaciones = () => {
     formData.append("CP", cp);
     formData.append("Estado", estado);
     formData.append("Ciudad", municipio);
-    formData.append("UsuarioID", user.idUsuario);
+    formData.append("UsuarioID", 11);
     formData.append("Referencias", InformacionAdicional);
     formData.append("Lat", latitud);
     formData.append("Long", longitud);
@@ -182,7 +182,7 @@ const Reservaciones = () => {
   };
 
   const actualizarDireccion = async () => {
-    const data = new FormData();
+    const data = new FormData();  
     data.append("Calle",calleE);
     data.append("Colonia",coloniaE);
     data.append("NumeroInterior",numeroInteriorE);
@@ -470,7 +470,7 @@ const Reservaciones = () => {
               </div>
               <div className="col-span-3">
                 <label for="NPersonas" class="form-label text-[15px] text-gray-600">
-                    Referencias
+                    Mis direcciones
                 </label>
                 <textarea
                   type="text"
