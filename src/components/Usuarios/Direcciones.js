@@ -86,7 +86,7 @@ const Reservaciones = () => {
     formData.append("CP", cp);
     formData.append("Estado", estado);
     formData.append("Ciudad", municipio);
-    formData.append("UsuarioID", 11);
+    formData.append("UsuarioID", user.idUsuario);
     formData.append("Referencias", InformacionAdicional);
     formData.append("Lat", latitud);
     formData.append("Long", longitud);
