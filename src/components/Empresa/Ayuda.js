@@ -27,9 +27,12 @@ const Ayuda = () => {
 
 
 
+
+
+
               <div className="-mb-4 space-y-12 lg:col-span-8 xl:col-span-7 xl:col-start-6">
                 <section>
-                  <h1 className="text-x16">Preguntas De Ayuda </h1>
+                  <h1 className="text-x16">Preguntas De Ayuda hola</h1>
                   <dl className="mt-2 divide-y divide-slate-100">
                     <details className="group py-4 marker:content-['']">
                       <summary className="flex w-full cursor-pointer select-none justify-between text-left text-base font-semibold leading-7  group-open:text-indigo-600 [&amp;::-webkit-details-marker]:hidden">¿Como comprar?<svg className="ml-1 mt-0.5 h-6 w-6 flex-none stroke-slate-700 group-open:stroke-indigo-500" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11H6"></path><path className="group-open:hidden" d="M10 7v12"></path></svg></summary>
