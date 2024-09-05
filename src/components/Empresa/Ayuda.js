@@ -23,13 +23,6 @@ const Ayuda = () => {
         <div className="col-6">
           <section id="faqs" className="mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8 mt-20 scroll-m-20 sm:mt-24 sm:scroll-m-24 xl:mt-32 xl:scroll-m-32">
             <div className="mx-auto grid-cols-1 gap-x-14 gap-y-16 lg:max-w-none lg:grid-cols-12">
-
-
-
-
-
-
-
               <div className="-mb-4 space-y-12 lg:col-span-8 xl:col-span-7 xl:col-start-6">
                 <section>
                   <h1 className="text-x16">Preguntas De Ayuda hola</h1>
