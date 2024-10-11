@@ -14,6 +14,7 @@ import GoogleLogin from "@leecheuk/react-google-login";
 import { useUser } from "../../UserContext";
 import "./css/login.css";
 import { reactApiIP } from "../../variables";
+import { Typography } from "@material-tailwind/react";
 
 export default function Login() {
   //const apiurll ="http://localhost:5029/"
@@ -239,72 +240,89 @@ export default function Login() {
     }
   };
   return (
-    <div className="registro-form-containerLogin">
-      <div className="registro-image-containerLogin">
+    <div className="lg:m-0 m-1">
+      <div className="flex justify-center items-center">
+      <div className="p-10">
+      <div className="bg-white shadow-lg rounded-lg flex overflow-hidden max-w-6xl w-full">
+      <div className="registro-image-containerLogin w-2/5 ">
         <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
-      <div className="registro-formLogin">
-        <p className="loginTitulo">
-          Login <LoginIcon />
+
+      <div className=" w-full lg:w-3/5 pl-20 pb-5 pt-5 pr-20">
+        <p className="loginTitulo mb-4 ">
+          Login 
         </p>
         <label className="loginText">
           Inicia sesión para obtener nuevos permisos y opciones dentro del sitio
           web
         </label>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="nombre" className="loginLabel">
-            Correo electrónico :
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            onBlur={() => validateEmail(email)}
-            className={emailError ? "input-error" : ""}
-            required
-          />
 
-          {emailError && <p className="error-message">{emailError}</p>}
-
-          <label htmlFor="email" className="loginLabel">
-            Contraseña :
-          </label>
-          <div className="password-input-container">
+        <form onSubmit={handleSubmit} className="space-y-2">
+          <div>
+            <label htmlFor="email" className="block text-2xl mb-2">Correo</label>
             <input
-              type={passwordVisible ? "text" : "password"}
-              id="password"
-              name="password"
-              value={password}
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onBlur={() => validateEmail(email)}
+              className={`w-full p-2 border rounded ${emailError ? "border-red-500" : "border-gray-300"}`}
               required
-              size={37}
-              onChange={handlePasswordChange}
-              onBlur={handleBlur}
-              className={passwordError ? "input-error" : ""}
             />
-            <button
-              type="button"
-              onClick={togglePasswordVisibility}
-              class="btn btn-light"
-            >
-              {passwordVisible ? (
-                <VisibilityOutlinedIcon fontSize="small" />
-              ) : (
-                <VisibilityOffOutlinedIcon fontSize="small" />
-              )}
-            </button>
+            {emailError && <p className="text-red-500 text-xl">{emailError}</p>}
           </div>
-          {passwordError && <p className="error-message">{passwordError}</p>}
-          <label className="recuerdame">
-            <input
-              type="checkbox"
-              className="cuadro"
-              style={{ marginTop: "10px" }}
+          <div>
+            <label htmlFor="password" className="block text-2xl mb-2">Contraseña</label>
+            <div className="relative">
+              <input
+                type={passwordVisible ? "text" : "password"}
+                id="password"
+                name="password"
+                value={password}
+                onChange={handlePasswordChange}
+                onBlur={handleBlur}
+                className={`w-full p-2 border rounded ${passwordError ? "border-red-500" : "border-gray-300"}`}
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="absolute inset-y-0 right-0 flex items-center px-2"
+              >
+                {passwordVisible ? (
+                  <VisibilityOutlinedIcon fontSize="small" />
+                ) : (
+                  <VisibilityOffOutlinedIcon fontSize="small" />
+                )}
+              </button>
+            </div>
+            {passwordError && <p className="text-red-500 text-xl">{passwordError}</p>}
+          </div>
+          <div className="flex justify-end">      
+            <Link to="/menuRecuperacion" className="text-xl text-blue-900">
+              ¿Olvidaste tu password?
+            </Link>
+          </div>
+          <center>
+            <ReCAPTCHA
+              
+              sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6"
+              onChange={onChange}
             />
-            Recuérdame
-          </label>
-
+          </center>
+          <button
+            type="submit"
+            className="w-full bg-amber-400 text-white py-2 rounded-lg font-semibold hover:bg-amber-600"
+            disabled={isButtonDisabled}
+          >
+              Entrsar
+          </button>
+          <div className="text-center mt-4">
+            <Typography variant="text" className="text-2xl text-center font-semibold">
+              Iniciar sesión con
+            </Typography>
+          </div>
           <GoogleLogin
             clientId={ClientID}
             onSuccess={onSuccess}
@@ -312,32 +330,19 @@ export default function Login() {
             cookiePolicy={"single_host_policy"}
             className="google-login-button"
           />
-          <div className="recaptcha">
-            <ReCAPTCHA
-              className="recaptch"
-              sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6"
-              onChange={onChange}
-            />
-          </div>
-          <button
-            className="btn btn-warning text2"
-            type="submit"
-            disabled={isButtonDisabled}
-          >
-            Entrar
-          </button>
-          <br />
-        </form>
 
-        <div className="container">
-          <Link to="/menuRecuperacion" className="singText">
-            ¿Olvidaste tu password?
-          </Link>
-          <Link to="/registrar" className="singText ms-3">
-            ¿Sin cuenta? Registrate
-          </Link>
-          <></>
-        </div>
+          <div className=" flex justify-start text-center mt-6">
+            <Typography className="text-2xl">
+              No tienes una cuenta?
+            </Typography>
+            <Link to="/login" className="text-blue-500 hover:underline ml-2">
+              Crear cuenta
+            </Link>
+          </div>
+        </form>
+      </div>
+    </div>
+      </div>
       </div>
     </div>
   );

@@ -141,6 +141,7 @@ const CarritoDetalle = () => {
   
 
   const createOrder = (data, actions) => {
+    console.log(Direccion)
     console.log('Valor de total:', total);
     const amount = parseFloat(total);
     console.log('Monto parseado:', amount);

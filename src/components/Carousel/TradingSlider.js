@@ -21,9 +21,9 @@ function TrandingSlider() {
   }, []);
 
     return (
-      <section id="tranding">
+      <section id="tranding " className='color  pt-40 h-screen'>
        
-      <div className="container">
+      <div className="container ">
         <div className="swiper tranding-slider">
           <div className="swiper-wrapper">
 

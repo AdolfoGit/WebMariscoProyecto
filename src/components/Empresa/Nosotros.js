@@ -1,18 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Vision from "../home/img/Vision.jpg";
+import Vision from "./vision.png"
+import "./css/nosotros.css"
 
-const links = [
-  { name: "Open roles", href: "#" },
-  { name: "Internship program", href: "#" },
-  { name: "Our values", href: "#" },
-  { name: "Meet our leadership", href: "#" },
-];
-const stats = [
-  { name: "Equipo de cocina", value: "20" },
-  { name: "Meseros", value: "+50" },
-  { name: "Mesas", value: "15" },
-  { name: "Variedad de Plarillos", value: "+200" },
-];
 
 export default function Mision() {
   const [reservacionesData, setReservacionesData] = useState(null);
@@ -46,138 +35,51 @@ export default function Mision() {
     DatosEmpresa();
   }, []);
   return (
-    <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-30">
-      <img
-        src={Vision}
-        alt=""
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-right lg:object-center"
-      />
-      <div
-        className="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl"
-        aria-hidden="true"
-      >
-        <div
-          className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
-      <div
-        className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
-        aria-hidden="true"
-      >
-        <div
-          className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-            Misión
-          </h2>
-          {reservacionesData && (
-            <p className="mt-6 text-xl leading-8 text-gray-300">
-              {reservacionesData.Mision}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-            {links.map((link) => (
-              <a key={link.name} href={link.href}>
-                {link.name} <span aria-hidden="true">&rarr;</span>
-              </a>
-            ))}
-          </div>
-          <dl className="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat) => (
-              <div key={stat.name} className="flex flex-col-reverse">
-                <dt className="text-xl leading-7 text-gray-300">{stat.name}</dt>
-                <dd className="text-4xl font-bold leading-9 tracking-tight text-white">
-                  {stat.value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+    <div className="mt-5 h-full lg:h-screen flex flex-col lg:flex-row items-center justify-center bg-white p-40  pt-0 mt-0">
+      {/* Imagen del aventurero */}
+      <div className="w-full lg:w-1/2 flex justify-center">
+        <div className="relative">
+          <img src={Vision} alt="Adventurer" className="degrade drop-shadow-[0_45px_45px_rgba(0,0,0,0.35)] w-full lg:w-4/4 object-cover z-10  relative" />
+          <div className="no absolute inset-0 bg-orange-200 rounded-full w-96 h-96 transform -translate-x-5 -translate-y-5 "></div>
         </div>
       </div>
 
-      <div
-        className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:top-[-28rem] sm:ml-16 sm:translate-x-0 sm:transform-gpu"
-        aria-hidden="true"
-      >
-        <div
-          className="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">
-            Visión
-          </h2>
-          {reservacionesData && (
-            <p className="mt-6 text-xl leading-8 text-gray-300">
-              {reservacionesData.Vision}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-            {links.map((link) => (
-              <a key={link.name} href={link.href}>
-                {link.name} <span aria-hidden="true">&rarr;</span>
-              </a>
-            ))}
+      {/* Sección de texto y estadísticas */}
+      <div className="w-full lg:w-1/2  flex flex-col  justify-center lg:pl-16 text-center lg:text-left">
+        {/* Título */}
+        <h2 className="text-6xl font-black text-gray-800 mb-4">
+          <span className="text-orange-500"> Conoce</span> nuestra <span className="text-orange-500">vision</span> unetenos
+        </h2>
+
+        {/* Descripción */}
+        <p className="text-xl text-left text-gray-600 leading-loose mb-6">
+          Nuestra misión es superar las expectativas de los comensales, honrar la riqueza del océano y ser un lugar donde la comida, la familia y la amistad se fusionen en una experiencia inolvidable. A medida que crecemos, seguimos siendo un referente culinario que inspira a todos a disfrutar del marisco con respeto y pasión
+        </p>
+
+        <p className="text-xl text-left text-gray-600 leading-loose mb-6">
+          En La Casa del Marisco, nuestra visión es convertirnos en un lugar íntimo y acogedor para los amantes de los sabores marinos en nuestra comunidad. Nos esforzamos por ser reconocidos como el rincón favorito de aquellos que buscan la frescura y la autenticidad en cada bocado.
+        </p>
+
+        <p className="text-xl text-gray-600 leading-loose mb-6">
+          Como una pequeña empresa, aspiramos a ser un tesoro culinario local, donde la pasión por el marisco se combina con la calidez de un ambiente familiar.
+        </p>
+        {/* Estadísticas */}
+        <div className="flex justify-center lg:justify-center space-x-6 mt-4">
+          <div className="text-center shadow-lg rounded-xl  p-4">
+            <h3 className="text-3xl font-bold text-orange-500">12K+</h3>
+            <p className="text-gray-500">Success Journey</p>
           </div>
-        </div>
-      </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl lg:mx-0">
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">
-            Horario
-          </h2>
-          {reservacionesData && (
-            <p className="mt-6 text-4xl leading-8 text-gray-300">
-              {reservacionesData.Horario}
-            </p>
-          )}
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">
-            Telefono
-          </h2>
-          {reservacionesData && (
-            <p className="mt-6 text-4xl leading-8 text-gray-300">
-              {reservacionesData.Telefono}
-            </p>
-          )}
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mt-10">
-            Dirección
-          </h2>
-          {reservacionesData && (
-            <p className="mt-6 text-4xl leading-8 text-gray-300">
-              {reservacionesData.Direccion}
-            </p>
-          )}
-        </div>
-        <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-          <div className="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-            {links.map((link) => (
-              <a key={link.name} href={link.href}>
-                {link.name} <span aria-hidden="true">&rarr;</span>
-              </a>
-            ))}
+          <div className="text-center shadow-lg rounded-xl  p-4">
+            <h3 className="text-3xl font-bold text-orange-500">16+</h3>
+            <p className="text-gray-500">Awards Winning</p>
+          </div>
+          <div className="text-center shadow-lg rounded-xl  p-4">
+            <h3 className="text-3xl font-bold text-orange-500">20+</h3>
+            <p className="text-gray-500">Years Of Experience</p>
           </div>
         </div>
       </div>
     </div>
+
   );
 }

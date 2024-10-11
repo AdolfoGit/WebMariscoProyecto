@@ -312,7 +312,7 @@ export default function ProductoNuevo() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="mt-5">
       <div>
         {/* espácio de los filtros */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>

@@ -197,3 +197,7 @@ html {
   .tranding-slider-control .swiper-pagination .swiper-pagination-bullet-active {
     background: var(--primary);
   }
+
+  .color{
+    background: linear-gradient(to right, #ffffff, #ff9659);
+}

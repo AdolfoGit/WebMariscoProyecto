@@ -47,5 +47,15 @@
   border: 1px solid red;
   
 }
- 
+
+@media (max-width: 768px) {
+  .formulario {
+    grid-template-columns: 1fr; /* Solo una columna en pantallas pequeñas */
+  }
+
+  .registro-image-containerRegistro{
+    display: none;
+  }
+}
+
   

@@ -49,6 +49,7 @@ import ImageUpload from './supabase/carga';
 import Direcciones from './components/Usuarios/Direcciones';
 import CarritoDetalle from './components/Productos/CarritoDetalle';
 import RegistrarDireccion from './components/Usuarios/maps';
+import Recomendaciones from './components/Recomendaciones'
 
 function App  (){
 
@@ -70,7 +71,8 @@ function App  (){
             <Route path="/nosotros" element={<Nosotros />} />
             <Route path="/login" element={<Login />} />
             <Route path="/nosotros" element={<Nosotros />} />
-            
+            <Route path="/recomendaciones" element={<Recomendaciones />} />
+
             <Route element={<ProtectorRutasAdmin/>}>
               <Route path="/dashboard/*" element={<Dashboard />} />
              
