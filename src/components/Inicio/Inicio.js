@@ -48,7 +48,6 @@ const Home = () => {
       <PromoSecciones />
       <BookingCard />
       <Example />
-      <TrandingSlider />
     </div>
   );
 };

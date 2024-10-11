@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a3f79a8e.css",
+    "main.js": "/static/js/main.2ddfc195.js",
+    "static/js/289.f90c62ca.chunk.js": "/static/js/289.f90c62ca.chunk.js",
+    "static/js/787.56ba5652.chunk.js": "/static/js/787.56ba5652.chunk.js",
+    "static/media/login.jpg": "/static/media/login.fb998ff41ebc95459ec3.jpg",
+    "static/media/ceviche.jpg": "/static/media/ceviche.3a33344e604122c8f39b.jpg",
+    "static/media/platillo.jpg": "/static/media/platillo.9106305e025e84fca8b9.jpg",
+    "static/media/hamburguesa.jpg": "/static/media/hamburguesa.ded90b2110723dc8bd12.jpg",
+    "static/media/foto2.png": "/static/media/foto2.d14121cdf62ec754eade.png",
+    "static/media/fondo2.jpg": "/static/media/fondo2.7101a0cc16c04602637b.jpg",
+    "static/media/actividad5.jpg": "/static/media/actividad5.9916128d5e97163084ca.jpg",
+    "static/media/platillo2.png": "/static/media/platillo2.5a653eadc44cd1f6422a.png",
+    "static/media/platillo.png": "/static/media/platillo.87183469c9417e779520.png",
+    "static/media/actividad6.jpg": "/static/media/actividad6.a09b7efa8fd972513a56.jpg",
+    "static/media/actividad7.jpg": "/static/media/actividad7.264f81dc6812ed46ac92.jpg",
+    "static/media/promocion.png": "/static/media/promocion.a526239596b98276f4e1.png",
+    "static/media/platillo3.png": "/static/media/platillo3.cb08f43228bbbee9ab28.png",
+    "static/media/actividad4.jpg": "/static/media/actividad4.d9934ed1b6ea95ec6877.jpg",
+    "static/media/ham2.jpg": "/static/media/ham2.9c13e16492541d2d9e20.jpg",
+    "static/media/wave3.png": "/static/media/wave3.ca19366f016a576b1ba3.png",
+    "static/media/vision.png": "/static/media/vision.f606290f1290595cc8a2.png",
+    "static/media/actividad.jpg": "/static/media/actividad.8d86210ca134f483d9b1.jpg",
+    "static/media/cotel.jpg": "/static/media/cotel.a32e8778efa23b521f9a.jpg",
+    "static/media/LogoVersion2.png": "/static/media/LogoVersion2.67e065aa02f55827c0ee.png",
+    "static/media/actividad2.jpg": "/static/media/actividad2.8eb9ab9e2ae0055ab1d9.jpg",
+    "static/media/hamburguesa2.jpg": "/static/media/hamburguesa2.bbf5ddc50f1efd627f6a.jpg",
+    "static/media/brocheta.jpg": "/static/media/brocheta.3f5ed40d42b4b9770ee5.jpg",
+    "static/media/pescado.jpeg": "/static/media/pescado.f246d624304b9dfa452c.jpeg",
+    "static/media/Actividad3.jpg": "/static/media/Actividad3.08e929d53112a4ba394f.jpg",
+    "service-worker.js": "/service-worker.js",
+    "index.html": "/index.html",
+    "main.a3f79a8e.css.map": "/static/css/main.a3f79a8e.css.map",
+    "main.2ddfc195.js.map": "/static/js/main.2ddfc195.js.map",
+    "289.f90c62ca.chunk.js.map": "/static/js/289.f90c62ca.chunk.js.map",
+    "787.56ba5652.chunk.js.map": "/static/js/787.56ba5652.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3f79a8e.css",
+    "static/js/main.2ddfc195.js"
+  ]
+}
