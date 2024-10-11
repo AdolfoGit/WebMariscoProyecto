@@ -19,6 +19,7 @@ import Reportes from "./pages/dashboard/Reportes";
 import Matematicas from "./pages/dashboard/matematicas";
 import Reservaciones from "./pages/dashboard/reservaciones";
 import PedidosGeneral from "./pages/dashboard/pedidos";
+import Predicciones from "./pages/dashboard/PrediccionPedidos";
 
 const icon = {
   className: "w-10 h-10 text-inherit",
@@ -76,6 +77,13 @@ export const routes = [
         path: "/reservaciones",
         element: <Reservaciones />,    
       },
+      ,
+      {
+        icon: <DocumentTextIcon {...icon} />,
+        name: "PrediccionPedidos",
+        path: "/prediccionPedidos",
+        element: <Predicciones />,    
+      },
     ],
   },
   {
@@ -132,6 +140,10 @@ export const routes = [
       {
         path: "/editarempresa",
         element: <EditarEmpresa/>,         
+      },,
+      {
+        path: "/prediccionPedidos",
+        element: <Predicciones/>,         
       },
     ],
   },
