@@ -29,17 +29,14 @@ const fileExtensionRegexp = new RegExp("/[^/?]+\\.[^/]+$");
 
 registerRoute(
   ({ request, url }) => {
-    // Si no es una solicitud de navegación, omitir.
+
     if (request.mode !== 'navigate') {
       return false;
     }
-    
-    // Si la solicitud es un archivo (por ejemplo, una imagen), omitir.
+
     if (url.pathname.match(fileExtensionRegexp)) {
       return false;
     }
-
-    // Devolver true para manejar la navegación con index.html
     return true;
   },
   createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
@@ -50,9 +47,9 @@ registerRoute(
   ({ url }) => {
     if (url.origin === 'https://lacasadelmariscoweb.azurewebsites.net' && url.pathname.startsWith('/api/CasaDelMarisco/TraerProductos')) {
       console.log('Interceptada solicitud de productos:', url.href);
-      return true; // Esto indica que la ruta es válida y debe ser manejada.
+      return true;
     }
-    return false; // Esto indica que la solicitud no es de la API de productos.
+    return false; 
   },
   new NetworkFirst({
     cacheName: 'productos',
