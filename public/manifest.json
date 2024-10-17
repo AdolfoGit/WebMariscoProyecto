@@ -1,7 +1,14 @@
 {
+  "registerType": "autoUpdate",
   "short_name": "Casa Marisco",
   "name": "Aplicacion La Casa Del Marisco",
   "description":"Aplicacion de la casa del marisco para pedidos en linea",
+  "scope":"/",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "permissions": ["camera"],
   "icons": [
     {
       "src": "pwa256.png",
@@ -18,11 +25,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "scope":"/",
-  "start_url": "/",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
-  "permissions": ["camera"]
+  ]
 }

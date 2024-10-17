@@ -16,16 +16,18 @@ precacheAndRoute(self.__WB_MANIFEST);
 // const desactivarPrecache = self.__WB_MANIFEST;
 // para más info: https://cra.link/PWA
 
-self.addEventListener('install', (event) => {
-  console.log('Service Worker: Instalación completada y archivos cacheados.');
-});
-
-self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activado y listo para servir desde la caché.');
-});
-
-
 const fileExtensionRegexp = new RegExp("/[^/?]+\\.[^/]+$");
+
+
+registerRoute(
+  ({ request }) => request.mode === 'navigate',
+  new NetworkFirst({
+    cacheName: 'pages-cache',
+    plugins: [
+      new ExpirationPlugin({ maxEntries: 50 }),
+    ],
+  })
+);
 
 registerRoute(
   // Return false to exempt requests from being fulfilled by index.html.
@@ -42,31 +44,16 @@ registerRoute(
     } // Return true to signal that we want to use the handler.
     return true;
   },
-  createHandlerBoundToURL(process.env.PUBLIC_URL + "/index.html")
+  createHandlerBoundToURL("/index.html")
 );
 
 // Cachear las respuestas de la API de productos
 registerRoute(
-  ({ url }) => {
-    if (url.origin === 'https://lacasadelmariscoweb.azurewebsites.net' && url.pathname.startsWith('/api/CasaDelMarisco/TraerProductos')) {
-      console.log('Interceptada solicitud de productos:', url.href);
-      return true;
-    }
-    return false; 
-  },
-  new NetworkFirst({
-    cacheName: 'productos',
+  ({ url }) => url.origin === 'https://lacasadelmariscoweb.azurewebsites.net/' && url.pathname.startsWith('/api/TraerProductos'),
+  new StaleWhileRevalidate({
+    cacheName: 'api-products-cache',
     plugins: [
-      {
-        cacheWillUpdate: async ({ response }) => {
-          if (response && response.status === 200) {
-            console.log('Respuesta exitosa cacheada:', response);
-            return response;
-          }
-          console.log('Respuesta no cacheada (no exitosa):', response);
-          return null;
-        },
-      },
+      new ExpirationPlugin({ maxEntries: 50 }),
     ],
   })
 );
@@ -84,6 +71,16 @@ registerRoute(
     ],
   })
 );
+
+registerRoute(
+  // Ruta para cachear CSS, JS e imágenes
+  ({ request }) => request.destination === 'style' || request.destination === 'script' || request.destination === 'image',
+  new StaleWhileRevalidate({
+    cacheName: 'static-resources',
+  })
+);
+
+
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();

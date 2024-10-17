@@ -289,11 +289,11 @@ const Perfil = () => {
       </div>
 
       <div class="md:w-2/4 w-full rounded-lg bg-white mt-4 ml-0 lg:ml-5 mr-2 mb-5 pr-40 pt-20 pl-40">
-        <div class="text-center mb-6">
+        <div class="flex items-center text-center mb-6">
           <div class="">
-          {imagenPerfil ? (
+            {imagenPerfil ? (
               <img
-                 class="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
+                class="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
                 src={imagenPerfil}
                 alt=""
               />
@@ -304,103 +304,9 @@ const Perfil = () => {
                 alt="Perfil"
               />
             )}
-
-            {isOpen && (
-              <div
-                className="relative z-10"
-                aria-labelledby="modal-title"
-                role="dialog"
-                aria-modal="true"
-              >
-                <div className="fixed inset-0 0 bg-opacity-75 transition-opacity"></div>
-                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                  <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                    <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-6 sm:w-full sm:max-w-lg">
-                      <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                        <form onSubmit={(e) => handleSubmit(e)}>
-                          <div
-                            className="mx-auto max-w-xs"
-                            onDrop={handleDrop}
-                            onDragOver={(e) => e.preventDefault()}
-                          >
-                            {imageURL ? (
-                              <img
-                                src={imageURL}
-                                alt="Imagen seleccionada"
-                                className="mx-auto inline-flex h-60 w-60 rounded-20 bg-gray-100"
-                              />
-                            ) : (
-                              <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all hover:border-primary-300">
-                                <div className="space-y-2 text-center">
-                                  <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
-                                    <svg
-                                      xmlns="http://www.w3.org/2000/svg"
-                                      fill="none"
-                                      viewBox="0 0 24 24"
-                                      stroke-width="1.5"
-                                      stroke="currentColor"
-                                      className="h-6 w-6 text-gray-500"
-                                    >
-                                      <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
-                                      />
-                                    </svg>
-                                  </div>
-                                  <div className="text-gray-600">
-                                    <a
-                                      href="#"
-                                      className="font-medium text-primary-500 hover:text-primary-700"
-                                    >
-                                      Haz clic para subir
-                                    </a>{" "}
-                                    o arrastra y suelta
-                                  </div>
-                                  <p className="text-sm text-gray-800">
-                                    PNG, JPG (máx. 800x400px)
-                                  </p>
-                                </div>
-                                <input
-                                  id="example5"
-                                  type="file"
-                                  className="sr-only"
-                                  accept="image/*"
-                                  onChange={(e) => {
-                                    setFile(e.target.files[0]);
-                                    const imageURL = URL.createObjectURL(
-                                      e.target.files[0]
-                                    );
-                                    setImageURL(imageURL);
-                                  }}
-                                />
-                              </label>
-                            )}
-                          </div>
-                          <div className="bg-gray-100 rounded-md mt-2 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                            {File && (
-                              <button
-                                type="submit"
-                                className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
-                              >
-                                Subir
-                              </button>
-                            )}
-                            <button
-                              type="button"
-                              onClick={() => cerar()}
-                              className="mt-3 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-300 sm:mt-0 sm:w-auto"
-                            >
-                              Cancelar
-                            </button>
-                          </div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
+          </div>
+          <div>
+            <span>Online</span>
           </div>
         </div>
 
@@ -410,7 +316,7 @@ const Perfil = () => {
               Nombre
             </span>
             <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
-              <FaUser className="mr-2 ml-2"/>
+              <FaUser className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
@@ -425,7 +331,7 @@ const Perfil = () => {
               Apellidos
             </span>
             <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
-              <FaUser className="mr-2 ml-2"/>
+              <FaUser className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
@@ -440,7 +346,7 @@ const Perfil = () => {
               Correo electronico
             </span>
             <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
-              <MdEmail className="mr-2 ml-2"/>
+              <MdEmail className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
@@ -455,7 +361,7 @@ const Perfil = () => {
               Telefono Movil
             </span>
             <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
-              <FaPhone className="mr-2 ml-2"/>
+              <FaPhone className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
@@ -464,16 +370,14 @@ const Perfil = () => {
               />
             </div>
           </div>
-          
-
-
-
-
         </form>
       </div>
       <div className="md:w-1/4 w-full bg-white rounded-lg mt-4 lg:ml-5 ml-0 mr-5 mb-5 p-10 ">
-        <span className="font-bold text-center">Mas opciones</span><br></br>
-        <span className="text-xl">Si no deseas cargar alguna foto, puedes tomarte una foto.</span>
+        <span className="font-bold text-center">Mas opciones</span>
+        <br></br>
+        <span className="text-xl">
+          Si no deseas cargar alguna foto, puedes tomarte una foto.
+        </span>
         <div className="flex justify-center mb-4">
           <video
             ref={videoRef}
@@ -485,27 +389,27 @@ const Perfil = () => {
           ></video>
         </div>
         <a
-              onClick={startCamera}
-              class="flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100 mb-4"
+          onClick={startCamera}
+          class="flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100 mb-4"
+        >
+          <div class="flex items-center space-x-2">
+            <svg
+              class="h-5 w-5 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <div class="flex items-center space-x-2">
-                <svg
-                  class="h-5 w-5 text-gray-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M4 6h16M4 10h16M4 14h16M4 18h16"
-                  ></path>
-                </svg>
-                <span class="text-gray-600">Abrir la cámara</span>
-              </div>
-            </a>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 10h16M4 14h16M4 18h16"
+              ></path>
+            </svg>
+            <span class="text-gray-600">Abrir la cámara</span>
+          </div>
+        </a>
 
         <a
           onClick={takePhoto}
@@ -533,6 +437,103 @@ const Perfil = () => {
         <div>
           <canvas ref={photoRef} style={{ display: "none" }}></canvas>
         </div>
+
+        {isOpen && (
+          <div
+            className="relative z-10"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+          >
+            <div className="fixed inset-0 0 bg-opacity-75 transition-opacity"></div>
+            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+              <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-6 sm:w-full sm:max-w-lg">
+                  <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                      <div
+                        className="mx-auto max-w-xs"
+                        onDrop={handleDrop}
+                        onDragOver={(e) => e.preventDefault()}
+                      >
+                        {imageURL ? (
+                          <img
+                            src={imageURL}
+                            alt="Imagen seleccionada"
+                            className="mx-auto inline-flex h-60 w-60 rounded-20 bg-gray-100"
+                          />
+                        ) : (
+                          <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all hover:border-primary-300">
+                            <div className="space-y-2 text-center">
+                              <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="1.5"
+                                  stroke="currentColor"
+                                  className="h-6 w-6 text-gray-500"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                                  />
+                                </svg>
+                              </div>
+                              <div className="text-gray-600">
+                                <a
+                                  href="#"
+                                  className="font-medium text-primary-500 hover:text-primary-700"
+                                >
+                                  Haz clic para subir
+                                </a>{" "}
+                                o arrastra y suelta
+                              </div>
+                              <p className="text-sm text-gray-800">
+                                PNG, JPG (máx. 800x400px)
+                              </p>
+                            </div>
+                            <input
+                              id="example5"
+                              type="file"
+                              className="sr-only"
+                              accept="image/*"
+                              onChange={(e) => {
+                                setFile(e.target.files[0]);
+                                const imageURL = URL.createObjectURL(
+                                  e.target.files[0]
+                                );
+                                setImageURL(imageURL);
+                              }}
+                            />
+                          </label>
+                        )}
+                      </div>
+                      <div className="bg-gray-100 rounded-md mt-2 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        {File && (
+                          <button
+                            type="submit"
+                            className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
+                          >
+                            Subir
+                          </button>
+                        )}
+                        <button
+                          type="button"
+                          onClick={() => cerar()}
+                          className="mt-3 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-300 sm:mt-0 sm:w-auto"
+                        >
+                          Cancelar
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
