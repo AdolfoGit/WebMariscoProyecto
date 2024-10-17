@@ -1,88 +1,132 @@
-import React, { useState } from "react";
-import {
-  Avatar,
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Box,
-} from "@mui/material";
-import { Lock } from "@mui/icons-material";
-import ImageIcon from '@mui/icons-material/Image';
+import React, { useState, useRef, useEffect } from "react";
 import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estructura de archivos
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { uploadFilesUsuarios } from "../../firebase/firebase";
-import Direcciones from "./Direcciones";
+import { FaUser } from "react-icons/fa";
+import { FaPhone } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 
 const Perfil = () => {
- // const apiurll = "http://localhost:5029/";
- const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
- 
+  const videoRef = useRef(null);
+  const photoRef = useRef(null);
+  const [photoURL, setPhotoURL] = useState(null);
+  const [profilePic, setProfilePic] = useState(
+    "https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
+  ); // Imagen de perfil actual
+  const [cameraActive, setCameraActive] = useState(false); // Controla si la cámara está activa
+
+  ///apartado de foto para pwa
+  const startCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
+      } else {
+        console.error("El elemento video no está disponible");
+      }
+    } catch (error) {
+      console.error("Error al acceder a la cámara: ", error);
+    }
+  };
+
+  const takePhoto = () => {
+    const video = videoRef.current;
+    const photo = photoRef.current;
+
+    if (!video || !photo) {
+      console.error("No se pudo acceder al video o al canvas");
+      return;
+    }
+
+    const context = photo.getContext("2d");
+    const width = 250;
+    const height = 200;
+
+    if (context) {
+      photo.width = width;
+      photo.height = height;
+      context.drawImage(video, 0, 0, width, height);
+      // Guardar la foto como una URL en el estado
+      const dataURL = photo.toDataURL("image/png");
+      setImagenPerfil(dataURL); // Actualiza el estado con la imagen capturada
+      stopCamera();
+    } else {
+      console.error("No se pudo obtener el contexto del canvas");
+    }
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      const stream = videoRef.current.srcObject;
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop()); // Detiene todos los tracks (audio/video)
+      videoRef.current.srcObject = null; // Limpia el feed del video
+      setCameraActive(false); // Desactiva la cámara
+    }
+  };
+  /////////////////////////e
+
+  const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
   const [isOpen, setIsOpen] = useState(false);
-  const abrir=()=>{
-    setIsOpen(true)
-  }
-  const cerar=()=>{
-    setIsOpen(false)
-    setFile(null)
-    setImageURL(null)
-
-  }
+  const abrir = () => {
+    setIsOpen(true);
+  };
+  const cerar = () => {
+    setIsOpen(false);
+    setFile(null);
+    setImageURL(null);
+  };
   async function getLatLong(address, apiKey) {
     const baseUrl = "https://maps.googleapis.com/maps/api/geocode/json";
-    const url = `${baseUrl}?address=${encodeURIComponent(address)}&key=${apiKey}`;
-    
+    const url = `${baseUrl}?address=${encodeURIComponent(
+      address
+    )}&key=${apiKey}`;
+
     try {
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        if (data.status === "OK") {
-            const location = data.results[0].geometry.location;
-            return { lat: location.lat, lng: location.lng };
-        } else {
-            console.error("Error en la geocodificación:", data.status);
-            return null;
-        }
-    } catch (error) {
-        console.error("Error en la solicitud de geocodificación:", error);
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (data.status === "OK") {
+        const location = data.results[0].geometry.location;
+        return { lat: location.lat, lng: location.lng };
+      } else {
+        console.error("Error en la geocodificación:", data.status);
         return null;
+      }
+    } catch (error) {
+      console.error("Error en la solicitud de geocodificación:", error);
+      return null;
     }
-}
+  }
 
-// Ejemplo de uso
-const address = "43000";
-const apiKey = "AIzaSyBMZxb7lHGBmYbaV8uDoiSjenlPxhwgS1M";
+  const address = "43000";
+  const apiKey = "AIzaSyBMZxb7lHGBmYbaV8uDoiSjenlPxhwgS1M";
 
-getLatLong(address, apiKey).then(location => {
+  getLatLong(address, apiKey).then((location) => {
     if (location) {
-        console.log(`Latitud: ${location.lat}, Longitud: ${location.lng}`);
+      console.log(`Latitud: ${location.lat}, Longitud: ${location.lng}`);
     } else {
-        console.log("No se pudo obtener la latitud y longitud.");
+      console.log("No se pudo obtener la latitud y longitud.");
     }
-});
+  });
 
+  // Ejemplo de uso
 
-// Ejemplo de uso
-
-
-
- const [File, setFile] = useState(null);
- const [imageURL, setImageURL] = useState(null);
+  const [File, setFile] = useState(null);
+  const [imageURL, setImageURL] = useState(null);
 
   const navigate = useNavigate();
   const { user, logoutUser } = useUser();
 
+  const [imagenPerfil, setImagenPerfil] = useState(user.Icono);
+
   const handleDrop = (e) => {
     e.preventDefault();
     const droppedFile = e.dataTransfer.files[0];
-      setFile(droppedFile);
+    setFile(droppedFile);
     const imageURL = URL.createObjectURL(droppedFile);
     setImageURL(imageURL);
   };
@@ -97,7 +141,7 @@ getLatLong(address, apiKey).then(location => {
       });
       return;
     }
-    
+
     // Verificar si el archivo seleccionado es una imagen
     if (!File.type.startsWith("image")) {
       Swal.fire({
@@ -109,30 +153,25 @@ getLatLong(address, apiKey).then(location => {
     }
     const result = await uploadFilesUsuarios(File);
     const data = new FormData();
-      data.append("idUsuario", user.idUsuario);
-      data.append("Icono", result);
-      fetch(
-        apiurll +
-          "api/CasaDelMarisco/SubirIcono",
-        {
-          method: "POST",
-          body: data,
-          
-        }
-      ).then((res) => res.json())
+    data.append("idUsuario", user.idUsuario);
+    data.append("Icono", result);
+    fetch(apiurll + "api/CasaDelMarisco/SubirIcono", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
       .then((result) => {
-        if(result === 'Icono actualizado'){
+        if (result === "Icono actualizado") {
           Swal.fire({
             icon: "warning",
             title: "Nos vemos pronto",
             text: "Si se subio",
           });
-          setIsOpen(false)
-          setFile(null)
-          setImageURL(null)
+          setIsOpen(false);
+          setFile(null);
+          setImageURL(null);
         }
-      }
-      )
+      });
     console.log(result);
   };
   const cerrarSesion = () => {
@@ -145,143 +184,357 @@ getLatLong(address, apiKey).then(location => {
     });
   };
   const irDirecciones = () => {
-    navigate('/direcciones');
+    navigate("/direcciones");
   };
   return (
-    <Grid container spacing={3} justifyContent="center" marginBottom={5}>
-      <Grid item xs={12} sm={8} md={6}>
-        <Card>
-          <CardContent>
-            <Grid
-              container
-              spacing={3}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Grid item>
-                {user.Icono ? (
-                    <img class="inline-block h-40 w-40 rounded-full ring-2 ring-white" src={user.Icono} alt="" />
+    <div class="flex flex-col md:flex-row  h-full lg:h-screen bg-gray-50 ">
+      <div class=" md:w-1/4 w-full bg-white  p-5 md:mt-0">
+        <h2 class="text-3xl font-bold mb-4">Configuracion de perfil</h2>
+        <div class="space-y-6">
+          <a
+            href="/menuRecuperacion"
+            class="flex items-center justify-between p-3 rounded-lg shadow-sm bg-gray-900 hover:!text-gray-900 hover:bg-gray-100"
+          >
+            <div class="flex items-center space-x-2">
+              <svg
+                class="h-5 w-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                ></path>
+              </svg>
+              <span class="text-white ">Cambiar contraseña</span>
+            </div>
+          </a>
 
-                ) : (
-                  <img
-                    src="https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
-                    class=""
-                    style={{ height: "150px", borderRadius: "40px" }}
-                    alt="..."
-                  ></img>
-                )}
-               
-                  {isOpen &&(
-                     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                     <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-                     <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                       <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                         <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-6 sm:w-full sm:max-w-lg">
-                           <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                           <form onSubmit={(e) => handleSubmit(e)}>
-                           <div className="mx-auto max-w-xs" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
-                              {imageURL ? (
-                                <img src={imageURL} alt="Imagen seleccionada" className="mx-auto inline-flex h-60 w-60 rounded-20 bg-gray-100" />
-                              ) : (
-                                <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all hover:border-primary-300">
-                                  <div className="space-y-2 text-center">
-                                    <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
-                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="h-6 w-6 text-gray-500">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
-                                      </svg>
-                                    </div>
-                                    <div className="text-gray-600"><a href="#" className="font-medium text-primary-500 hover:text-primary-700">Haz clic para subir</a> o arrastra y suelta</div>
-                                    <p className="text-sm text-gray-800">PNG, JPG (máx. 800x400px)</p>
+          <a
+            onClick={() => abrir()}
+            class="flex items-center justify-between p-3  bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100"
+          >
+            <div class="flex items-center space-x-2">
+              <svg
+                class="h-5 w-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                ></path>
+              </svg>
+              <span class="text-gray-600">Cambiar foto de perfil</span>
+            </div>
+          </a>
+
+          <a
+            onClick={irDirecciones}
+            class="flex items-center justify-between p-3 rounded-lg  bg-gray-50 shadow-sm hover:bg-gray-100"
+          >
+            <div class="flex items-center space-x-2">
+              <svg
+                class="h-5 w-5 text-gray-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                ></path>
+              </svg>
+              <span class="text-gray-600">Mis direcciones</span>
+            </div>
+          </a>
+
+          <hr class="border-t-2 border-gray-500 my-4" />
+
+          <a
+            onClick={cerrarSesion}
+            class="flex items-center justify-between p-3 rounded-lg  bg-gray-50 shadow-sm hover:bg-gray-100"
+          >
+            <div class="flex items-center space-x-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7 text-gray-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6a2 2 0 012 2v1"
+                />
+              </svg>
+
+              <span class="text-red-600">Cerrar Sesión</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="md:w-2/4 w-full rounded-lg bg-white mt-4 ml-0 lg:ml-5 mr-2 mb-5 pr-40 pt-20 pl-40">
+        <div class="text-center mb-6">
+          <div class="">
+          {imagenPerfil ? (
+              <img
+                 class="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
+                src={imagenPerfil}
+                alt=""
+              />
+            ) : (
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
+                class="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
+                alt="Perfil"
+              />
+            )}
+
+            {isOpen && (
+              <div
+                className="relative z-10"
+                aria-labelledby="modal-title"
+                role="dialog"
+                aria-modal="true"
+              >
+                <div className="fixed inset-0 0 bg-opacity-75 transition-opacity"></div>
+                <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                  <div className="flex items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                    <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-6 sm:w-full sm:max-w-lg">
+                      <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <form onSubmit={(e) => handleSubmit(e)}>
+                          <div
+                            className="mx-auto max-w-xs"
+                            onDrop={handleDrop}
+                            onDragOver={(e) => e.preventDefault()}
+                          >
+                            {imageURL ? (
+                              <img
+                                src={imageURL}
+                                alt="Imagen seleccionada"
+                                className="mx-auto inline-flex h-60 w-60 rounded-20 bg-gray-100"
+                              />
+                            ) : (
+                              <label className="flex w-full cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-dashed border-gray-200 p-6 transition-all hover:border-primary-300">
+                                <div className="space-y-2 text-center">
+                                  <div className="mx-auto inline-flex h-20 w-20 items-center justify-center rounded-full bg-gray-100">
+                                    <svg
+                                      xmlns="http://www.w3.org/2000/svg"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke-width="1.5"
+                                      stroke="currentColor"
+                                      className="h-6 w-6 text-gray-500"
+                                    >
+                                      <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z"
+                                      />
+                                    </svg>
                                   </div>
-                                  <input id="example5"
-                                    type="file"
-                                    className="sr-only"
-                                    accept="image/*"
-                                    onChange={(e) => {
-                                      setFile(e.target.files[0]);
-                                      const imageURL = URL.createObjectURL(e.target.files[0]);
-                                      setImageURL(imageURL);
-                                    }} />
-                                </label>
-                              )}
-                            </div>
-                            <div className="bg-gray-100 rounded-md mt-2 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                              {File && <button type="submit" className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto">Subir</button>}{""}
-                              <button type="button" onClick={()=>cerar()} className="mt-3 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-300 sm:mt-0 sm:w-auto">Cancelar</button>
-                            </div>
-                          </form>
-                           </div>
-                         </div>
-                       </div> 
-                     </div>
-                   </div>
-                  )}
+                                  <div className="text-gray-600">
+                                    <a
+                                      href="#"
+                                      className="font-medium text-primary-500 hover:text-primary-700"
+                                    >
+                                      Haz clic para subir
+                                    </a>{" "}
+                                    o arrastra y suelta
+                                  </div>
+                                  <p className="text-sm text-gray-800">
+                                    PNG, JPG (máx. 800x400px)
+                                  </p>
+                                </div>
+                                <input
+                                  id="example5"
+                                  type="file"
+                                  className="sr-only"
+                                  accept="image/*"
+                                  onChange={(e) => {
+                                    setFile(e.target.files[0]);
+                                    const imageURL = URL.createObjectURL(
+                                      e.target.files[0]
+                                    );
+                                    setImageURL(imageURL);
+                                  }}
+                                />
+                              </label>
+                            )}
+                          </div>
+                          <div className="bg-gray-100 rounded-md mt-2 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            {File && (
+                              <button
+                                type="submit"
+                                className="mt-3 inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 sm:ml-3 sm:w-auto"
+                              >
+                                Subir
+                              </button>
+                            )}
+                            <button
+                              type="button"
+                              onClick={() => cerar()}
+                              className="mt-3 inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-3 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-red-300 sm:mt-0 sm:w-auto"
+                            >
+                              Cancelar
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
-              </Grid>
-              <Grid item>
-                <Typography variant="h5">
-                  {user
-                    ? `${user.Nombre} ${user.ApellidoPaterno}`
-                    : "Nombre del Usuario"}
-                </Typography>
-                <Typography variant="h5">
-                  Correo: {user ? user.Correo : "Correo del Usuario"}
-                </Typography>
-                <Typography variant="h5">
-                  Telefono: {user ? user.Telefono : "Telefono del Usuario"}
-                </Typography>
-                <Typography variant="h5">
-                  Estado de la cuenta:{" "}
-                  {user ? user.Rol : "Estado de la cuenta del Usuario"}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Box mt={3}>
-              <Typography variant="h5">Opciones</Typography>
+        <form>
+          <div class="mb-4">
+            <span for="name" class="block  font-bold text-gray-700">
+              Nombre
+            </span>
+            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+              <FaUser className="mr-2 ml-2"/>
+              <input
+                type="text"
+                id="name"
+                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                value={user.Nombre}
+              />
+            </div>
+          </div>
 
-              <List>
-                <ListItem>
-                  <ListItemIcon>
-                    <Lock />
-                  </ListItemIcon>
-                  <Button>Cambiar Contraseña</Button>
-                  <ListItemIcon>
-                    <ImageIcon />
-                  </ListItemIcon>
-                  <Button onClick={()=>abrir()}>Cambiar Foto de Perfil</Button>
-                </ListItem>  
-                <ListItem>
-                  <ListItemIcon>
-                    <Lock />
-                  </ListItemIcon>
-                  <Button onClick={irDirecciones}>Direcciones</Button>
-                  
-                </ListItem>  
-              </List>
-              <Button
-                variant="contained"
-                style={{ marginTop: "20px", backgroundColor: "#ff8c00" }}
-              >
-                Editar Perfil
-              </Button>
-              <Button
-                variant="contained"
-                style={{ marginTop: "20px", backgroundColor: "#ff8c00" }}
-                onClick={cerrarSesion}
-              >
-                Cerrar sesión
-              </Button>
-            </Box>
-          </CardContent>
-        </Card>
-      </Grid>
+          <div class="mb-4">
+            <span for="name" class="block  font-bold text-gray-700">
+              Apellidos
+            </span>
+            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+              <FaUser className="mr-2 ml-2"/>
+              <input
+                type="text"
+                id="name"
+                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                value={user.ApellidoPaterno}
+              />
+            </div>
+          </div>
 
-      
-    </Grid>
+          <div class="mb-4">
+            <span for="name" class="block  font-bold text-gray-700">
+              Correo electronico
+            </span>
+            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+              <MdEmail className="mr-2 ml-2"/>
+              <input
+                type="text"
+                id="name"
+                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                value={user.Correo}
+              />
+            </div>
+          </div>
 
-    
-    
+          <div class="mb-4">
+            <span for="name" class="block  font-bold text-gray-700">
+              Telefono Movil
+            </span>
+            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+              <FaPhone className="mr-2 ml-2"/>
+              <input
+                type="text"
+                id="name"
+                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                value={user.Telefono}
+              />
+            </div>
+          </div>
+          
 
+
+
+
+        </form>
+      </div>
+      <div className="md:w-1/4 w-full bg-white rounded-lg mt-4 lg:ml-5 ml-0 mr-5 mb-5 p-10 ">
+        <span className="font-bold text-center">Mas opciones</span><br></br>
+        <span className="text-xl">Si no deseas cargar alguna foto, puedes tomarte una foto.</span>
+        <div className="flex justify-center mb-4">
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            width="150"
+            height="150"
+            class="rounded-xl"
+          ></video>
+        </div>
+        <a
+              onClick={startCamera}
+              class="flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100 mb-4"
+            >
+              <div class="flex items-center space-x-2">
+                <svg
+                  class="h-5 w-5 text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                  ></path>
+                </svg>
+                <span class="text-gray-600">Abrir la cámara</span>
+              </div>
+            </a>
+
+        <a
+          onClick={takePhoto}
+          class="ver flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100"
+        >
+          <div class="flex items-center space-x-2">
+            <svg
+              class="h-5 w-5 text-gray-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 10h16M4 14h16M4 18h16"
+              ></path>
+            </svg>
+            <span class="text-gray-600">Tomar foto</span>
+          </div>
+        </a>
+
+        <div>
+          <canvas ref={photoRef} style={{ display: "none" }}></canvas>
+        </div>
+      </div>
+    </div>
   );
 };
 

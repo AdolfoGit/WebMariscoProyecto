@@ -27,7 +27,6 @@ reportWebVitals();
 serviceWorkerRegistration.register({
   onUpdate: async (registration) => {
     // Corremos este código si hay una nueva versión de nuestra app
-    // Detalles en: https://developers.google.com/web/fundamentals/primers/service-workers/lifecycle
     if (registration && registration.waiting) {
       await registration.unregister();
       registration.waiting.postMessage({ type: "SKIP_WAITING" });
