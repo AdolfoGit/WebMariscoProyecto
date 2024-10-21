@@ -1,0 +1,143 @@
+name: PWA CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - 'development'
+      - 'LAC-*'
+      - 'rama*'
+      - 'release/*'
+  pull_request:
+    branches:
+      - 'development'
+      - 'LAC-*'
+      - 'rama*'
+      - 'release/*'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run unit tests with Jest
+        run: npm test -- --coverage
+
+      - name: Upload coverage report
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Run E2E tests with Cypress
+        if: github.ref == 'refs/heads/release/*'
+        run: npx cypress run --record --key fdb387cd-c898-4bd9-bb69-391e67389cb6
+
+      - name: Upload E2E test results
+        if: success() && github.ref == 'refs/heads/release/*'
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e-results
+          path: cypress/results/
+
+      # Notificar a Slack si las pruebas fallan
+      - name: Notify of test failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "text": "❌ Las pruebas fallaron en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
+            }
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+
+  build:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/
+
+      # Notificar a Slack si la compilación falla
+      - name: Notify of build failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "text": "❌ La compilación falló en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
+            }
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && success()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token Z2689hwBGl9lXadvaN0ld6gv
+      
+      # Notificar a Slack si el despliegue es exitoso
+      - name: Notify of deployment success
+        if: success()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "text": "🚀 Despliegue exitoso de la aplicación en producción en la rama: ${{ github.ref }}."
+            }
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+
+      # Notificar a Slack si el despliegue falla
+      - name: Notify of deployment failure
+        if: failure()
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          payload: |
+            {
+              "text": "❌ El despliegue falló en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
+            }
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
