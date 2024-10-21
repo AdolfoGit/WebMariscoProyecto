@@ -68,7 +68,7 @@ jobs:
               "text": "❌ Las pruebas fallaron en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
             }
         env:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
 
   build:
     needs: build-and-test
@@ -106,7 +106,7 @@ jobs:
               "text": "❌ La compilación falló en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
             }
         env:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
 
   deploy:
     needs: build
@@ -130,7 +130,7 @@ jobs:
               "text": "🚀 Despliegue exitoso de la aplicación en producción en la rama: ${{ github.ref }}."
             }
         env:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
 
       # Notificar a Slack si el despliegue falla
       - name: Notify of deployment failure
@@ -142,4 +142,4 @@ jobs:
               "text": "❌ El despliegue falló en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
             }
         env:
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK: "https://hooks.slack.com/services/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"
