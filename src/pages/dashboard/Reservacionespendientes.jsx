@@ -116,73 +116,8 @@ export function ReservacionesPendientes() {
         }
     })
   }
-  const noCancelar=(idReservacion, CorreoElectronico)=>{
 
-    const idInt = parseInt(idReservacion);
-    const data = new FormData();
-    data.append("idReservacion",idInt);
-    data.append("Estado",EstadoB);
-    data.append("Correo",CorreoElectronico);
-    fetch(
-      apiurll + "api/CasaDelMarisco/CambiarEstadoReservacion",
-      {
-          method: "POST",
-          body: data,
-      }
-    )
-    .then((res) => res.json())
-    .then((result) => {
-        console.log(result);
-        if (result === 'Reservacion pendiente') {
-          Swal.fire({
-                icon: 'success',
-                title: 'Reservación devuelta al cliente',
-                text: 'Realizado con exito',
-            });
-            obtenerDatosUsuarios();
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro incompleto',
-                text: 'Ha ocurrido un error verifique los datos',
-            });
-        }
-    })
-  }
 
-  const desbloquearUser=(idUser)=>{
-
-    const idUsuarioInt = parseInt(idUser, 10);
-    const data = new FormData();
-    data.append("idUsuario",idUsuarioInt);
-    data.append("Estado",EstadoC);
-
-    fetch(
-      apiurll + "api/CasaDelMarisco/CambiarEstadoUsuario?idUsuario=" + idUsuarioInt+ "&Estado="+ EstadoC,
-      {
-          method: "POST",
-          body: data,
-      }
-    )
-    .then((res) => res.json())
-    .then((result) => {
-        //console.log(result);
-        if (result === 'Icono actualizado') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro Completo',
-                text: 'Realizado con exito',
-            });
-            obtenerDatosUsuarios();
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro incompleto',
-                text: 'Ha ocurrido un error verifique los datos',
-            });
-        }
-    })
-  }
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card>

@@ -7,7 +7,6 @@ import {
   Chip,
   Button,
 } from "@material-tailwind/react";
-import Swal from 'sweetalert2';
 
 export function ReservacionesCanceladas() {
   const [reservacionesData, setReservacionesData] = useState(null);

@@ -13,7 +13,6 @@ import {
 } from "@material-tailwind/react";
 import { EllipsisVerticalIcon  } from "@heroicons/react/24/outline";
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import ReservacionesPendientes from './Reservacionespendientes';
 import ReservacionesProcesoCan from './ReservacionProcesoCan';
 import ReservacionesCanceladas from './ReservacionCancelada';

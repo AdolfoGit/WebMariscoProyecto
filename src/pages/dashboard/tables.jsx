@@ -14,7 +14,6 @@ import {
 } from "@material-tailwind/react";
 import { EllipsisVerticalIcon  } from "@heroicons/react/24/outline";
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 
 export function Tables() {
   
