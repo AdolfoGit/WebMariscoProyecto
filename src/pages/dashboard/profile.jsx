@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
@@ -220,5 +221,22 @@ export function Profile() {
     </>
   );
 }
+Profile.propTypes = {
+  projectsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      tag: PropTypes.string,
+      route: PropTypes.string.isRequired,
+      members: PropTypes.arrayOf(
+        PropTypes.shape({
+          img: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ),
+};
 
 export default Profile;
