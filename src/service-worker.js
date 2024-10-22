@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-
 import { clientsClaim } from "workbox-core";
 import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
@@ -10,11 +8,8 @@ import { NetworkFirst } from 'workbox-strategies';
 
 clientsClaim();
 
-// Puedes desactivar el precaching reemplazand esta línea
 precacheAndRoute(self.__WB_MANIFEST);
-// por esta otra:
-// const desactivarPrecache = self.__WB_MANIFEST;
-// para más info: https://cra.link/PWA
+
 
 const fileExtensionRegexp = new RegExp("/[^/?]+\\.[^/]+$");
 
