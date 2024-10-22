@@ -43,8 +43,9 @@ jobs:
           path: coverage/
 
       - name: Run E2E tests with Cypress
-        if: github.ref == 'refs/heads/release/*'
+        if: startsWith(github.ref, 'refs/heads/LAC-')
         run: npx cypress run --record --key fdb387cd-c898-4bd9-bb69-391e67389cb6
+
 
       - name: Upload E2E test results
         if: success() && github.ref == 'refs/heads/release/*'
