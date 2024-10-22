@@ -3,16 +3,10 @@ name: PWA CI/CD Workflow
 on:
   push:
     branches:
-      - 'development'
-      - 'LAC-*'
-      - 'rama*'
-      - 'release/*'
+      - '*'
   pull_request:
     branches:
-      - 'development'
-      - 'LAC-*'
-      - 'rama*'
-      - 'release/*'
+      - '*'
   workflow_dispatch:
 
 permissions:
