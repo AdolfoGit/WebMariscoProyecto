@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link, NavLink,useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   Button,
@@ -50,7 +50,7 @@ export function Sidenav({ brandName, routes }) {
         </IconButton>
       </div>
       <div className="m-4 ">
-        {routes.map(({ layout, title, pages }, key) => (
+        {routes.map(({ layout, pages }, key) => (
           <ul key={key} className=" flex flex-col gap-2 ">
 
               {pages.map(({ icon, name, path }) => (

@@ -223,3 +223,21 @@ export function Profile() {
 }
 
 export default Profile;
+
+Profile.propTypes = {
+  projectsData: PropTypes.arrayOf(
+    PropTypes.shape({
+      img: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      tag: PropTypes.string,
+      route: PropTypes.string.isRequired,
+      members: PropTypes.arrayOf(
+        PropTypes.shape({
+          img: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+        })
+      ).isRequired,
+    })
+  ).isRequired,
+};
