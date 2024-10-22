@@ -11,5 +11,5 @@ module.exports = {
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js', "<rootDir>/node_modules/"],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js', "<rootDir>/node_modules/",'<rootDir>/jest.setup.js'],
 };
