@@ -1,3 +1,3 @@
 // jest.setup.js
-global.TextDecoder = require('util').TextDecoder;
-global.TextEncoder = require('util').TextEncoder;
+global.TextDecoder = global.TextDecoder || require('util').TextDecoder;
+global.TextEncoder = global.TextEncoder || require('util').TextEncoder;

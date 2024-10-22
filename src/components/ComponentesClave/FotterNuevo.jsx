@@ -5,11 +5,12 @@ import { Typography } from "@material-tailwind/react";
 import { useUser } from '../../UserContext';
 function Footer() {
   const iconsTab = [
-    { icon: <FaFacebookF /> },
-    { icon: <AiOutlineTwitter /> },
-    { icon: <AiFillYoutube /> },
-    { icon: <AiFillInstagram /> },
+    { id: 'facebook', icon: <FaFacebookF /> },
+    { id: 'twitter', icon: <AiOutlineTwitter /> },
+    { id: 'youtube', icon: <AiFillYoutube /> },
+    { id: 'instagram', icon: <AiFillInstagram /> },
   ];
+  
   const {user } = useUser();
   return (
     <>
@@ -67,15 +68,18 @@ function Footer() {
                     <Typography className="text-3xl font-bold text-gray-100">Siguenos en Redes</Typography>
                     <span className="border-b-2 border-gray-400 w-28 h-2 mb-4"></span>
                     <div className="flex gap-4 text-2xl text-white">
-                      {iconsTab.map(({ icon }, index) => (
-                        <div
-                          key={index}
-                          className="w-10 h-10 bg-black p-2 rounded-full hover:bg-blue-300 hover:text-black items-start"
-                          style={{ transition: "all 0.3s" }}
-                        >
-                          {icon}
-                        </div>
-                      ))}
+                    <div className="flex gap-4 text-2xl text-white">
+  {iconsTab.map(({ id, icon }) => (
+    <div
+      key={id}
+      className="w-10 h-10 bg-black p-2 rounded-full hover:bg-blue-300 hover:text-black items-start"
+      style={{ transition: "all 0.3s" }}
+    >
+      {icon}
+    </div>
+  ))}
+</div>
+
                     </div>
                     <Typography className="text-xl text-gray-400 font-medium hover:text-blue-300 cursor-pointer">
                       Preguntas Frecuentes
