@@ -18,7 +18,6 @@ export const storage = getStorage(app);
 
 export async function uploadFilesUsuarios (File) {
   // Declaración de variables de estado
-  let uploading = false;
   let fileUrl = null;
 
   // Función para establecer el estado de uploading
@@ -40,7 +39,7 @@ export async function uploadFilesUsuarios (File) {
     let filePath = `${Date.now()}_${file.name}`;
   
     try {
-      const { data, error } = await supabase.storage
+      const { error } = await supabase.storage
         .from('LCDM')
         .upload(filePath, file);
   

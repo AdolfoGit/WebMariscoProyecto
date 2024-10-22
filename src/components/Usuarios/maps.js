@@ -32,8 +32,8 @@ const RegistrarDireccion = () => {
 
   const [place, setPlace] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-  const [map, setMap] = useState(null);
-  const [marker, setMarker] = useState(null);
+  const [map] = useState(null);
+  const [marker] = useState(null);
   const latitudeRef = useRef();
   const longitudeRef = useRef();
 

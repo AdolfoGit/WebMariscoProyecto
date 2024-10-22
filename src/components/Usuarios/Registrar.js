@@ -494,7 +494,7 @@ const Registro = () => {
                   onBlur={handleBlur}
                   className={passwordError ? 'input-error' : 'w-full'}
                 />
-                <button type="button" onClick={togglePasswordVisibility} class="btn btn-light">
+                <button type="button" onClick={togglePasswordVisibility} className="btn btn-light">
                   {passwordVisible ? (
                     <VisibilityOutlinedIcon fontSize="small" />
                   ) : (
@@ -521,7 +521,7 @@ const Registro = () => {
                 <button
                   type="button"
                   onClick={togglePasswordVisibility2}
-                  class="btn btn-light"
+                  className="btn btn-light"
                 >
                   {passwordVisible2 ? (
                     <VisibilityOutlinedIcon fontSize="small" />

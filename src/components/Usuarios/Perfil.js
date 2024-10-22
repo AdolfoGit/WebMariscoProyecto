@@ -184,17 +184,17 @@ const Perfil = () => {
     navigate("/direcciones");
   };
   return (
-    <div class="flex flex-col md:flex-row  h-full lg:h-screen bg-gray-50 ">
-      <div class=" md:w-1/4 w-full bg-white  p-5 md:mt-0">
-        <h2 class="text-3xl font-bold mb-4">Configuracion de perfil</h2>
-        <div class="space-y-6">
+    <div className="flex flex-col md:flex-row  h-full lg:h-screen bg-gray-50 ">
+      <div className=" md:w-1/4 w-full bg-white  p-5 md:mt-0">
+        <h2 className="text-3xl font-bold mb-4">Configuracion de perfil</h2>
+        <div className="space-y-6">
           <a
             href="/menuRecuperacion"
-            class="flex items-center justify-between p-3 rounded-lg shadow-sm bg-gray-900 hover:!text-gray-900 hover:bg-gray-100"
+            className="flex items-center justify-between p-3 rounded-lg shadow-sm bg-gray-900 hover:!text-gray-900 hover:bg-gray-100"
           >
-            <div class="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <svg
-                class="h-5 w-5 text-gray-600"
+                className="h-5 w-5 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -207,17 +207,17 @@ const Perfil = () => {
                   d="M4 6h16M4 10h16M4 14h16M4 18h16"
                 ></path>
               </svg>
-              <span class="text-white ">Cambiar contraseña</span>
+              <span className="text-white ">Cambiar contraseña</span>
             </div>
           </a>
 
           <a
             onClick={() => abrir()}
-            class="flex items-center justify-between p-3  bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100"
+            className="flex items-center justify-between p-3  bg-gray-50 rounded-lg shadow-sm hover:bg-gray-100"
           >
-            <div class="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <svg
-                class="h-5 w-5 text-gray-600"
+                className="h-5 w-5 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -230,17 +230,17 @@ const Perfil = () => {
                   d="M4 6h16M4 10h16M4 14h16M4 18h16"
                 ></path>
               </svg>
-              <span class="text-gray-600">Cambiar foto de perfil</span>
+              <span className="text-gray-600">Cambiar foto de perfil</span>
             </div>
           </a>
 
           <a
             onClick={irDirecciones}
-            class="flex items-center justify-between p-3 rounded-lg  bg-gray-50 shadow-sm hover:bg-gray-100"
+            className="flex items-center justify-between p-3 rounded-lg  bg-gray-50 shadow-sm hover:bg-gray-100"
           >
-            <div class="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <svg
-                class="h-5 w-5 text-gray-600"
+                className="h-5 w-5 text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -253,20 +253,20 @@ const Perfil = () => {
                   d="M4 6h16M4 10h16M4 14h16M4 18h16"
                 ></path>
               </svg>
-              <span class="text-gray-600">Mis direcciones</span>
+              <span className="text-gray-600">Mis direcciones</span>
             </div>
           </a>
 
-          <hr class="border-t-2 border-gray-500 my-4" />
+          <hr className="border-t-2 border-gray-500 my-4" />
 
           <a
             onClick={cerrarSesion}
-            class="flex items-center justify-between p-3 rounded-lg  bg-gray-50 shadow-sm hover:bg-gray-100"
+            className="flex items-center justify-between p-3 rounded-lg  bg-gray-50 shadow-sm hover:bg-gray-100"
           >
-            <div class="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-7 w-7 text-gray-600"
+                className="h-7 w-7 text-gray-600"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -279,25 +279,25 @@ const Perfil = () => {
                 />
               </svg>
 
-              <span class="text-red-600">Cerrar Sesión</span>
+              <span className="text-red-600">Cerrar Sesión</span>
             </div>
           </a>
         </div>
       </div>
 
-      <div class="md:w-2/4 w-full rounded-lg bg-white mt-4 ml-0 lg:ml-5 mr-2 mb-5 pr-40 pt-20 pl-40">
-        <div class="flex items-center text-center mb-6">
-          <div class="">
+      <div className="md:w-2/4 w-full rounded-lg bg-white mt-4 ml-0 lg:ml-5 mr-2 mb-5 pr-40 pt-20 pl-40">
+        <div className="flex items-center text-center mb-6">
+          <div className="">
             {imagenPerfil ? (
               <img
-                class="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
+                className="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
                 src={imagenPerfil}
                 alt=""
               />
             ) : (
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
-                class="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
+                className="h-60 w-60 rounded-full object-cover border-2 border-gray-200"
                 alt="Perfil"
               />
             )}
@@ -308,61 +308,61 @@ const Perfil = () => {
         </div>
 
         <form>
-          <div class="mb-4">
-            <span for="name" class="block  font-bold text-gray-700">
+          <div className="mb-4">
+            <span for="name" className="block  font-bold text-gray-700">
               Nombre
             </span>
-            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+            <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
               <FaUser className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
-                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.Nombre}
               />
             </div>
           </div>
 
-          <div class="mb-4">
-            <span for="name" class="block  font-bold text-gray-700">
+          <div className="mb-4">
+            <span for="name" className="block  font-bold text-gray-700">
               Apellidos
             </span>
-            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+            <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
               <FaUser className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
-                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.ApellidoPaterno}
               />
             </div>
           </div>
 
-          <div class="mb-4">
-            <span for="name" class="block  font-bold text-gray-700">
+          <div className="mb-4">
+            <span for="name" className="block  font-bold text-gray-700">
               Correo electronico
             </span>
-            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+            <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
               <MdEmail className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
-                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.Correo}
               />
             </div>
           </div>
 
-          <div class="mb-4">
-            <span for="name" class="block  font-bold text-gray-700">
+          <div className="mb-4">
+            <span for="name" className="block  font-bold text-gray-700">
               Telefono Movil
             </span>
-            <div class="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
+            <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
               <FaPhone className="mr-2 ml-2" />
               <input
                 type="text"
                 id="name"
-                class="w-full p-2 border-0 bg-gray-100  text-gray-400 "
+                className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.Telefono}
               />
             </div>
@@ -382,16 +382,16 @@ const Perfil = () => {
             playsInline
             width="150"
             height="150"
-            class="rounded-xl"
+            className="rounded-xl"
           ></video>
         </div>
         <a
           onClick={startCamera}
-          class="flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100 mb-4"
+          className="flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100 mb-4"
         >
-          <div class="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
             <svg
-              class="h-5 w-5 text-gray-600"
+              className="h-5 w-5 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -404,17 +404,17 @@ const Perfil = () => {
                 d="M4 6h16M4 10h16M4 14h16M4 18h16"
               ></path>
             </svg>
-            <span class="text-gray-600">Abrir la cámara</span>
+            <span className="text-gray-600">Abrir la cámara</span>
           </div>
         </a>
 
         <a
           onClick={takePhoto}
-          class="ver flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100"
+          className="ver flex items-center justify-between p-3 rounded-lg shadow-sm hover:bg-gray-100"
         >
-          <div class="flex items-center space-x-2">
+          <div className="flex items-center space-x-2">
             <svg
-              class="h-5 w-5 text-gray-600"
+              className="h-5 w-5 text-gray-600"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -427,7 +427,7 @@ const Perfil = () => {
                 d="M4 6h16M4 10h16M4 14h16M4 18h16"
               ></path>
             </svg>
-            <span class="text-gray-600">Tomar foto</span>
+            <span className="text-gray-600">Tomar foto</span>
           </div>
         </a>
 
