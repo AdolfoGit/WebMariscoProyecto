@@ -6,7 +6,7 @@ import imagen from "../home/img/ham2.jpg";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import Swal from "sweetalert2";
-import "sweetalert2/dist/sweetalert2.min.css";
+import "sweetalert2/src/sweetalert2.scss";
 import ReCAPTCHA from "react-google-recaptcha";
 import { gapi } from "gapi-script";
 import GoogleLogin from "@leecheuk/react-google-login"; 
