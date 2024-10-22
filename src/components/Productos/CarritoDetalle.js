@@ -63,7 +63,8 @@ const CarritoDetalle = () => {
       if (result === 'Exito') {
         obtenerProductoCarrito();
       } else {
-      
+        console.error("La respuesta de la API no es un array:", data);
+
       }
       })
       .catch((error) => {
@@ -96,7 +97,8 @@ const CarritoDetalle = () => {
       if (result === 'Exito') {
         obtenerProductoCarrito();
       } else {
-         
+        console.error("La respuesta de la API no es un array:", data);
+
       }
       })
       .catch((error) => {

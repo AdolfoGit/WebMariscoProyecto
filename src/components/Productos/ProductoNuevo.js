@@ -378,14 +378,7 @@ export default function ProductoNuevo() {
   
  
   };
-  
-
-  const getCategoriaText = (categoria) => {
-    if (categoria === 1) return 'Platillo';
-    if (categoria === 2) return 'Bebida';
-    return categoria; // Valor original si no es 1 ni 2
-  }
-  
+    
   const verDetalle = (idProducto) => {
     navigate('/detalleProduct', { state: { idProducto } }); // Pasar idProducto en el estado de navegación
   };
@@ -566,7 +559,7 @@ export default function ProductoNuevo() {
                         </h3>
                         <Disclosure.Panel className="pt-6" defaultOpen>
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
+                            {section.options.map((option) => (
                               <div key={option.value} className="flex items-center">
                                 <input
                                   defaultValue={option.value}
@@ -605,7 +598,7 @@ export default function ProductoNuevo() {
                         </h3>
                         <Disclosure.Panel className="pt-6" defaultOpen>
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
+                            {section.options.map((option) => (
                               <div key={option.value} className="flex items-center">
                                 <input
                                   defaultValue={option.value}
