@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Grid, Paper } from '@mui/material';
-import { styled } from '@mui/system';
-import ofertaImagen1 from '../home/img/bebida.jpg';
 import { Typography } from '@material-tailwind/react';
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(2),
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  minHeight: '200px',  
-}));
 
 const Ofertas = () => {
   const [promocionesData, setPromociones] = useState(null);
@@ -52,7 +42,7 @@ const obtenerPromociones = async () => {
      <div className='container d-flex'>
 
       {promocionesData !== null && promocionesData.map((promocion) =>(
-         <div className='flex'>
+         <div className='flex' key={promocion.idPromocion}>
 
          <figure className="relative h-96 w-90">
        <img

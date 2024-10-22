@@ -9,7 +9,6 @@ import { reactApiIP } from "../../variables";
 
 export default function Actualizar() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  //const apiurll ="http://localhost:5029/"
 
   const navigate = useNavigate();
 
@@ -149,7 +148,11 @@ export default function Actualizar() {
             text: "Ahora puede entrar para navegar y sorprenderse.",
           });
           navigate("/login");
-        } else if (result === "Error en las credenciales") {
+        } else if (result === "Error en las credenciales") {Swal.fire({
+          icon: "error",
+          title: "No se ajusta el correo",
+          text: "Intentalo de nuevo",
+        });
         }
       });
   };
@@ -182,7 +185,7 @@ export default function Actualizar() {
             <button
               type="button"
               onClick={togglePasswordVisibility}
-              class="btn btn-light"
+              className="btn btn-light"
             >
               {passwordVisible ? (
                 <VisibilityOutlinedIcon fontSize="small" />
@@ -212,7 +215,7 @@ export default function Actualizar() {
             <button
               type="button"
               onClick={togglePasswordVisibility2}
-              class="btn btn-light"
+              className="btn btn-light"
             >
               {passwordVisible2 ? (
                 <VisibilityOutlinedIcon fontSize="small" />

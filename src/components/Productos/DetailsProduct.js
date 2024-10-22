@@ -1,13 +1,8 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import DetailsThumb from './DetailsThumb';
 import './css/Detail.css';
 import ImageMagnifier from './ImageMagnifier';
 
-// Importa imágenes de ejemplo si es necesario
-import imagen from '../home/img/hamburguesa2.jpg';
-import imagen2 from '../home/img/hamburguesa.jpg';
-import imagen3 from '../home/img/ham2.jpg';
 import Swal from 'sweetalert2';
 
 const DetailsProduct = () => {
@@ -17,8 +12,6 @@ const DetailsProduct = () => {
   
   const [product, setProductData] = useState(null); // Estado inicial como null para manejar el estado de carga
   const [loading, setLoading] = useState(true); // Estado de carga
-  const [index, setIndex] = useState(0);
-  const myRef = useRef();
 
 
 

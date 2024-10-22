@@ -1,4 +1,4 @@
-import Header from '../home/header/Header';
+import React from 'react'
 import img1 from'../home/img/actividad.jpg';
 import img2 from'../home/img/actividad2.jpg';
 import img3 from'../home/img/Actividad3.jpg';
@@ -13,14 +13,14 @@ export default function PromoSecciones() {
         <div className="pb-80 pt-16 ">
           <div className="relative mx-auto max-w-7xl px-2 sm:static sm:px-6 lg:px-8">
             <div className="mr-20 lg:max-w-xl ">
-              <h1 className="text-8xl font-bold tracking-tight text-green-500">
-               <span className='text-orange-300'>Diversidad de</span> <span className='text-blue-400'>Actividades</span> !Unetenos!
+              <h1 className="text-8xl font-bold tracking-tight text-black-200">
+               <span className='text-black-200'>Diversidad de</span> <span className='text-orange-400'>Actividades</span> !Unetenos!
               </h1>
               
               <p className="mt-4 text-2xl text-black  font-bold">
                 En la Casa del Marisco, hay gran diversidad de actividades, no solo somos un lugar para que puedas venir a degustar nuestros platillos, somos mas que eso.
               </p>
-              <Button variant='filled' color='blue' className='text-xl mt-5'>Explorar</Button>
+              <Button variant='filled' color='orange' className='text-xl mt-5'>Explorar</Button>
             </div>
             <div>
               <div className="mt-10 ">

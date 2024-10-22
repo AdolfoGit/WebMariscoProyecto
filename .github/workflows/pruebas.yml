@@ -1,0 +1,134 @@
+name: PWA CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - '*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint 
+
+      - name: Run unit tests with Jest
+        run: npm test -- --coverage --debug
+
+      - name: Upload coverage report
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage/
+
+      - name: Run E2E tests with Cypress
+        if: github.ref == 'refs/heads/release/*'
+        run: npx cypress run --record --key fdb387cd-c898-4bd9-bb69-391e67389cb6
+
+      - name: Upload E2E test results
+        if: success() && github.ref == 'refs/heads/release/*'
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e-results
+          path: cypress/results/  
+
+      # Notificar por correo si las pruebas fallan
+      - name: Notify of test failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ Las pruebas fallaron en ${{ github.ref }}"
+          body: "Las pruebas fallaron en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
+          to: ${{ secrets.MAIL_RECIPIENT }}
+          from: ${{ secrets.MAIL_USERNAME }}
+
+  build:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist/
+
+      # Notificar por correo si la compilación falla
+      - name: Notify of build failure
+        if: failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "❌ La compilación falló en ${{ github.ref }}"
+          body: "La compilación falló en la rama: ${{ github.ref }}. Revisa los detalles del fallo en la acción de GitHub."
+          to: ${{ secrets.MAIL_RECIPIENT }}
+          from: ${{ secrets.MAIL_USERNAME }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && success()
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+      # Notificar por correo si el despliegue es exitoso
+      - name: Notify of deployment success
+        if: success()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "🚀 Despliegue exitoso en ${{ github.ref }}"
+          body: "El despliegue fue exitoso en la rama: ${{ github.ref }}."
+          to: ${{ secrets.MAIL_RECIPIENT }}
+          from: ${{ secrets.MAIL_USERNAME }}

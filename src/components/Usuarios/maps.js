@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { GoogleMap, useLoadScript, Autocomplete, Marker } from '@react-google-maps/api';
+import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 
 const CONFIGURATION = {
   ctaTitle: 'Encuentrame',
@@ -32,8 +32,8 @@ const RegistrarDireccion = () => {
 
   const [place, setPlace] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-  const [map, setMap] = useState(null);
-  const [marker, setMarker] = useState(null);
+  const [map] = useState(null);
+  const [marker] = useState(null);
   const latitudeRef = useRef();
   const longitudeRef = useRef();
 

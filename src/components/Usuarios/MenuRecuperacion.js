@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import imagen from "../home/img/login.jpg";
 
 export default function MenuRecuperacion() {
@@ -116,11 +116,11 @@ export default function MenuRecuperacion() {
           style={{ display: "flex", alignItems: "center" ,justifyContent:'space-between'}}
         >
            <button onClick={() => setShowTelefonoForm(true)} className="text-white bg-orange-400  font-medium rounded-lg text-md px-3 py-2.5 text-center inline-flex items-center  me-2 mb-2">
-           <i class="fa-brands fa-whatsapp mr-2"></i>             
+           <i className="fa-brands fa-whatsapp mr-2"></i>             
             Por Telefono
             </button>
             <button onClick={() => setShowTelefonoForm(false)} className="text-white bg-orange-400 font-medium rounded-lg  text-md px-3 py-2.5 text-center inline-flex items-center  me-2 mb-2">
-            <i class="fa-solid fa-envelope-circle-check mr-2"/>          
+            <i className="fa-solid fa-envelope-circle-check mr-2"/>          
             Por Correo
             </button>
         

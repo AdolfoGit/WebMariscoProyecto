@@ -1,6 +1,6 @@
-
+import React from 'react'
 import { Fragment, useState,useEffect } from 'react'
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
+import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
@@ -47,9 +47,6 @@ const precio=[
   },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function ProductoNuevo() {
  
@@ -57,7 +54,80 @@ export default function ProductoNuevo() {
   const { user } = useUser();
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [cantidad,setCantidad]= useState(1);
+
+
+  // Función para abrir o crear la base de datos
+  function openDatabase() {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open("productosDB", 1);
+
+      request.onerror = (event) => {
+        console.error("Error al abrir la base de datos:", event.target.error);
+        reject(event.target.error);
+      };
+
+      request.onsuccess = (event) => {
+        console.log("Base de datos abierta con éxito");
+        resolve(event.target.result);
+      };
+
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains("productos")) {
+          db.createObjectStore("productos", { keyPath: "idProducto" });
+        }
+      };
+    });
+  }
+
+   // Función para guardar productos en IndexedDB
+   async function guardarProductosEnIndexedDB(productos) {
+    try {
+      const db = await openDatabase(); // Asegúrate de que la base de datos está abierta
+      const transaction = db.transaction(["productos"], "readwrite");
+      const store = transaction.objectStore("productos");
+
+      productos.forEach((producto) => {
+        store.put(producto); // Guardar cada producto en el almacén
+      });
+
+      transaction.oncomplete = () => {
+        console.log("Productos almacenados en IndexedDB");
+      };
+
+      transaction.onerror = (event) => {
+        console.error("Error al almacenar productos en IndexedDB:", event.target.error);
+      };
+    } catch (error) {
+      console.error("Error en IndexedDB:", error);
+    }
+  }
+
+
+   // Función para obtener productos de IndexedDB
+   async function obtenerProductosDeIndexedDB() {
+    try {
+      const db = await openDatabase();
+      const transaction = db.transaction("productos", "readonly");
+      const store = transaction.objectStore("productos");
+
+      return new Promise((resolve, reject) => {
+        const request = store.getAll();
+        request.onsuccess = (event) => {
+          resolve(event.target.result); // Devuelve los productos almacenados
+        };
+        request.onerror = (event) => {
+          console.error("Error al obtener productos de IndexedDB:", event.target.error);
+          reject(event.target.error);
+        };
+      });
+    } catch (error) {
+      console.error("Error en IndexedDB:", error);
+      return [];
+    }
+  }
+
+
 
   useEffect(() => {
     obtenterDatosProductos();
@@ -77,12 +147,21 @@ export default function ProductoNuevo() {
       if (response.ok) {
         const product1Data = await response.json();
         setProductData(product1Data);
+        guardarProductosEnIndexedDB(product1Data);
+
         console.log(product1Data)
       } else {
-        console.error('Error al obtener datos de los usuarios:', response.statusText);
+        console.error('traxendo los datos de indexedDB');
+        // Si hay un error, intentar obtener los productos desde IndexedDB        
       }
     } catch (error) {
-      console.error('Error al obtener datos del usuario:', error);
+      console.error('Error al obtener wewwe del eww:', error);
+      const productosGuardados = await obtenerProductosDeIndexedDB();
+        if (productosGuardados.length > 0) {
+          setProductData(productosGuardados);
+        } else {
+          console.error("No hay productos guardados en IndexedDB.");
+        }
     }
   };
 
@@ -182,7 +261,7 @@ export default function ProductoNuevo() {
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [showAllProducts, setShowAllProducts] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState([]);
+
 
   const handleSearchClick = () => {
     // Filtrar productos basados en la búsqueda
@@ -202,7 +281,7 @@ export default function ProductoNuevo() {
     }
   };
 
-  const handleCategoryChange = (sectionId, value) => {
+  const handleCategoryChange = ( value) => {
     let updatedCategories = [...selectedCategories];
    
     // Actualizar el estado de las categorías seleccionadas
@@ -299,20 +378,13 @@ export default function ProductoNuevo() {
   
  
   };
-  
-
-  const getCategoriaText = (categoria) => {
-    if (categoria === 1) return 'Platillo';
-    if (categoria === 2) return 'Bebida';
-    return categoria; // Valor original si no es 1 ni 2
-  }
-  
+    
   const verDetalle = (idProducto) => {
     navigate('/detalleProduct', { state: { idProducto } }); // Pasar idProducto en el estado de navegación
   };
 
   return (
-    <div className="bg-white">
+    <div className="mt-5">
       <div>
         {/* espácio de los filtros */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -374,7 +446,7 @@ export default function ProductoNuevo() {
                               </Disclosure.Button>
                             </h3>
                             <Disclosure.Panel className="pt-6">
-                              <div className="space-y-6" defaultOpen>
+                              <div className="space-y-6">
                                 {section.options.map((option, optionIdx) => (
                                   <div key={option.value} className="flex items-center">
                                     <input
@@ -487,7 +559,7 @@ export default function ProductoNuevo() {
                         </h3>
                         <Disclosure.Panel className="pt-6" defaultOpen>
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
+                            {section.options.map((option) => (
                               <div key={option.value} className="flex items-center">
                                 <input
                                   defaultValue={option.value}
@@ -526,7 +598,7 @@ export default function ProductoNuevo() {
                         </h3>
                         <Disclosure.Panel className="pt-6" defaultOpen>
                           <div className="space-y-4">
-                            {section.options.map((option, optionIdx) => (
+                            {section.options.map((option) => (
                               <div key={option.value} className="flex items-center">
                                 <input
                                   defaultValue={option.value}

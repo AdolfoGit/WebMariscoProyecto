@@ -1,9 +1,8 @@
-import React, { useState, useEffect ,useRef} from "react";
+import React, { useState, useEffect} from "react";
 import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
 import { Button, Card, CardHeader, CardBody, Typography} from "@material-tailwind/react";
-import { GoogleMap, useLoadScript, Autocomplete, Marker } from '@react-google-maps/api';
+import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 
 
 const CONFIGURATION = {
@@ -41,9 +40,9 @@ const Reservaciones = () => {
 
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const navigate = useNavigate();
 
-  const { user, logoutUser } = useUser();
+
+  const { user } = useUser();
 
   const [latitud, setLatitud] = useState("");
   const [longitud, setLongitud] = useState("");
@@ -55,7 +54,7 @@ const Reservaciones = () => {
   const [estado, setEsado] = useState("");
   const [cp, setCP] = useState("");
   const [InformacionAdicional, setInformacionAdicional] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [setLoading] = useState(true);
   const [direcciones,setDirecciones]= useState([]);
 
 
@@ -71,8 +70,8 @@ const Reservaciones = () => {
 
   const [place, setPlace] = useState(null);
   const [autocomplete, setAutocomplete] = useState(null);
-  const [map, setMap] = useState(null);
-  const [marker, setMarker] = useState(null);
+  const [map] = useState(null);
+  const [marker] = useState(null);
   const [formVisible, setFormVisible] = useState(false);
 
   const handleSubmit = (event) => {
@@ -151,9 +150,6 @@ const Reservaciones = () => {
   }, []);
 
 
-  const obtenerIdUsuario = (user) => {
-    return user && user.idUsuario ? user.idUsuario : null;
-  };
 
   const obtenerDirecciones = async () => {
 
@@ -351,9 +347,9 @@ const Reservaciones = () => {
         <div className={`transition-all duration-300 ${formVisible ? 'block' : 'hidden'}`}>
           <form onSubmit={handleSubmit}>
             <h1 className="font-bold mb-2 text-3xl">Datos de envio</h1>
-            <div class="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               <div className="col-span-2 ">
-              <label for="Nombre" class="form-label text-[15px] text-gray-600">
+              <label htmlFor="Nombre" className="form-label text-[15px] text-gray-600">
                   Calle
                 </label>
               <Autocomplete className=""
@@ -373,13 +369,13 @@ const Reservaciones = () => {
 
               </div>
               <div>
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                     Numero Exterior
                 </label>
                 <input
                   type="number"
                   style={{height:'30px'}}
-                  class="form-control rounded-lg text-xl"
+                  className="form-control rounded-lg text-xl"
                   placeholder="203"
                   id="Nombre"
                   aria-describedby=""
@@ -389,13 +385,13 @@ const Reservaciones = () => {
                 
               </div>
               <div>
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                   Numero Interior
                 </label>
                 <input
                   type="text"
                   style={{height:'30px'}}
-                  class="form-control rounded-lg text-xl"
+                  className="form-control rounded-lg text-xl"
                   placeholder="112"
                   aria-describedby=""
                   onChange={(e) => setNumeroInterior(e.target.value)}
@@ -404,13 +400,13 @@ const Reservaciones = () => {
                 
               </div>
               <div className=" col-span-2">
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                     Colonia
                 </label>
                 <input
                   type="text"
                   style={{height:'30px'}}
-                  class="form-control rounded-lg text-xl"
+                  className="form-control rounded-lg text-xl"
                   placeholder="5 de Mayo"
                     id="route-input"
                   aria-describedby=""
@@ -420,13 +416,13 @@ const Reservaciones = () => {
                 
               </div>
               <div className="">
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                   Municipio
                 </label>
                 <input
                   type="text"
                   style={{height:'30px'}}
-                  class="form-control rounded-lg text-xl"
+                  className="form-control rounded-lg text-xl"
                   placeholder="Huejutla"
                   id="locality-input"
                   aria-describedby=""
@@ -436,13 +432,13 @@ const Reservaciones = () => {
               
               </div>
               <div>
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                   Estado
                 </label>
                 <input
                   type="text"
                   style={{height:'30px'}}
-                  class="form-control rounded-lg text-xl"
+                  className="form-control rounded-lg text-xl"
                   placeholder="Hidalgo"
                   id="administrative_area_level_1-input"
                   aria-describedby=""
@@ -453,13 +449,13 @@ const Reservaciones = () => {
               </div>
               
               <div>
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                     C.P.
                 </label>
                 <input
                   type="number"
                   style={{height:'30px'}}
-                  class="form-control rounded-lg text-xl"
+                  className="form-control rounded-lg text-xl"
                   placeholder="43000"
                   id="postal_code-input"
                   aria-describedby=""
@@ -469,13 +465,13 @@ const Reservaciones = () => {
                 
               </div>
               <div className="col-span-3">
-                <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                     Mis direcciones
                 </label>
                 <textarea
                   type="text"
                   
-                  class="form-control rounded-lg borde-0 h-40 text-xl"
+                  className="form-control rounded-lg borde-0 h-40 text-xl"
                   placeholder="Referencias a lado de un pozo color azul"
                   id="Nombre"
                   aria-describedby=""
@@ -506,7 +502,7 @@ const Reservaciones = () => {
           {direcciones.length > 0 ? (
           direcciones.map((midirecciones) => (
   
-              <Card className="w-full max-w-[45rem] flex-row">
+              <Card key={midirecciones.DireccionID} className="w-full max-w-[45rem] flex-row">
               <CardHeader
                 shadow={false}
                 floated={false}
@@ -570,14 +566,14 @@ const Reservaciones = () => {
       </div>
       
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal2"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
+        <div className="modal-dialog">
+          <div className="modal-content">
             <div className="p-2 mt-2 mr-2 flex justify-end">
               <Button
                 variant="text"
@@ -604,18 +600,18 @@ const Reservaciones = () => {
              
             </div>
             <form onSubmit={handleSubmit}>
-              <div class="modal-body pr-16 pl-16 pb-3">
+              <div className="modal-body pr-16 pl-16 pb-3">
                 <h1 className="font-bold mb-2 text-3xl">Actualizacion de los datos de direccion</h1>
-                <div class="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   <div className="col-span-2 ">
-                    <label for="Nombre" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="Nombre" className="form-label text-[15px] text-gray-600">
                       Calle
                     </label>
                     <input
                       type="text"
                       style={{height:'30px'}}
                       value={calleE}
-                      class="form-control rounded-lg w-full text-xl"
+                      className="form-control rounded-lg w-full text-xl"
                       placeholder="ingresa tu calle aqui"
                       id="Nombre"
                       aria-describedby=""
@@ -625,14 +621,14 @@ const Reservaciones = () => {
                   
                   </div>
                   <div>
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                         Numero Exterior
                     </label>
                     <input
                       type="number"
                       value={numeroExteriorE}
                       style={{height:'30px'}}
-                      class="form-control rounded-lg text-xl"
+                      className="form-control rounded-lg text-xl"
                       placeholder="203"
                       id="Nombre"
                       aria-describedby=""
@@ -642,14 +638,14 @@ const Reservaciones = () => {
                    
                   </div>
                   <div>
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                       Numero Interior
                     </label>
                     <input
                       type="text"
                       value={numeroInteriorE}
                       style={{height:'30px'}}
-                      class="form-control rounded-lg text-xl"
+                      className="form-control rounded-lg text-xl"
                       placeholder="Hidalgo"
                       id="Nombre"
                       aria-describedby=""
@@ -659,14 +655,14 @@ const Reservaciones = () => {
                    
                   </div>
                   <div className=" col-span-2">
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                         Colonia
                     </label>
                     <input
                       type="text"
                       value={coloniaE}
                       style={{height:'30px'}}
-                      class="form-control rounded-lg text-xl"
+                      className="form-control rounded-lg text-xl"
                       placeholder="5 de Mayo"
                       id="Nombre"
                       aria-describedby=""
@@ -676,14 +672,14 @@ const Reservaciones = () => {
                     
                   </div>
                   <div className="">
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                       Municipio
                     </label>
                     <input
                       type="text"
                       value={municipioE}
                       style={{height:'30px'}}
-                      class="form-control rounded-lg text-xl"
+                      className="form-control rounded-lg text-xl"
                       placeholder="Huejutla"
                       id="Nombre"
                       aria-describedby=""
@@ -693,14 +689,14 @@ const Reservaciones = () => {
                   
                   </div>
                   <div>
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                       Estado
                     </label>
                     <input
                       type="text"
                       value={estadoE}
                       style={{height:'30px'}}
-                      class="form-control rounded-lg text-xl"
+                      className="form-control rounded-lg text-xl"
                       placeholder="Hidalgo"
                       id="Nombre"
                       aria-describedby=""
@@ -711,14 +707,14 @@ const Reservaciones = () => {
                   </div>
                  
                   <div>
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                         C.P.
                     </label>
                     <input
                       type="number"
                       value={cpE}
                       style={{height:'30px'}}
-                      class="form-control rounded-lg text-xl"
+                      className="form-control rounded-lg text-xl"
                       placeholder="43000"
                       id="Nombre"
                       aria-describedby=""
@@ -728,13 +724,13 @@ const Reservaciones = () => {
                    
                   </div>
                   <div className="col-span-3">
-                    <label for="NPersonas" class="form-label text-[15px] text-gray-600">
+                    <label htmlFor="NPersonas" className="form-label text-[15px] text-gray-600">
                         Referencias
                     </label>
                     <textarea
                       type="text"
                       value={InformacionAdicionalE}
-                      class="form-control rounded-lg borde-0 h-40 text-xl"
+                      className="form-control rounded-lg borde-0 h-40 text-xl"
                       placeholder="Referencias a lado de un pozo color azul"
                       id="Nombre"
                       aria-describedby=""
@@ -747,7 +743,7 @@ const Reservaciones = () => {
 
               
               </div>
-              <div class="modal-footer pr-16 pl-16 mb-3">
+              <div className="modal-footer pr-16 pl-16 mb-3">
                     
                 <div className=" w-full">
                   <Button 

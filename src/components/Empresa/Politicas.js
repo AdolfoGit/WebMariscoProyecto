@@ -12,7 +12,7 @@ const Politicas = () => {
     AccederPedidosAnteriores: false,
   });
 
-  const [datosPersonales, setDatosPersonales] = useState([
+  const [datosPersonales] = useState([
     'Nombre',
     'Registro Federal de Contribuyentes (RFC)',
     'Clave única de Registro de Población (CURP)',

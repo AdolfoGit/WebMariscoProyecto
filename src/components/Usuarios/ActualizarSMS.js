@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import imagen from '../home/img/login.jpg';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -147,7 +147,7 @@ export default function ActualizarSMS() {
             });  
             navigate('/login');
           } else if (result === 'Error en las credenciales') {
-            
+            console.log('shf')
           }
         });
   
@@ -182,7 +182,7 @@ export default function ActualizarSMS() {
           <button
             type="button"
             onClick={togglePasswordVisibility}
-            class="btn btn-light"
+            className="btn btn-light"
           >
             {passwordVisible ? (
               <VisibilityOutlinedIcon fontSize="small" />
@@ -210,7 +210,7 @@ export default function ActualizarSMS() {
             <button
               type="button"
               onClick={togglePasswordVisibility2}
-              class="btn btn-light"
+              className="btn btn-light"
             >
               {passwordVisible2 ? (
                 <VisibilityOutlinedIcon fontSize="small" />
