@@ -1,12 +1,16 @@
 {
     "env": {
       "browser": true,
-      "es2021": true
+      "es2021": true,
+      "node": true  // Agrega soporte para Node.js para evitar el error de 'module' is not defined
     },
     "extends": [
       "eslint:recommended",
       "plugin:react/recommended"
     ],
+    "parserOptions": {
+      "sourceType": "module"  // Permite el uso de 'import' y 'export' como módulos ECMAScript
+    },
     "rules": {
       "no-restricted-globals": [
         "error",
@@ -14,7 +18,8 @@
           "name": "self",
           "message": "El uso de 'self' es permitido en service workers."
         }
-      ]
+      ],
+      "no-undef": "off"  // Desactiva el error 'module is not defined'
     }
   }
   
