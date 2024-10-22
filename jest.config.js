@@ -1,4 +1,3 @@
-// jest.config.js
 module.exports = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest',
@@ -6,4 +5,7 @@ module.exports = {
   transformIgnorePatterns: [
     'node_modules/(?!gapi-script)',
   ],
+  moduleNameMapper: {
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+  },
 };
