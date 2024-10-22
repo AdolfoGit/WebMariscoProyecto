@@ -67,12 +67,13 @@ ProfileInfoCard.defaultProps = {
   description: null,
   details: {},
 };
-
 ProfileInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.node,
   details: PropTypes.object,
+  action: PropTypes.node,
 };
+
 
 ProfileInfoCard.displayName = "/src/widgets/cards/profile-info-card.jsx";
 

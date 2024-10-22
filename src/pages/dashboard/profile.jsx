@@ -24,6 +24,8 @@ import { ProfileInfoCard } from "../../widgets/cards/profile-info-card";
 import { platformSettingsData} from "../../data/platform-settings-data";
 import {conversationsData } from "../../data/conversations-data";
 import { projectsData } from "../../data/projects-data";
+import PropTypes from 'prop-types';
+
 export function Profile() {
   return (
     <>

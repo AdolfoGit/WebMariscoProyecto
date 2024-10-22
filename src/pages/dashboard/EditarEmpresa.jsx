@@ -3,15 +3,13 @@ import {
   Card,
   CardBody,
   Button,
-  Spinner,
-} from "@material-tailwind/react";
+  } from "@material-tailwind/react";
 import Swal from 'sweetalert2';
-import { useNavigate, useLocation} from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 
 export function EditarEmpresa(){
     
-    const [empresaData, setEmpresaData] = useState(null);
     useEffect(() => {
         obtenerDatosEmpresa();
       }, []); // Se ejecuta solo una vez al montar el componente
@@ -159,7 +157,7 @@ export function EditarEmpresa(){
                             <div className='col-span-3 flex'>
                                 <div>
                                     <label className="block text-2xl font-medium leading-6 text-gray-900">Telefono</label>
-                                    <input className='col-span-3'
+                                    <input
                                     value={telefono}
                                     onChange={(e)=> setTelefono(e.target.value)}
                                     className="text-2xl block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
@@ -169,7 +167,7 @@ export function EditarEmpresa(){
                                 </div>
                                 <div> 
                                     <label className="block text-2xl font-medium leading-6 text-gray-900">Horario</label>
-                                    <input className='col-span-3'
+                                    <input 
                                     value={Horario}
                                     onChange={(e)=>setHorario(e.target.value)}
                                     className="text-2xl block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6">

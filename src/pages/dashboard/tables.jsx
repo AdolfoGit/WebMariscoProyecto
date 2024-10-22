@@ -6,34 +6,25 @@ import {
   Typography,
   Avatar,
   Chip,
-  Tooltip,
-  Progress,
   Button,
   IconButton,
   Menu,
   MenuHandler,
   MenuList,
-  MenuItem,
 } from "@material-tailwind/react";
-import { EllipsisVerticalIcon, ArrowRightIcon, ArrowLeftIcon  } from "@heroicons/react/24/outline";
-import { projectsTableData } from "../../data/projects-table-data";
+import { EllipsisVerticalIcon  } from "@heroicons/react/24/outline";
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { user } from '@nextui-org/react';
 
 export function Tables() {
   
 
-  const [active, setActive] = useState(1);
 
   const [userData, setUserData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7); // Cantidad de elementos por página
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [Estado,setEstado]=useState('Ofline');
-  const [EstadoB,setEstadoB]=useState('Bloqueado');
-  const [EstadoC,setEstadoC]=useState('Activo');
-  const navigate=useNavigate();
+
 
   useEffect(() => {
     obtenerDatosUsuarios();
@@ -220,7 +211,7 @@ export function Tables() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idUsuario,Icono, Nombre, Correo, Telefono, EstadoCuenta, Rol ,Token}, key) => {
+              {currentItems.map(({ idUsuario,Icono, Nombre, Correo, Telefono, EstadoCuenta, Rol }, key) => {
                 const className = `py-3 px-5 ${
                   key === currentItems.length - 1
                     ? ""

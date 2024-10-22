@@ -90,42 +90,32 @@ export function Reportes() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idBitacora,NombreMovimiento, Nombre, Fecha}, key) => {
+              {currentItems.map(({ idBitacora, NombreMovimiento, Nombre, Fecha }) => {
                 const className = `py-3 px-5 ${
-                  key === currentItems.length - 1
-                    ? ""
-                    : "border-b border-blue-gray-50"
+                  idBitacora === currentItems.length - 1 ? "" : "border-b border-blue-gray-50"
                 }`;
 
                 return (
-                  <tr>
+                  <tr key={idBitacora}>
                     <td className={className}>
-                      <Typography
-                        variant="h5"
-                        color="blue-gray"
-                        className="font-semibold"
-                      >
+                      <Typography variant="h5" color="blue-gray" className="font-semibold">
                         {idBitacora}
                       </Typography>
                     </td>
-                   
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {NombreMovimiento}</Typography>
-                    </td>
-           
-                    <td className={className}>
-                        <Typography className='text-xl text-bold'> {Nombre}</Typography>
+                      <Typography className="text-xl text-bold">{NombreMovimiento}</Typography>
                     </td>
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {Fecha}</Typography>
+                      <Typography className="text-xl text-bold">{Nombre}</Typography>
                     </td>
-                   
-                   
-                 
+                    <td className={className}>
+                      <Typography className="text-xl text-bold">{Fecha}</Typography>
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
+
           </table>
           <div className="flex items-center gap-4 mr-4 ml-4">
             <Button

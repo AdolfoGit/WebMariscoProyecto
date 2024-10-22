@@ -23,7 +23,7 @@ export  function TablaPromociones (){
     const [promocionesData, setPromocionesData] = useState(null);
     const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
     const navigate=useNavigate();
-    const [EstadoPromocion,setEstadoPromocion]=useState('Inactivo');
+    const [EstadoPromocion]=useState('Inactivo');
     useEffect(() => {
       obtenerDatosPromociones();
     }, []); // Se ejecuta solo una vez al montar el componente
@@ -92,7 +92,7 @@ export  function TablaPromociones (){
             <Typography variant="h6" color="white" className="text-2xl">
               Tabla de Promociones
             </Typography>
-            <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i class="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Promocion</Button>
+            <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i className="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Promocion</Button>
           </CardHeader>
           <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
             <table className="w-full min-w-[640px] table-auto">
@@ -114,91 +114,87 @@ export  function TablaPromociones (){
                 </tr>
               </thead>
               <tbody>
-                {promocionesData !== null && promocionesData.map(
-                  ({ idPromocion,Nombre, FechaDeFin,IdProducto, Descripcion, FechaPublicacion ,Descuento, Estado, Imagen}, key) => {
-                    const className = `py-3 px-5 ${
-                      key === promocionesData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50"
-                    }`;
-  
-                    return (
-                      <tr>
+                {promocionesData !== null &&
+                  promocionesData.map(
+                    ({ idPromocion, Nombre, FechaDeFin, IdProducto, Descripcion, FechaPublicacion, Descuento, Estado, Imagen }) => {
+                      const className = `py-3 px-5 ${
+                        idPromocion === promocionesData.length - 1 ? "" : "border-b border-blue-gray-50"
+                      }`;
+
+                      return (
+                        <tr key={idPromocion}>
                           <td className={className}>
-                        <Typography
-                                variant="h5"
-                                color="blue-gray"
-                                className="font-semibold"
-                              >
-                                {idPromocion}
-                              </Typography>
-                        </td>
-                        <td className={className}>
-                          <Avatar src={Imagen}></Avatar>
-                        </td>
-                     
-                        <td className={className}>
-                          <Typography className=" text-xl  font-semibold text-bold">
-                            {Nombre}
-                          </Typography>
-                          
-                        </td>
-                        <td className={className}>
-                          <Typography  variant="small"
-                              className="text-xl text-bold">
-                             {FechaDeFin}
-                          </Typography>
-                      
-                        </td>
-                        <td className={className}>
-                         <Typography className='text-xl text-bold'>
-                           {IdProducto}
-                         </Typography>
-                        </td>
-                        <td className={className}>
-                         <Typography className='text-xl text-bold'>
-                           {Descripcion}
-                         </Typography>
-                        </td>
-                        <td className={className} >
-                          <Typography className='text-xl text-center text-bold'>
-                            {FechaPublicacion}
-                          </Typography>
-                        </td>
-                        <td className={className} >
-                          <Typography className='text-xl text-center text-bold'>
-                            {Descuento}%
-                          </Typography>
-                        </td>
-                        <td className={className} >
-                          <Typography className='text-xl text-center text-bold'>
-                            {Estado}
-                          </Typography>
-                        </td>
-                        <td className={className}>
-                        <div>
-                              <Menu placement="left-start" className='text-center'>
+                            <Typography variant="h5" color="blue-gray" className="font-semibold">
+                              {idPromocion}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Avatar src={Imagen}></Avatar>
+                          </td>
+                          <td className={className}>
+                            <Typography className="text-xl font-semibold">
+                              {Nombre}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Typography variant="small" className="text-xl text-bold">
+                              {FechaDeFin}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Typography className="text-xl text-bold">
+                              {IdProducto}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Typography className="text-xl text-bold">
+                              {Descripcion}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Typography className="text-xl text-center text-bold">
+                              {FechaPublicacion}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Typography className="text-xl text-center text-bold">
+                              {Descuento}%
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <Typography className="text-xl text-center text-bold">
+                              {Estado}
+                            </Typography>
+                          </td>
+                          <td className={className}>
+                            <div>
+                              <Menu placement="left-start" className="text-center">
                                 <MenuHandler>
                                   <IconButton size="md" variant="text" color="blue-gray">
-                                    <EllipsisVerticalIcon
-                                      strokeWidth={3}
-                                      fill="currenColor"
-                                      className="h-8 w-8"
-                                    />
+                                    <EllipsisVerticalIcon strokeWidth={3} fill="currentColor" className="h-8 w-8" />
                                   </IconButton>
                                 </MenuHandler>
                                 <MenuList>
                                   <div className="flex row items-start justify-start">
-                                    <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idPromocion)} > Eliminar</Button>                                  </div>
+                                    <Button
+                                      color="red"
+                                      variant="text"
+                                      className="text-md text-left"
+                                      onClick={() => elimnarProducto(idPromocion)}
+                                    >
+                                      Eliminar
+                                    </Button>
+                                  </div>
                                 </MenuList>
                               </Menu>
                             </div>
-                        </td>
-                      </tr>
-                    );
-                  }
-                )}
+                          </td>
+                        </tr>
+                      );
+                    }
+                  )}
               </tbody>
+
             </table>
           </CardBody>
         </Card>

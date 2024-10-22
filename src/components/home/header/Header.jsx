@@ -2,11 +2,8 @@ import React, { useState,useEffect } from 'react';
 import logo from '../img/LogoVersion2.png';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStoreOutlined';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
 import {
 

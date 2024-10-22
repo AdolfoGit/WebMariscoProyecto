@@ -1,19 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import {
   Card,
-  CardHeader,
   CardBody,
-  Typography,
-  Avatar,
-  Chip,
-  Tooltip,
-  Progress,
-  Button,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
+
 } from "@material-tailwind/react";
 import Chart from "chart.js/auto";
 
@@ -345,7 +334,7 @@ export function Matematicas() {
           {tiempo3 && (
             <div>
               <h2>Resultados anteriores:</h2>
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th>Semana</th>

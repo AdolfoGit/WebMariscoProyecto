@@ -3,9 +3,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   Button,
   IconButton,
-  Switch,
-  Typography,
-  Chip,
+  Typography
 } from "@material-tailwind/react";
 
 import {
@@ -13,7 +11,6 @@ import {
   setOpenConfigurator,
   setSidenavColor,
   setSidenavType,
-  setFixedNavbar,
 } from "../../context/index";
 
 
@@ -44,9 +41,9 @@ function formatNumber(number, decPlaces) {
 
 export function Configurator() {
   const [controller, dispatch] = useMaterialTailwindController();
-  const { openConfigurator, sidenavColor, sidenavType, fixedNavbar } =
+  const { openConfigurator, sidenavColor, sidenavType } =
     controller;
-  const [stars, setStars] = React.useState(0);
+  const [ setStars] = React.useState(0);
 
   const sidenavColors = {
     white: "from-gray-100 to-gray-100 border-gray-200",
@@ -58,11 +55,6 @@ export function Configurator() {
   };
 
   React.useEffect(() => {
-    const stars = fetch(
-      "https://api.github.com/repos/creativetimofficial/material-tailwind-dashboard-react"
-    )
-      .then((response) => response.json())
-      .then((data) => setStars(formatNumber(data.stargazers_count, 1)));
   }, []);
 
   return (

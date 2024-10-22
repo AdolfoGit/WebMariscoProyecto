@@ -6,7 +6,7 @@ on:
       - '*'
   pull_request:
     branches:
-      - '*'
+      - 'main'
   workflow_dispatch:
 
 permissions:
@@ -61,7 +61,6 @@ jobs:
           name: e2e-results
           path: cypress/results/
 
-      # Notificar por correo si las pruebas fallan
       - name: Notify of test failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -101,7 +100,6 @@ jobs:
           name: build
           path: dist/
 
-      # Notificar por correo si la compilación falla
       - name: Notify of build failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -127,7 +125,6 @@ jobs:
       - name: Deploy to Vercel
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
 
-      # Notificar por correo si el despliegue es exitoso
       - name: Notify of deployment success
         if: success()
         uses: dawidd6/action-send-mail@v3

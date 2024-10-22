@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import './css/ImagenMagnifier.css'
-const ImageMagnifier =({ imageUrl })=> {
+import PropTypes from "prop-types";
+import './css/ImagenMagnifier.css';
+
+const ImageMagnifier = ({ imageUrl }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [showMagnifier, setShowMagnifier] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
@@ -10,7 +12,6 @@ const ImageMagnifier =({ imageUrl })=> {
     const x = ((e.pageX - left) / width) * 100;
     const y = ((e.pageY - top) / height) * 100;
     setPosition({ x, y });
-
     setCursorPosition({ x: e.pageX - left, y: e.pageY - top });
   };
 
@@ -27,22 +28,27 @@ const ImageMagnifier =({ imageUrl })=> {
         <div
           style={{
             position: "absolute",
-            left:`${cursorPosition.x  +30}px,´` ,
-            top: `${cursorPosition.y -100}px`,
+            left: `${cursorPosition.x + 30}px`,
+            top: `${cursorPosition.y - 100}px`,
             pointerEvents: "none",
           }}
         >
           <div
             className="magnifier-image"
             style={{
-              backgroundImage:  `url(${imageUrl})`,
-              backgroundPosition:  `${position.x}% ${position.y}%`,
+              backgroundImage: `url(${imageUrl})`,
+              backgroundPosition: `${position.x}% ${position.y}%`,
             }}
           />
         </div>
       }
     </div>
   );
-}
+};
+
+// Define la validación de props
+ImageMagnifier.propTypes = {
+  imageUrl: PropTypes.string.isRequired,
+};
 
 export default ImageMagnifier;

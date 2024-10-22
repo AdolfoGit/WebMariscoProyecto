@@ -21,7 +21,7 @@ export function AgregarProductos() {
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   const navigate=useNavigate();
-  const [EstadoProd,setEstado]=useState('Inactivo');
+  const [EstadoProd]=useState('Inactivo');
   useEffect(() => {
     obtenterDatosProductos();
   }, []); // Se ejecuta solo una vez al montar el componente
@@ -90,7 +90,7 @@ export function AgregarProductos() {
           <Typography variant="h6" color="white" className="text-2xl">
             Tabla de Productos
           </Typography>
-          <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i class="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Producto</Button>
+          <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i className="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Producto</Button>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
@@ -111,102 +111,94 @@ export function AgregarProductos() {
                 ))}
               </tr>
             </thead>
-              <tbody>
-                {productData !== null && productData.map(
-                  ({ idProducto,Imagen, Nombre, Descripcion, Ingredientes ,Precio, FechaIntroduccion, Categoria, Disponibilidad ,Estado}, key) => {
+            <tbody>
+              {productData !== null &&
+                productData.map(
+                  (
+                    { idProducto, Imagen, Nombre, Descripcion, Ingredientes, Precio, FechaIntroduccion, Categoria, Disponibilidad, Estado },
+                    key
+                  ) => {
                     const className = `py-3 px-5 ${
-                      key === productData.length - 1
-                        ? ""
-                        : "border-b border-blue-gray-50"
+                      key === productData.length - 1 ? "" : "border-b border-blue-gray-50"
                     }`;
 
                     return (
-                      <tr>
-                          <td className={className}>
-                        <Typography
-                                variant="h5"
-                                color="blue-gray"
-                                className="font-semibold"
-                              >
-                                {idProducto}
-                              </Typography>
+                      <tr key={idProducto}>
+                        <td className={className}>
+                          <Typography variant="h5" color="blue-gray" className="font-semibold">
+                            {idProducto}
+                          </Typography>
                         </td>
                         <td className={className}>
-                        
-                            <Avatar src={Imagen} size="md" variant='square' />
-                      
-                      
+                          <Avatar src={Imagen} size="md" variant="square" />
                         </td>
                         <td className={className}>
-                          <Typography className=" text-xl  font-semibold text-bold">
+                          <Typography className="text-xl font-semibold">
                             {Nombre}
                           </Typography>
-                          
                         </td>
-                      
                         <td className={className}>
-                        <Typography className="text-xl text-bold leadig-7 min-w-[20rem]" >
+                          <Typography className="text-xl leading-7 min-w-[20rem]">
                             {Descripcion}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className=" text-xl text-bold min-w-[20rem]">
+                          <Typography className="text-xl min-w-[20rem]">
                             {Ingredientes}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography  variant="small"
-                              className="text-2xl font-semibold text-bold">
+                          <Typography variant="small" className="text-2xl font-semibold">
                             $ {Precio}
                           </Typography>
-                      
                         </td>
                         <td className={className}>
-                        <Typography className='text-xl text-bold'>
-                          {FechaIntroduccion}
-                        </Typography>
-                        </td>
-                        <td className={className} >
-                          <Typography className='text-xl text-center text-bold' >
-                            {(Categoria===1?'Platillo':'Bebida')}
+                          <Typography className="text-xl">
+                            {FechaIntroduccion}
                           </Typography>
                         </td>
-                        <td className={className} >
-                          <Typography className='text-xl text-center text-bold'>
+                        <td className={className}>
+                          <Typography className="text-xl text-center">
+                            {Categoria === 1 ? "Platillo" : "Bebida"}
+                          </Typography>
+                        </td>
+                        <td className={className}>
+                          <Typography className="text-xl text-center">
                             {Disponibilidad}
                           </Typography>
                         </td>
-                        <td className={className} >
-                          <Typography className='text-xl text-center text-bold'>
+                        <td className={className}>
+                          <Typography className="text-xl text-center">
                             {Estado}
                           </Typography>
                         </td>
                         <td className={className}>
-                        <div>
-                              <Menu placement="left-start" className='text-center'>
-                                <MenuHandler>
-                                  <IconButton size="md" variant="text" color="blue-gray">
-                                    <EllipsisVerticalIcon
-                                      strokeWidth={3}
-                                      fill="currenColor"
-                                      className="h-8 w-8"
-                                    />
-                                  </IconButton>
-                                </MenuHandler>
-                                <MenuList>
-                                  <div className="flex row items-start justify-start">
-                                    <Button color="red" variant='text' className='text-md text-left' onClick={()=> elimnarProducto(idProducto)} > Eliminar</Button>
-                                    <Button color="green" variant='text' className='text-md text-left' onClick={()=> navigate('/dashboard/editarproducto', { state: { idProducto } })}> Editar</Button>
-                                  </div>
-                                </MenuList>
-                              </Menu>
-                            </div>
+                          <div>
+                            <Menu placement="left-start" className="text-center">
+                              <MenuHandler>
+                                <IconButton size="md" variant="text" color="blue-gray">
+                                  <EllipsisVerticalIcon strokeWidth={3} className="h-8 w-8" />
+                                </IconButton>
+                              </MenuHandler>
+                              <MenuList>
+                                <div className="flex row items-start justify-start">
+                                  <Button color="red" variant="text" className="text-md" onClick={() => elimnarProducto(idProducto)}>
+                                    Eliminar
+                                  </Button>
+                                  <Button color="green" variant="text" className="text-md" onClick={() => navigate('/dashboard/editarproducto', { state: { idProducto } })}>
+                                    Editar
+                                  </Button>
+                                </div>
+                              </MenuList>
+                            </Menu>
+                          </div>
                         </td>
                       </tr>
                     );
                   }
                 )}
-              </tbody>
+            </tbody>
+
           </table>
         </CardBody>
       </Card>

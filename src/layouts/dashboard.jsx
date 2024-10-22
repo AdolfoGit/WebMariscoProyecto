@@ -45,11 +45,11 @@ export function Dashboard() {
             ({ layout, pages }) =>
               layout === "dashboardLink" &&
               pages.map(({ path, element }) => (
-                <Route exact path={path} element={element} />
+                <Route key={path} exact path={path} element={element} />
               ))
           )}
         </Routes>
-       
+
       
       </div>
     </div>

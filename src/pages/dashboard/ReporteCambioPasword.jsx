@@ -4,36 +4,17 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Avatar,
-  Chip,
-  Tooltip,
-  Progress,
   Button,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
+  
 } from "@material-tailwind/react";
-import { EllipsisVerticalIcon, ArrowRightIcon, ArrowLeftIcon  } from "@heroicons/react/24/outline";
-import { projectsTableData } from "../../data/projects-table-data";
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import { user } from '@nextui-org/react';
 
 export function ReportesCambioPasword() {
   
-
-  const [active, setActive] = useState(1);
 
   const [userData, setUserData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7); // Cantidad de elementos por página
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [Estado,setEstado]=useState('Ofline');
-  const [EstadoB,setEstadoB]=useState('Bloqueado');
-  const [EstadoC,setEstadoC]=useState('Activo');
-  const navigate=useNavigate();
 
   useEffect(() => {
     obtenerDatosUsuarios();
@@ -100,43 +81,35 @@ export function ReportesCambioPasword() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idBitacora,NombreMovimiento, Nombre, Fecha,ip}, key) => {
+              {currentItems.map(({ idBitacora, NombreMovimiento, Nombre, Fecha, ip }) => {
                 const className = `py-3 px-5 ${
-                  key === currentItems.length - 1
-                    ? ""
-                    : "border-b border-blue-gray-50"
+                  idBitacora === currentItems.length - 1 ? "" : "border-b border-blue-gray-50"
                 }`;
 
                 return (
-                  <tr>
+                  <tr key={idBitacora}>
                     <td className={className}>
-                      <Typography
-                        variant="h5"
-                        color="blue-gray"
-                        className="font-semibold"
-                      >
+                      <Typography variant="h5" color="blue-gray" className="font-semibold">
                         {idBitacora}
                       </Typography>
                     </td>
-                   
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {NombreMovimiento}</Typography>
-                    </td>
-           
-                    <td className={className}>
-                        <Typography className='text-xl text-bold'> {Nombre}</Typography>
+                      <Typography className="text-xl text-bold"> {NombreMovimiento}</Typography>
                     </td>
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {Fecha}</Typography>
+                      <Typography className="text-xl text-bold"> {Nombre}</Typography>
                     </td>
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {ip}</Typography>
+                      <Typography className="text-xl text-bold"> {Fecha}</Typography>
                     </td>
-                 
+                    <td className={className}>
+                      <Typography className="text-xl text-bold"> {ip}</Typography>
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
+
           </table>
           <div className="flex items-center gap-4 mr-4 ml-4">
             <Button
