@@ -547,7 +547,7 @@ const Reservaciones = () => {
             <form onSubmit={handleSubmit}>
               <div className="modal-body">
                 <div className="mb-3">
-                  <label for="Nombre" className="form-label">
+                  <label htmlFor="Nombre" className="form-label">
                     Nombre
                   </label>
                   <input
@@ -564,7 +564,7 @@ const Reservaciones = () => {
                 </div>
                 <div className="mb-3">
 
-                  <label for="NPersonas" className="form-label">
+                  <label htmlFor="NPersonas" className="form-label">
                     Número de personas
                   </label>
                   <select
@@ -586,7 +586,7 @@ const Reservaciones = () => {
                   )}
                 </div>
                 <div className="mb-3">
-                  <label for="Fecha" className="form-label">
+                  <label htmlFor="Fecha" className="form-label">
                     Fecha y hora
                   </label>
                   <input
@@ -601,7 +601,7 @@ const Reservaciones = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label for="NMesa" className="form-label">
+                  <label htmlFor="NMesa" className="form-label">
                     Número de mesa
                   </label>
                   <select
@@ -627,7 +627,7 @@ const Reservaciones = () => {
                   {NMesaError && <p className="error-message">{NMesaError}</p>}
                 </div>
                 <div className="mb-3">
-                  <label for="Servicios" className="form-label">
+                  <label htmlFor="Servicios" className="form-label">
                     Tipo de servicio
                   </label>
                   <select
@@ -653,7 +653,7 @@ const Reservaciones = () => {
                   )}
                 </div>
                 <div className="mb-3">
-                  <label for="Pago" className="form-label">
+                  <label htmlFor="Pago" className="form-label">
                     Método de pago
                   </label>
                   <select
@@ -676,7 +676,7 @@ const Reservaciones = () => {
                   {PagoError && <p className="error-message">{PagoError}</p>}
                 </div>
                 <div className="mb-3">
-                  <label for="InformacionAdicional" className="form-label">
+                  <label htmlFor="InformacionAdicional" className="form-label">
                     Información Adicional
                   </label>
                   <textarea
