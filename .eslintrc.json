@@ -20,6 +20,11 @@
         }
       ],
       "no-undef": "off"  // Desactiva el error 'module is not defined'
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
     }
   }
   
