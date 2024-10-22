@@ -33,7 +33,7 @@ jobs:
         run: npm run lint 
 
       - name: Run unit tests with Jest
-        run: npm test -- --coverage
+        run: npm test -- --coverage --debug
 
       - name: Upload coverage report
         if: success()
