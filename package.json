@@ -46,7 +46,7 @@
     "react-modal": "^3.16.1",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.18.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
     "serialize-javascript": "^6.0.2",
     "slick-carousel": "^1.8.1",
@@ -83,6 +83,14 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!gapi-script)"
     ]
   },
   "devDependencies": {
