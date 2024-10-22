@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types'; 
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js'; // Importa la biblioteca de encriptación
 

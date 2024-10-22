@@ -3,7 +3,7 @@ import reglas from './reglas';
 
 const Recomendaciones = () => {
 
-    const [serviciosSeleccionados, setServiciosSeleccionados] = useState(['Baño para perros']);
+    const [serviciosSeleccionados] = useState(['Baño para perros']);
 
     const [recomendaciones, setRecomendaciones] = useState([]);
 

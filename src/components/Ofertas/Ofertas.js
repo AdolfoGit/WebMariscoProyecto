@@ -42,7 +42,7 @@ const obtenerPromociones = async () => {
      <div className='container d-flex'>
 
       {promocionesData !== null && promocionesData.map((promocion) =>(
-         <div className='flex'>
+         <div className='flex' key={promocion.idPromocion}>
 
          <figure className="relative h-96 w-90">
        <img

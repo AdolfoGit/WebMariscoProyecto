@@ -4,7 +4,7 @@ import "./css/nosotros.css"
 
 
 export default function Mision() {
-  const [reservacionesData, setReservacionesData] = useState(null);
+  const [ setReservacionesData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
   const DatosEmpresa = async () => {

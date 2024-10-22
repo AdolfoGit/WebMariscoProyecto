@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import {Chip} from "@material-tailwind/react";
 
 const Reservaciones = () => {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   //const apiurll = "http://localhost:5029";
-  const navigate = useNavigate();
 
   const estadoColor = (estado) => {
     let color = '';
@@ -54,7 +52,7 @@ const Reservaciones = () => {
   const [Servicios, setServicio] = useState("");
   const [Pago, setPago] = useState("");
   const [InformacionAdicional, setInformacionAdicional] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [ setLoading] = useState(true);
   const [nombreError, setNombreError] = useState("");
   const [NPersonasError, setNPersonasError] = useState("");
   const [FechaError, setFechaError] = useState("");
@@ -64,7 +62,7 @@ const Reservaciones = () => {
   const [InformacionAdicionalError, setInformacionAdicionalError] =
     useState("");
     const [Correo, setCorreo] = useState("En espera");
-    const [EstadoP, setEstadoP] = useState("Proceso")
+    const [EstadoP] = useState("Proceso")
 
     
     const [idReservacion, setIdReservacion] = useState(null); // Estado para almacenar el idReservacion seleccionado
@@ -106,7 +104,7 @@ const Reservaciones = () => {
       })
         .then((res) => res.json())
         .then((result) => {
-          //console.log(result);
+          console.log(result);
           Swal.fire({
             icon: "success",
             title: "Listo, reservación agregada",
