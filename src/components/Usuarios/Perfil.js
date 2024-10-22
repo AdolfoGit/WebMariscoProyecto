@@ -11,7 +11,7 @@ const Perfil = () => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
 
-  const [cameraActive, setCameraActive] = useState(false); // Controla si la cámara está activa
+  const [setCameraActive] = useState(false); // Controla si la cámara está activa
 
   ///apartado de foto para pwa
   const startCamera = async () => {
@@ -201,9 +201,9 @@ const Perfil = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokelinecap="round"
+                  strokelinejoin="round"
+                  strokewidth="2"
                   d="M4 6h16M4 10h16M4 14h16M4 18h16"
                 ></path>
               </svg>
@@ -224,9 +224,9 @@ const Perfil = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokelinecap="round"
+                  strokelinejoin="round"
+                  strokewidth="2"
                   d="M4 6h16M4 10h16M4 14h16M4 18h16"
                 ></path>
               </svg>
@@ -247,9 +247,9 @@ const Perfil = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokelinecap="round"
+                  strokelinejoin="round"
+                  strokewidth="2"
                   d="M4 6h16M4 10h16M4 14h16M4 18h16"
                 ></path>
               </svg>
@@ -309,7 +309,7 @@ const Perfil = () => {
 
         <form>
           <div className="mb-4">
-            <span for="name" className="block  font-bold text-gray-700">
+            <span htmlFor="name" className="block  font-bold text-gray-700">
               Nombre
             </span>
             <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
@@ -324,7 +324,7 @@ const Perfil = () => {
           </div>
 
           <div className="mb-4">
-            <span for="name" className="block  font-bold text-gray-700">
+            <span htmlFor="name" className="block  font-bold text-gray-700">
               Apellidos
             </span>
             <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
@@ -339,7 +339,7 @@ const Perfil = () => {
           </div>
 
           <div className="mb-4">
-            <span for="name" className="block  font-bold text-gray-700">
+            <span htmlFor="name" className="block  font-bold text-gray-700">
               Correo electronico
             </span>
             <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
@@ -354,7 +354,7 @@ const Perfil = () => {
           </div>
 
           <div className="mb-4">
-            <span for="name" className="block  font-bold text-gray-700">
+            <span htmlFor="name" className="block  font-bold text-gray-700">
               Telefono Movil
             </span>
             <div className="mt-1 bg-gray-100 justify-center items-center relative flex rounded-lg  shadow-sm">
@@ -398,9 +398,9 @@ const Perfil = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokelinecap="round"
+                strokelinejoin="round"
+                strokewidth="2"
                 d="M4 6h16M4 10h16M4 14h16M4 18h16"
               ></path>
             </svg>
@@ -421,9 +421,9 @@ const Perfil = () => {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokelinecap="round"
+                strokelinejoin="round"
+                strokewidth="2"
                 d="M4 6h16M4 10h16M4 14h16M4 18h16"
               ></path>
             </svg>
@@ -467,7 +467,7 @@ const Perfil = () => {
                                   xmlns="http://www.w3.org/2000/svg"
                                   fill="none"
                                   viewBox="0 0 24 24"
-                                  stroke-width="1.5"
+                                  strokewidth="1.5"
                                   stroke="currentColor"
                                   className="h-6 w-6 text-gray-500"
                                 >

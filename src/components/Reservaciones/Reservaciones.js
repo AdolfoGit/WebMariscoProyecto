@@ -397,19 +397,19 @@ const Reservaciones = () => {
 
   return (
     <div className="container mt-3 mb-5">
-      <div class="row">
-        <div class="col m-5">
+      <div className="row">
+        <div className="col m-5">
           <h1>Reservaciones</h1>
         </div>
-        <div class="col-md-auto"></div>
-        <div class="col col-lg-2">
+        <div className="col-md-auto"></div>
+        <div className="col col-lg-2">
           <button
             className="btn btn-warning  m-5"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             style={{ color: "black" }}
           >
-            <i class="fa-regular fa-calendar-plus"></i> <h4> Agendar cita</h4>
+            <i className="fa-regular fa-calendar-plus"></i> <h4> Agendar cita</h4>
           </button>
         </div>
       </div>
@@ -513,7 +513,7 @@ const Reservaciones = () => {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={CancelarReservacion}
                 >
                 Cancelar reserva
@@ -525,34 +525,34 @@ const Reservaciones = () => {
       </div>
 
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Agendar una reservación
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
             <form onSubmit={handleSubmit}>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label for="Nombre" class="form-label">
+              <div className="modal-body">
+                <div className="mb-3">
+                  <label for="Nombre" className="form-label">
                     Nombre
                   </label>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="Nombre"
                     aria-describedby=""
                     onChange={(e) => setNombre(e.target.value)}
@@ -562,13 +562,13 @@ const Reservaciones = () => {
                     <p className="error-message">{nombreError}</p>
                   )}
                 </div>
-                <div class="mb-3">
+                <div className="mb-3">
 
-                  <label for="NPersonas" class="form-label">
+                  <label for="NPersonas" className="form-label">
                     Número de personas
                   </label>
                   <select
-                    class="form-select"
+                    className="form-select"
                     aria-label="Default select example"
                     id="NMesa"
                     name="NMesa"
@@ -585,13 +585,13 @@ const Reservaciones = () => {
                     <p className="error-message">{NPersonasError}</p>
                   )}
                 </div>
-                <div class="mb-3">
-                  <label for="Fecha" class="form-label">
+                <div className="mb-3">
+                  <label for="Fecha" className="form-label">
                     Fecha y hora
                   </label>
                   <input
                     type="datetime-local"
-                    class="form-control"
+                    className="form-control"
                     id="Fecha"
                     aria-describedby=""
                     onChange={(e) => setFecha(e.target.value)}
@@ -601,11 +601,11 @@ const Reservaciones = () => {
                 </div>
 
                 <div className="mb-3">
-                  <label for="NMesa" class="form-label">
+                  <label for="NMesa" className="form-label">
                     Número de mesa
                   </label>
                   <select
-                    class="form-select"
+                    className="form-select"
                     aria-label="Default select example"
                     id="NMesa"
                     name="NMesa"
@@ -627,11 +627,11 @@ const Reservaciones = () => {
                   {NMesaError && <p className="error-message">{NMesaError}</p>}
                 </div>
                 <div className="mb-3">
-                  <label for="Servicios" class="form-label">
+                  <label for="Servicios" className="form-label">
                     Tipo de servicio
                   </label>
                   <select
-                    class="form-select"
+                    className="form-select"
                     aria-label="Default select example"
                     id="Servicios"
                     name="Servicios"
@@ -653,11 +653,11 @@ const Reservaciones = () => {
                   )}
                 </div>
                 <div className="mb-3">
-                  <label for="Pago" class="form-label">
+                  <label for="Pago" className="form-label">
                     Método de pago
                   </label>
                   <select
-                    class="form-select"
+                    className="form-select"
                     aria-label="Default select example"
                     id="Pago"
                     name="Pago"
@@ -675,13 +675,13 @@ const Reservaciones = () => {
                   </select>
                   {PagoError && <p className="error-message">{PagoError}</p>}
                 </div>
-                <div class="mb-3">
-                  <label for="InformacionAdicional" class="form-label">
+                <div className="mb-3">
+                  <label for="InformacionAdicional" className="form-label">
                     Información Adicional
                   </label>
                   <textarea
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="InformacionAdicional"
                     aria-describedby=""
                     onChange={(e) => setInformacionAdicional(e.target.value)}
@@ -705,17 +705,17 @@ const Reservaciones = () => {
                   </div>
                 )}
               </div>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="submit"
-                  class="btn btn-warning"
+                  className="btn btn-warning"
                   disabled={isButtonDisabled}
                 >
                   Hacer reservacion
                 </button>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                   data-bs-dismiss="modal"
                 >
                   Cerrar
@@ -724,7 +724,7 @@ const Reservaciones = () => {
             </form>
             <button
               type="button"
-              class="btn btn-warning"
+              className="btn btn-warning"
               onClick={Disponibilidad.bind(null, NMesa, Fecha)}
             >
               Ver disponibilidad

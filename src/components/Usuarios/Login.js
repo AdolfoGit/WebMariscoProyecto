@@ -26,8 +26,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loginAttempts, setLoginAttempts] = useState(0);
-  const [loginAttempts2, setLoginAttempts2] = useState(0);
+  const [loginAttempts ] = useState(0);
+  const [loginAttempts2] = useState(0);
   const ClientID =
     "581987127535-vrka2isr37etho1p5t4cfnq6lur1euum.apps.googleusercontent.com";
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -140,7 +140,7 @@ export default function Login() {
     }
   };
 
-  function onChange(value) {
+  function onChange() {
     setIsButtonDisabled(false);
     ObtenerIp();
 

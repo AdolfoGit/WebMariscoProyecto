@@ -566,7 +566,7 @@ const Registro = () => {
               <input
                 type="checkbox"
                 className='cuadro'
-                onChange={(e) => handleCheckboxChange()}
+                onChange={() => handleCheckboxChange()}
               />
               <Link to='/terminos' > Acepta los terminos y condiciones</Link>
               {TerminosError && <p className="error-message">{TerminosError}</p>}
