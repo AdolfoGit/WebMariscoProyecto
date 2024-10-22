@@ -502,7 +502,7 @@ const Reservaciones = () => {
           {direcciones.length > 0 ? (
           direcciones.map((midirecciones) => (
   
-              <Card className="w-full max-w-[45rem] flex-row">
+              <Card key={midirecciones.DireccionID} className="w-full max-w-[45rem] flex-row">
               <CardHeader
                 shadow={false}
                 floated={false}
@@ -568,7 +568,7 @@ const Reservaciones = () => {
       <div
         className="modal fade"
         id="exampleModal2"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >

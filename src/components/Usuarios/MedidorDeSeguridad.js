@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types'; // Importa PropTypes
 const checkPasswordStrength = (password, minChar) => {
     const lowcase = /[a-z]/.test(password);
     const uppcase = /[A-Z]/.test(password);
@@ -80,4 +80,8 @@ export const MedidorSeguridad = ({ password }) => {
             <span style={{ fontSize: '10px', color:'white' }}>Nivel de seguridad: {getStrengthText()}</span>
         </div>
     );
+};
+
+MedidorSeguridad.propTypes = {
+    password: PropTypes.string.isRequired, // Se define la prop `password` como requerida y de tipo string
 };

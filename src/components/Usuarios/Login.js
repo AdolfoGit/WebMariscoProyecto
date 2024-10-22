@@ -184,6 +184,7 @@ export default function Login() {
           })
           .then((res) => res.json())
           .then((loginResult) => {
+              console.log(loginResult)
               loginUser(resultado);
               if (resultado.Rol === 2) {
                   Swal.fire({
