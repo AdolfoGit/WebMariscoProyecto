@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import {
   Card,
   CardBody,
@@ -155,7 +154,7 @@ export function Profile() {
             </Typography>
             <div className="mt-6 grid grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-4">
               {projectsData.map(
-                ({ img, title, description, tag, route, members }) => (
+                ({ img, title, description, tag, route }) => (
                   <Card key={title} color="transparent" shadow={false}>
                     <CardHeader
                       floated={false}
@@ -195,21 +194,6 @@ export function Profile() {
                           view project
                         </Button>
                       </Link>
-                      <div>
-                        {members.map(({ img, name }, key) => (
-                          <Tooltip key={name} content={name}>
-                            <Avatar
-                              src={img}
-                              alt={name}
-                              size="xs"
-                              variant="circular"
-                              className={`cursor-pointer border-2 border-white ${
-                                key === 0 ? "" : "-ml-2.5"
-                              }`}
-                            />
-                          </Tooltip>
-                        ))}
-                      </div>
                     </CardFooter>
                   </Card>
                 )
@@ -221,22 +205,5 @@ export function Profile() {
     </>
   );
 }
-Profile.propTypes = {
-  projectsData: PropTypes.arrayOf(
-    PropTypes.shape({
-      img: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string,
-      tag: PropTypes.string,
-      route: PropTypes.string.isRequired,
-      members: PropTypes.arrayOf(
-        PropTypes.shape({
-          img: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-        })
-      ).isRequired,
-    })
-  ),
-};
 
 export default Profile;
