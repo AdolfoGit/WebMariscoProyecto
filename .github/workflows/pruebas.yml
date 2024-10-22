@@ -44,15 +44,22 @@ jobs:
 
       - name: Run E2E tests with Cypress
         if: startsWith(github.ref, 'refs/heads/LAC-')
-        run: npx cypress run --record --key fdb387cd-c898-4bd9-bb69-391e67389cb6
-
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload E2E test results
-        if: success() && github.ref == 'refs/heads/release/*'
+        if: success() && startsWith(github.ref, 'refs/heads/LAC-')
         uses: actions/upload-artifact@v3
         with:
           name: e2e-results
-          path: cypress/results/  
+          path: cypress/results/
 
       # Notificar por correo si las pruebas fallan
       - name: Notify of test failure
