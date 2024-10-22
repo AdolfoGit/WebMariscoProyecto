@@ -19,8 +19,9 @@ on:
 
 
 permissions:
-  contents: read
-
+      contents: write
+      pull-requests: write
+      checks: write
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
