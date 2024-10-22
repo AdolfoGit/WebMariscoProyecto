@@ -446,7 +446,7 @@ export default function ProductoNuevo() {
                               </Disclosure.Button>
                             </h3>
                             <Disclosure.Panel className="pt-6">
-                              <div className="space-y-6" defaultOpen>
+                              <div className="space-y-6">
                                 {section.options.map((option, optionIdx) => (
                                   <div key={option.value} className="flex items-center">
                                     <input
