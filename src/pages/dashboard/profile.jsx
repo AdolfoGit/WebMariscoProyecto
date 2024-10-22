@@ -12,7 +12,7 @@ import {
   Tooltip,
   Button,
 } from "@material-tailwind/react";
-import {  
+import {
   HomeIcon,
   ChatBubbleLeftEllipsisIcon,
   Cog6ToothIcon,
@@ -21,15 +21,14 @@ import {
 import { Link } from "react-router-dom";
 import { MessageCard } from "../../widgets/cards/message-card";
 import { ProfileInfoCard } from "../../widgets/cards/profile-info-card";
-import { platformSettingsData} from "../../data/platform-settings-data";
-import {conversationsData } from "../../data/conversations-data";
+import { platformSettingsData } from "../../data/platform-settings-data";
+import { conversationsData } from "../../data/conversations-data";
 import { projectsData } from "../../data/projects-data";
-import PropTypes from 'prop-types';
 
 export function Profile() {
   return (
     <>
-      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl  bg-cover	bg-center">
+      <div className="relative mt-8 h-72 w-full overflow-hidden rounded-xl bg-cover bg-center">
         <div className="absolute inset-0 h-full w-full bg-gray-900/75" />
       </div>
       <Card className="mx-3 -mt-16 mb-6 lg:mx-4 border border-blue-gray-100">
@@ -223,21 +222,3 @@ export function Profile() {
 }
 
 export default Profile;
-
-Profile.propTypes = {
-  projectsData: PropTypes.arrayOf(
-    PropTypes.shape({
-      img: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string,
-      tag: PropTypes.string,
-      route: PropTypes.string.isRequired,
-      members: PropTypes.arrayOf(
-        PropTypes.shape({
-          img: PropTypes.string.isRequired,
-          name: PropTypes.string.isRequired,
-        })
-      ).isRequired,
-    })
-  ).isRequired,
-};
