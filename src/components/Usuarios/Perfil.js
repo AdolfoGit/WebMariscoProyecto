@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useUser } from "../../UserContext"; // Ajusta la ruta según tu estructura de archivos
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -10,10 +10,7 @@ import { MdEmail } from "react-icons/md";
 const Perfil = () => {
   const videoRef = useRef(null);
   const photoRef = useRef(null);
-  const [photoURL, setPhotoURL] = useState(null);
-  const [profilePic, setProfilePic] = useState(
-    "https://firebasestorage.googleapis.com/v0/b/la-casa-del-marisco-web.appspot.com/o/WhatsApp%20Image%202024-03-07%20at%204.52.30%20PM.jpeg?alt=media&token=a9b8a667-c054-458e-914f-8e3a3e355805"
-  ); // Imagen de perfil actual
+
   const [cameraActive, setCameraActive] = useState(false); // Controla si la cámara está activa
 
   ///apartado de foto para pwa

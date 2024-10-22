@@ -1,6 +1,6 @@
 
 import { Fragment, useState,useEffect } from 'react'
-import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
+import { Dialog, Disclosure, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
@@ -47,9 +47,6 @@ const precio=[
   },
 ]
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function ProductoNuevo() {
  
@@ -57,7 +54,6 @@ export default function ProductoNuevo() {
   const { user } = useUser();
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [cantidad,setCantidad]= useState(1);
 
 
   // Función para abrir o crear la base de datos
@@ -265,7 +261,7 @@ export default function ProductoNuevo() {
   const [filteredProductos, setFilteredProductos] = useState([]);
   const [showAllProducts, setShowAllProducts] = useState(true);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedPrice, setSelectedPrice] = useState([]);
+
 
   const handleSearchClick = () => {
     // Filtrar productos basados en la búsqueda
@@ -285,7 +281,7 @@ export default function ProductoNuevo() {
     }
   };
 
-  const handleCategoryChange = (sectionId, value) => {
+  const handleCategoryChange = ( value) => {
     let updatedCategories = [...selectedCategories];
    
     // Actualizar el estado de las categorías seleccionadas

@@ -1,9 +1,9 @@
-import React, { useState, useEffect ,useRef} from "react";
+import React, { useState, useEffect} from "react";
 import Swal from "sweetalert2";
 import { useUser } from "../../UserContext";
 import { useNavigate } from "react-router-dom";
 import { Button, Card, CardHeader, CardBody, Typography} from "@material-tailwind/react";
-import { GoogleMap, useLoadScript, Autocomplete, Marker } from '@react-google-maps/api';
+import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 
 
 const CONFIGURATION = {

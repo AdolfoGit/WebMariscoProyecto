@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { useUser } from '../../UserContext';
 import { Button, Grid, Typography, Card, CardActionArea, CardContent, CardMedia } from '@mui/material';
 
 const Carrito = () => {

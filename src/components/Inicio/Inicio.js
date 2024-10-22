@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import platillo from '../home/img/foto2.png'
 import fondo from '../home/img/fondo2.jpg'
-import imagen from '../home/img/wave3.png'
-import NoodleMenu from './PlatillosDelInicio';
 import '../estilos.css';
-import { useNavigate } from 'react-router-dom';
-import TrandingSlider from '../Carousel/TradingSlider';
 import { BookingCard } from './PostPlatillos';
 import Example from './Example'
 import PromoSecciones from './PromoSecciones';
 import { 
    Button,
  } from '@material-tailwind/react';
-import Header from '../home/header/Header';
-import { BookKey } from 'lucide-react';
 
 const Home = () => {
-  const navigate= useNavigate()
-
 
   return (
    <div className='transition-screen active'>

@@ -3,7 +3,6 @@ import "../Usuarios/css/login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import imagen from "../home/img/ham2.jpg";
-import LoginIcon from "@mui/icons-material/Login";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import Swal from "sweetalert2";

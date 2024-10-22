@@ -40,7 +40,7 @@ const Reservaciones = () => {
 
     return texto;
   };  
-  const { user, logoutUser } = useUser();
+  const { user } = useUser();
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
 
@@ -63,7 +63,6 @@ const Reservaciones = () => {
   const [PagoError, setPagoError] = useState("");
   const [InformacionAdicionalError, setInformacionAdicionalError] =
     useState("");
-    const [EstadoN, setEstadoN] = useState("En espera");
     const [Correo, setCorreo] = useState("En espera");
     const [EstadoP, setEstadoP] = useState("Proceso")
 

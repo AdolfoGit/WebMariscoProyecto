@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { GoogleMap, useLoadScript, Autocomplete, Marker } from '@react-google-maps/api';
+import { useLoadScript, Autocomplete } from '@react-google-maps/api';
 
 const CONFIGURATION = {
   ctaTitle: 'Encuentrame',

@@ -1,4 +1,3 @@
-import Header from '../home/header/Header';
 import img1 from'../home/img/actividad.jpg';
 import img2 from'../home/img/actividad2.jpg';
 import img3 from'../home/img/Actividad3.jpg';

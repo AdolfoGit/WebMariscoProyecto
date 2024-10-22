@@ -58,7 +58,7 @@ export default function Example() {
     <div className="flex items-center justify-center">
       <div className="bg-white py-20 sm:py-29 w-full h-full lg:h-screen ">
         <h3 className="text-6xl text-center font-bold tracking-tight text-gray-900 mt-10">
-          Testiomonios de clientes
+          Testiomonios de lientes
         </h3>
         <div className="pl-20 pr-20 lg:pl-40 lg:pr-40 max-w-8xl">
           <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
