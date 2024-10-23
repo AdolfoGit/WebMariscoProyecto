@@ -362,6 +362,7 @@ const Reservaciones = () => {
 
     ObtenerServicios();
   }, []);
+  
   const obtenerReservacionesUsuario = async () => {
     const id = obtenerIdUsuario(user);
 

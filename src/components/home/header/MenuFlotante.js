@@ -22,7 +22,7 @@ export default function MenuFlotante() {
          <Popover.Button
             onMouseEnter={() => setMenuOpen(true)}
             onMouseLeave={() => setMenuOpen(false)}
-            className="group inline-flex justify-center text-md font-medium text-black-900 hover:text-gray-900"
+            className="group inline-flex justify-center items-center text-md font-medium text-black-900 hover:text-gray-900"
           >
             Conocenos
             <ChevronDownIcon
