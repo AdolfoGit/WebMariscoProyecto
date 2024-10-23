@@ -58,11 +58,11 @@ const posts = [
 export default function Example() {
   return (
     <div className="flex items-center justify-center">
-      <div className="bg-white py-20 sm:py-29 w-full h-full lg:h-screen ">
-        <h3 className="text-6xl text-center font-bold tracking-tight text-gray-900 mt-10">
-          Testiomonios de lientes
+      <div className="bg-white py-5 sm:py-29 w-full h-full lg:h-screen ">
+        <h3 className="text-4xl pr-4 pl-4 lg:text-5xl text-center font-bold tracking-tight text-gray-900 mt-10">
+          Testiomonios de clientes
         </h3>
-        <div className="pl-20 pr-20 lg:pl-40 lg:pr-40 max-w-8xl">
+        <div className="pl-10 pr-10 lg:pl-[48x] lg:pr-[48px] max-w-7xl">
           <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {posts.map((post) => (
               <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">
@@ -84,7 +84,7 @@ export default function Example() {
                       {post.title}
                     </a>
                   </h3>
-                  <p className="mt-5 line-clamp-3 text-lg leading-8 text-gray-600">{post.description}</p>
+                  <p className="mt-5 line-clamp-3 text-md leading-8 text-gray-600">{post.description}</p>
                 </div>
                 <div className="relative mt-8 flex items-center gap-x-4">
                   <img src={post.author.imageUrl} alt="" className="h-10 w-10 rounded-full bg-gray-50" />
