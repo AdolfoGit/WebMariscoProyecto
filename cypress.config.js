@@ -8,3 +8,5 @@ module.exports = defineConfig({
     specPattern: "cypress/e2e/**/*.cy.{js,jsx,ts,tsx}"
   },
 });
+
+//hola esau xd
