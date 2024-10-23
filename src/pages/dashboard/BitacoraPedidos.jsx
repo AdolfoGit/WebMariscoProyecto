@@ -4,36 +4,19 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Avatar,
-  Chip,
-  Tooltip,
-  Progress,
-  Button,
-  IconButton,
-  Menu,
-  MenuHandler,
-  MenuList,
-  MenuItem,
+  Button
 } from "@material-tailwind/react";
-import { EllipsisVerticalIcon, ArrowRightIcon, ArrowLeftIcon  } from "@heroicons/react/24/outline";
-import { projectsTableData } from "../../data/projects-table-data";
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import { user } from '@nextui-org/react';
+
 
 export function ReportesPago() {
   
 
-  const [active, setActive] = useState(1);
 
   const [userData, setUserData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7); // Cantidad de elementos por página
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [Estado,setEstado]=useState('Ofline');
-  const [EstadoB,setEstadoB]=useState('Bloqueado');
-  const [EstadoC,setEstadoC]=useState('Activo');
-  const navigate=useNavigate();
+  
 
   useEffect(() => {
     obtenerDatosUsuarios();
@@ -100,44 +83,35 @@ export function ReportesPago() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idPago,Total, idPedido, idTipoDePago,Fecha}, key) => {
+              {currentItems.map(({ idPago, Total, idPedido, idTipoDePago, Fecha }) => {
                 const className = `py-3 px-5 ${
-                  key === currentItems.length - 1
-                    ? ""
-                    : "border-b border-blue-gray-50"
+                  idPago === currentItems.length - 1 ? "" : "border-b border-blue-gray-50"
                 }`;
 
                 return (
-                  <tr>
+                  <tr key={idPago}>
                     <td className={className}>
-                      <Typography
-                        variant="h5"
-                        color="blue-gray"
-                        className="font-semibold"
-                      >
+                      <Typography variant="h5" color="blue-gray" className="font-semibold">
                         {idPago}
                       </Typography>
                     </td>
-                   
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> $ {Total}</Typography>
-                    </td>
-           
-                    <td className={className}>
-                        <Typography className='text-xl text-bold'> {idPedido}</Typography>
+                      <Typography className="text-xl text-bold"> $ {Total}</Typography>
                     </td>
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {idTipoDePago}</Typography>
+                      <Typography className="text-xl text-bold"> {idPedido}</Typography>
                     </td>
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {Fecha}</Typography>
+                      <Typography className="text-xl text-bold"> {idTipoDePago}</Typography>
                     </td>
-
-                 
+                    <td className={className}>
+                      <Typography className="text-xl text-bold"> {Fecha}</Typography>
+                    </td>
                   </tr>
                 );
               })}
-            </tbody>
+          </tbody>
+
           </table>
           <div className="flex items-center gap-4 mr-4 ml-4">
             <Button
@@ -150,8 +124,14 @@ export function ReportesPago() {
               Anterior
             </Button>
             <div className="flex items-center gap-2">
-              {Array.from({length: Math.ceil(userData?.length / itemsPerPage)}, (_, i) => (
-                <Button key={i + 1} onClick={() => paginate(i + 1)} variant={currentPage=== i+1?"filled":"text"}>{i + 1}</Button>
+              {Array.from({ length: Math.ceil(userData?.length / itemsPerPage) }, (_, i) => (
+                <Button
+                  key={i + 1}
+                  onClick={() => paginate(i + 1)}
+                  variant={currentPage === i + 1 ? "filled" : "text"}
+                >
+                  {i + 1}
+                </Button>
               ))}
             </div>
             <Button

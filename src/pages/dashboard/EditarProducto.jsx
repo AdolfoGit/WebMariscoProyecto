@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import { useNavigate, useLocation} from 'react-router-dom';
 
 import { PhotoIcon, } from '@heroicons/react/24/solid'
-import { uploadFilesProductos, uploadFilesUsuarios } from "../../firebase/firebase";
+import { uploadFilesUsuarios } from "../../firebase/firebase";
 
 export function EditarProducto(){
     const location = useLocation();

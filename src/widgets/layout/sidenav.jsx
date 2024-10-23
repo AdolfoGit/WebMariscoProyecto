@@ -1,17 +1,15 @@
 import PropTypes from "prop-types";
-import { Link, NavLink,useNavigate } from "react-router-dom";
-import { HomeIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, NavLink } from "react-router-dom";
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
-  Avatar,
   Button,
   IconButton,
   Typography,
 } from "@material-tailwind/react";
 import { useMaterialTailwindController, setOpenSidenav } from "../../context/index";
 import { useUser } from '../../UserContext';
-import Swal from "sweetalert2";
 
-export function Sidenav({ brandImg, brandName, routes }) {
+export function Sidenav({ brandName, routes }) {
   const [controller, dispatch] = useMaterialTailwindController();
   const { sidenavColor, sidenavType, openSidenav } = controller;
   const sidenavTypes = {
@@ -20,23 +18,8 @@ export function Sidenav({ brandImg, brandName, routes }) {
    
   };
 
-  const icon = {
-    className: "w-10 h-10 text",
-  };
-
-  const {user, logoutUser } = useUser();
-  const navigate = useNavigate();
+  const {user } = useUser();
   
-  const cerrarSesion = () => {
-    logoutUser();
-    navigate("/");
-    Swal.fire({
-      icon: "warning",
-      title: "Nos vemos pronto",
-      text: "Cerraste sesión, nos vemos y recuerdanos cuando te de hambre",
-    });
-  };
-
   return (
     <aside
       className={`${sidenavTypes[sidenavType]} ${
@@ -67,7 +50,7 @@ export function Sidenav({ brandImg, brandName, routes }) {
         </IconButton>
       </div>
       <div className="m-4 ">
-        {routes.map(({ layout, title, pages }, key) => (
+        {routes.map(({ layout, pages }, key) => (
           <ul key={key} className=" flex flex-col gap-2 ">
 
               {pages.map(({ icon, name, path }) => (

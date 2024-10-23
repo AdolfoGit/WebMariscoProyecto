@@ -1,14 +1,12 @@
 import {
   HomeIcon,
   TableCellsIcon,
-  InformationCircleIcon,
   NewspaperIcon,GiftIcon,DocumentTextIcon,ChartBarIcon
 } from "@heroicons/react/24/solid";
 import { Home } from "./pages/dashboard/home";
 import { Tables, } from "./pages/dashboard/tables";
 import { Profile} from "./pages/dashboard/profile";
 import { AgregarProductos} from "./pages/dashboard/AgregarProductos";
-import {  Notifications } from "./pages/dashboard/notifications";
 import FormProducto from "./pages/dashboard/FormNuevoProducto";
 import EditarProducto from "./pages/dashboard/EditarProducto";
 import TablaPromociones from "./pages/dashboard/TablaPromociones";
@@ -16,7 +14,6 @@ import AgregarPromocion from "./pages/dashboard/AgregarPromocion";
 import TablaEmpresa from "./pages/dashboard/TablaEmpresa";
 import EditarEmpresa from "./pages/dashboard/EditarEmpresa";
 import Reportes from "./pages/dashboard/Reportes";
-import Matematicas from "./pages/dashboard/matematicas";
 import Reservaciones from "./pages/dashboard/reservaciones";
 import PedidosGeneral from "./pages/dashboard/pedidos";
 import Predicciones from "./pages/dashboard/PrediccionPedidos";
@@ -77,13 +74,12 @@ export const routes = [
         path: "/reservaciones",
         element: <Reservaciones />,    
       },
-      ,
       {
         icon: <DocumentTextIcon {...icon} />,
         name: "PrediccionPedidos",
         path: "/prediccionPedidos",
         element: <Predicciones />,    
-      },
+      },      
     ],
   },
   {
@@ -140,7 +136,7 @@ export const routes = [
       {
         path: "/editarempresa",
         element: <EditarEmpresa/>,         
-      },,
+      },
       {
         path: "/prediccionPedidos",
         element: <Predicciones/>,         

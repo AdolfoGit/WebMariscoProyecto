@@ -4,36 +4,25 @@ import {
   CardHeader,
   CardBody,
   Typography,
-  Avatar,
   Chip,
-  Tooltip,
-  Progress,
+ 
   Button,
   IconButton,
   Menu,
   MenuHandler,
   MenuList,
-  MenuItem,
 } from "@material-tailwind/react";
-import { EllipsisVerticalIcon, ArrowRightIcon, ArrowLeftIcon  } from "@heroicons/react/24/outline";
-import { projectsTableData } from "../../data/projects-table-data";
+import { EllipsisVerticalIcon  } from "@heroicons/react/24/outline";
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import { user } from '@nextui-org/react';
 
 export function ReservacionesPendientes() {
   
 
-  const [active, setActive] = useState(1);
 
   const [reservacionesData, setReservacionesData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(7); // Cantidad de elementos por página
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  const [Estado,setEstado]=useState('Agendada');
-  const [EstadoB,setEstadoB]=useState('Agendada');
-  const [EstadoC,setEstadoC]=useState('Activo');
-  const navigate=useNavigate();
 
   useEffect(() => {
     obtenerDatosUsuarios();
@@ -127,73 +116,8 @@ export function ReservacionesPendientes() {
         }
     })
   }
-  const noCancelar=(idReservacion, CorreoElectronico)=>{
 
-    const idInt = parseInt(idReservacion);
-    const data = new FormData();
-    data.append("idReservacion",idInt);
-    data.append("Estado",EstadoB);
-    data.append("Correo",CorreoElectronico);
-    fetch(
-      apiurll + "api/CasaDelMarisco/CambiarEstadoReservacion",
-      {
-          method: "POST",
-          body: data,
-      }
-    )
-    .then((res) => res.json())
-    .then((result) => {
-        console.log(result);
-        if (result === 'Reservacion pendiente') {
-          Swal.fire({
-                icon: 'success',
-                title: 'Reservación devuelta al cliente',
-                text: 'Realizado con exito',
-            });
-            obtenerDatosUsuarios();
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro incompleto',
-                text: 'Ha ocurrido un error verifique los datos',
-            });
-        }
-    })
-  }
 
-  const desbloquearUser=(idUser)=>{
-
-    const idUsuarioInt = parseInt(idUser, 10);
-    const data = new FormData();
-    data.append("idUsuario",idUsuarioInt);
-    data.append("Estado",EstadoC);
-
-    fetch(
-      apiurll + "api/CasaDelMarisco/CambiarEstadoUsuario?idUsuario=" + idUsuarioInt+ "&Estado="+ EstadoC,
-      {
-          method: "POST",
-          body: data,
-      }
-    )
-    .then((res) => res.json())
-    .then((result) => {
-        //console.log(result);
-        if (result === 'Icono actualizado') {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro Completo',
-                text: 'Realizado con exito',
-            });
-            obtenerDatosUsuarios();
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro incompleto',
-                text: 'Ha ocurrido un error verifique los datos',
-            });
-        }
-    })
-  }
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
       <Card>
@@ -222,7 +146,7 @@ export function ReservacionesPendientes() {
               </tr>
             </thead>
             <tbody>
-              {currentItems.map(({ idReservacion,NombreReserva, NombreUsuario, NPersonas,Fecha, NMesa, Telefono, CorreoElectronico, NombreServicio,MetodoPago, InformacionAdicional,Rol, Estado ,Token}, key) => {
+              {currentItems.map(({ idReservacion,NombreReserva, NombreUsuario, NPersonas,Fecha, NMesa, Telefono, CorreoElectronico, NombreServicio,MetodoPago, InformacionAdicional,Estado}, key) => {
                 const className = `py-3 px-5 ${
                   key === currentItems.length - 1
                     ? ""

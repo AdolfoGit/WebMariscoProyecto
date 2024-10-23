@@ -6,7 +6,7 @@ on:
       - '*'
   pull_request:
     branches:
-      - '*'
+      - 'main'
   workflow_dispatch:
 
 permissions:
@@ -43,17 +43,24 @@ jobs:
           path: coverage/
 
       - name: Run E2E tests with Cypress
-        if: github.ref == 'refs/heads/release/*'
-        run: npx cypress run --record --key fdb387cd-c898-4bd9-bb69-391e67389cb6
+        if: startsWith(github.ref, 'refs/heads/LAC-')
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start
+          wait-on: 'http://localhost:3000'
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload E2E test results
-        if: success() && github.ref == 'refs/heads/release/*'
+        if: success() && startsWith(github.ref, 'refs/heads/LAC-')
         uses: actions/upload-artifact@v3
         with:
           name: e2e-results
-          path: cypress/results/  
+          path: cypress/results/
 
-      # Notificar por correo si las pruebas fallan
       - name: Notify of test failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -93,7 +100,6 @@ jobs:
           name: build
           path: dist/
 
-      # Notificar por correo si la compilación falla
       - name: Notify of build failure
         if: failure()
         uses: dawidd6/action-send-mail@v3
@@ -119,7 +125,6 @@ jobs:
       - name: Deploy to Vercel
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
 
-      # Notificar por correo si el despliegue es exitoso
       - name: Notify of deployment success
         if: success()
         uses: dawidd6/action-send-mail@v3

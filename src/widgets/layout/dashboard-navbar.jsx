@@ -20,18 +20,12 @@ import {
   ClockIcon,
   CreditCardIcon,
   Bars3Icon,
-  CubeTransparentIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
-  InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
 } from "@heroicons/react/24/solid";
 import {
   useMaterialTailwindController,
-  setOpenConfigurator,
   setOpenSidenav,
 } from "../../context/index";
 import { useUser } from '../../UserContext';
