@@ -47,7 +47,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           start: npm start
-          wait-on: 'https://web-marisco-proyecto-2z3t.vercel.app'
+          wait-on: 'http://localhost:3000'
           record: true
           parallel: true
         env:
