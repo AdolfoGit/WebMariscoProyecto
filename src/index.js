@@ -31,7 +31,7 @@ serviceWorkerRegistration.register({
         window.location.reload();
       };
 
-      // Muestra una notificación o mensaje al usuario para actualizar manualmente
+      // Muestra una notificación para cuando se detecten nuevas actualizaciones de la pagina
       if (window.confirm("Nueva versión disponible. ¿Deseas actualizar?")) {
         updateSW();
       }
