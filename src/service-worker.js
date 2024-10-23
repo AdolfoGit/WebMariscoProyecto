@@ -44,15 +44,7 @@ registerRoute(
 );
 
 // Cachear las respuestas de la API de productos
-registerRoute(
-  ({ url }) => url.origin === 'https://lacasadelmariscoweb.azurewebsites.net/' && url.pathname.startsWith('/api/TraerProductos'),
-  new StaleWhileRevalidate({
-    cacheName: 'api-products-cache',
-    plugins: [
-      new ExpirationPlugin({ maxEntries: 50 }),
-    ],
-  })
-);
+
 
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
