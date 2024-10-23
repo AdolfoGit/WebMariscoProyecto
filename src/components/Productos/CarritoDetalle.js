@@ -12,7 +12,7 @@ const CarritoDetalle = () => {
   const [carrito, setCarrito] = useState([]);
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
-  const [Direccion,setDirecion]= useState();
+  const [Direccion]= useState();
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
