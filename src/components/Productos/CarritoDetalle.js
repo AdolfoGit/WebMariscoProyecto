@@ -4,6 +4,7 @@ import { useUser } from "../../UserContext";
 import ReactDOM from 'react-dom';
 import Swal from "sweetalert2";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM }) ;
+const isTestEnv = process.env.NODE_ENV === 'test';
 
 const CarritoDetalle = () => {
   const { user } = useUser();
@@ -11,7 +12,7 @@ const CarritoDetalle = () => {
   const [carrito, setCarrito] = useState([]);
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
-  const [Direccion,setDirecion]= useState();
+  const [Direccion]= useState();
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
@@ -255,11 +256,11 @@ const CarritoDetalle = () => {
               <p>Cargando...</p>
             ) : carrito != null ? (
               carrito.map((carritoInfo) => (
-                <>
-                 <div key={carritoInfo.id} className="flex border-t border-gray-400 py-3">
+                <div key={carritoInfo.id} className="flex border-t border-gray-400 py-3">
                   <div className="w-2/4 flex items-center p-4">
                     <img src={carritoInfo.Imagen}
                       className="w-40 h-40 pl-5 rounded-md object-cover mr-10"
+                      alt={`Imagen de ${carritoInfo.Nombre}`}
                     />
                     <div className='flex-col'>
                       <Typography variant='text' className='text-2xl font-bold'>{carritoInfo.Nombre}</Typography>
@@ -268,7 +269,7 @@ const CarritoDetalle = () => {
                   </div>
                   <div className='w-1/4 flex items-center justify-center'>
                     <div className='flex items-center'>
-                      <button className="p-2 rounded-full" onClick={()=>eliminarDelCarrito(carritoInfo)}>
+                      <button className="p-2 rounded-full" onClick={() => eliminarDelCarrito(carritoInfo)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                         </svg>
@@ -279,7 +280,7 @@ const CarritoDetalle = () => {
                         value={carritoInfo.Cantidad}
                         disabled={true}
                       />
-                      <button className="p-2 rounded-full" onClick={()=>agregarAlCarrito(carritoInfo)}>
+                      <button className="p-2 rounded-full" onClick={() => agregarAlCarrito(carritoInfo)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                         </svg>
@@ -290,28 +291,25 @@ const CarritoDetalle = () => {
                     <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}</Typography>
                   </div>
                 </div>
-                <Typography variant='text' className='text-2xl font-bold mb-2'>Elije tu direccion para la entrega de tus pedidos</Typography>
-                 <select onChange={(e) => setDirecion(e.target.value)}>
-                 {direcciones !=null ? (
-                 direcciones.map((midirecciones) => (
-                   <>
-                       <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
-                         calle {midirecciones.Calle}, colonia{midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
-                       </option>
-                   </>
-           
-                   ))
-                 ) : (
-                   <p>No hay direcciones disponibles.</p>
-                 )}  
-                 </select>
-                </>
-                  
               ))
             ) : (
               <p>No hay productos en el carrito.</p>
             )}
+
+           
           </div>
+          <Typography variant='text' className='text-2xl font-bold mb-2'>Elije tu dirección para la entrega de tus pedidos</Typography>
+            <select onChange={(e) => setDireccion(e.target.value)}>
+              {direcciones != null ? (
+                direcciones.map((midirecciones) => (
+                  <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
+                    calle {midirecciones.Calle}, colonia {midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
+                  </option>
+                ))
+              ) : (
+                <option>No hay direcciones disponibles.</option>
+              )}
+            </select>
         </div>
 
        <div className="col-span-2 pt-5 pr-24 pl-24  h-[32rem] rounded-[10px] ml-10 shadow-lg">
@@ -336,14 +334,15 @@ const CarritoDetalle = () => {
               <span className="font-semibold">${calcularTotal().total}</span>
             </div>
 
-            <div className=" relative z-10 mt-4">
-              <PayPalButton 
+            <div className="relative z-10 mt-4">
+              {!isTestEnv && (
+                <PayPalButton 
                   createOrder={(data, actions) => createOrder(data, actions)}
                   onApprove={(data, actions) => onApprove(data, actions)}                
-                  fundingSource="paypal" 
+                  fundingSource="paypal"
                 />
-              
-           </div>
+              )}
+             </div>
            
 
           </div>
