@@ -55,7 +55,7 @@ const Pedidos= () => {
   return (
     <Container className={classes.root}  style={{ marginBottom: '40px',marginTop:'20px' }} >
       <Typography variant="h6" gutterBottom>
-        Historial de Pedidos
+        Historial de Pedi2
       </Typography>
       
       <div className='justify-center'>

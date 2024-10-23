@@ -25,7 +25,7 @@ const Home = () => {
                 <i className='fab fa-twitter twitter'></i>
               </div>
               <br />
-              <p className='text-white'>¡Disfruta de estas brochetas de camarón a la parrilla con la frescura y el sabor tropical de la salsa de mango y aguacate! Puedes decorar con hojas de cilantro adicionales y rodajas de limón para dar un toque final.</p>
+              <p className='text-white'>¡Disfruta de estas brochetas de camarón a la parrilla con la frescura y el sabor tropical de la salsa de mango y aguacate! Puedes decorar con hojas de cilantro adicionales y rodajas de limón para dar un toque final de explosión.</p>
               <div className='flex justify-start '>
                 <Button color='green' size='sm' className='text-sm'>Explorar platillos</Button>
                 <Button color='white' size='sm' variant='outlined' className='ml-2 text-sm'>Ordenar ya!</Button>
