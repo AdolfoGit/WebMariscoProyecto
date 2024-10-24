@@ -184,7 +184,7 @@ const Perfil = () => {
     navigate("/direcciones");
   };
   return (
-    <div className="flex flex-col md:flex-row  h-full lg:h-screen bg-gray-50 ">
+    <div className="flex flex-col md:flex-row  h-full lg:h-full bg-gray-50 ">
       <div className=" md:w-1/4 w-full bg-white  p-5 md:mt-0">
         <h2 className="text-3xl font-bold mb-4">Configuracion de perfil</h2>
         <div className="space-y-6">
@@ -285,7 +285,7 @@ const Perfil = () => {
         </div>
       </div>
 
-      <div className="md:w-2/4 w-full rounded-lg bg-white mt-4 ml-0 lg:ml-5 mr-2 mb-5 pr-40 pt-20 pl-40">
+      <div className="lg:w-2/4 w-full  rounded-lg bg-white mt-4 ml-0 lg:ml-5 mr-2 mb-5 pr-10 pl-10 pt-4 lg:pr-40 lg:pt-20 lg:pl-40">
         <div className="flex items-center text-center mb-6">
           <div className="">
             {imagenPerfil ? (
@@ -307,7 +307,7 @@ const Perfil = () => {
           </div>
         </div>
 
-        <form>
+        <form className="w-full">
           <div className="mb-4">
             <span htmlFor="name" className="block  font-bold text-gray-700">
               Nombre
