@@ -6,14 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "./context/index";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { UserProvider } from './UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
      <ThemeProvider>
+            <UserProvider>      
+
         <MaterialTailwindControllerProvider>
           <App />
         </MaterialTailwindControllerProvider>
+            </UserProvider>
+
+
       </ThemeProvider>
   
 );
@@ -31,7 +37,7 @@ serviceWorkerRegistration.register({
         window.location.reload();
       };
 
-      // Muestra una notificación o mensaje al usuario para actualizar manualmente
+      // Muestra una notificación para cuando se detecten nuevas actualizaciones de la pagina
       if (window.confirm("Nueva versión disponible. ¿Deseas actualizar?")) {
         updateSW();
       }
