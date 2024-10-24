@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React,{ createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types'; // Importar PropTypes
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
