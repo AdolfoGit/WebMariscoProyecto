@@ -39,7 +39,7 @@ a{
 
 /*------------header--------*/
 header{
-  padding: 0px 0;
+  padding: 3px 0;
   box-shadow: 0px 4px 14px -3px rgba(0, 0, 0, 0.1); 
   z-index: 10;  
 }
@@ -153,7 +153,7 @@ header.active{
 
 
 .right,.left{
-  width: 40%;
+  width: 43%;
   position: relative;
 }
 .espacio{
@@ -239,7 +239,7 @@ header.active{
   background-color: #c8232c;
 }
 .home  .right{
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .home p{
@@ -456,7 +456,9 @@ p{
 /* -------------------- responsive------------*/
 @media screen and (max-width: 768px){
   .logo img{
-   display :none; 
+   display :block; 
+   width: 50%;
+   height: 100%;
   }
         
   .home{
@@ -468,7 +470,7 @@ p{
   }
 
   header{
-    height: 40px;
+    height: 55px;
   }
   header .icon{
     display: none;
@@ -508,7 +510,7 @@ p{
     z-index: 15;
     color: black;
     box-shadow: rgb(255, 255, 255);
-    right: 30px;
+    right: 2px;
 
   }
   .container .logo .bread{

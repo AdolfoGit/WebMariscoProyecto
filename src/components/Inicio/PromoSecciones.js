@@ -9,18 +9,18 @@ import img7 from'../home/img/actividad7.jpg';
 import { Button } from '@material-tailwind/react';
 export default function PromoSecciones() {
     return (
-      <div className=" p-2 relative overflow-hidden bg-[]">
-        <div className="pb-80 pt-16 ">
-          <div className="relative mx-auto max-w-7xl px-2 sm:static sm:px-6 lg:px-8">
-            <div className="mr-20 lg:max-w-xl ">
-              <h1 className="text-8xl font-bold tracking-tight text-black-200">
+      <div className=" pr-[45px] pl-[45px] lg:pl-10 lg:pr-10 relative overflow-hidden ">
+        <div className="h-screen pb-80 pt-10 lg:h-full lg:pb-80 lg:pt-40 ">
+          <div className="relative mx-auto max-w-7xl px-2 sm:static sm:px-2 lg:px-2">
+            <div className="sm:max-w-lg lg:max-w-xl ">
+              <h1 className="text-4xl lg:text-7xl font-bold tracking-tight text-black-200">
                <span className='text-black-200'>Diversidad de</span> <span className='text-orange-400'>Actividades</span> !Unetenos!
               </h1>
               
-              <p className="mt-4 text-2xl text-black  font-bold">
+              <p className="mt-4 text-md text-black  font-bold">
                 En la Casa del Marisco, hay gran diversidad de actividades, no solo somos un lugar para que puedas venir a degustar nuestros platillos, somos mas que eso.
               </p>
-              <Button variant='filled' color='orange' className='text-xl mt-5'>Explorar</Button>
+              <Button variant='filled' color='orange' size='sm' className='text-md mt-2'>Explorar</Button>
             </div>
             <div>
               <div className="mt-10 ">
@@ -30,9 +30,9 @@ export default function PromoSecciones() {
                   className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
                 >
                   <div className="absolute transform sm:left-1/2 sm:top-0 sm:translate-x-8 lg:left-1/2 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-8">
-                    <div className="flex items-center space-x-6 lg:space-x-8">
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
+                    <div className="flex  items-center space-x-6 lg:space-x-8">
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-2 lg:gap-y-2">
+                        <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100 sm:w-44">
                           <img
                             src={img1}
                             alt=""
@@ -47,7 +47,7 @@ export default function PromoSecciones() {
                           />
                         </div>
                       </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-2 lg:gap-y-2">
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={img3}
@@ -70,7 +70,7 @@ export default function PromoSecciones() {
                           />
                         </div>
                       </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-2 lg:gap-y-2">
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
                             src={img6}
