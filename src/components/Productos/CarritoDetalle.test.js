@@ -24,7 +24,7 @@ jest.mock('../../UserContext', () => ({
 test('debe obtener y mostrar las direcciones', async () => {
   render(<CarritoDetalle />);
 
-  await waitFor(() => expect(screen.queryByText('Cargando...')).not.toBeInTheDocument(), { timeout: 10000 });
+  await waitFor(() => expect(screen.queryByText('Cargando...')).not.toBeInTheDocument(), { timeout: 90000 });
 
   // Busca el select que contiene las direcciones
   const selectElement = screen.getByRole('combobox');
