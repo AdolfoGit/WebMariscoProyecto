@@ -21,6 +21,20 @@ jest.mock('../../UserContext', () => ({
   })
 }));
 
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    json: () =>
+      Promise.resolve([
+        {
+          DireccionID: 1,
+          Calle: 'Mexico',
+          Colonia: 'Adolfo Lopez Mateos',
+          NumeroInterior: '20'
+        }
+      ])
+  })
+);
+
 test('debe obtener y mostrar las direcciones', async () => {
   render(<CarritoDetalle />);
 
