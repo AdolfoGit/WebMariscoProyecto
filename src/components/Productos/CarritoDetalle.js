@@ -256,7 +256,7 @@ const CarritoDetalle = () => {
               <p>Cargando...</p>
             ) : carrito != null ? (
               carrito.map((carritoInfo) => (
-                <div key={carritoInfo.id} className="flex border-t border-gray-400 py-3">
+                <div key={carritoInfo.idCarritoProductos} className="flex border-t border-gray-400 py-3">
                   <div className="w-2/4 flex items-center p-4">
                     <img src={carritoInfo.Imagen}
                       className="w-40 h-40 pl-5 rounded-md object-cover mr-10"
