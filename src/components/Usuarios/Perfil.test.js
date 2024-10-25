@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import Perfil from './Perfil';  // Ajusta la ruta según tu proyecto
 import { MemoryRouter } from 'react-router-dom';  // Importa MemoryRouter
-import { UserContext } from '../../UserContext';  // Ajusta la ruta al contexto de usuario
 
 // Crea un mock del contexto de usuario
 jest.mock('../../UserContext', () => ({
