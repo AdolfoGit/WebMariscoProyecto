@@ -1,6 +1,6 @@
 describe("Prueba E2E para el flujo de login", () => {
   // Ignora los errores no controlados específicos
-  Cypress.on("uncaught:exception", (err, runnable) => {
+  Cypress.on("uncaught:exception", (err) => {
     if (err.message.includes("Cannot read properties of null")) {
       return false;
     }
