@@ -6,14 +6,20 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "./context/index";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import { UserProvider } from './UserContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
      <ThemeProvider>
+            <UserProvider>      
+
         <MaterialTailwindControllerProvider>
           <App />
         </MaterialTailwindControllerProvider>
+            </UserProvider>
+
+
       </ThemeProvider>
   
 );
