@@ -21,6 +21,82 @@ const Pedidos= () => {
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
+  function openDatabase() {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.open("pedidosDB", 1);
+  
+      request.onerror = (event) => {
+        console.error("Error al abrir la base de datos:", event.target.error);
+        reject(event.target.error);
+      };
+  
+      request.onsuccess = (event) => {
+        console.log("Base de datos abierta con éxito");
+        resolve(event.target.result);
+      };
+  
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains("pedidos")) {
+          db.createObjectStore("pedidos", { keyPath: "IdPedido" });
+        }
+      };
+    });
+  }
+
+
+  async function guardarPedidosEnIndexedDB(pedidos) {
+    try {
+      const db = await openDatabase();
+      const transaction = db.transaction(["pedidos"], "readwrite");
+      const store = transaction.objectStore("pedidos");
+  
+      pedidos.forEach((pedido) => {
+        store.put(pedido); // Guardar cada pedido en el almacén
+      });
+  
+      transaction.oncomplete = () => {
+        console.log("Pedidos almacenados en IndexedDB");
+      };
+  
+      transaction.onerror = (event) => {
+        console.error(
+          "Error al almacenar pedidos en IndexedDB:",
+          event.target.error
+        );
+      };
+    } catch (error) {
+      console.error("Error en IndexedDB:", error);
+    }
+  }
+
+  // Función para obtener pedidos de IndexedDB
+  async function obtenerPedidosDeIndexedDB() {
+    try {
+      const db = await openDatabase();
+      const transaction = db.transaction("pedidos", "readonly");
+      const store = transaction.objectStore("pedidos");
+
+      return new Promise((resolve, reject) => {
+        const request = store.getAll();
+        request.onsuccess = (event) => {
+          resolve(event.target.result); // Devuelve los pedidos almacenados
+        };
+        request.onerror = (event) => {
+          console.error(
+            "Error al obtener pedidos de IndexedDB:",
+            event.target.error
+          );
+          reject(event.target.error);
+        };
+      });
+    } catch (error) {
+      console.error("Error en IndexedDB:", error);
+      return [];
+    }
+  }
+
+  
 
   const obtenerPedidos = async () => {
     try {
@@ -35,12 +111,19 @@ const Pedidos= () => {
       // Manejar tanto un solo pedido como múltiples pedidos
       if (data.Pedidos) {
         setPedidos(Array.isArray(data.Pedidos) ? data.Pedidos : [data.Pedidos]);
+        guardarPedidosEnIndexedDB(Array.isArray(data.Pedidos) ? data.Pedidos : [data.Pedidos])
+        console.log(pedidos)
       } else {
         setPedidos([]);
       }
     } catch (error) {
       console.error("Error al obtener pedidos:", error);
-      setPedidos([]);
+      const pedidosGuardados = await obtenerPedidosDeIndexedDB();
+      if (pedidosGuardados.length > 0) {
+        setPedidos(pedidosGuardados);
+      } else {
+        console.error("No hay productos guardados en IndexedDB.");
+      }
     } finally {
       setLoading(false);
     }
@@ -55,7 +138,7 @@ const Pedidos= () => {
   return (
     <Container className={classes.root}  style={{ marginBottom: '40px',marginTop:'20px' }} >
       <Typography variant="h6" gutterBottom>
-        Historial de Pedi2
+        Historial de Pedidos
       </Typography>
       
       <div className='justify-center'>

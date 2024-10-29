@@ -39,8 +39,8 @@ export default function Mision() {
       {/* Imagen del aventurero */}
       <div className="w-full lg:w-1/2 flex justify-center">
         <div className="relative">
-          <img src={Vision} alt="Adventurer" className="degrade drop-shadow-[0_45px_45px_rgba(0,0,0,0.35)] w-full lg:w-4/4 object-cover z-10  relative" />
-          <div className="no absolute inset-0 bg-orange-200 rounded-full w-96 h-96 transform -translate-x-5 -translate-y-5 "></div>
+          <img src={Vision} alt="Adventurer" className="degrade drop-shadow-[0_45px_45px_rgba(0,0,0,0.35)] w-full lg:w-4/4 object-cover z-5 lg:z-10  relative" />
+          <div className="no z-0 absolute inset-0 bg-orange-200 rounded-full w-96 h-96 transform -translate-x-5 -translate-y-5 "></div>
         </div>
       </div>
 

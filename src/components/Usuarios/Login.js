@@ -241,13 +241,13 @@ export default function Login() {
   return (
     <div className="lg:m-0 m-1">
       <div className="flex justify-center items-center">
-      <div className="p-10">
-      <div className="bg-white shadow-lg rounded-lg flex overflow-hidden max-w-6xl w-full">
+      <div className=" p-2 lg:p-10">
+      <div className="bg-white shadow-lg rounded-lg flex overflow-hidden max-w-4xl w-full">
       <div className="registro-image-containerLogin w-2/5 ">
         <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
 
-      <div className=" w-full lg:w-3/5 pl-20 pb-5 pt-5 pr-20">
+      <div className=" w-full lg:w-3/5 pl-10 pb-5 pt-5 pr-10">
         <p className="loginTitulo mb-4 ">
           Login 
         </p>
@@ -258,7 +258,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-2">
           <div>
-            <label htmlFor="email" className="block text-2xl mb-2">Correo</label>
+            <label htmlFor="email" className="block text-xl mb-2">Correo</label>
             <input
               type="email"
               id="email"
@@ -272,7 +272,7 @@ export default function Login() {
             {emailError && <p className="text-red-500 text-xl">{emailError}</p>}
           </div>
           <div>
-            <label htmlFor="password" className="block text-2xl mb-2">Contraseña</label>
+            <label htmlFor="password" className="block text-xl mb-2">Contraseña</label>
             <div className="relative">
               <input
                 type={passwordVisible ? "text" : "password"}
@@ -299,7 +299,7 @@ export default function Login() {
             {passwordError && <p className="text-red-500 text-xl">{passwordError}</p>}
           </div>
           <div className="flex justify-end">      
-            <Link to="/menuRecuperacion" className="text-xl text-blue-900">
+            <Link to="/menuRecuperacion" className="text-md text-blue-900">
               ¿Olvidaste tu password?
             </Link>
           </div>
@@ -330,11 +330,11 @@ export default function Login() {
             className="google-login-button"
           />
 
-          <div className=" flex justify-start text-center mt-6">
-            <Typography className="text-2xl">
+          <div className=" flex justify-start items-center text-center mt-6">
+            <Typography className="text-md">
               No tienes una cuenta?
             </Typography>
-            <Link to="/login" className="text-blue-500 hover:underline ml-2">
+            <Link to="/registrar" className="text-blue-500 hover:underline ml-2">
               Crear cuenta
             </Link>
           </div>
