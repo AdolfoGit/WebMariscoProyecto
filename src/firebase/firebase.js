@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 } from "uuid";
 import { supabase } from "../supabase/supabaseClient";
 
@@ -16,14 +16,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 
-export async function uploadFilesUsuarios (File) {
-  // Declaración de variables de estado
+export async function uploadFilesUsuarios(File) {
   let fileUrl = null;
-
-  // Función para establecer el estado de uploading
-  const setUploading = (value) => {
-    uploading = value;
-  };
 
   // Función para establecer la URL del archivo
   const setFileUrl = (url) => {
@@ -31,10 +25,7 @@ export async function uploadFilesUsuarios (File) {
   };
 
   // Función para cargar la imagen
-  const uploadImage = async () => { // No necesitas ningún parámetro aquí
-    setUploading(true);
-  
-    // Accede al evento directamente dentro de la función
+  const uploadImage = async () => {
     let file = File; // Utiliza el archivo pasado como parámetro a la función uploadFilesUsuarios
     let filePath = `${Date.now()}_${file.name}`;
   
@@ -47,7 +38,6 @@ export async function uploadFilesUsuarios (File) {
         throw error;
       }
   
-  
       const { data: publicUrlData, error: publicUrlError } = supabase.storage
         .from('LCDM')
         .getPublicUrl(filePath);
@@ -56,13 +46,10 @@ export async function uploadFilesUsuarios (File) {
         throw publicUrlError;
       }
   
-  
       setFileUrl(publicUrlData.publicUrl);
     } catch (error) {
       console.error('Error al subir la imagen:', error);
       alert('Error al subir la imagen: ' + error.message);
-    } finally {
-      setUploading(false);
     }
   };
   
@@ -70,17 +57,13 @@ export async function uploadFilesUsuarios (File) {
   await uploadImage(File);
 
   // Retorna el URL de la imagen
+  console.log(fileUrl)
   return fileUrl;
 }
 
-  // const storageRef = ref(storage, v4());
-  // await uploadBytes(storageRef, File)
-  // const url = await getDownloadURL(storageRef)
-  // return url
-
-export const uploadFilesProductos = async (File) =>{
-    const storageRef = ref(storage, v4());
-    await uploadBytes(storageRef, File)
-    const url = await getDownloadURL(storageRef)
-    return url  
+export const uploadFilesProductos = async (File) => {
+  const storageRef = ref(storage, v4());
+  await uploadBytes(storageRef, File);
+  const url = await getDownloadURL(storageRef);
+  return url;
 }

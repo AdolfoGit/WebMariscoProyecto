@@ -29,7 +29,7 @@ export default function Login() {
   const [loginAttempts2] = useState(0);
   const ClientID =
     "581987127535-vrka2isr37etho1p5t4cfnq6lur1euum.apps.googleusercontent.com";
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+ // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const navigate = useNavigate();
   const loginAttemptsRef = useRef(loginAttempts);
@@ -88,9 +88,9 @@ export default function Login() {
     if (validateEmail(email) && validatePassword(password)) {
       loginAttemptsRef.current += 1;
       if (loginAttemptsRef.current >= 3) {
-        setIsButtonDisabled(true); // Deshabilitar el botón después de 5 intentos
+      //  setIsButtonDisabled(true); // Deshabilitar el botón después de 5 intentos
         setTimeout(() => {
-          setIsButtonDisabled(false); // Habilitar el botón después de 3 minutos
+      //    setIsButtonDisabled(false); // Habilitar el botón después de 3 minutos
           loginAttemptsRef.current = 0; // Reiniciar el contador de intentos
         }, 60000); // 3 minutos en milisegundos
       }
@@ -140,7 +140,6 @@ export default function Login() {
   };
 
   function onChange() {
-    setIsButtonDisabled(false);
     ObtenerIp();
 
   }
@@ -313,9 +312,9 @@ export default function Login() {
           <button
             type="submit"
             className="w-full bg-amber-400 text-white py-2 rounded-lg font-semibold hover:bg-amber-600"
-            disabled={isButtonDisabled}
+            
           >
-              Entrsar
+              Entrar
           </button>
           <div className="text-center mt-4">
             <Typography variant="text" className="text-2xl text-center font-semibold">

@@ -497,6 +497,7 @@ export default function ProductoNuevo() {
                 <input
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
+                  data-testid="search-input"
                   className="peer h-full w-40 border-none border-blue-gray-200 bg-transparent pt-4 pb-1.5 font-sans text-md font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border-blue-gray-200 focus:border-gray-500 focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50 placeholder:opacity-0 focus:placeholder:opacity-100"
                 />
                 <label className="after:content[''] pointer-events-none absolute left-0  -top-1.5 flex h-full w-full select-none !overflow-visible truncate text-md font-normal leading-tight text-gray-500 transition-all after:absolute after:-bottom-1.5 after:block after:w-full after:scale-x-0 after:border-b-2 after:border-gray-500 after:transition-transform after:duration-300 peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.25] peer-placeholder-shown:text-blue-gray-500 peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-gray-900 peer-focus:after:scale-x-100 peer-focus:after:border-gray-900 peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
@@ -550,7 +551,7 @@ export default function ProductoNuevo() {
               Products
             </h2>
 
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+            <div className="grid grid-cols-1 <gap-x-8 gap-y-10 lg:grid-cols-4">
               {/*-------------------------------------web  Filters--------------------------------------- */}
               <form className="hidden lg:block max-w-[200px]">
                 <h3 className="sr-only bg-black">Categories</h3>
@@ -716,12 +717,12 @@ export default function ProductoNuevo() {
                                 <div className="flex justify-between  items-center gap-4">
                                   <Typography
                                     variant="text"
-                                    className="font-bold text-[17px] truncate"
+                                    className="nombre-producto font-bold text-[17px] truncate"
                                   >
                                     {producto.Nombre}
                                   </Typography>
                                   <button
-                                    className="p-2 rounded-full hover:bg-gray-200 transition-colors duration-200"
+                                    className="agrega-car p-2 rounded-full hover:bg-gray-200 transition-colors duration-200"
                                     onClick={() => agregarAlCarrito(producto)}
                                   >
                                     <svg
@@ -797,7 +798,7 @@ export default function ProductoNuevo() {
                           leaveFrom="translate-x-0"
                           leaveTo="translate-x-full"
                         >
-                          <Dialog.Panel className="pointer-events-auto w-screen max-w-[35rem]">
+                          <Dialog.Panel  data-testid="carrito" className="pointer-events-auto w-screen max-w-[35rem]">
                             <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
                               <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                                 <div className="flex items-start justify-between">
@@ -820,7 +821,7 @@ export default function ProductoNuevo() {
                                   </div>
                                 </div>
                                 <div className="mt-8">
-                                  <div className="flow-root">
+                                  <div className=" carrito-item flow-root">
                                     <ul
                                       role="list"
                                       className="-my-6 divide-y divide-gray-200"
@@ -835,13 +836,13 @@ export default function ProductoNuevo() {
                                               <img
                                                 src={productoCarrito.Imagen}
                                                 className="h-full w-full object-cover object-center"
-                                                alt={productoCarrito.Nombre}
+                                                alt='jks'
                                               />
                                             </div>
                                             <div className="ml-4 w-80">
                                               <Typography
                                                 variant="text"
-                                                className="text-md font-bold"
+                                                className="nombre-producto2 text-md font-bold"
                                               >
                                                 {productoCarrito.Nombre}
                                               </Typography>
