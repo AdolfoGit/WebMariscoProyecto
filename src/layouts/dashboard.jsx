@@ -21,14 +21,14 @@ export function Dashboard() {
   
 
   return (
-    <div className="min-h-screen bg-blue-gray-50/50 ">
+    <div className="min-h-screen  bg-blue-gray-50/50 ">
       <Sidenav
         routes={dashboardRoutes}
         brandImg={
           sidenavType === "dark" ? "" : ""
         }
       />
-      <div className="p-5 xl:ml-[29rem] ">
+      <div className="p-2 sm:p-2 xl:ml-[20rem]  ">
         <DashboardNavbar />
         <Configurator />
         <IconButton
@@ -38,7 +38,7 @@ export function Dashboard() {
           ripple={false}
           onClick={() => setOpenConfigurator(dispatch, true)}
         >
-          <Cog6ToothIcon className="h-9 w-9" />
+          <Cog6ToothIcon className="h-6 w-6" />
         </IconButton>
         <Routes>
           {routes.map(

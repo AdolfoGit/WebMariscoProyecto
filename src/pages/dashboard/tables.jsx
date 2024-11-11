@@ -183,10 +183,10 @@ export function Tables() {
     })
   }
   return (
-    <div className="mt-12 mb-8 flex flex-col gap-12">
+    <div className="mt-10 pt-4 mb-8 flex flex-col gap-12">
       <Card>
-        <CardHeader variant="gradient" color="gray" className="mb-8 p-8">
-          <Typography variant="h6" color="white" className="text-2xl">
+        <CardHeader variant="gradient" color="gray" className="mb-8 p-3">
+          <Typography variant="h6" color="white" className="text-xl">
             Tabla de Usuarios
           </Typography>
         </CardHeader>
@@ -201,7 +201,7 @@ export function Tables() {
                   >
                     <Typography
                       variant="h4"
-                      className="text-[14px] font-bold uppercase text-blue-gray-400"
+                      className="text-[12px] font-bold uppercase text-blue-gray-400"
                     >
                       {el}
                     </Typography>
@@ -221,7 +221,7 @@ export function Tables() {
                   <tr key={idUsuario}>
                     <td className={className}>
                       <Typography
-                        variant="h5"
+                        variant="h7"
                         color="blue-gray"
                         className="font-semibold"
                       >
@@ -229,55 +229,55 @@ export function Tables() {
                       </Typography>
                     </td>
                     <td className={className}>
-                      <div className="flex items-start gap-4 min-w-[20rem]">
-                        <Avatar src={Icono}  size="md" className="rounded-full" />
+                      <div className="flex items-start gap-4 min-w-[12rem]">
+                        <Avatar src={Icono}  size="sm" className="rounded-full" />
                         <div className="flex-1">
                           <Typography
-                            variant="h5"
+                            variant="h9"
                             color="blue-gray"
                             className="font-semibold"
                           >
                             {Nombre}
                           </Typography>
-                          <Typography className="font-normal text-blue-gray-500" variant="h6">
+                          <Typography className="font-normal text-blue-gray-500" variant="h9">
                             {Correo}
                           </Typography>
                         </div>
                       </div>
                     </td>
                     <td className={className}>
-                        <Typography className='text-xl text-bold'> {Telefono}</Typography>
+                        <Typography className='text-md text-bold'> {Telefono}</Typography>
                     </td>
                     <td className={className}>
-                      <Typography className="font-semibold text-blue-gray-600" variant="h5">
+                      <Typography className="font-semibold text-blue-gray-600" variant="h7">
                         {Rol===2?'Admin':'Usuario'}
                       </Typography>
                     </td>
-                    <td className={className} style={{ width: '100px' }}>
+                    <td className={className} style={{ width: '50px' }}>
                       <Chip
                         variant="gradient"
                         color={estadoColor(EstadoCuenta)}
                         value={estadoTexto(EstadoCuenta)}
-                        className="py-0.5 px-2 text-[10px] font-medium w-40"
+                        className="py-0.5 px-2 text-[10px] font-medium w-20"
                       />
                     </td>
                     <td className={className}>
                       <div>
-                        <Menu placement="left-start" className='text-center'>
+                        <Menu placement="left-start" className='text-center '>
                           <MenuHandler>
                             <IconButton size="md" variant="text" color="blue-gray">
                               <EllipsisVerticalIcon
                                 strokeWidth={3}
                                 fill="currenColor"
-                                className="h-8 w-8"
+                                className="h-6 w-6"
                               />
                             </IconButton>
                           </MenuHandler>
-                          <MenuList>
-                            <div className="flex row items-start justify-start">
-                              <Button color="red" variant='text' className='text-md text-left' onClick={()=>eliminarUser(idUsuario)}> Eliminar</Button>
-                              <Button color="blue" variant='text' className='text-md text-left'onClick={()=>bloquearUser(idUsuario)}> Bloquear</Button>
-                              <Button color="orange" variant='text' className='text-md text-left'onClick={()=>desbloquearUser(idUsuario)}> Desloquear</Button>
+                          <MenuList className='w-[100px]'>
+                            <div className="flex row items-start  justify-start">
+                              <Button color="red" variant='text' className='text-sm text-left' onClick={()=>eliminarUser(idUsuario)}> Eliminar</Button>
+                              <Button color="blue" variant='text' className='text-sm text-left'onClick={()=>bloquearUser(idUsuario)}> Bloquear</Button>
+                              <Button color="orange" variant='text' className='text-sm text-left'onClick={()=>desbloquearUser(idUsuario)}> Desloquear</Button>
                             </div>
                           </MenuList>
                         </Menu>

@@ -95,7 +95,6 @@ export const Header = () => {
       <header className={`header ${isHome ? "home-header" : ""}`}>
         {user && user.Rol === 2 ? (
           <>
-            <p>no sirve</p>
           </>
         ) : (
           <>

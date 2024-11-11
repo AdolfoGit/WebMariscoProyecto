@@ -48,6 +48,7 @@ const Perfil = () => {
       // Guardar la foto como una URL en el estado
       const dataURL = photo.toDataURL("image/png");
       setImagenPerfil(dataURL); // Actualiza el estado con la imagen capturada
+      
       stopCamera();
     } else {
       console.error("No se pudo obtener el contexto del canvas");

@@ -84,7 +84,7 @@ export function DashboardNavbar() {
       color={fixedNavbar ? "trasnparent" : "white"}
       className={`rounded-xl transition-all ${
         fixedNavbar
-          ? "sticky top-8 z-40 py-8 shadow-md shadow-blue-gray-500/5"
+          ? "sticky top-8 z-40 py-3 shadow-md shadow-blue-gray-500/5"
           : "px-0 py-1"
       }`}
       fullWidth
@@ -101,7 +101,7 @@ export function DashboardNavbar() {
               <Typography
                 variant="small"
                 color="blue-gray"
-                className="font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100 text-2xl"
+                className="font-normal opacity-50 transition-all hover:text-blue-500 hover:opacity-100 text-xl"
               >
                 {layout}
               </Typography>
@@ -109,27 +109,27 @@ export function DashboardNavbar() {
             <Typography
               variant="small"
               color="blue-gray"
-              className="font-normal text-2xl"
+              className="font-normal text-xl"
             >
               {page}
             </Typography>
           </Breadcrumbs>
-          <Typography variant="h6" color="blue-gray" className="text-2xl"> 
+          <Typography variant="h6" color="blue-gray" className="text-xl"> 
             {page}
           </Typography>
         </div>
         <div className="flex items-center">
-         <div className="">
+         <div className="w-full">
             <Input 
               label="Search" 
-              size="md"              
+              size="lg"              
             />
           </div>    
           <div className='flex items-center justify-between h-full ml-2 '>
           <Menu className='mr-2'>
             <MenuHandler>
               <IconButton variant="text" color="blue-gray">
-                <BellIcon className="h-11 w-11 text-blue-gray-500" />
+                <BellIcon className="h-6 w-6 text-blue-gray-500" />
               </IconButton>
             </MenuHandler>
             <MenuList className="w-max border-0">
@@ -216,7 +216,7 @@ export function DashboardNavbar() {
                   variant="circular"
                   className="border border-gray-900 p-0.5"
                   withBorder={true}
-                  size='md'
+                  size='sm'
                   src={user.Icono}
                 />
                 <ChevronDownIcon
@@ -264,7 +264,7 @@ export function DashboardNavbar() {
             className="grid xl:hidden"
             onClick={() => setOpenSidenav(dispatch, !openSidenav)}
           >
-            <Bars3Icon strokeWidth={3} className="h-10 w-10 text-blue-gray-500" />
+            <Bars3Icon strokeWidth={3} className="h-6 w-6 text-blue-gray-500" />
           </IconButton>
           </div>
         </div>

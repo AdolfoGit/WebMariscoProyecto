@@ -5,8 +5,8 @@ import ReportesPago from "./BitacoraPedidos";
 export function Home() {
   return (
     <div className="mt-12">
-      <div className="container">
-        <div className="col lg-6">
+      <div className="">
+        <div className="justify-center items-center">
           <PedidosGeneral/>
 
 

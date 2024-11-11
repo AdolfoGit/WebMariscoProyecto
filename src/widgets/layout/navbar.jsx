@@ -33,7 +33,7 @@ export function Navbar({ brandName, routes, action }) {
           <Link to={path} className="flex items-center gap-1 p-1 font-normal">
             {icon &&
               React.createElement(icon, {
-                className: "w-[18px] h-[18px] opacity-50 mr-1",
+                className: "w-[12px] h-[12px] opacity-50 mr-1",
               })}
             {name}
           </Link>

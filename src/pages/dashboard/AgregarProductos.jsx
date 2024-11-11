@@ -84,13 +84,13 @@ export function AgregarProductos() {
   const handleOpen = () => navigate('/dashboard/insertarproducto');
   
   return (
-    <div className="mt-12 mb-8 flex flex-col gap-12">
+    <div className="mt-12 pt-4 mb-8 flex flex-col gap-12">
       <Card>
-        <CardHeader variant="gradient" color="gray" className=" flex mb-8 p-8">
-          <Typography variant="h6" color="white" className="text-2xl">
+        <CardHeader variant="gradient" color="gray" className=" flex mb-8 p-3">
+          <Typography variant="h6" color="white" className="text-sm lg:text-xl">
             Tabla de Productos
           </Typography>
-          <Button color="blue" size="lg" loading={false} onClick={handleOpen}><i className="fa-solid fa-plus fa-beat mr-2" ></i>Agregar Producto</Button>
+          <Button color="blue" size="sm" loading={false} onClick={handleOpen}><i className=" fa-solid fa-plus fa-beat mr-2" ></i>Agregar Producto</Button>
         </CardHeader>
         <CardBody className="overflow-x-scroll px-0 pt-0 pb-2">
           <table className="w-full min-w-[640px] table-auto">
@@ -125,7 +125,7 @@ export function AgregarProductos() {
                     return (
                       <tr key={idProducto}>
                         <td className={className}>
-                          <Typography variant="h5" color="blue-gray" className="font-semibold">
+                          <Typography variant="h7" color="blue-gray" className="font-semibold">
                             {idProducto}
                           </Typography>
                         </td>
@@ -133,42 +133,42 @@ export function AgregarProductos() {
                           <Avatar src={Imagen} size="md" variant="square" />
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl font-semibold">
+                          <Typography className="text-sm font-semibold">
                             {Nombre}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl leading-7 min-w-[20rem]">
+                          <Typography className="text-sm leading-7 min-w-[20rem]">
                             {Descripcion}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl min-w-[20rem]">
+                          <Typography className="text-sm min-w-[20rem]">
                             {Ingredientes}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography variant="small" className="text-2xl font-semibold">
+                          <Typography variant="small" className="text-md font-semibold">
                             $ {Precio}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl">
+                          <Typography className="text-sm">
                             {FechaIntroduccion}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl text-center">
+                          <Typography className="text-sm text-center">
                             {Categoria === 1 ? "Platillo" : "Bebida"}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl text-center">
+                          <Typography className="text-sm text-center">
                             {Disponibilidad}
                           </Typography>
                         </td>
                         <td className={className}>
-                          <Typography className="text-xl text-center">
+                          <Typography className="text-sm text-center">
                             {Estado}
                           </Typography>
                         </td>

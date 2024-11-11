@@ -174,6 +174,7 @@ const CarritoDetalle = () => {
       data.append("idCarrito",carrito.idCarrito)
       data.append("Total",total)
       data.append("idDireccion",Direccion)
+
       const response = await fetch(
         apiurll + "/api/CasaDelMarisco/AgregarPedido",
         {
@@ -240,34 +241,34 @@ const CarritoDetalle = () => {
 
 
   return (
-    <div className='mr-20 ml-20'>
-      <div className="grid grid-cols-5 gap-4 p-5">
-        <div className='col-span-3 w-full pr-1 shadow-lg rounded-[10px] p-5 mr-10'>
+    <div className='lg:mr-10 lg:ml-10 m-2 pt-4 lg:pt-2'>
+      <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-4 gap-4 lg:p-4  ">
+        <div className='lg:col-span-3 w-full  shadow-lg rounded-[10px] p-5 mr-10'>
           {/* Header */}
-          <div className="flex w-full mb-4">
-            <div className="w-2/4 p-4 font-bold">Producto</div>
-            <div className="w-1/4 p-4 font-bold text-center">Cantidad</div>
-            <div className="w-1/4 p-4 font-bold text-center">Total</div>
+          <div className="flex w-full mb-2">
+            <div className=" font-bold">Producto</div>
+            <div className=" font-bold ">Cantidad</div>
+            <div className=" font-bold ">Total</div>
           </div>
 
           {/* Product rows */}
-          <div className="flex flex-col pl-5 pr-5">
+          <div className="flex flex-col ">
             {isLoading ? (
               <p>Cargando...</p>
             ) : carrito != null ? (
               carrito.map((carritoInfo) => (
-                <div key={carritoInfo.idCarritoProductos} className="flex border-t border-gray-400 py-3">
-                  <div className="w-2/4 flex items-center p-4">
+                <div key={carritoInfo.idCarritoProductos} className="flex justify-beetwen border-t border-gray-400  lg:p-2 ">
+                  <div className=" flex items-center p-2 lg:p-4">
                     <img src={carritoInfo.Imagen}
-                      className="w-40 h-40 pl-5 rounded-md object-cover mr-10"
+                      className="w-12 h-12 lg:w-20 lg:h-20 pl-2 rounded-md object-cover mr-2 lg:mr-4"
                       alt={`Imagen de ${carritoInfo.Nombre}`}
                     />
                     <div className='flex-col'>
-                      <Typography variant='text' className='text-2xl font-bold'>{carritoInfo.Nombre}</Typography>
-                      <Typography className="text-xl text-gray-800 font-semibold">${carritoInfo.PrecioUnitario}</Typography>
+                      <Typography variant='text' className='text-sm lg:text-md font-bold'>{carritoInfo.Nombre}</Typography>
+                      <Typography className="text-sm lg:text-md text-gray-800 font-semibold">${carritoInfo.PrecioUnitario}</Typography>
                     </div>
                   </div>
-                  <div className='w-1/4 flex items-center justify-center'>
+                  <div className=' flex items-center justify-center'>
                     <div className='flex items-center'>
                       <button className="p-2 rounded-full" onClick={() => eliminarDelCarrito(carritoInfo)}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -276,7 +277,7 @@ const CarritoDetalle = () => {
                       </button>
                       <input
                         type='number'
-                        className='w-20 text-center mx-2'
+                        className='w-8 text-center mx-2'
                         value={carritoInfo.Cantidad}
                         disabled={true}
                       />
@@ -287,8 +288,8 @@ const CarritoDetalle = () => {
                       </button>
                     </div>
                   </div>
-                  <div className='w-1/4 flex items-center justify-center'>
-                    <Typography variant='text' className='text-2xl font-bold'>${carritoInfo.Precio}</Typography>
+                  <div className=' flex items-center justify-center'>
+                    <Typography variant='text' className='text-sm lg:text-md font-bold'>${carritoInfo.Precio}</Typography>
                   </div>
                 </div>
               ))
@@ -298,8 +299,8 @@ const CarritoDetalle = () => {
 
            
           </div>
-          <Typography variant='text' className='text-2xl font-bold mb-2'>Elije tu dirección para la entrega de tus pedidos</Typography>
-            <select onChange={(e) => setDireccion(e.target.value)}>
+          <Typography variant='text' className='text-md font-bold mb-2'>Elije tu dirección para la entrega de tus pedidos</Typography>
+            <select onChange={(e) => setDireccion(e.target.value)} className='text-md w-100'>
               {direcciones != null ? (
                 direcciones.map((midirecciones) => (
                   <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
@@ -312,8 +313,8 @@ const CarritoDetalle = () => {
             </select>
         </div>
 
-       <div className="col-span-2 pt-5 pr-24 pl-24  h-[32rem] rounded-[10px] ml-10 shadow-lg">
-          <div className="pt-4 pb-5">
+       <div className=" lg:col-span-2 p-5  h-[25rem] rounded-[10px] lg:ml-10 shadow-lg">
+          <div className="">
             <Typography variant='text' className="text-2xl font-semibold mb-4">Detalle de la orden</Typography>
             <div className='border-t border-y border-gray-300 pt-4 pb-4'>
               <div className="flex justify-between mb-1">

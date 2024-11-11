@@ -100,19 +100,19 @@ export function FormProducto (){
 
     }
     return(
-    <Card className='mt-6'>
-        <form className='p-20' onSubmit={handleSubmit}>
+    <Card className='mt-[45px]'>
+        <form className='p-10' onSubmit={handleSubmit}>
         <div className="space-y-12">
             <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-md font-bold leading-9 text-gray-900">Nuevo Producto</h2>
-            <p className="mt-1 text-xl leading-6 text-gray-600">
+            <p className="mt-1 text-md leading-6 text-gray-600">
                 Complete la siguiente informacion para registrar un nuevo producto en la base de datos
             </p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             
                 <div className="sm:col-span-4 sm:col-start-1">
-                <label  className="block text-2xl font-medium leading-6 text-gray-900">
+                <label  className="block text-md font-medium leading-6 text-gray-900">
                     Nombre del Producto
                 </label>
                 <div className="mt-2">
@@ -121,13 +121,13 @@ export function FormProducto (){
                     value={nombre}
                     onChange={(e) => setNombre(e.target.value)}
                     
-                    className="text-2xl block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
+                    className="text-md block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
                     />
                 </div>
                 </div>
 
                 <div className="col-span-full">
-                <label htmlFor="about" className="block text-2xl font-medium leading-6 text-gray-900">
+                <label htmlFor="about" className="block text-md font-medium leading-6 text-gray-900">
                     Ingredientes
                 </label>
                 <div className="mt-2">
@@ -137,7 +137,7 @@ export function FormProducto (){
                     onChange={(e) => setIngredientes(e.target.value)}
                     name="about"
                     rows={3}
-                    className="block w-full rounded-md border border-gray-900  py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-8"
+                    className="block w-full rounded-md border border-gray-900  py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-8"
                  
                     />
                 </div>
@@ -145,7 +145,7 @@ export function FormProducto (){
                 </div>
 
                 <div className="col-span-full">
-                <label htmlFor="about" className="block text-2xl font-medium leading-6 text-gray-900">
+                <label htmlFor="about" className="block text-md font-medium leading-6 text-gray-900">
                     Descripcion del Producto
                 </label>
                 <div className="mt-2">
@@ -154,7 +154,7 @@ export function FormProducto (){
                      onChange={(e) => setDescripcion(e.target.value)}
   
                     rows={3}
-                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-8"
+                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-8"
         
                     />
                 </div>
@@ -168,7 +168,7 @@ export function FormProducto (){
             <div className="border-b border-gray-900/10 pb-12">
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6" onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>     
                     <div className="col-span-3">
-                        <label htmlFor="cover-photo" className="block text-2xl font-medium leading-6 text-gray-900">
+                        <label htmlFor="cover-photo" className="block text-md font-medium leading-6 text-gray-900">
                             Imagen del Producto
                         </label>
                         {imageURL ? (
@@ -205,7 +205,7 @@ export function FormProducto (){
                                 {imageURL ? (
                                     <>    <div>
                                     <div className="sm:col-span-2 mb-5">
-                                    <label htmlFor="region" className="block text-2xl font-medium leading-6 text-gray-900">
+                                    <label htmlFor="region" className="block text-md font-medium leading-6 text-gray-900">
                                         Disponibilidad
                                     </label>
                                     <div className="mt-2">
@@ -213,12 +213,12 @@ export function FormProducto (){
                                         type="number"
                                         value={disponibilidad}
                                         onChange={(e) => setDisponibilidad(e.target.value)}
-                                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                         />
                                     </div>
                                     </div>
                                     <div className="sm:col-span-2">
-                                    <label htmlFor="postal-code" className="block text-2xl font-medium leading-6 text-gray-900">
+                                    <label htmlFor="postal-code" className="block text-md font-medium leading-6 text-gray-900">
                                         Estado:
                                     </label>
                                     <div className="mt-2">
@@ -226,7 +226,7 @@ export function FormProducto (){
                                         value={estado}
                                         type="text"
                                         onChange={(e) => setEstado(e.target.value)}
-                                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                         />
                                         <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
                                     </div>
@@ -238,7 +238,7 @@ export function FormProducto (){
                                    
                                     <div>
                                         <div className="sm:col-span-1  mb-5">
-                                        <label htmlFor="region" className="block text-2xl font-medium leading-6 text-gray-900">
+                                        <label htmlFor="region" className="block text-md font-medium leading-6 text-gray-900">
                                             Disponibilidad
                                         </label>
                                         <div className="mt-2">
@@ -246,12 +246,12 @@ export function FormProducto (){
                                             type="number"
                                             value={disponibilidad}
                                             onChange={(e) => setDisponibilidad(e.target.value)}
-                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                             />
                                         </div>
                                         </div>
                                         <div className="sm:col-span-1">
-                                        <label htmlFor="postal-code" className="block text-2xl font-medium leading-6 text-gray-900">
+                                        <label htmlFor="postal-code" className="block text-md font-medium leading-6 text-gray-900">
                                             Estado:
                                         </label>
                                         <div className="mt-2">
@@ -259,7 +259,7 @@ export function FormProducto (){
                                             value={estado}
                                             type="text"
                                             onChange={(e) => setEstado(e.target.value)}
-                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                             />
                                             <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
                                         </div>
@@ -270,20 +270,20 @@ export function FormProducto (){
                         </div>
 
 
-                        <div className='col-span-3 flex-col  sm:flex-row'>
-                            <div className="sm:col-span-3 mb-5">
-                                <label htmlFor="username" className="block text-2xl font-medium leading-6 text-gray-900">
+                        <div className='col-span-3 flex-col gap-2 sm:flex-row'>
+                            <div className="sm:col-span-3  mb-5">
+                                <label htmlFor="username" className="block text-md font-medium leading-6 text-gray-900">
                                     Precio
                                 </label>
                                 <div className="mt-2">
                                     <div className=" border border-gray-900 flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                    <span className=" text-2xl flex select-none items-center pl-3 text-gray-500 ">$</span>
+                                    <span className=" text-md flex select-none items-center pl-3 text-gray-500 ">$</span>
                                     <input
                                         type="number"
                                         value={precio}
                                         onChange={(e) => setPrecio(e.target.value)}
                 
-                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 text-2xl placeholder:text-gray-400 focus:ring-0  sm:leading-6"
+                                        className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 text-md placeholder:text-gray-400 focus:ring-0  sm:leading-6"
 
                                     />
                                     </div>
@@ -291,14 +291,14 @@ export function FormProducto (){
                             </div>
 
                             <div className="sm:col-span-3">
-                                <label htmlFor="city" className="block text-2xl font-medium leading-6 text-gray-900">
+                                <label htmlFor="city" className="block text-md font-medium leading-6 text-gray-900">
                                     Categoria
                                 </label>
                                 <div className="mt-2">
                                     <select
                                     value={categoria}
                                     onChange={(e) => setCategoria(e.target.value)}
-                                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
+                                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600  sm:leading-6"
                                     >
                                     <option value={1}>Platillo</option>
                                     <option value={2}>Bebida</option>
@@ -313,9 +313,8 @@ export function FormProducto (){
         </div>
 
         <div className="mt-6 flex items-center justify-end gap-x-6">
-            <Button color='red' variant='field' size='lg' onClick={()=> cancelarProceso()}>Cancelar</Button>
-            <Button variant='field' color='green' size='lg' type='submit'>Registrar</Button>
-          
+            <Button color='red' variant='field' size='md' onClick={()=> cancelarProceso()}>Cancelar</Button>
+            <Button variant='field' color='green' size='md' type='submit'>Registrar</Button>  
         </div>
         </form>
     </Card>
