@@ -271,12 +271,14 @@ export function EditarProducto(){
                                               Estado:
                                           </label>
                                           <div className="mt-2">
-                                              <input
-                                              value={estado}
-                                              type="text"
-                                              onChange={(e) => setEstado(e.target.value)}
-                                              className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
-                                              />
+                                          <select
+                                                    value={estado}
+                                                    onChange={(e) => setEstado(e.target.value)}
+                                                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                                >
+                                                    <option value="Activo">Activo</option>
+                                                    <option value="Inactivo">Inactivo</option>
+                                                </select>
                                               <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
                                           </div>
                                           </div>
@@ -307,7 +309,7 @@ export function EditarProducto(){
                                                 <select
                                                     value={estado}
                                                     onChange={(e) => setEstado(e.target.value)}
-                                                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                                    className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                                 >
                                                     <option value="Activo">Activo</option>
                                                     <option value="Inactivo">Inactivo</option>

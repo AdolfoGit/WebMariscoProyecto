@@ -225,7 +225,7 @@ export function FormProducto (){
                                         <select
                                             value={estado}
                                             onChange={(e) => setEstado(e.target.value)}
-                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                         >
                                             <option value="Activo">Activo</option>
                                             <option value="Inactivo">Inactivo</option>
@@ -262,7 +262,7 @@ export function FormProducto (){
                                             <select
                                                 value={estado}
                                                 onChange={(e) => setEstado(e.target.value)}
-                                                className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                                className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
                                             >
                                                 <option value="Activo">Activo</option>
                                                 <option value="Inactivo">Inactivo</option>
