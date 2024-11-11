@@ -21,6 +21,8 @@ jest.mock('../../UserContext', () => ({
   })
 }));
 
+
+
 test('debe obtener y mostrar las direcciones', async () => {
   render(<CarritoDetalle />);
 

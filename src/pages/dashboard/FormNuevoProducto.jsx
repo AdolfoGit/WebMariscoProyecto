@@ -17,9 +17,9 @@ export function FormProducto (){
     const [precio,setPrecio]=useState();
     const [descripcion,setDescripcion]=useState();
     const [ingredientes,setIngredientes]=useState();
-    const [categoria,setCategoria]=useState();
+    const [categoria,setCategoria]=useState(1);
     const [disponibilidad,setDisponibilidad]=useState();
-    const [estado,setEstado]=useState();
+    const [estado,setEstado]=useState("Activo");
     const [File, setFile] = useState(null);
     const [imageURL, setImageURL] = useState(null);
     
@@ -60,7 +60,7 @@ export function FormProducto (){
         data.append("Categoria",categoria);
         data.append("Estado",estado);
         data.append("Imagen",resultImage);
-
+        console.log(nombre, ingredientes, descripcion, precio, disponibilidad,categoria,estado, resultImage)
         fetch(
             apiurll + "api/CasaDelMarisco/AgregarProductos?Nombre=" + nombre+ "&Ingredientes=" + ingredientes + "&Descripcion=" + descripcion + "&Precio=" + precio + "&Disponibilidad=" + disponibilidad + "&Categoria=" + categoria + "&Estado=" + estado +
             "&Imagen=" + resultImage,
@@ -222,14 +222,18 @@ export function FormProducto (){
                                         Estado:
                                     </label>
                                     <div className="mt-2">
-                                        <input
-                                        value={estado}
-                                        type="text"
-                                        onChange={(e) => setEstado(e.target.value)}
-                                        className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
-                                        />
-                                        <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
-                                    </div>
+                                        <select
+                                            value={estado}
+                                            onChange={(e) => setEstado(e.target.value)}
+                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                        >
+                                            <option value="Activo">Activo</option>
+                                            <option value="Inactivo">Inactivo</option>
+                                        </select>
+                                        <p className="mt-3 text-sm leading-6 text-gray-600">
+                                            Solo hay dos estados: Activo o Inactivo
+                                        </p>
+                                        </div>
                                     </div>
                                     </div>
                                         <Button color='amber' className='mt-2 text-white' onClick={()=> setImageURL(null)}>Eliminar Foto</Button>
@@ -255,14 +259,18 @@ export function FormProducto (){
                                             Estado:
                                         </label>
                                         <div className="mt-2">
-                                            <input
-                                            value={estado}
-                                            type="text"
-                                            onChange={(e) => setEstado(e.target.value)}
-                                            className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-md shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
-                                            />
-                                            <p className="mt-3 text-sm leading-6 text-gray-600">Solo hay dos estados ya sea Activo o Inactivo</p>
-                                        </div>
+                                            <select
+                                                value={estado}
+                                                onChange={(e) => setEstado(e.target.value)}
+                                                className="block w-full rounded-md border border-gray-900 py-1.5 text-gray-900 text-2xl shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:leading-6"
+                                            >
+                                                <option value="Activo">Activo</option>
+                                                <option value="Inactivo">Inactivo</option>
+                                            </select>
+                                            <p className="mt-3 text-sm leading-6 text-gray-600">
+                                                Solo hay dos estados: Activo o Inactivo
+                                            </p>
+                                            </div>
                                         </div>
                                     </div>
                                 )}

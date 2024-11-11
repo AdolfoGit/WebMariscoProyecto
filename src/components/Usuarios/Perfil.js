@@ -320,6 +320,7 @@ const Perfil = () => {
                 id="name"
                 className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.Nombre}
+                onChange={(e) => setUser({ ...user, Nombre: e.target.value })}
               />
             </div>
           </div>
@@ -335,6 +336,7 @@ const Perfil = () => {
                 id="name"
                 className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.ApellidoPaterno}
+                onChange={(e) => setUser({ ...user, ApellidoPaterno: e.target.value })}
               />
             </div>
           </div>
@@ -350,6 +352,8 @@ const Perfil = () => {
                 id="name"
                 className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.Correo}
+                onChange={(e) => setUser({ ...user, Correo: e.target.value })}
+
               />
             </div>
           </div>
@@ -365,6 +369,7 @@ const Perfil = () => {
                 id="name"
                 className="w-full p-2 border-0 bg-gray-100  text-gray-400 "
                 value={user.Telefono}
+                onChange={(e) => setUser({ ...user, Telefono: e.target.value })}
               />
             </div>
           </div>
