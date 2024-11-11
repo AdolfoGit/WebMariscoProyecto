@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -44,8 +44,12 @@ import Direcciones from "./components/Usuarios/Direcciones";
 import CarritoDetalle from "./components/Productos/CarritoDetalle";
 import RegistrarDireccion from "./components/Usuarios/maps";
 import Recomendaciones from "./components/Recomendaciones";
+import { pedirPermisoNotificacion } from "./notificaciones";
 
 function App() {
+  useEffect(() => {
+    pedirPermisoNotificacion();
+  }, []);
   return (
     <>
       <UserProvider>
@@ -104,5 +108,6 @@ function App() {
     </>
   );
 }
+
 
 export default App;

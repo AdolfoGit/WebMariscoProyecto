@@ -74,3 +74,20 @@ self.addEventListener("message", (event) => {
     self.skipWaiting();
   }
 });
+
+self.addEventListener('push', function(event) {
+  const data = event.data ? event.data.json() : {};
+  const title = data.title || 'Nueva Notificación';
+  const options = {
+    body: data.body || '¡Tienes una nueva promoción!',
+    icon: '/icon.png', // Cambia la ruta al ícono que prefieras
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener('notificationclick', function(event) {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow('/ofertas') // Cambia esta URL a la que deseas abrir al hacer clic
+  );
+});

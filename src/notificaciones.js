@@ -1,0 +1,43 @@
+const vapidPublicKey = "BPpOL5qqdXEJT0J0wQTlISf2R41BJetqrT9pmPwv_HgvlE2PX_MuentWzZTgfL_jUMOSfFscd_ji1oUXOCzjst8";
+
+// Convierte la clave pública de VAPID a Uint8Array
+const urlBase64ToUint8Array = (base64String) => {
+  const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const rawData = window.atob(base64);
+  return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
+};
+
+const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
+
+export const pedirPermisoNotificacion = async () => {
+  if ('Notification' in window && 'serviceWorker' in navigator) {
+    const permission = await Notification.requestPermission();
+    if (permission === 'granted') {
+      console.log('Permiso para notificaciones concedido');
+
+      const registration = await navigator.serviceWorker.ready;
+
+      try {
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: convertedVapidKey
+        });
+        console.log('Push Subscription:', subscription);
+      
+        // Envía la suscripción al backend
+        await fetch('https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/RegistrarSuscripcion', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(subscription)
+        });
+      } catch (error) {
+        console.error('Error al suscribirse a las notificaciones push:', error);
+      }
+    } else {
+      console.log('Permiso para notificaciones denegado');
+    }
+  } else {
+    console.log('El navegador no soporta notificaciones o Service Workers');
+  }
+};
