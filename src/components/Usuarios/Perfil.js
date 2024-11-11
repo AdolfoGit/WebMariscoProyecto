@@ -6,8 +6,13 @@ import { uploadFilesUsuarios } from "../../firebase/firebase";
 import { FaUser } from "react-icons/fa";
 import { FaPhone } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import CryptoJS from 'crypto-js';
+
 
 const Perfil = () => {
+
+  const ENCRYPTION_KEY = 'Soymainekko1#';
+
   const videoRef = useRef(null);
   const photoRef = useRef(null);
 
@@ -28,32 +33,37 @@ const Perfil = () => {
     }
   };
 
-  const takePhoto = () => {
+  const takePhoto = async () => {
     const video = videoRef.current;
     const photo = photoRef.current;
-
+  
     if (!video || !photo) {
       console.error("No se pudo acceder al video o al canvas");
       return;
     }
-
+  
     const context = photo.getContext("2d");
     const width = 250;
     const height = 200;
-
+  
     if (context) {
       photo.width = width;
       photo.height = height;
       context.drawImage(video, 0, 0, width, height);
-      // Guardar la foto como una URL en el estado
+  
+      // Convertir la imagen a Blob sin usar el constructor `File`
       const dataURL = photo.toDataURL("image/png");
-      setImagenPerfil(dataURL); // Actualiza el estado con la imagen capturada
+      const blob = await (await fetch(dataURL)).blob();
+  
+      // Llamar a la función para subir la imagen y actualizar el contexto de usuario
+      await subirYActualizarPerfil(blob);
       
-      stopCamera();
+      stopCamera(); // Detener la cámara después de tomar la foto
     } else {
       console.error("No se pudo obtener el contexto del canvas");
     }
   };
+  
 
   const stopCamera = () => {
     if (videoRef.current && videoRef.current.srcObject) {
@@ -64,6 +74,42 @@ const Perfil = () => {
       setCameraActive(false); // Desactiva la cámara
     }
   };
+
+
+  const subirYActualizarPerfil = async (blob) => {
+    try {
+      // Sube el archivo Blob a Firebase o al servidor
+      const result = await uploadFilesUsuarios(blob); // `uploadFilesUsuarios` debe aceptar `blob` como parámetro
+      const data = new FormData();
+      data.append("idUsuario", user.idUsuario);
+      data.append("Icono", result);
+  
+      const response = await fetch(apiurll + "api/CasaDelMarisco/SubirIcono", {
+        method: "POST",
+        body: data,
+      });
+      const responseData = await response.json();
+  
+      if (responseData === "Icono actualizado") {
+        // Actualiza el contexto de usuario y la imagen de perfil
+        const updatedUser = { ...user, Icono: result };
+        setUser(updatedUser); // Esto actualiza el contexto
+        setImagenPerfil(result); // Esto actualiza la vista actual del perfil
+  
+        // Actualiza localStorage con la información del usuario actualizado
+        localStorage.setItem(
+          'userData',
+          CryptoJS.AES.encrypt(JSON.stringify(updatedUser), ENCRYPTION_KEY).toString()
+        );
+  
+        
+      }
+    } catch (error) {
+      console.error("Error al subir la imagen:", error);
+     
+    }
+  };
+  
   /////////////////////////e
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
@@ -117,7 +163,7 @@ const Perfil = () => {
   const [imageURL, setImageURL] = useState(null);
 
   const navigate = useNavigate();
-  const { user, logoutUser } = useUser();
+  const { user, setUser, logoutUser } = useUser();
 
   const [imagenPerfil, setImagenPerfil] = useState(user.Icono);
 
@@ -158,16 +204,31 @@ const Perfil = () => {
       body: data,
     })
       .then((res) => res.json())
-      .then((result) => {
-        if (result === "Icono actualizado") {
+      .then((result1) => {
+        if (result1 === "Icono actualizado") {
+
+          const updatedUser = { ...user, Icono: result };
+          setUser(updatedUser); // Esto actualiza el contexto
+          setImagenPerfil(result); // Esto actualiza la vista actual del perfil
+
+          // Actualiza localStorage con la información del usuario actualizado
+          localStorage.setItem(
+            'userData',
+            CryptoJS.AES.encrypt(JSON.stringify(updatedUser), ENCRYPTION_KEY).toString()
+          );
+
           Swal.fire({
             icon: "warning",
             title: "Nos vemos pronto",
             text: "Si se subio",
           });
+          
           setIsOpen(false);
           setFile(null);
           setImageURL(null);
+
+         
+
         }
       });
     console.log(result);
@@ -184,6 +245,7 @@ const Perfil = () => {
   const irDirecciones = () => {
     navigate("/direcciones");
   };
+
   return (
     <div className="flex flex-col md:flex-row  h-full lg:h-full bg-gray-50 ">
       <div className=" md:w-1/4 w-full bg-white  p-5 md:mt-0">

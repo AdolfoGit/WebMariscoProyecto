@@ -12,7 +12,7 @@ const CarritoDetalle = () => {
   const [carrito, setCarrito] = useState([]);
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
-  const [Direccion]= useState();
+  const [Direccion,setDireccion]= useState();
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
@@ -128,6 +128,7 @@ const CarritoDetalle = () => {
 
         if (Array.isArray(data)) {
           setCarrito(data);
+          console.log(carrito)
         } else {
           console.error("El resultado de la API no es un array:", data);
         }
@@ -167,11 +168,13 @@ const CarritoDetalle = () => {
   
   const onApprove = async (data, actions) => {
     try {
-     
+      const idCarritoBien = carrito[0].idCarrito;
+      console.log("idUsuario: "+ user.idUsuario)
+      console.log("idCarrito "+idCarritoBien)
       const data= new FormData();
       data.append("idTipoPago",1)
       data.append("idUsuario",user.idUsuario)
-      data.append("idCarrito",carrito.idCarrito)
+      data.append("idCarrito",idCarritoBien)  
       data.append("Total",total)
       data.append("idDireccion",Direccion)
 
