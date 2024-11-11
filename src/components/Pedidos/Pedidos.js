@@ -18,6 +18,10 @@ const Pedidos= () => {
   const [isLoading, setLoading] = useState(true);
   const { user } = useUser();
   const [pedidos, setPedidos] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
@@ -57,7 +61,114 @@ const Pedidos= () => {
       <Typography variant="h6" gutterBottom>
         Historial de Pedi2
       </Typography>
-      
+      <button onClick={openModal} className="btn btn-primary">Open Modal</button>
+
+      {isOpen && (
+        <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+          <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                  <div className="sm:flex sm:items-start">
+
+                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                    <div className="max-w-lg mx-auto p-4 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">Formulario de Evaluación</h2>
+      <form className="space-y-6">
+        {/* Pregunta 1 */}
+        <div>
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+          ¿Consideras que los pasos para completar tu compra fueron claros?
+          </label>
+          <div className="flex justify-between">
+            <label className="flex flex-col items-center">
+              <input type="radio" name="navegacion" value="1" required className="mb-1" />
+              <span className="text-sm text-gray-600">Totalmente claros</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="navegacion" value="2" className="mb-1" />
+              <span className="text-sm text-gray-600">Claros</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="navegacion" value="3" className="mb-1" />
+              <span className="text-sm text-gray-600">Poco claros</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="navegacion" value="4" className="mb-1" />
+              <span className="text-sm text-gray-600">Nada claros
+              </span>
+            </label>
+          </div>
+        </div>
+
+        {/* Pregunta 2 */}
+        <div>
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+          ¿El diseño de la aplicación te resultó visualmente agradable?
+          </label>
+          <div className="flex justify-between">
+            <label className="flex flex-col items-center">
+              <input type="radio" name="compra" value="1" required className="mb-1" />
+              <span className="text-sm text-gray-600">1</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="compra" value="2" className="mb-1" />
+              <span className="text-sm text-gray-600">2</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="compra" value="3" className="mb-1" />
+              <span className="text-sm text-gray-600">3</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="compra" value="4" className="mb-1" />
+              <span className="text-sm text-gray-600">4</span>
+            </label>
+
+          </div>
+        </div>
+
+        {/* Pregunta 3 */}
+          <label className="block text-lg font-medium text-gray-700 mb-2">
+          ¿Te resultó conveniente el uso de esta alicación?
+          </label>
+          <div className="flex justify-between">
+            <label className="flex flex-col items-center">
+              <input type="radio" name="pago" value="1" required className="mb-1" />
+              <span className="text-sm text-gray-600">Muy conveniente</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="pago" value="2" className="mb-1" />
+              <span className="text-sm text-gray-600">Conveniente</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="pago" value="3" className="mb-1" />
+              <span className="text-sm text-gray-600">Poco conveniente</span>
+            </label>
+            <label className="flex flex-col items-center">
+              <input type="radio" name="pago" value="4" className="mb-1" />
+              <span className="text-sm text-gray-600">Nada conveniente</span>
+            </label>
+           
+          </div>
+
+
+      </form>
+    </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                  <button type="submit" className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-200">
+          Enviar Evaluación
+        </button>
+                  <button type="button" onClick={closeModal} className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Deactivate</button>
+                        </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className='justify-center'>
         {isLoading ? (
           <Typography>Cargando pedidos...</Typography>

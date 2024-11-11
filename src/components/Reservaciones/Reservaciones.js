@@ -52,7 +52,7 @@ const Reservaciones = () => {
   const [Servicios, setServicio] = useState("");
   const [Pago, setPago] = useState("");
   const [InformacionAdicional, setInformacionAdicional] = useState("");
-  const [ setLoading] = useState(true);
+
   const [nombreError, setNombreError] = useState("");
   const [NPersonasError, setNPersonasError] = useState("");
   const [FechaError, setFechaError] = useState("");
@@ -384,10 +384,10 @@ const Reservaciones = () => {
       } catch (error) {
         console.error("Error al obtener reservaciones:", error);
       } finally {
-        setLoading(false); // Marcar el estado de carga como falso una vez que se completa la solicitud
+        //setLoading(false); // Marcar el estado de carga como falso una vez que se completa la solicitud
       }
     } else {
-      setLoading(false); // Marcar el estado de carga como falso si no hay un id válido
+      //setLoading(false); // Marcar el estado de carga como falso si no hay un id válido
     }
   };
   useEffect(() => {
