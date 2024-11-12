@@ -55,117 +55,62 @@ export default function ProductoNuevo() {
   const [productData, setProductData] = useState(null);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
 
-  // Función para abrir o crear la base de datos
-  function openDatabase() {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open("productosDB", 1);
-
-      request.onerror = (event) => {
-        console.error("Error al abrir la base de datos:", event.target.error);
-        reject(event.target.error);
-      };
-
-      request.onsuccess = (event) => {
-        console.log("Base de datos abierta con éxito");
-        resolve(event.target.result);
-      };
-
-      request.onupgradeneeded = (event) => {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains("productos")) {
-          db.createObjectStore("productos", { keyPath: "idProducto" });
-        }
-      };
-    });
-  }
-
-  // Función para guardar productos en IndexedDB
-  async function guardarProductosEnIndexedDB(productos) {
-    try {
-      const db = await openDatabase(); // Asegúrate de que la base de datos está abierta
-      const transaction = db.transaction(["productos"], "readwrite");
-      const store = transaction.objectStore("productos");
-
-      productos.forEach((producto) => {
-        store.put(producto); // Guardar cada producto en el almacén
-      });
-
-      transaction.oncomplete = () => {
-        console.log("Productos almacenados en IndexedDB");
-      };
-
-      transaction.onerror = (event) => {
-        console.error(
-          "Error al almacenar productos en IndexedDB:",
-          event.target.error
-        );
-      };
-    } catch (error) {
-      console.error("Error en IndexedDB:", error);
-    }
-  }
-
-  // Función para obtener productos de IndexedDB
-  async function obtenerProductosDeIndexedDB() {
-    try {
-      const db = await openDatabase();
-      const transaction = db.transaction("productos", "readonly");
-      const store = transaction.objectStore("productos");
-
-      return new Promise((resolve, reject) => {
-        const request = store.getAll();
-        request.onsuccess = (event) => {
-          resolve(event.target.result); // Devuelve los productos almacenados
-        };
-        request.onerror = (event) => {
-          console.error(
-            "Error al obtener productos de IndexedDB:",
-            event.target.error
-          );
-          reject(event.target.error);
-        };
-      });
-    } catch (error) {
-      console.error("Error en IndexedDB:", error);
-      return [];
-    }
-  }
-
   useEffect(() => {
     obtenterDatosProductos();
     obtenerProductoCarrito();
   }, []);
 
   const obtenterDatosProductos = async () => {
+    const url = `${apiurll}/api/CasaDelMarisco/TraerProductos`;
+  
     try {
-      const response = await fetch(
-        `${apiurll}/api/CasaDelMarisco/TraerProductos`,
-        {
+      if (navigator.onLine) {
+        // Intento de obtener los datos en línea
+        const response = await fetch(url, {
           method: "GET",
-          // No es necesario incluir el body para una solicitud GET
+        });
+  
+        if (response.ok) {
+          const product1Data = await response.json();
+          setProductData(product1Data); // Actualiza el estado con los datos de la API
+          console.log("Datos obtenidos de la API:", product1Data);
+        } else {
+          console.error("Error al obtener los datos de la API. Intentando desde el caché...");
+          const url2='https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos'
+          await obtenerDatosDesdeCache(url2); // Si falla, intenta desde el caché
         }
-      );
-
-      if (response.ok) {
-        const product1Data = await response.json();
-        setProductData(product1Data);
-        guardarProductosEnIndexedDB(product1Data);
-
-        console.log(product1Data);
       } else {
-        console.error("traxendo los datos de indexedDB");
-        // Si hay un error, intentar obtener los productos desde IndexedDB
+        console.log("Sin conexión a internet. Obteniendo datos desde el caché...");
+        const url2='https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos'
+        await obtenerDatosDesdeCache(url2); // Sin conexión, intenta desde el caché
       }
     } catch (error) {
-      console.error("Error al obtener wewwe del eww:", error);
-      const productosGuardados = await obtenerProductosDeIndexedDB();
-      if (productosGuardados.length > 0) {
-        setProductData(productosGuardados);
-      } else {
-        console.error("No hay productos guardados en IndexedDB.");
+      console.error("Error al obtener datos de la API:", error);
+      const url2='https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos'
+      await obtenerDatosDesdeCache(url2); // En caso de error, intenta desde el caché
+    }
+  };
+  
+  // Función para obtener los datos desde el caché
+  const obtenerDatosDesdeCache = async (url) => {
+    if ('caches' in window) {
+      try {
+        const cache = await caches.open('api-precache');
+        const cachedResponse = await cache.match(url);
+  
+        if (cachedResponse) {
+          const cachedData = await cachedResponse.json();
+          setProductData(cachedData); // Actualiza el estado con los datos del caché
+          console.log("Datos obtenidos desde el caché:", cachedData);
+        } else {
+          console.log("No se encontraron datos en el caché para esta URL.");
+        }
+      } catch (cacheError) {
+        console.error("Error al obtener los datos desde el caché:", cacheError);
       }
     }
   };
+  
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const [open, setOpen] = useState(false);
