@@ -79,7 +79,7 @@ self.addEventListener('push', function(event) {
   const data = event.data ? event.data.json() : {};
   const title = data.title || 'Nueva Notificación';
   const options = {
-    body: data.body + "hasta: "+ data.fechaFin || '¡Tienes una nueva promoción!',
+    body: data.body + " hasta el: "+ data.fechaFin || '¡Tienes una nueva promoción!',
     icon: data.image, 
 
   };
