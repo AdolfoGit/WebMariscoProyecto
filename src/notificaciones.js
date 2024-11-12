@@ -24,13 +24,22 @@ export const pedirPermisoNotificacion = async () => {
           applicationServerKey: convertedVapidKey
         });
         console.log('Push Subscription:', subscription);
-      
-        // Envía la suscripción al backend
-        await fetch('https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/RegistrarSuscripcion', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(subscription)
-        });
+
+        // Verifica si la suscripción ya existe (usa el endpoint como identificador único)
+        const existingSubscription = localStorage.getItem(subscription.endpoint);
+        if (existingSubscription) {
+          console.log('Ya existe una suscripción con este endpoint.');
+        } else {
+          // Guarda la suscripción en el almacenamiento local para evitar duplicados
+          localStorage.setItem(subscription.endpoint, JSON.stringify(subscription));
+
+          // Envía la suscripción al backend
+          await fetch('https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/RegistrarSuscripcion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(subscription)
+          });
+        }
       } catch (error) {
         console.error('Error al suscribirse a las notificaciones push:', error);
       }

@@ -79,8 +79,9 @@ self.addEventListener('push', function(event) {
   const data = event.data ? event.data.json() : {};
   const title = data.title || 'Nueva Notificación';
   const options = {
-    body: data.body || '¡Tienes una nueva promoción!',
-    icon: '/icon.png', // Cambia la ruta al ícono que prefieras
+    body: data.body + "hasta: "+ data.fechaFin || '¡Tienes una nueva promoción!',
+    icon: data.image, 
+
   };
   event.waitUntil(self.registration.showNotification(title, options));
 });
