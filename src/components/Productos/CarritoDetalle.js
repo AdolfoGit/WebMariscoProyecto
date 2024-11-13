@@ -5,6 +5,9 @@ import ReactDOM from 'react-dom';
 import Swal from "sweetalert2";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM }) ;
 const isTestEnv = process.env.NODE_ENV === 'test';
+import {loadStripe} from '@stripe/stripe-js'
+import PaymentForm from '../paymentform';
+import { Elements } from '@stripe/react-stripe-js';
 
 const CarritoDetalle = () => {
   const { user } = useUser();
@@ -13,9 +16,13 @@ const CarritoDetalle = () => {
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
   const [Direccion,setDireccion]= useState();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
   
+  const [stripePromise, setStripePromise] = useState(null)
+
   const obtenerIdUsuario = (user) => {
     return user && user.idUsuario ? user.idUsuario : null;
   };
@@ -32,7 +39,6 @@ const CarritoDetalle = () => {
       const data = await response.json();     
       if (Array.isArray(data)) {
         setDirecciones(data);
-        console.log("Direcciones obtenidas:", data);
       } else {
         console.error("La respuesta de la API no es un array:", data);
         setDirecciones([]);
@@ -60,7 +66,6 @@ const CarritoDetalle = () => {
     )
     .then((res) => res.json())
     .then((result) => {
-      console.log(result)
       if (result === 'Exito') {
         obtenerProductoCarrito();
       } else {
@@ -94,7 +99,6 @@ const CarritoDetalle = () => {
     )
     .then((res) => res.json())
     .then((result) => {
-      console.log(result)
       if (result === 'Exito') {
         obtenerProductoCarrito();
       } else {
@@ -128,7 +132,6 @@ const CarritoDetalle = () => {
 
         if (Array.isArray(data)) {
           setCarrito(data);
-          console.log(carrito)
         } else {
           console.error("El resultado de la API no es un array:", data);
         }
@@ -144,7 +147,6 @@ const CarritoDetalle = () => {
   
 
   const createOrder = (data, actions) => {
-    console.log(Direccion)
     console.log('Valor de total:', total);
     const amount = parseFloat(total);
     console.log('Monto parseado:', amount);
@@ -169,8 +171,6 @@ const CarritoDetalle = () => {
   const onApprove = async (data, actions) => {
     try {
       const idCarritoBien = carrito[0].idCarrito;
-      console.log("idUsuario: "+ user.idUsuario)
-      console.log("idCarrito "+idCarritoBien)
       const data= new FormData();
       data.append("idTipoPago",1)
       data.append("idUsuario",user.idUsuario)
@@ -186,10 +186,8 @@ const CarritoDetalle = () => {
         }
       );
       const result = await response.json();
-      console.log(result);
       if (result === 'Exito') {
         const order = await actions.order.capture();
-        console.log('Orden capturada:', order);
         
         Swal.fire({
           icon: 'success',
@@ -234,13 +232,17 @@ const CarritoDetalle = () => {
   useEffect(() => {
     obtenerProductoCarrito(); 
     obtenerDirecciones();
-    
-  }, []);
-
-  useEffect(() => {
     const totales = calcularTotal();
     setTotal(parseFloat(totales.total));
-  }, [carrito]);
+    
+    }, [carrito]);
+
+    useEffect(() => {
+      if (!stripePromise) {
+        setStripePromise(loadStripe('pk_test_51Q2bhrL6Uwo5yj7nQJIPVxVbUWiz48NmkIB4rwvZkVFGZoFO9mEjngGKbeTzG1KtQCgWIiwhgjv3T4KrQDDgIUeO002GVJR4iS'));
+      }
+    }, []); // Solo se ejecuta una vez al montar el componente
+    
 
 
   return (
@@ -339,6 +341,23 @@ const CarritoDetalle = () => {
             </div>
 
             <div className="relative z-10 mt-4">
+              <button onClick={openModal}className="mt-4 py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+                Pagar con tarjeta
+              </button>
+              {isModalOpen && (
+              <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+                <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md">
+                  <button onClick={closeModal} className="text-red-500 float-right font-bold">X</button>
+                  <Elements stripe={stripePromise}>
+                    <PaymentForm 
+                      amount={calcularTotal().total} 
+                      name={user.Nombre} 
+                      email={user.Correo} 
+                    />
+                  </Elements>
+                </div>
+              </div>
+            )}
               {!isTestEnv && (
                 <PayPalButton 
                   createOrder={(data, actions) => createOrder(data, actions)}
@@ -346,6 +365,7 @@ const CarritoDetalle = () => {
                   fundingSource="paypal"
                 />
               )}
+
              </div>
            
 
