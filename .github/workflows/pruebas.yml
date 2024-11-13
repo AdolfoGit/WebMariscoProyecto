@@ -124,7 +124,8 @@ jobs:
 
       - name: Deploy to Vercel
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
-
+        
+      - name: Descargar y configurar sentry-cli
         run: |
           curl -sL https://sentry.io/get-cli/ | bash
           export PATH="$HOME/.sentry-cli:$PATH"
