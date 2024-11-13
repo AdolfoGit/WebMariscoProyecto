@@ -20,116 +20,61 @@ const Pedidos= () => {
   const [pedidos, setPedidos] = useState([]);
 
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  
-  function openDatabase() {
-    return new Promise((resolve, reject) => {
-      const request = indexedDB.open("pedidosDB", 1);
-  
-      request.onerror = (event) => {
-        console.error("Error al abrir la base de datos:", event.target.error);
-        reject(event.target.error);
-      };
-  
-      request.onsuccess = (event) => {
-        console.log("Base de datos abierta con éxito");
-        resolve(event.target.result);
-      };
-  
-      request.onupgradeneeded = (event) => {
-        const db = event.target.result;
-        if (!db.objectStoreNames.contains("pedidos")) {
-          db.createObjectStore("pedidos", { keyPath: "IdPedido" });
-        }
-      };
-    });
-  }
-
-
-  async function guardarPedidosEnIndexedDB(pedidos) {
-    try {
-      const db = await openDatabase();
-      const transaction = db.transaction(["pedidos"], "readwrite");
-      const store = transaction.objectStore("pedidos");
-  
-      pedidos.forEach((pedido) => {
-        store.put(pedido); // Guardar cada pedido en el almacén
-      });
-  
-      transaction.oncomplete = () => {
-        console.log("Pedidos almacenados en IndexedDB");
-      };
-  
-      transaction.onerror = (event) => {
-        console.error(
-          "Error al almacenar pedidos en IndexedDB:",
-          event.target.error
-        );
-      };
-    } catch (error) {
-      console.error("Error en IndexedDB:", error);
-    }
-  }
-
-  // Función para obtener pedidos de IndexedDB
-  async function obtenerPedidosDeIndexedDB() {
-    try {
-      const db = await openDatabase();
-      const transaction = db.transaction("pedidos", "readonly");
-      const store = transaction.objectStore("pedidos");
-
-      return new Promise((resolve, reject) => {
-        const request = store.getAll();
-        request.onsuccess = (event) => {
-          resolve(event.target.result); // Devuelve los pedidos almacenados
-        };
-        request.onerror = (event) => {
-          console.error(
-            "Error al obtener pedidos de IndexedDB:",
-            event.target.error
-          );
-          reject(event.target.error);
-        };
-      });
-    } catch (error) {
-      console.error("Error en IndexedDB:", error);
-      return [];
-    }
-  }
-
-  
+    
 
   const obtenerPedidos = async () => {
+    const pedidosUrl = `${apiurll}/api/CasaDelMarisco/TraerPedidos?UsuarioID=${user.idUsuario}`;
+
+    const pedidosUrl2=`https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=${user.idUsuario}`
+  
+    // Intenta obtener los datos desde el caché primero
+    const pedidosDesdeCache = await obtenerDatosDesdeCache(pedidosUrl2);
+    if (pedidosDesdeCache) {
+      setLoading(false); 
+      return; // Si encontramos datos en el caché, no hacemos la solicitud a la API
+    }
+  
     try {
-      const response = await fetch(
-        apiurll + `/api/CasaDelMarisco/TraerPedidos?UsuarioID=${user.idUsuario}`,
-        {
-          method: "GET",
-        }
-      );
+      const response = await fetch(pedidosUrl, { method: "GET" });
       const data = await response.json();
-      
-      // Manejar tanto un solo pedido como múltiples pedidos
+  
       if (data.Pedidos) {
         setPedidos(Array.isArray(data.Pedidos) ? data.Pedidos : [data.Pedidos]);
-        guardarPedidosEnIndexedDB(Array.isArray(data.Pedidos) ? data.Pedidos : [data.Pedidos])
-        console.log(pedidos)
+        console.log("Pedidos obtenidos desde la API:", data.Pedidos);
       } else {
         setPedidos([]);
       }
     } catch (error) {
-      console.error("Error al obtener pedidos:", error);
-      const pedidosGuardados = await obtenerPedidosDeIndexedDB();
-      if (pedidosGuardados.length > 0) {
-        setPedidos(pedidosGuardados);
-      } else {
-        console.error("No hay productos guardados en IndexedDB.");
-      }
+      console.error("Error al obtener pedidos desde la API:", error);
     } finally {
       setLoading(false);
     }
   };
-
-
+  
+  // Función para obtener los datos desde el caché
+  const obtenerDatosDesdeCache = async (url) => {
+    if ('caches' in window) {
+      try {
+        const cache = await caches.open('api-precache');
+        const cachedResponse = await cache.match(url);
+  
+        if (cachedResponse) {
+          const cachedData = await cachedResponse.json();
+          setPedidos(Array.isArray(cachedData.Pedidos) ? cachedData.Pedidos : [cachedData.Pedidos]);
+          console.log("Datos obtenidos desde el caché:", cachedData);
+          return cachedData; // Retorna los datos si se encuentran en el caché
+        } else {
+          console.log("No se encontraron datos en el caché para esta URL.");
+          return null;
+        }
+      } catch (cacheError) {
+        console.error("Error al obtener los datos desde el caché:", cacheError);
+        return null;
+      }
+    }
+  };
+  
+    
   useEffect(() => {
     obtenerPedidos(); 
     console.log(pedidos)
@@ -145,9 +90,9 @@ const Pedidos= () => {
         {isLoading ? (
           <Typography>Cargando pedidos...</Typography>
         ) : pedidos.length > 0 ? (
-          <div className="flex flex-wrap justify-start gap-6  mt-4 ">
+          <div className="flex flex-wrap justify-start gap-4  mt-4 ">
             {pedidos.map((pedido) => (
-              <div key={pedido.IdPedido} className="bg-white rounded-lg shadow-lg p-10 w-full w-[23rem]">
+              <div key={pedido.IdPedido} className="bg-white rounded-lg shadow-lg p-4 w-[23rem]">
                 <div className="flex items-center justify-center mb-2">
                   <div className="bg-white h-24 w-24 rounded-full p-2 mr-3">
                     <img src='https://scontent.fpbc2-1.fna.fbcdn.net/v/t39.30808-6/454348975_471022365692065_5380072197498364793_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFTW77Y7Oc_V1PP53rY6EfllKKjr-2y7MuUoqOv7bLsy6zs0jUcTLmS2x93OsGvz1IcvY1yzDjGv7M688081B3q&_nc_ohc=0MKdVX2lPygQ7kNvgGZpwmW&_nc_zt=23&_nc_ht=scontent.fpbc2-1.fna&_nc_gid=A_7bqFv1GfcNJqvONAosfNu&oh=00_AYAJ8fPZHCA_ISlmRsKGxO51U_WknzzYbGz3Q_HRxqCplQ&oe=671DF36E' alt="Logo" className="w-full h-full object-cover rounded-full"/>

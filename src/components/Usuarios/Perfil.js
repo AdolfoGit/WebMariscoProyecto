@@ -11,6 +11,7 @@ import CryptoJS from 'crypto-js';
 
 const Perfil = () => {
 
+
   const ENCRYPTION_KEY = 'Soymainekko1#';
 
   const videoRef = useRef(null);

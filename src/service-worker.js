@@ -24,6 +24,8 @@ precacheAndRoute([
   // Añade todas las rutas que deseas precachear
 ]);
 
+let userId = null;
+
 // Función para cachear la respuesta de la API en la instalación del service worker
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -49,6 +51,28 @@ self.addEventListener('install', (event) => {
         });
     })
   );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data.type === 'SET_USER_ID') {
+    userId = event.data.userId;
+    console.log('ID de usuario establecido en el service worker:', userId);
+
+    // Una vez que tenemos el userId, cacheamos la URL de pedidos para ese usuario
+    caches.open('api-precache').then((cache) => {
+      const pedidosUrl = `https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=${userId}`;
+      fetch(pedidosUrl)
+        .then((response) => {
+          if (response.ok) {
+            cache.put(pedidosUrl, response.clone());
+            console.log(`Datos de pedidos cacheados para el usuario ${userId}`);
+          }
+        })
+        .catch((error) => {
+          console.error(`Error al cachear pedidos para el usuario ${userId}:`, error);
+        });
+    });
+  }
 });
 
 
