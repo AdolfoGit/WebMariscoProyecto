@@ -14,11 +14,6 @@ export const UserProvider = ({ children }) => {
       const decryptedUser = CryptoJS.AES.decrypt(storedUser, ENCRYPTION_KEY).toString(CryptoJS.enc.Utf8);
       setUser(JSON.parse(decryptedUser));
     }
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      const decryptedCart = CryptoJS.AES.decrypt(storedCart, ENCRYPTION_KEY).toString(CryptoJS.enc.Utf8);
-      setCart(JSON.parse(decryptedCart));
-    }
   }, []);
 
   const loginUser = (userData) => {

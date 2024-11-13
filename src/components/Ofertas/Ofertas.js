@@ -3,8 +3,13 @@ import { Typography } from '@material-tailwind/react';
 
 
 const Ofertas = () => {
-  const [promocionesData, setPromociones] = useState(null);
+  const [promocionesData, setPromociones] = useState([]);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
+
+  const hoy = new Date();
+const proximas = new Date();
+proximas.setDate(hoy.getDate() + 7);
+
   useEffect(() => {
     obtenerPromociones();
   }, []); // Se ejecuta solo una vez al montar el componente
@@ -33,48 +38,97 @@ const obtenerPromociones = async () => {
 };
 
 
-  return (
+  return (   
+    <div className="container mx-auto px-4">
+    <Typography variant="h2" color="blue-gray" className="mb-8 text-center text-4xl font-semibold">
+      Promociones
+    </Typography>
+
     
-    <div className='container'>
-       <Typography variant="h2" color="blue-gray" className="mb-2 text-center text-4xl">
-          Promociones
-        </Typography>
-     <div className='container d-flex'>
+  
+    <div className="flex flex-col justify-center lg:flex-row gap-6">
+      {/* Columna de Promociones Nuevas y Más Relevantes */}
+      <div className="flex-1 space-y-8">
 
-      {promocionesData !== null && promocionesData.map((promocion) =>(
-         <div className='flex' key={promocion.idPromocion}>
-
-         <figure className="relative h-96 w-90">
-       <img
-         className="h-full w-full rounded-xl object-cover object-center"
-         src={promocion.Imagen}
-         alt="nature image"
-       />
-       <figcaption className="absolute bottom-8 left-2/4 flex w-[calc(100%-4rem)] -translate-x-2/4 justify-between rounded-xl border border-white bg-white/75 py-4 px-6 shadow-lg shadow-black/5 saturate-200 backdrop-blur-sm">
+         {/* Sección de Nuevas Promociones */}
          <div>
-           <Typography variant="h5" color="blue-gray">
-            {promocion.Nombre}
-           </Typography>
-           <Typography variant="h6" color="blue-gray">
-            {promocion.Descripcion}
-           </Typography>
-           <Typography color="gray" className="mt-2 font-normal">
-           {`Termina el ${promocion.FechaDeFin.split('T')[0]}`}
-           </Typography>
-         </div>
-         <Typography variant="h5" color="blue-gray">
-           {promocion.Descuento}%
-         </Typography>
-       </figcaption>
-         </figure>
+          <Typography variant="h3" color="green-600" className="mb-4 text-2xl font-semibold">
+            Nuevas
+          </Typography>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {promocionesData && promocionesData
+              .filter(promocion => new Date(promocion.FechaDeFin) > proximas)
+              .map((promocion) => (
+                <div className="relative border border-green-600 rounded-lg shadow-lg overflow-hidden" key={promocion.idPromocion}>
+                  <figure className="h-60 w-full">
+                    <img className="h-full w-full object-cover" src={promocion.Imagen} alt={promocion.Nombre} />
+                    <figcaption className="absolute bottom-0 w-full bg-green-600 bg-opacity-75 text-white p-2 text-sm">
+                      <Typography variant="h6" color="white" className="font-semibold">{promocion.Nombre}</Typography>
+                      <Typography color="white" className="text-xs">{promocion.Descripcion}</Typography>
+                      <Typography className="mt-1 text-xs">{`Termina el ${promocion.FechaDeFin.split('T')[0]}`}</Typography>
+                      <Typography variant="h6" className="mt-1 font-bold">{promocion.Descuento}% OFF</Typography>
+                    </figcaption>
+                  </figure>
+                </div>
+              ))}
+          </div>
+        </div>
+        {/* Sección de Promociones Más Relevantes */}
+        <div>
+          <Typography variant="h3" color="red-600" className="mb-4 text-2xl font-semibold">
+            Más Relevantes
+          </Typography>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {promocionesData && promocionesData
+              .filter(promocion => new Date(promocion.FechaDeFin) >= hoy && new Date(promocion.FechaDeFin) <= proximas)
+              .map((promocion) => (
+                <div className="relative border border-red-600 rounded-lg shadow-lg overflow-hidden" key={promocion.idPromocion}>
+                  <figure className="h-60 w-full">
+                    <img className="h-full w-full object-cover" src={promocion.Imagen} alt={promocion.Nombre} />
+                    <figcaption className="absolute bottom-0 w-full bg-red-600 bg-opacity-75 text-white p-2 text-sm">
+                      <Typography variant="h6" color="white" className="font-semibold">{promocion.Nombre}</Typography>
+                      <Typography color="white" className="text-xs">{promocion.Descripcion}</Typography>
+                      <Typography className="mt-1 text-xs">{`Termina el ${promocion.FechaDeFin.split('T')[0]}`}</Typography>
+                      <Typography variant="h6" className="mt-1 font-bold">{promocion.Descuento}% OFF</Typography>
+                    </figcaption>
+                  </figure>
+                </div>
+              ))}
+          </div>
+        </div>
+  
        
- 
-       </div>
-      ))}
-     </div>
-     
-
+      </div>
+  
+      {/* Columna de Promociones Ya Pasadas */}
+      <div className="flex-1">
+        <Typography variant="h3" color="gray" className="mb-4 text-2xl font-semibold">
+          Ya Pasaron
+        </Typography>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {promocionesData && promocionesData
+            .filter(promocion => new Date(promocion.FechaDeFin) < hoy)
+            .map((promocion) => (
+              <div className="relative border border-gray-400 rounded-lg shadow-lg opacity-75 overflow-hidden" key={promocion.idPromocion}>
+                <figure className="h-60 w-full">
+                  <img className="h-full w-full object-cover grayscale" src={promocion.Imagen} alt={promocion.Nombre} />
+                  <figcaption className="absolute bottom-0 w-full bg-gray-600 bg-opacity-75 text-white p-2 text-sm">
+                    <Typography variant="h6" color="white" className="font-semibold">{promocion.Nombre}</Typography>
+                    <Typography color="white" className="text-xs">{promocion.Descripcion}</Typography>
+                    <Typography className="mt-1 text-xs">{`Terminó el ${promocion.FechaDeFin.split('T')[0]}`}</Typography>
+                    <Typography variant="h6" className="mt-1 font-bold">{promocion.Descuento}% OFF</Typography>
+                  </figcaption>
+                </figure>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
+  </div>
+  
+  
+  
+  
   );
 };
 

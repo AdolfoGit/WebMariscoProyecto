@@ -46,6 +46,7 @@ import RegistrarDireccion from "./components/Usuarios/maps";
 import Recomendaciones from "./components/Recomendaciones";
 import { pedirPermisoNotificacion } from "./notificaciones";
 
+
 function App() {
   useEffect(() => {
     pedirPermisoNotificacion();
@@ -105,6 +106,7 @@ function App() {
           <FooterNuevo />
         </Router>
       </UserProvider>
+  
     </>
   );
 }

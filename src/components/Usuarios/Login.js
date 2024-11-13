@@ -184,6 +184,13 @@ export default function Login() {
           .then((loginResult) => {
               console.log(loginResult)
               loginUser(resultado);
+              if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+                navigator.serviceWorker.controller.postMessage({
+                  type: 'SET_USER_ID',
+                  userId: resultado.idUsuario, // Asume que `resultado` contiene `idUsuario`
+                });
+                console.log('ID de usuario enviado al service worker:', resultado.idUsuario);
+              }
               if (resultado.Rol === 2) {
                   Swal.fire({
                       icon: "success",
@@ -208,7 +215,7 @@ export default function Login() {
   });
 
   //console.log(response);
-};
+  };
 
 
   const onFailure = () => {

@@ -1,27 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "@material-tailwind/react";
 import { MaterialTailwindControllerProvider } from "./context/index";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import { UserProvider } from './UserContext';
+import { UserProvider } from "./UserContext";
+import * as Sentry from "@sentry/react";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+Sentry.init({
+  dsn: "https://74e30b135308e9bc61783ab47a169d7c@o4508292167958528.ingest.us.sentry.io/4508292169138176",
+  integrations: [],
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-
-     <ThemeProvider>
-            <UserProvider>      
-
-        <MaterialTailwindControllerProvider>
-          <App />
-        </MaterialTailwindControllerProvider>
-            </UserProvider>
-
-
-      </ThemeProvider>
-  
+  <ThemeProvider>
+    <UserProvider>
+      <MaterialTailwindControllerProvider>
+        <App />
+      </MaterialTailwindControllerProvider>
+    </UserProvider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
@@ -33,7 +34,7 @@ serviceWorkerRegistration.register({
   onUpdate: (registration) => {
     if (registration && registration.waiting) {
       const updateSW = () => {
-        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+        registration.waiting.postMessage({ type: "SKIP_WAITING" });
         window.location.reload();
       };
 

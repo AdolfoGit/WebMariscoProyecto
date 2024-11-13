@@ -4,8 +4,6 @@ import { ExpirationPlugin } from "workbox-expiration";
 import { precacheAndRoute, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { StaleWhileRevalidate } from "workbox-strategies";
-import { NetworkFirst } from 'workbox-strategies';
-
 
 clientsClaim();
 
@@ -14,16 +12,82 @@ precacheAndRoute(self.__WB_MANIFEST);
 
 const fileExtensionRegexp = new RegExp("/[^/?]+\\.[^/]+$");
 
+precacheAndRoute([
+  { url: '/', revision: null },
+  { url: '/login', revision: null },
+  { url: '/Nosotros', revision: null },
+  { url: '/ofertas', revision: null },
+  { url: '/productos', revision: null },
+  { url: '/registrar', revision: null },
+  { url: '/reservaciones', revision: null },
+  { url: '/perfil', revision: null },
+  // Añade todas las rutas que deseas precachear
+]);
 
+let userId = null;
+
+// Función para cachear la respuesta de la API en la instalación del service worker
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open('api-precache').then((cache) => {
+      return fetch('https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos')
+        .then((response) => {
+          if (!response.ok) throw new Error('Network response was not ok');
+
+          // Clona la respuesta y guárdala en el caché
+          cache.put('https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos', response.clone());
+
+          // Recupera la respuesta del caché para verificar si se almacenó correctamente
+          return cache.match('https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerProductos')
+            .then((cachedResponse) => {
+              return cachedResponse.json(); // Convierte la respuesta en JSON
+            })
+            .then((data) => {
+              console.log('Datos guardados en el caché:', data); // Muestra los datos guardados
+            });
+        })
+        .catch((error) => {
+          console.error('Error al guardar en el caché:', error);
+        });
+    })
+  );
+});
+
+self.addEventListener('message', (event) => {
+  if (event.data.type === 'SET_USER_ID') {
+    userId = event.data.userId;
+    console.log('ID de usuario establecido en el service worker:', userId);
+
+    // Una vez que tenemos el userId, cacheamos la URL de pedidos para ese usuario
+    caches.open('api-precache').then((cache) => {
+      const pedidosUrl = `https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/TraerPedidos?UsuarioID=${userId}`;
+      fetch(pedidosUrl)
+        .then((response) => {
+          if (response.ok) {
+            cache.put(pedidosUrl, response.clone());
+            console.log(`Datos de pedidos cacheados para el usuario ${userId}`);
+          }
+        })
+        .catch((error) => {
+          console.error(`Error al cachear pedidos para el usuario ${userId}:`, error);
+        });
+    });
+  }
+});
+
+
+
+// Estrategia para cachear todas las páginas visitadas, incluso aquellas no precargadas
 registerRoute(
   ({ request }) => request.mode === 'navigate',
-  new NetworkFirst({
-    cacheName: 'pages-cache',
+  new StaleWhileRevalidate({
+    cacheName: 'pages-cache2',
     plugins: [
       new ExpirationPlugin({ maxEntries: 50 }),
     ],
   })
 );
+
 
 registerRoute(
   // Return false to exempt requests from being fulfilled by index.html.
@@ -42,8 +106,6 @@ registerRoute(
   },
   createHandlerBoundToURL("/index.html")
 );
-
-// Cachear las respuestas de la API de productos
 
 
 registerRoute(
