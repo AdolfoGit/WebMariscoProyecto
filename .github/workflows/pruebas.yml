@@ -125,6 +125,25 @@ jobs:
       - name: Deploy to Vercel
         run: npx vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
 
+         run: |
+          curl -sL https://sentry.io/get-cli/ | bash
+          export PATH="$HOME/.sentry-cli:$PATH"
+
+      - name: Sentry Release
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: uthh-26  # Reemplaza con el slug de tu organización en Sentry
+          SENTRY_PROJECT: javascript-react    # Reemplaza con el slug de tu proyecto en Sentry
+        run: |
+          # Crear una nueva versión en Sentry
+          sentry-cli releases new "$GITHUB_SHA" --org "$SENTRY_ORG" --project "$SENTRY_PROJECT"
+          
+          # Asociar los commits a la nueva versión
+          sentry-cli releases set-commits "$GITHUB_SHA" --auto --org "$SENTRY_ORG" --project "$SENTRY_PROJECT" --ignore-missing
+          
+          # Finalizar la versión en Sentry
+          sentry-cli releases finalize "$GITHUB_SHA" --org "$SENTRY_ORG" --project "$SENTRY_PROJECT"
+
       - name: Notify of deployment success
         if: success()
         uses: dawidd6/action-send-mail@v3
@@ -137,3 +156,5 @@ jobs:
           body: "El despliegue fue exitoso en la rama: ${{ github.ref }}."
           to: ${{ secrets.MAIL_RECIPIENT }}
           from: ${{ secrets.MAIL_USERNAME }}
+
+

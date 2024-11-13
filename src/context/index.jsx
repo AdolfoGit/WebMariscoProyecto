@@ -41,17 +41,14 @@ export function MaterialTailwindControllerProvider({ children }) {
   };
 
   const [controller, dispatch] = React.useReducer(reducer, initialState);
-  const value = React.useMemo(
-    () => [controller, dispatch],
-    [controller, dispatch]
-  );
-
+  
   return (
-    <MaterialTailwind.Provider value={value}>
+    <MaterialTailwind.Provider value={[controller, dispatch]}>
       {children}
     </MaterialTailwind.Provider>
   );
 }
+
 
 export function useMaterialTailwindController() {
   const context = React.useContext(MaterialTailwind);
