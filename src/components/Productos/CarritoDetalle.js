@@ -8,6 +8,8 @@ const isTestEnv = process.env.NODE_ENV === 'test';
 import {loadStripe} from '@stripe/stripe-js'
 import PaymentForm from '../paymentform';
 import { Elements } from '@stripe/react-stripe-js';
+import FeedbackModal from '../Pedidos/Formulario';
+import { useNavigate } from 'react-router-dom';
 
 const CarritoDetalle = () => {
   const { user } = useUser();
@@ -15,13 +17,14 @@ const CarritoDetalle = () => {
   const [carrito, setCarrito] = useState([]);
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
-  const [Direccion,setDireccion]= useState();
+  const [Direccion, setDireccion] = useState(direcciones && direcciones[0] ? direcciones[0].DireccionID : '');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  
+  const navigate = useNavigate();
   const [stripePromise, setStripePromise] = useState(null)
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
 
   const obtenerIdUsuario = (user) => {
     return user && user.idUsuario ? user.idUsuario : null;
@@ -210,7 +213,59 @@ const CarritoDetalle = () => {
       throw error;
     }
   };
+  const onSuccessss = async () => {
+    try {
+      const idCarritoBien = carrito[0].idCarrito;
+      const data = new FormData();
+      data.append("idTipoPago", 1);
+      data.append("idUsuario", user.idUsuario);
+      data.append("idCarrito", idCarritoBien);
+      data.append("Total", total);
+      data.append("idDireccion", Direccion);
+      console.log(user.idUsuario, idCarritoBien, total, Direccion);
   
+      const response = await fetch(apiurll + "/api/CasaDelMarisco/AgregarPedido", {
+        method: "POST",
+        body: data,
+      });
+      const result = await response.json();
+  
+      if (result === 'Exito') {
+        // Verificar si el usuario ya ha completado el feedback
+        const feedbackCheckResponse = await fetch(`${apiurll}api/CasaDelMarisco/VerificarUsuarioFeedBack?IdUsuario=${user.idUsuario}`);
+        const feedbackCheckResult = await feedbackCheckResponse.json();
+  
+        if (!feedbackCheckResult.Existe) {
+          // Si el usuario no ha dado feedback, abrir el modal de feedback
+          setIsFeedbackOpen(true);
+          setIsModalOpen(false); // Ocultar el formulario de pago
+        } else {
+          // Si el usuario ya ha dado feedback, solo cerramos el modal de pago
+          Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: 'El pedido se ha guardado y procesado correctamente',
+          });
+          setIsModalOpen(false); // Ocultar el formulario de pago
+          navigate('/pedidos');
+
+        }
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ha ocurrido un error al procesar la solicitud',
+        });
+      }
+    } catch (error) {
+      console.error('Error al capturar la orden:', error);
+      alert(`Error al completar el pago: ${error.message}`);
+      throw error;
+    }
+  };
+  
+  
+
 
   const calcularTotal = () => {
     if (!carrito || carrito.length === 0) return 0;
@@ -243,6 +298,11 @@ const CarritoDetalle = () => {
       }
     }, []); // Solo se ejecuta una vez al montar el componente
     
+    useEffect(() => {
+      if (direcciones && direcciones.length > 0) {
+        setDireccion(direcciones[0].DireccionID); // Configura el valor inicial
+      }
+    }, [direcciones]);
 
 
   return (
@@ -250,6 +310,11 @@ const CarritoDetalle = () => {
       <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-4 gap-4 lg:p-4  ">
         <div className='lg:col-span-3 w-full  shadow-lg rounded-[10px] p-5 mr-10'>
           {/* Header */}
+          <FeedbackModal
+            isOpen={isFeedbackOpen}
+            onClose={() => setIsFeedbackOpen(false)}
+            userId={user.idUsuario}
+          />
           <div className="flex w-full mb-2">
             <div className=" font-bold">Producto</div>
             <div className=" font-bold ">Cantidad</div>
@@ -305,17 +370,21 @@ const CarritoDetalle = () => {
            
           </div>
           <Typography variant='text' className='text-md font-bold mb-2'>Elije tu dirección para la entrega de tus pedidos</Typography>
-            <select onChange={(e) => setDireccion(e.target.value)} className='text-md w-100'>
-              {direcciones != null ? (
-                direcciones.map((midirecciones) => (
-                  <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
-                    calle {midirecciones.Calle}, colonia {midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
-                  </option>
-                ))
-              ) : (
-                <option>No hay direcciones disponibles.</option>
-              )}
-            </select>
+          <select
+            onChange={(e) => setDireccion(e.target.value)}
+            value={Direccion}
+            className='text-md w-100'
+          >
+            {direcciones != null ? (
+              direcciones.map((midirecciones) => (
+                <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
+                  calle {midirecciones.Calle}, colonia {midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
+                </option>
+              ))
+            ) : (
+              <option>No hay direcciones disponibles.</option>
+            )}
+          </select>
         </div>
 
        <div className=" lg:col-span-2 p-5  h-[25rem] rounded-[10px] lg:ml-10 shadow-lg">
@@ -352,7 +421,8 @@ const CarritoDetalle = () => {
                     <PaymentForm 
                       amount={calcularTotal().total} 
                       name={user.Nombre} 
-                      email={user.Correo} 
+                      email={user.Correo}
+                      onSuccess={onSuccessss}
                     />
                   </Elements>
                 </div>

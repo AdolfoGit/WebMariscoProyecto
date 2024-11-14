@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import PropTypes from 'prop-types';
 
-const PaymentForm = ({ amount, name, email }) => {
+const PaymentForm = ({ amount, name, email, onSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
@@ -24,7 +24,7 @@ const PaymentForm = ({ amount, name, email }) => {
           body: JSON.stringify({
             email: email,
             name: name,
-            amount: amount * 100, // Enviar el monto en centavos
+            amount: amount * 100,
             currency: 'mxn',
           }),
         }
@@ -32,18 +32,18 @@ const PaymentForm = ({ amount, name, email }) => {
 
       const { paymentIntent } = await response.json();
 
-      const { error, paymentIntent: confirmedPaymentIntent } =
-        await stripe.confirmCardPayment(paymentIntent, {
-          payment_method: {
-            card: elements.getElement(CardElement),
-            billing_details: { name: name },
-          },
-        });
+      const { error, paymentIntent: confirmedPaymentIntent } = await stripe.confirmCardPayment(paymentIntent, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: { name: name },
+        },
+      });
 
       if (error) {
         setPaymentResult(`Error: ${error.message}`);
       } else if (confirmedPaymentIntent.status === 'succeeded') {
         setPaymentResult('Pago exitoso!');
+        onSuccess();  // Llamar a la función onSuccess para cerrar el formulario y ejecutar onApprove
       }
     } catch (error) {
       setPaymentResult(`Error: ${error.message}`);
@@ -53,10 +53,7 @@ const PaymentForm = ({ amount, name, email }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6"
-    >
+    <form onSubmit={handleSubmit} className="space-y-6">
       <h2 className="text-2xl font-bold text-center mb-4">Formulario de Pago</h2>
       <div className="bg-gray-100 p-4 rounded-md">
         <CardElement
@@ -89,10 +86,11 @@ const PaymentForm = ({ amount, name, email }) => {
   );
 };
 
-export default PaymentForm;
 PaymentForm.propTypes = {
-    amount: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-  };
-  
+  amount: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  onSuccess: PropTypes.func.isRequired,
+};
+
+export default PaymentForm;
