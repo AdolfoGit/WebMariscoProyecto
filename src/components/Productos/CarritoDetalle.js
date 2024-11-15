@@ -5,6 +5,11 @@ import ReactDOM from 'react-dom';
 import Swal from "sweetalert2";
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM }) ;
 const isTestEnv = process.env.NODE_ENV === 'test';
+import {loadStripe} from '@stripe/stripe-js'
+import PaymentForm from '../paymentform';
+import { Elements } from '@stripe/react-stripe-js';
+import FeedbackModal from '../Pedidos/Formulario';
+import { useNavigate } from 'react-router-dom';
 
 const CarritoDetalle = () => {
   const { user } = useUser();
@@ -12,10 +17,15 @@ const CarritoDetalle = () => {
   const [carrito, setCarrito] = useState([]);
   const [direcciones,setDirecciones]= useState();
   const [total,setTotal]= useState(20);
-  const [Direccion,setDireccion]= useState();
-
+  const [Direccion, setDireccion] = useState(direcciones && direcciones[0] ? direcciones[0].DireccionID : '');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
-  
+  const navigate = useNavigate();
+  const [stripePromise, setStripePromise] = useState(null)
+  const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+
   const obtenerIdUsuario = (user) => {
     return user && user.idUsuario ? user.idUsuario : null;
   };
@@ -32,7 +42,6 @@ const CarritoDetalle = () => {
       const data = await response.json();     
       if (Array.isArray(data)) {
         setDirecciones(data);
-        console.log("Direcciones obtenidas:", data);
       } else {
         console.error("La respuesta de la API no es un array:", data);
         setDirecciones([]);
@@ -60,7 +69,6 @@ const CarritoDetalle = () => {
     )
     .then((res) => res.json())
     .then((result) => {
-      console.log(result)
       if (result === 'Exito') {
         obtenerProductoCarrito();
       } else {
@@ -94,7 +102,6 @@ const CarritoDetalle = () => {
     )
     .then((res) => res.json())
     .then((result) => {
-      console.log(result)
       if (result === 'Exito') {
         obtenerProductoCarrito();
       } else {
@@ -128,7 +135,6 @@ const CarritoDetalle = () => {
 
         if (Array.isArray(data)) {
           setCarrito(data);
-          console.log(carrito)
         } else {
           console.error("El resultado de la API no es un array:", data);
         }
@@ -144,7 +150,6 @@ const CarritoDetalle = () => {
   
 
   const createOrder = (data, actions) => {
-    console.log(Direccion)
     console.log('Valor de total:', total);
     const amount = parseFloat(total);
     console.log('Monto parseado:', amount);
@@ -169,8 +174,6 @@ const CarritoDetalle = () => {
   const onApprove = async (data, actions) => {
     try {
       const idCarritoBien = carrito[0].idCarrito;
-      console.log("idUsuario: "+ user.idUsuario)
-      console.log("idCarrito "+idCarritoBien)
       const data= new FormData();
       data.append("idTipoPago",1)
       data.append("idUsuario",user.idUsuario)
@@ -186,10 +189,8 @@ const CarritoDetalle = () => {
         }
       );
       const result = await response.json();
-      console.log(result);
       if (result === 'Exito') {
         const order = await actions.order.capture();
-        console.log('Orden capturada:', order);
         
         Swal.fire({
           icon: 'success',
@@ -212,7 +213,59 @@ const CarritoDetalle = () => {
       throw error;
     }
   };
+  const onSuccessss = async () => {
+    try {
+      const idCarritoBien = carrito[0].idCarrito;
+      const data = new FormData();
+      data.append("idTipoPago", 1);
+      data.append("idUsuario", user.idUsuario);
+      data.append("idCarrito", idCarritoBien);
+      data.append("Total", total);
+      data.append("idDireccion", Direccion);
+      console.log(user.idUsuario, idCarritoBien, total, Direccion);
   
+      const response = await fetch(apiurll + "/api/CasaDelMarisco/AgregarPedido", {
+        method: "POST",
+        body: data,
+      });
+      const result = await response.json();
+  
+      if (result === 'Exito') {
+        // Verificar si el usuario ya ha completado el feedback
+        const feedbackCheckResponse = await fetch(`${apiurll}api/CasaDelMarisco/VerificarUsuarioFeedBack?IdUsuario=${user.idUsuario}`);
+        const feedbackCheckResult = await feedbackCheckResponse.json();
+  
+        if (!feedbackCheckResult.Existe) {
+          // Si el usuario no ha dado feedback, abrir el modal de feedback
+          setIsFeedbackOpen(true);
+          setIsModalOpen(false); // Ocultar el formulario de pago
+        } else {
+          // Si el usuario ya ha dado feedback, solo cerramos el modal de pago
+          Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: 'El pedido se ha guardado y procesado correctamente',
+          });
+          setIsModalOpen(false); // Ocultar el formulario de pago
+          navigate('/pedidos');
+
+        }
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Ha ocurrido un error al procesar la solicitud',
+        });
+      }
+    } catch (error) {
+      console.error('Error al capturar la orden:', error);
+      alert(`Error al completar el pago: ${error.message}`);
+      throw error;
+    }
+  };
+  
+  
+
 
   const calcularTotal = () => {
     if (!carrito || carrito.length === 0) return 0;
@@ -234,13 +287,22 @@ const CarritoDetalle = () => {
   useEffect(() => {
     obtenerProductoCarrito(); 
     obtenerDirecciones();
-    
-  }, []);
-
-  useEffect(() => {
     const totales = calcularTotal();
     setTotal(parseFloat(totales.total));
-  }, [carrito]);
+    
+    }, [carrito]);
+
+    useEffect(() => {
+      if (!stripePromise) {
+        setStripePromise(loadStripe('pk_test_51Q2bhrL6Uwo5yj7nQJIPVxVbUWiz48NmkIB4rwvZkVFGZoFO9mEjngGKbeTzG1KtQCgWIiwhgjv3T4KrQDDgIUeO002GVJR4iS'));
+      }
+    }, []); // Solo se ejecuta una vez al montar el componente
+    
+    useEffect(() => {
+      if (direcciones && direcciones.length > 0) {
+        setDireccion(direcciones[0].DireccionID); // Configura el valor inicial
+      }
+    }, [direcciones]);
 
 
   return (
@@ -248,6 +310,11 @@ const CarritoDetalle = () => {
       <div className="grid grid-cols-1 lg:grid-cols-5 lg:gap-4 gap-4 lg:p-4  ">
         <div className='lg:col-span-3 w-full  shadow-lg rounded-[10px] p-5 mr-10'>
           {/* Header */}
+          <FeedbackModal
+            isOpen={isFeedbackOpen}
+            onClose={() => setIsFeedbackOpen(false)}
+            userId={user.idUsuario}
+          />
           <div className="flex w-full mb-2">
             <div className=" font-bold">Producto</div>
             <div className=" font-bold ">Cantidad</div>
@@ -303,17 +370,21 @@ const CarritoDetalle = () => {
            
           </div>
           <Typography variant='text' className='text-md font-bold mb-2'>Elije tu dirección para la entrega de tus pedidos</Typography>
-            <select onChange={(e) => setDireccion(e.target.value)} className='text-md w-100'>
-              {direcciones != null ? (
-                direcciones.map((midirecciones) => (
-                  <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
-                    calle {midirecciones.Calle}, colonia {midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
-                  </option>
-                ))
-              ) : (
-                <option>No hay direcciones disponibles.</option>
-              )}
-            </select>
+          <select
+            onChange={(e) => setDireccion(e.target.value)}
+            value={Direccion}
+            className='text-md w-100'
+          >
+            {direcciones != null ? (
+              direcciones.map((midirecciones) => (
+                <option key={midirecciones.DireccionID} value={midirecciones.DireccionID}>
+                  calle {midirecciones.Calle}, colonia {midirecciones.Colonia}, numero interior {midirecciones.NumeroInterior}
+                </option>
+              ))
+            ) : (
+              <option>No hay direcciones disponibles.</option>
+            )}
+          </select>
         </div>
 
        <div className=" lg:col-span-2 p-5  h-[25rem] rounded-[10px] lg:ml-10 shadow-lg">
@@ -339,6 +410,24 @@ const CarritoDetalle = () => {
             </div>
 
             <div className="relative z-10 mt-4">
+              <button onClick={openModal}className="mt-4 py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+                Pagar con tarjeta
+              </button>
+              {isModalOpen && (
+              <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+                <div className="bg-white p-6 rounded-md shadow-lg w-full max-w-md">
+                  <button onClick={closeModal} className="text-red-500 float-right font-bold">X</button>
+                  <Elements stripe={stripePromise}>
+                    <PaymentForm 
+                      amount={calcularTotal().total} 
+                      name={user.Nombre} 
+                      email={user.Correo}
+                      onSuccess={onSuccessss}
+                    />
+                  </Elements>
+                </div>
+              </div>
+            )}
               {!isTestEnv && (
                 <PayPalButton 
                   createOrder={(data, actions) => createOrder(data, actions)}
@@ -346,6 +435,7 @@ const CarritoDetalle = () => {
                   fundingSource="paypal"
                 />
               )}
+
              </div>
            
 
