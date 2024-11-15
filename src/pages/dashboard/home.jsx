@@ -12,11 +12,10 @@ export function Home() {
           <DashboardGrafica/>
           <DashboardGrafica2/>
           <PedidosGeneral/>
-
-
         </div>
         <div className="col lg-6">
 
+          
           <ReportesPago/>
         </div>
       </div>
