@@ -12,7 +12,7 @@ solidgauge(Highcharts);
 export function DashboardGrafica() {
   const [respuestasPorPregunta, setRespuestasPorPregunta] = useState([]);
   const [mediaGeneral, setMediaGeneral] = useState(0);
-
+    const [usuariosContestaron, setUsuariosContestaron] = useState(0)
   // Obtener las respuestas por pregunta
   useEffect(() => {
     const fetchRespuestasPorPregunta = async () => {
@@ -26,7 +26,7 @@ export function DashboardGrafica() {
           const data = await response.json();
           respuestas.push({ idPregunta: i, respuestas: data });
         }
-
+        setUsuariosContestaron(respuestas.length)
         // Actualizar las respuestas
         setRespuestasPorPregunta(respuestas);
 
@@ -175,7 +175,9 @@ export function DashboardGrafica() {
 
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
-      <h2 className="text-2xl font-bold text-center">Gráficas de Calificaciones por Pregunta</h2>
+      <h2 className="text-2xl font-bold text-center">Gráficas de Calificaciones por Pregunta </h2>
+
+      <h4 className="text-2xl font-bold text-center">Usuarios que contestaron la encuesta: {usuariosContestaron}</h4>
 
         {/* Mostrar gráficas de cada pregunta */}
         <div className="grid grid-cols-3 gap-2" > {/* Cambia gap-3 a gap-2 para reducir el espacio */}
@@ -193,6 +195,8 @@ export function DashboardGrafica() {
 
     <div className="mt-12">
     <h3 className="text-xl text-center font-bold">Gráfica General de Calificación Promedio</h3>
+    <h4 className="text-xl font-bold text-center">Usuarios que contestaron la encuesta: {usuariosContestaron}</h4>
+
     <div className="flex justify-center">
         <HighchartsReact
         highcharts={Highcharts}
