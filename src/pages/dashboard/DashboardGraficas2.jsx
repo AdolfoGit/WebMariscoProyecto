@@ -1,38 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import HighchartsMore from 'highcharts/highcharts-more'; // Importar el módulo
-import solidgauge from 'highcharts/modules/solid-gauge';
+import ReactECharts from 'echarts-for-react';
 
-// Activar el módulo highcharts-more
-HighchartsMore(Highcharts); // Habilitar solidgauge y otros gráficos especiales
-solidgauge(Highcharts);
-
-// Componente para mostrar cada gráfica de las respuestas de las preguntas
-export function DashboardGrafica2() {
+export function DashboardGrafica() {
   const [respuestasPorPregunta, setRespuestasPorPregunta] = useState([]);
-  const [mediaGeneral, setMediaGeneral] = useState(0);
-    const [usuariosContestaron, setUsuariosContestaron] = useState(0)
-  // Obtener las respuestas por pregunta
+  const [setMediaGeneral] = useState(0);
+  let [usuariosContestaron, setUsuariosContestaron] = useState(0);
+
   useEffect(() => {
     const fetchRespuestasPorPregunta = async () => {
       try {
         const numPreguntas = 6;
         const respuestas = [];
-
-        // Obtener respuestas de todas las preguntas
+        let respuestasE = 0;
         for (let i = 4; i <= numPreguntas; i++) {
-          const response = await fetch(`https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/ObtenerRespuestasPorIdPregunta/${i}`);
+          const response = await fetch(
+            `https://lacasadelmariscoweb.azurewebsites.net/api/CasaDelMarisco/ObtenerRespuestasPorIdPregunta/${i}`
+          );
           const data = await response.json();
           respuestas.push({ idPregunta: i, respuestas: data });
+          respuestasE +=respuestas[i-4].respuestas.length
         }
-        console.log(respuestas/3)
-        setUsuariosContestaron(respuestas.length/3)
-        // Actualizar las respuestas
+        setUsuariosContestaron(respuestasE/3)
+
         setRespuestasPorPregunta(respuestas);
 
-        // Calcular la media general de todas las respuestas
-        const calificaciones = respuestas.flatMap(r => r.respuestas.map(respuesta => respuesta.Calificacion));
+        const calificaciones = respuestas.flatMap((r) =>
+          r.respuestas.map((respuesta) => respuesta.Calificacion)
+        );
         if (calificaciones.length > 0) {
           const media = calificaciones.reduce((acc, cal) => acc + cal, 0) / calificaciones.length;
           setMediaGeneral(media);
@@ -43,170 +37,108 @@ export function DashboardGrafica2() {
     };
 
     fetchRespuestasPorPregunta();
-  }, []); // Dependencia vacía, solo se ejecuta una vez
+  }, []);
 
-  // Función para calcular el promedio de las calificaciones y asignar colores
-  const calcularPromedioYColor = (calificaciones) => {
+  const generarOpcionesGrafica = (calificaciones, idPregunta) => {
     const promedio = calificaciones.reduce((acc, cal) => acc + cal, 0) / calificaciones.length;
-    let color = '#FF0000'; // Rojo por defecto
 
-    // Cambiar color según el promedio
-    if (promedio >= 2.5) {
-      color = '#FFFF00'; // Azul
-    } else if (promedio >= 2) {
-      color = '#0000FF'; // Amarillo
+    // Definir el color principal basado en el ID de la pregunta
+    let colorPrincipal;
+    if (idPregunta === 1) {
+      colorPrincipal = '#FFA500'; // Naranja
+    } else if (idPregunta === 2) {
+      colorPrincipal = '#0000FF'; // Azul
+    } else if (idPregunta === 3) {
+      colorPrincipal = '#008000'; // Verde
     }
 
-    return { promedio, color };
-  };
+    // Determinar el color según el promedio
+    const color = promedio >= 2.5 ? colorPrincipal : promedio >= 2 ? '#FFFF00' : '#FF0000'; // Amarillo o Rojo
 
-  const generarOpcionesGrafica = (calificaciones, pregunta) => {
-    const { promedio } = calcularPromedioYColor(calificaciones); // Usar la función aquí
-  
-    // Establecer el título basado en la pregunta
-    let tituloPregunta = '';
-    if (pregunta === 4) {
-      tituloPregunta = '¿Cómo sentiste la navegación entre productos?';
-    } else if (pregunta === 5) {
-      tituloPregunta = '¿Cómo fue tu experiencia con la compra de platillos?';
-    } else if (pregunta === 6) {
-      tituloPregunta = '¿Cómo sentiste el proceso de pago en la aplicación?';
-    }
-  
     return {
-      chart: {
-        type: 'solidgauge',
-        height:'250px'
-    },
       title: {
-        text: tituloPregunta,
-        fontSize: '9px',
-      },
-      pane: {
-        center: ['50%', '80%'],
-        size: '160%', // Reduce el tamaño general del gráfico
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-          backgroundColor: '#f1f1f1',
-          innerRadius: '60%',
-          outerRadius: '100%',
-          shape: 'arc',
-        },
-      },
-      yAxis: {
-        min: 0,
-        max: 3, // Suponiendo que las calificaciones van de 0 a 3
-        lineWidth: 0,
-        tickPositions: [],
-      },
-      series: [{
-        name: 'Promedio',
-        data: [promedio],
-        tooltip: {
-          valueSuffix: ' puntos',
-        },
-        dataLabels: {
-          enabled: true,
-          format: '{y:.2f} puntos',
-          style: {
-            fontSize: '13px',
-            fontWeight: 'bold',
-          },
-        },
-        dial: {
-          backgroundColor: '#0000FF', // Establecer el color según el promedio
-        },
-      }],
-    };
-  };
-  
-
-  // Opciones de la gráfica general (promedio de todas las respuestas)
-  const opcionesGraficaGeneral = {
-    chart: {
-      type: 'solidgauge',
-      height:'250px'
-
-    },
-    title: {
-      text: 'Promedio General de Calificaciones',
-      style: {
-        fontSize: '13px',
-        fontWeight: 'bold',
-      },
-    },
-    pane: {
-        center: ['50%', '80%'],
-        size: '160%', // Reduce el tamaño general del gráfico
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-          backgroundColor: '#f1f1f1',
-          innerRadius: '60%',
-          outerRadius: '100%',
-          shape: 'arc',
-        },
-      },
-    yAxis: {
-      min: 0,
-      max: 3, // Suponiendo que las calificaciones van de 0 a 10
-      lineWidth: 0,
-      tickPositions: [],
-    },
-    series: [{
-      name: 'Promedio General',
-      data: [mediaGeneral],
-      tooltip: {
-        valueSuffix: ' puntos',
-      },
-      dataLabels: {
-        enabled: true,
-        format: '{y:.2f} puntos',
-        style: {
-          fontSize: '12px',
+        text: promedio.toFixed(2) + '🌟' ,
+        left: 'center',
+        top: '45%',
+        textStyle: {
+          fontSize: 22,
           fontWeight: 'bold',
         },
       },
-      dial: {
-        backgroundColor: mediaGeneral >= 2.5 ? '#0000FF' : (mediaGeneral >= 2 ? '#FFFF00' : '#FF0000'),
-      },
-    }],
+      series: [
+        {
+          type: 'pie',
+          radius: ['60%', '80%'], // Radio interno y externo para lograr el efecto de media luna
+          startAngle: 180, // Inicia desde la parte inferior
+          data: [
+            {
+              value: promedio,
+              itemStyle: {
+                color, // Color calculado dinámicamente
+              },
+            },
+            {
+              value: 3 - promedio, // Resto del círculo no lleno
+              itemStyle: {
+                color: 'transparent',
+              },
+            },
+          ],
+          label: {
+            show: false, // Ocultar etiquetas
+          },
+        },
+      ],
+    };
   };
+
+  const opcionesGraficaGeneral = generarOpcionesGrafica(
+    respuestasPorPregunta.flatMap((p) => p.respuestas.map((r) => r.Calificacion)),
+    'General'
+  );
 
   return (
     <div className="mt-12 mb-8 flex flex-col gap-12">
-      <h2 className="text-2xl font-bold text-center">Gráficas de Calificaciones por Pregunta </h2>
+  <h2 className="text-2xl font-bold text-center">Gráficas de Calificaciones por Pregunta</h2>
+  <h4 className="text-2xl font-bold text-center">Usuarios que contestaron la encuesta: {usuariosContestaron}</h4>
 
-      <h4 className="text-2xl font-bold text-center">Usuarios que contestaron la encuesta: {usuariosContestaron}</h4>
+  <div className="grid grid-cols-3 gap-2">
+    {respuestasPorPregunta.map((preguntaData) => {
+      // Determinar el título basado en el ID de la pregunta
+      let tituloPregunta;
+      if (preguntaData.idPregunta === 4) {
+        tituloPregunta = '¿Cómo sentiste la navegación en el catálogo de productos?';
+      } else if (preguntaData.idPregunta === 5) {
+        tituloPregunta = '¿Cómo fue tu experiencia con el proceso de pedido de un platillo?';
+      } else if (preguntaData.idPregunta === 6) {
+        tituloPregunta = '¿Qué te pareció el proceso de pago de tu pedido en la aplicación?';
+      }
 
-        {/* Mostrar gráficas de cada pregunta */}
-        <div className="grid grid-cols-3 gap-2" > {/* Cambia gap-3 a gap-2 para reducir el espacio */}
-            {respuestasPorPregunta.map((preguntaData) => (
-                <div key={preguntaData.idPregunta} className="card flex flex-col justify-center items-center min-h-[250px] max-w-[600px] p-1 mr-1"> {/* Agrega mr-1 para margen derecho */}
-                <div style={{ maxWidth: '400px', maxHeight: '300px' }}> {/* Ajusta el ancho aquí */}
-                    <HighchartsReact
-                    highcharts={Highcharts}
-                    options={generarOpcionesGrafica(preguntaData.respuestas.map(res => res.Calificacion), preguntaData.idPregunta)}
-                    />
-                </div>
-                </div>
-            ))}
+      return (
+        <div key={preguntaData.idPregunta} className="card flex flex-col justify-center items-center">
+          {/* Mostrar el título dinámico de la pregunta */}
+
+          <ReactECharts
+            option={generarOpcionesGrafica(
+              preguntaData.respuestas.map((res) => res.Calificacion),
+              preguntaData.idPregunta
+            )}
+            style={{ height: 250, width: 250 }}
+          />
+            <h3 className="text-lg font-bold text-center mb-2">{tituloPregunta}</h3>
         </div>
+      );
+    })}
+  </div>
 
-    <div className="mt-12">
-    <h3 className="text-xl text-center font-bold">Gráfica General de Calificación Promedio</h3>
-    <h4 className="text-xl font-bold text-center">Usuarios que contestaron la encuesta: {usuariosContestaron}</h4>
+    <div className="mt-12 flex flex-col items-center justify-center">
+      <h3 className="text-xl text-center font-bold mb-4">Gráfica General de Calificación Promedio</h3>
+      <ReactECharts option={opcionesGraficaGeneral} style={{ height: 250, width: 250 }} />
+    </div>
 
-    <div className="flex justify-center">
-        <HighchartsReact
-        highcharts={Highcharts}
-        options={opcionesGraficaGeneral}
-        />
-    </div>
-    </div>
-    </div>
+</div>
+
   );
 }
 
-export default DashboardGrafica2;
+export default DashboardGrafica;
