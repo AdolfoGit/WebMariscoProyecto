@@ -44,11 +44,11 @@ export function DashboardGrafica() {
 
     // Definir el color principal basado en el ID de la pregunta
     let colorPrincipal;
-    if (idPregunta === 1) {
+    if (idPregunta === 4) {
       colorPrincipal = '#FFA500'; // Naranja
-    } else if (idPregunta === 2) {
+    } else if (idPregunta === 5) {
       colorPrincipal = '#0000FF'; // Azul
-    } else if (idPregunta === 3) {
+    } else if (idPregunta === 6) {
       colorPrincipal = '#008000'; // Verde
     }
 
