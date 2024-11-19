@@ -387,7 +387,7 @@ const CarritoDetalle = () => {
           </select>
         </div>
 
-       <div className=" lg:col-span-2 p-5  h-[25rem] rounded-[10px] lg:ml-10 shadow-lg">
+       <div className=" lg:col-span-2 p-5  h-[28rem] rounded-[10px] lg:ml-10 shadow-lg">
           <div className="">
             <Typography variant='text' className="text-2xl font-semibold mb-4">Detalle de la orden</Typography>
             <div className='border-t border-y border-gray-300 pt-4 pb-4'>
@@ -409,8 +409,8 @@ const CarritoDetalle = () => {
               <span className="font-semibold">${calcularTotal().total}</span>
             </div>
 
-            <div className="relative z-10 mt-4">
-              <button onClick={openModal}className="mt-4 py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
+            <div className="relative z-10 mt-4 mb-4  ">
+              <button onClick={openModal}className=" w-full mt-4 py-2 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700">
                 Pagar con tarjeta
               </button>
               {isModalOpen && (

@@ -16,7 +16,7 @@ export default function MenuFlotante() {
   const [menuOpen, setMenuOpen] = useState(false);
   
   return (
-    <Popover className="relative inline-block text-left">
+    <Popover className="relative inline-block text-rignt">
       {({ open }) => (
         <>
          <Popover.Button
@@ -46,7 +46,7 @@ export default function MenuFlotante() {
             leaveFrom="transform opacity-100 scale-100"
             leaveTo="transform opacity-0 scale-95"
           >
-            <Popover.Panel className="absolute z-10 right-0 mt-2 w-60 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <Popover.Panel className="absolute z-10 right-0 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 {sortOptions.map((option) => (
                   <a

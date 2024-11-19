@@ -9,9 +9,25 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { UserProvider } from "./UserContext";
 import * as Sentry from "@sentry/react";
 
+
+// Inicializar Sentry (sin BrowserTracing)
 Sentry.init({
   dsn: "https://74e30b135308e9bc61783ab47a169d7c@o4508292167958528.ingest.us.sentry.io/4508292169138176",
-  integrations: [],
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.browserProfilingIntegration(),
+  ],
+   // Tracing
+   tracesSampleRate: 1.0, //  Capture 100% of the transactions
+   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
+
+   tracePropagationTargets: [
+    /^https:\/\/pwa-alpha-blue\.vercel\.app/,
+    /^https:\/\/api-beta-mocha-59\.vercel\.app/,
+    "localhost", /^https:\/\/yourserver\.io\/api/
+  ],
+   profilesSampleRate: 1.0,
+   environment: "production",
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

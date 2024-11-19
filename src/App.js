@@ -45,8 +45,8 @@ import CarritoDetalle from "./components/Productos/CarritoDetalle";
 import RegistrarDireccion from "./components/Usuarios/maps";
 import Recomendaciones from "./components/Recomendaciones";
 import { pedirPermisoNotificacion } from "./notificaciones";
-
-
+import { Analytics } from '@vercel/analytics/react';
+  
 function App() {
   useEffect(() => {
     pedirPermisoNotificacion();
@@ -106,7 +106,7 @@ function App() {
           <FooterNuevo />
         </Router>
       </UserProvider>
-  
+      <Analytics />
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 
@@ -11,6 +12,10 @@ const StripeProvider = ({ children }) => {
       {children}
     </Elements>
   );
+};
+
+StripeProvider.propTypes = {
+  children: PropTypes.node.isRequired, // Validar que children sea un nodo y obligatorio
 };
 
 export default StripeProvider;
