@@ -5,11 +5,14 @@ import '../estilos.css';
 import { BookingCard } from './PostPlatillos';
 import Example from './Example'
 import PromoSecciones from './PromoSecciones';
+import { useNavigate } from 'react-router-dom';
 import { 
    Button,
  } from '@material-tailwind/react';
 
 const Home = () => {
+
+  const nav = useNavigate();
 
   return (
    <div className='transition-screen active'>
@@ -27,8 +30,8 @@ const Home = () => {
               <br />
               <p className='text-white'>¡Disfruta de estas brochetas de camarón a la parrilla con la frescura y el sabor tropical de la salsa de mango y aguacate! Puedes decorar con hojas de cilantro adicionales y rodajas de limón para dar un toque final de explosión.</p>
               <div className='flex justify-start '>
-                <Button color='green' size='sm' className='text-sm'>Explorar platillos</Button>
-                <Button color='white' size='sm' variant='outlined' className='ml-2 text-sm'>Ordenar ya!</Button>
+                <Button color='green' size='sm' className='text-sm' onClick={()=>nav('/productos')}>Explorar platillos</Button>
+                <Button color='white' size='sm' variant='outlined' className='ml-2 text-sm' onClick={()=>nav('/productos')}>Ordenar ya!</Button>
               </div>
             </div>
             <div className='right flex justify-center items-center'>

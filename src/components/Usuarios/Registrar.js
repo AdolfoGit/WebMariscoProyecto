@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './css/registro.css'
-import imagen from '../home/img/login.jpg'
+import imagen from '../../img/registro.jpg'
 import { Link, useNavigate } from 'react-router-dom'
-import HowToRegOutlinedIcon from '@mui/icons-material/HowToRegOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import { MedidorSeguridad } from './MedidorDeSeguridad';
@@ -407,92 +406,97 @@ const Registro = () => {
     <div className='flex justify-center'>
       <div className=" registro-form-containerRegistro mt-4 m-4">
 
-        <div className="registro-image-containerRegistro">
+        <div className="registro-image-containerRegistro ">
           <img src={imagen} alt="Registro" className="registro-imageRegistro" />
         </div>
-        <div className="registro-formRegistro">
-          <p className='loginTitulo'>Sing Up <HowToRegOutlinedIcon className='IconoRe' /></p>
-          <label className='loginText'>Bienvenido a la Casa del Marisco ingresa los siguientes datos para poder crear tu cuenta. Los campos que tengan * son obligatorios.</label>
+        <div className="registro-formRegistro pt-4">
+          <p className='loginTitulo '>Sing Up</p>
+          <label className='text-sm text-gray-600 mb-[14px] mt-[14px]'>Bienvenido a la Casa del Marisco ingresa los siguientes datos para poder crear tu cuenta. Los campos que tengan * son obligatorios.</label>
           <form onSubmit={handleSubmit} className='formulario'>
             <div>
-              <label htmlFor="nombre" className='RegistroLabel'>Nombre* :</label>
+              <label htmlFor="nombre" className='text-sm mb-[5px]'>Nombre* :</label>
               <br></br>
               <input
                 id="nombre"
+                placeholder='Luis angel'
                 name="nombre"
                 value={nombre}
                 size={25}
                 type='text'
                 onChange={(e) => setNombre(e.target.value)}
                 onBlur={() => validateNombre(nombre)}
-                className={nombreError ? 'input-error' : 'w-full'}
+                className={nombreError ? 'p-2  rounded-[10px] text-sm w-full p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
                 required
               />
               {nombreError && <p className="error-message">{nombreError}</p>}
             </div>
 
             <div>
-              <label htmlFor="apaellidoP" className='RegistroLabel'>Apellido Paterno* :</label> <br></br>
+              <label htmlFor="apaellidoP" className='text-sm mb-[5px]'>Apellido Paterno* :</label> <br></br>
               <input
                 required
                 id="apellidoP"
                 name="apellidoP"
+                placeholder='Ramirez'
                 type='text'
                 size={25}
                 value={ApellidoP}
                 onChange={(e) => setApellidoP(e.target.value)}
                 onBlur={() => validateApellidoP(ApellidoP)}
-                className={apellidoPError ? 'input-error' : 'w-full'}
+                className={apellidoPError ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
 
               />
               {apellidoPError && <p className="error-message">{apellidoPError}</p>}
             </div>
 
             <div>
-              <label htmlFor="apellidoM" className='RegistroLabel'>Apellido Materno* :</label> <br></br>
+              <label htmlFor="apellidoM" className='text-sm mb-[5px]'>Apellido Materno* :</label> <br></br>
               <input
                 required
                 id="apellidoM"
                 name="apellidoM"
+                placeholder='Martinez'
                 size={25}
                 type='text'
                 value={ApellidoM}
                 onChange={(e) => setApellidoM(e.target.value)}
                 onBlur={() => validateApellidoM(ApellidoM)}
-                className={apellidoMError ? 'input-error' : 'w-full'}
+                className={apellidoMError ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
               />
               {apellidoMError && <p className="error-message">{apellidoMError}</p>}
             </div>
 
             <div>
-              <label htmlFor="email" className='RegistroLabel'>Correo* :</label> <br></br>
+              <label htmlFor="email" className='text-sm mb-[5px]'>Correo* :</label> <br></br>
               <input
                 required
                 size={25}
                 id="email"
                 name="email"
+                placeholder='ejemplo@gmail.com'
                 type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onBlur={() => validateEmail(email)}
-                className={emailError ? 'input-error' : 'w-full'}
+                className={emailError ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
               />
               {emailError && <p className="error-message">{emailError}</p>}
 
             </div>
 
             <div>
-              <label htmlFor="password" className='RegistroLabel'>Contraseña* :</label> <br></br>
+              <label htmlFor="password" className='text-sm mb-[5px]'>Contraseña* :</label> <br></br>
               <div className="password-input-container">
                 <input
                   type={passwordVisible ? 'text' : 'password'}
                   id="password"
                   name="password"
                   value={password}
+                  placeholder='contrasena_#'
                   required
                   onChange={handlePasswordChange}
                   onBlur={handleBlur}
-                  className={passwordError ? 'input-error' : 'w-full'}
+                  className={passwordError ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
                 />
                 <button type="button" onClick={togglePasswordVisibility} className="btn btn-light">
                   {passwordVisible ? (
@@ -506,7 +510,7 @@ const Registro = () => {
               <MedidorSeguridad password={password} />
             </div>
             <div>
-              <label htmlFor="password2" className='RegistroLabel'>Repetir contraseña :</label> <br></br>
+              <label htmlFor="password2" className='text-sm mb-[5px]'>Repetir contraseña :</label> <br></br>
               <div className="password-input-container">
                 <input
                   type={passwordVisible2 ? 'text' : 'password'}
@@ -514,9 +518,10 @@ const Registro = () => {
                   name="password2"
                   value={password2}
                   required
+                   placeholder='contrasena_#'
                   onChange={handlePasswordChange2}
                   onBlur={handleBlur2}
-                  className={passwordError2 ? 'input-error' : 'w-full'}
+                  className={passwordError2 ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
                 />
                 <button
                   type="button"
@@ -533,22 +538,23 @@ const Registro = () => {
               {passwordError2 && <p className="error-message">{passwordError2}</p>}
             </div>
             <div>
-              <label htmlFor="telefono" className='RegistroLabel'>Telefono* :</label><br></br>
+              <label htmlFor="telefono" className='text-sm mb-[5px]'>Telefono* :</label><br></br>
               <input
                 type="tel"
                 id="telefono"
+                placeholder='7786543423'
                 name="telefono"
                 value={telefono}
                 size={20}
                 required
                 onChange={(e) => setTelefono(e.target.value)}
                 onBlur={() => validateTelefono(telefono)}
-                className={telefonoError ? 'input-error' : 'w-full'}
+                className={telefonoError ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : 'p-2 border rounded-[10px] text-sm w-full border-gray-300'}
               />
               {telefonoError && <p className="error-message">{telefonoError}</p>}
             </div>
             <div >
-              <label htmlFor="fecha" className='RegistroLabel'>Fecha de nacimiento* :</label> <br></br>
+              <label htmlFor="fecha" className='text-sm mb-[5px]'>Fecha de nacimiento* :</label> <br></br>
               <input
                 type="date"
                 id="fecha"
@@ -557,7 +563,7 @@ const Registro = () => {
                 value={fechaNac}
                 onChange={(e) => setFechaNac(e.target.value)}
                 onBlur={() => validateFecha(fechaNac)}
-                className={fechaError ? 'input-error' : 'w-full'}
+                className={fechaError ? 'p-2  rounded-[10px] text-sm w-full border-red-200' : ' p-2 border rounded-[10px] text-sm w-full border-gray-300'}
               />
               {fechaError && <p className="error-message">{fechaError}</p>}
             </div>
@@ -573,7 +579,7 @@ const Registro = () => {
             </label>
             <Link to='/politicas' className='recuerdame' >Politicas de privacidad</Link>
 
-            <button className='w-full bg-amber-400 text-white py-2 rounded-lg font-semibold hover:bg-amber-600 mb-5 ' type="submit">Registrar</button><br />
+            <button className='w-full bg-orange-500  text-white py-2 rounded-lg font-semibold hover:bg-amber-600 mb-5 ' type="submit">Registrar</button><br />
           </form>
         </div>
       </div>

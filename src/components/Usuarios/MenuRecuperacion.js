@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import imagen from "../home/img/login.jpg";
+import imagen from "../../img/recuperarcion.jpg";
 
 export default function MenuRecuperacion() {
   const apiurll = "https://lacasadelmariscoweb.azurewebsites.net/";
@@ -102,13 +102,13 @@ export default function MenuRecuperacion() {
     }
   };
   return (
-    <div className="registro-form-containerLogin">
-      <div className="registro-image-containerLogin">
+    <div className="registro-form-containerLogin2 border-0">
+      <div className="registro-image-containerLogin h-[22rem]">
         <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
 
       <div className="registro-formLogin">
-        <p className="loginTitulo">Recuperación</p>
+        <p className="loginTitulo pt-4">Recuperación</p>
         
        
         <div
@@ -128,23 +128,24 @@ export default function MenuRecuperacion() {
         {showTelefonoForm ? (
           <div className="container" id="FormularioTelefonico">
             <form onSubmit={handleSubmit}>
-              <label htmlFor="nombre" className="loginLabel">
+              <label htmlFor="nombre" className="text-sm mb-2 mt-4">
                 Número telefónico :
               </label>
               <input
                 type="number"
                 id="telefono"
                 name="telefono"
+                placeholder="77878765434"
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
                 onBlur={() => validateTelefono(telefono)}
-                className={telefonoError ? "input-error" : ""}
+                className={telefonoError ? "input-error" : "p-2 border rounded-[10px] text-sm border-gray-300"}
                 required
               />
               {telefonoError && <p className="error-message">{telefonoError}</p>}
               <br />
 
-              <button className="btn btn-warning text2" type="submit">
+              <button className="btn bg-orange-600 text-white " type="submit">
                 Enviar
               </button>
               <br />
@@ -153,23 +154,24 @@ export default function MenuRecuperacion() {
         ) : (
           <div className="container" id="FormularioCorreo">
             <form onSubmit={handleSubmit2}>
-              <label htmlFor="nombre" className="loginLabel">
+              <label htmlFor="nombre" className="text-sm mb-2 mt-4">
                 Correo electrónico :
               </label>
               <input
                 type="email"
                 id="email"
                 name="email"
+                placeholder="ejemplo@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 onBlur={() => validateEmail(email)}
-                className={emailError ? "input-error" : ""}
+                className={emailError ? "input-error" : "p-2 border rounded-[10px] text-sm border-gray-300"}
                 required
               />
               {emailError && <p className="error-message">{emailError}</p>}
               <br />
 
-              <button className="btn btn-warning text2" type="submit">
+              <button className="btn bg-orange-600 text-white hover:bg-orange-300 " type="submit">
                 Enviar
               </button>
               <br />

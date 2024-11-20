@@ -12,6 +12,8 @@ const useStyles = styled({
   },
 });
 
+import logo from '../../img/logo.jpg'
+
 const Pedidos= () => {
 
   const classes = useStyles();
@@ -95,7 +97,7 @@ const Pedidos= () => {
               <div key={pedido.IdPedido} className="bg-white rounded-lg shadow-lg p-4 w-[23rem]">
                 <div className="flex items-center justify-center mb-2">
                   <div className="bg-white h-24 w-24 rounded-full p-2 mr-3">
-                    <img src='https://scontent.fpbc2-1.fna.fbcdn.net/v/t39.30808-6/454348975_471022365692065_5380072197498364793_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeFTW77Y7Oc_V1PP53rY6EfllKKjr-2y7MuUoqOv7bLsy6zs0jUcTLmS2x93OsGvz1IcvY1yzDjGv7M688081B3q&_nc_ohc=0MKdVX2lPygQ7kNvgGZpwmW&_nc_zt=23&_nc_ht=scontent.fpbc2-1.fna&_nc_gid=A_7bqFv1GfcNJqvONAosfNu&oh=00_AYAJ8fPZHCA_ISlmRsKGxO51U_WknzzYbGz3Q_HRxqCplQ&oe=671DF36E' alt="Logo" className="w-full h-full object-cover rounded-full"/>
+                    <img src={logo} alt="Logo" className="w-1/2 h-1/2 object-cover rounded-full"/>
                   </div>
                   <div>
                     <h2 className="text-md font-bold">La Casa Del Marisco</h2>

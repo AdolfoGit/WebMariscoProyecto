@@ -3,16 +3,16 @@ import React from 'react';
 const posts = [
   {
     id: 1,
-    title: 'Boost your conversion rate',
+    title: '¡Experiencia Inolvidable!',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
+      'Visitamos La Casa del Marisco durante nuestras vacaciones y quedamos impresionados con la calidad de los platillos. ¡Las brochetas de camarón son espectaculares! Definitivamente regresaremos.',
+    date: 'Nov 10, 2024',
+    datetime: '2024-11-10',
+    category: { title: 'Reseñas', href: '#' },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
+      name: 'Laura González',
+      role: 'Cliente Frecuente',
       href: '#',
       imageUrl:
         'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
@@ -20,40 +20,39 @@ const posts = [
   },
   {
     id: 2,
-    title: 'Boost your conversion rate',
+    title: '¡Un lugar espectacular!',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
+      'Me encantó la experiencia en La Casa del Marisco. El personal fue muy amable y atento, y los mariscos frescos realmente destacan. ¡Recomiendo la sopa de mariscos, es deliciosa!',
+    date: 'Nov 8, 2024',
+    datetime: '2024-11-08',
+    category: { title: 'Reseñas', href: '#' },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
+      name: 'Carlos Martínez',
+      role: 'Turista',
       href: '#',
       imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+          'https://st3.depositphotos.com/29384342/33897/i/450/depositphotos_338975414-stock-photo-portrait-happy-middle-aged-man.jpg',
     },
   },
   {
     id: 3,
-    title: 'Boost your conversion rate',
+    title: 'Un sabor que no olvidarás',
     href: '#',
     description:
-      'Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.',
-    date: 'Mar 16, 2020',
-    datetime: '2020-03-16',
-    category: { title: 'Marketing', href: '#' },
+      'Probé los tacos de pescado y fue una experiencia única. Los sabores frescos y bien balanceados hicieron que mi visita a La Casa del Marisco fuera memorable. ¡Recomendadísimo!',
+    date: 'Nov 5, 2024',
+    datetime: '2024-11-05',
+    category: { title: 'Reseñas', href: '#' },
     author: {
-      name: 'Michael Foster',
-      role: 'Co-Founder / CTO',
+      name: 'Ana Fernández',
+      role: 'Cliente frecuente',
       href: '#',
       imageUrl:
-        'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+        'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
   },
-
-]
+];
 
 export default function Example() {
   return (
@@ -62,7 +61,7 @@ export default function Example() {
         <h3 className="text-4xl pr-4 pl-4 lg:text-5xl text-center font-bold tracking-tight text-gray-900 mt-10">
           Testiomonios de clientes
         </h3>
-        <div className="pl-10 pr-10 lg:pl-[48x] lg:pr-[48px] max-w-7xl">
+        <div className="pl-10 pr-10 lg:pl-[48x] lg:pr-[48px] max-w-full">
           <div className="mx-auto mt-5 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             {posts.map((post) => (
               <article key={post.id} className="flex max-w-xl flex-col items-start justify-between">

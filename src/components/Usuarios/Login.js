@@ -2,13 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import "../Usuarios/css/login.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import imagen from "../home/img/ham2.jpg";
+import imagen from "../../img/login.jpg";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import Swal from "sweetalert2";
-import ReCAPTCHA from "react-google-recaptcha";
+
 import { gapi } from "gapi-script";
-import GoogleLogin from "@leecheuk/react-google-login"; 
+import GoogleLogin from "@leecheuk/react-google-login";
 import { useUser } from "../../UserContext";
 import "./css/login.css";
 import { reactApiIP } from "../../variables";
@@ -25,11 +25,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [loginAttempts ] = useState(0);
+  const [loginAttempts] = useState(0);
   const [loginAttempts2] = useState(0);
   const ClientID =
     "581987127535-vrka2isr37etho1p5t4cfnq6lur1euum.apps.googleusercontent.com";
- // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  // const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const navigate = useNavigate();
   const loginAttemptsRef = useRef(loginAttempts);
@@ -88,9 +88,9 @@ export default function Login() {
     if (validateEmail(email) && validatePassword(password)) {
       loginAttemptsRef.current += 1;
       if (loginAttemptsRef.current >= 3) {
-      //  setIsButtonDisabled(true); // Deshabilitar el botón después de 5 intentos
+        //  setIsButtonDisabled(true); // Deshabilitar el botón después de 5 intentos
         setTimeout(() => {
-      //    setIsButtonDisabled(false); // Habilitar el botón después de 3 minutos
+          //    setIsButtonDisabled(false); // Habilitar el botón después de 3 minutos
           loginAttemptsRef.current = 0; // Reiniciar el contador de intentos
         }, 60000); // 3 minutos en milisegundos
       }
@@ -139,10 +139,7 @@ export default function Login() {
     }
   };
 
-  function onChange() {
-    ObtenerIp();
-
-  }
+ 
   function ObtenerIp() {
     const apiKey = reactApiIP;
     json(`https://api.ipdata.co?api-key=${apiKey}`).then((data) => {
@@ -169,54 +166,59 @@ export default function Login() {
     fetch(apiurll + "api/CasaDelMarisco/VerificarCorreo", {
       method: "POST",
       body: data,
-  })
-  .then((res) => res.json())
-  .then(async (result) => {
-      if (result === "Correo Existe") {
+    })
+      .then((res) => res.json())
+      .then(async (result) => {
+        if (result === "Correo Existe") {
           const resultado = await obtenerDatosUsuario(email);
 
           // Segunda llamada fetch
           fetch(apiurll + "api/CasaDelMarisco/LoginOauth", {
-              method: "POST",
-              body: data,
+            method: "POST",
+            body: data,
           })
-          .then((res) => res.json())
-          .then((loginResult) => {
-              console.log(loginResult)
+            .then((res) => res.json())
+            .then((loginResult) => {
+              console.log(loginResult);
               loginUser(resultado);
-              if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+              if (
+                navigator.serviceWorker &&
+                navigator.serviceWorker.controller
+              ) {
                 navigator.serviceWorker.controller.postMessage({
-                  type: 'SET_USER_ID',
+                  type: "SET_USER_ID",
                   userId: resultado.idUsuario, // Asume que `resultado` contiene `idUsuario`
                 });
-                console.log('ID de usuario enviado al service worker:', resultado.idUsuario);
+                console.log(
+                  "ID de usuario enviado al service worker:",
+                  resultado.idUsuario
+                );
               }
               if (resultado.Rol === 2) {
-                  Swal.fire({
-                      icon: "success",
-                      title: "Login de administrador",
-                      text: "Cuidado, eres administrador. Puedes modificar datos de la página, siempre con cuidado.",
-                  });
-                  navigate("/dashboard/home");
+                Swal.fire({
+                  icon: "success",
+                  title: "Login de administrador",
+                  text: "Cuidado, eres administrador. Puedes modificar datos de la página, siempre con cuidado.",
+                });
+                navigate("/dashboard/home");
               } else {
-                  navigate("/");
+                navigate("/");
               }
               //console.log(loginResult);
-          })
-          .catch((error) => {
+            })
+            .catch((error) => {
               console.error("Error en la segunda llamada fetch:", error);
-          });
-      } else {
+            });
+        } else {
           // Aquí puedes manejar el caso en el que el correo no existe
-      }
-  })
-  .catch((error) => {
-      console.error("Error en la primera llamada fetch:", error);
-  });
+        }
+      })
+      .catch((error) => {
+        console.error("Error en la primera llamada fetch:", error);
+      });
 
-  //console.log(response);
+    //console.log(response);
   };
-
 
   const onFailure = () => {
     console.log("Algo salio mal");
@@ -245,109 +247,114 @@ export default function Login() {
     }
   };
   return (
-    <div className="lg:m-0 m-1">
-      <div className="flex justify-center items-center">
-      <div className=" p-2 lg:p-10">
-      <div className="bg-white shadow-lg rounded-lg flex overflow-hidden max-w-4xl w-full">
-      <div className="registro-image-containerLogin w-2/5 ">
-        <img src={imagen} alt="Registro" className="registro-imageLogin" />
-      </div>
+    <div className="lg:m-0 flex justify-center p-4">
+      <div className="bg-white shadow-lg rounded-[20px] flex overflow-hidden max-w-[50rem] ">
+        <div className="registro-image-containerLogin w-1/2">
+          <img src={imagen} alt="Registro" className="registro-imageLogin" />
+        </div>
 
-      <div className=" w-full lg:w-3/5 pl-10 pb-5 pt-5 pr-10">
-        <p className="loginTitulo mb-4 ">
-          Login 
-        </p>
-        <label className="loginText">
-          Inicia sesión para obtener nuevos permisos y opciones dentro del sitio
-          web
-        </label>
+        <div className=" w-full lg:w-1/2 pl-10 pb-4 pt-4 pr-10">
+          <p className="loginTitulo mb-4 ">Login</p>
+          <label className="text-sm text-gray-600 mb-[10px]">
+            Inicia sesión para obtener nuevos permisos y opciones dentro del
+            sitio web
+          </label>
 
-        <form onSubmit={handleSubmit} className="space-y-2">
-          <div>
-            <label htmlFor="email" className="block text-xl mb-2">Correo</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => validateEmail(email)}
-              className={`w-full p-2 border rounded ${emailError ? "border-red-500" : "border-gray-300"}`}
-              required
-            />
-            {emailError && <p className="text-red-500 text-xl">{emailError}</p>}
-          </div>
-          <div>
-            <label htmlFor="password" className="block text-xl mb-2">Contraseña</label>
-            <div className="relative">
+          <form onSubmit={handleSubmit} className="space-y-2">
+            <div>
+              <label htmlFor="email" className="block text-sm mb-2">
+                Correo
+              </label>
               <input
-                type={passwordVisible ? "text" : "password"}
-                id="password"
-                name="password"
-                value={password}
-                onChange={handlePasswordChange}
-                onBlur={handleBlur}
-                className={`w-full p-2 border rounded ${passwordError ? "border-red-500" : "border-gray-300"}`}
+                placeholder="ejemplo@gmail.com"
+                type="email"
+                id="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onBlur={() => validateEmail(email)}
+                className={`lg:w-full  w-[17rem] p-2 border rounded-[10px] text-sm ${
+                  emailError ? "border-red-500" : "border-gray-300"
+                }`}
                 required
               />
-              <button
-                type="button"
-                onClick={togglePasswordVisibility}
-                className="absolute inset-y-0 right-0 flex items-center px-2"
-              >
-                {passwordVisible ? (
-                  <VisibilityOutlinedIcon fontSize="small" />
-                ) : (
-                  <VisibilityOffOutlinedIcon fontSize="small" />
-                )}
-              </button>
+              {emailError && (
+                <p className="text-red-500 text-xs">{emailError}</p>
+              )}
             </div>
-            {passwordError && <p className="text-red-500 text-xl">{passwordError}</p>}
-          </div>
-          <div className="flex justify-end">      
-            <Link to="/menuRecuperacion" className="text-md text-blue-900">
-              ¿Olvidaste tu password?
-            </Link>
-          </div>
-          <center>
-            <ReCAPTCHA
-              
-              sitekey="6LcM1HgpAAAAAPRLXOZ5D4aIwp7JtiBeH3IR9QW6"
-              onChange={onChange}
-            />
-          </center>
-          <button
-            type="submit"
-            className="w-full bg-amber-400 text-white py-2 rounded-lg font-semibold hover:bg-amber-600"
+            <div>
+              <label htmlFor="password" className="block text-sm mb-2">
+                Contraseña
+              </label>
+              <div className="relative">
+                <input
+                  placeholder="contraseñ@_"
+                  type={passwordVisible ? "text" : "password"}
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  onBlur={handleBlur}
+                  className={`w-[17rem] lg:w-full p-2 border rounded-[10px] text-sm ${
+                    passwordError ? "border-red-500" : "border-gray-300"
+                  }`}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 flex items-center px-2"
+                >
+                  {passwordVisible ? (
+                    <VisibilityOutlinedIcon fontSize="small" />
+                  ) : (
+                    <VisibilityOffOutlinedIcon fontSize="small" />
+                  )}
+                </button>
+              </div>
+              {passwordError && (
+                <p className="text-red-500 text-xs">{passwordError}</p>
+              )}
+            </div>
+            <div className="flex justify-end lg:mr-0 ">
+              <Link to="/menuRecuperacion" className="text-xs text-blue-900">
+                ¿Olvidaste tu password?
+              </Link>
+            </div>
             
-          >
+            <button
+              type="submit"
+              className="w-full mt-4  bg-orange-500 text-white py-2 rounded-lg font-semibold hover:bg-amber-600"
+            >
               Entrar
-          </button>
-          <div className="text-center mt-4">
-            <Typography variant="text" className="text-2xl text-center font-semibold">
-              Iniciar sesión con
-            </Typography>
-          </div>
-          <GoogleLogin
-            clientId={ClientID}
-            onSuccess={onSuccess}
-            onFailure={onFailure}
-            cookiePolicy={"single_host_policy"}
-            className="google-login-button"
-          />
+            </button>
+            <div className="text-center mt-4">
+              <Typography
+                variant="text"
+                className="text-md text-center font-semibold"
+              >
+                Iniciar sesión con
+              </Typography>
+            </div>
+            <GoogleLogin
+              clientId={ClientID}
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+              cookiePolicy={"single_host_policy"}
+              className="google-login-button"
+            />
 
-          <div className=" flex justify-start items-center text-center mt-6">
-            <Typography className="text-md">
-              No tienes una cuenta?
-            </Typography>
-            <Link to="/registrar" className="text-blue-500 hover:underline ml-2">
-              Crear cuenta
-            </Link>
-          </div>
-        </form>
-      </div>
-    </div>
-      </div>
+            <div className=" flex justify-center items-center text-center mt-4">
+              <Typography className="text-md">No tienes una cuenta?</Typography>
+              <Link
+                to="/registrar"
+                className="text-blue-500 hover:underline ml-2"
+              >
+                Crear cuenta
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

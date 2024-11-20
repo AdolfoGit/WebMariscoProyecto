@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import imagen from '../home/img/login.jpg';
+import imagen from '../../img/registro.jpg';
 import Swal from 'sweetalert2';
 import { useUser } from '../../UserContext';
 
@@ -12,6 +12,27 @@ export default function Bienvenida() {
   const [token, setToken] = useState('');
   const [erroToken, setErroToken] = useState('');
   const [timerActive, setTimerActive] = useState(true);
+  const [tokenParts, setTokenParts] = useState(["", "", "", "", "", ""]); // Arreglo para los 6 inputs
+
+
+  const handleInputChange = (value, index) => {
+    const newTokenParts = [...tokenParts];
+    newTokenParts[index] = value.slice(0, 1); // Limita a un carácter por input
+    setTokenParts(newTokenParts);
+
+    // Combina los valores y actualiza el token final
+    setToken(newTokenParts.join(""));
+  };
+
+  const handleKeyUp = (e, index) => {
+    if (e.key === "Backspace" && index > 0 && tokenParts[index] === "") {
+      // Si presiona backspace, mueve el foco al input anterior
+      document.getElementById(`input-${index - 1}`).focus();
+    } else if (index < 5 && e.target.value !== "") {
+      // Si escribe algo, mueve el foco al siguiente input
+      document.getElementById(`input-${index + 1}`).focus();
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -114,37 +135,47 @@ export default function Bienvenida() {
   
 
   return (
-    <div className="registro-form-containerLogin">
+    <div className=''>
+        <div className="registro-form-containerLogin2 border-0 h-[20rem] flex justify-center ">
       <div className="registro-image-containerLogin">
         <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
 
       <div className="registro-formLogin">
-        <p className="loginTitulo">Multifactor</p>
-        <label className="loginText">
+        <p className="loginTitulo mt-12">Multifactor</p>
+        <label className="text-sm text-gray-600 mb-[10px] mt-[15px]">
           Ingrese el token que se le envió al correo
         </label>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="nombre" className="loginLabel">
+          <label htmlFor="nombre" className="text-sm mb-2">
             Token:
           </label>
-          <input
+          <div className="flex space-x-4 mb-4">
+
+          {tokenParts.map((value, index) => (
+            <input
+            key={index}
+            id={`input-${index}`}
             type="text"
-            name="token"
-            required
-            value={token}
-            onChange={(e) => setToken(e.target.value)}
+            name={`token-${index}`}
+            className="w-12 h-12 text-center border rounded-md text-lg font-medium border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            value={value}
+            onChange={(e) => handleInputChange(e.target.value, index)}
+            onKeyUp={(e) => handleKeyUp(e, index)}
             disabled={!timerActive}
-          />
+            />
+          ))}
           {erroToken && <p className="error-message">{erroToken}</p>}
           <br />
+          </div>
 
-          <button className="btn btn-warning text2" type="submit" disabled={!timerActive}>
+          <button className="btn bg-orange-600 text-white" type="submit" disabled={!timerActive}>
             Enviar
           </button>
           <br />
         </form>
       </div>
+    </div>
     </div>
   );
 }

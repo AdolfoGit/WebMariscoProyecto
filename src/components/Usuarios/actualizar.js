@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import imagen from "../home/img/login.jpg";
+import imagen from "../../img/recuperarcion.jpg";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { MedidorSeguridad } from "./MedidorDeSeguridad";
@@ -158,16 +158,16 @@ export default function Actualizar() {
   };
 
   return (
-    <div className="registro-form-containerLogin">
+    <div className="registro-form-containerLogin2 border-0 h-[24rem]">
       <div className="registro-image-containerLogin">
         <img src={imagen} alt="Registro" className="registro-imageLogin" />
       </div>
 
       <div className="registro-formLogin">
         <p className="loginTitulo">Actualizar Contraseña</p>
-        <label className="loginText">Ingrese su nueva contraseña</label>
+        <label className="text-sm text-gray-600 mb-[10px] mt-4">Ingrese su nueva contraseña</label>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="password" className="RegistroLabel">
+          <label htmlFor="password" className="text-sm mb-2">
             Contraseña :
           </label>
           <div className="password-input-container">
@@ -175,12 +175,13 @@ export default function Actualizar() {
               type={passwordVisible ? "text" : "password"}
               id="password"
               name="password"
+              placeholder="ejemplo@_"
               value={password}
               required
               size={35}
               onChange={handlePasswordChange}
               onBlur={handleBlur}
-              className={passwordError ? "input-error" : ""}
+              className={passwordError ? "p-2 border rounded-[10px] text-sm border-red-300" : "p-2 border rounded-[10px] text-sm border-gray-300"}
             />
             <button
               type="button"
@@ -197,7 +198,7 @@ export default function Actualizar() {
           {passwordError && <p className="error-message">{passwordError}</p>}
           <MedidorSeguridad password={password} />
 
-          <label htmlFor="password2" className="RegistroLabel">
+          <label htmlFor="password2" className="text-sm mb-2">
             Repetir contraseña :
           </label>
           <div className="password-input-container">
@@ -205,12 +206,13 @@ export default function Actualizar() {
               type={passwordVisible2 ? "text" : "password"}
               id="password2"
               name="password2"
+              placeholder="ejemplo@_"
               value={password2}
               required
               size={35}
               onChange={handlePasswordChange2}
               onBlur={handleBlur2}
-              className={passwordError2 ? "input-error" : ""}
+              className={passwordError2 ?"p-2 border rounded-[10px] text-sm border-red-300" : "p-2 border rounded-[10px] text-sm border-gray-300"}
             />
             <button
               type="button"
@@ -228,7 +230,7 @@ export default function Actualizar() {
 
           <br />
 
-          <button className="btn btn-warning text2" type="submit">
+          <button className="btn bg-orange-600  hover:bg-orange-400 text-white" type="submit">
             Enviar
           </button>
           <br />
